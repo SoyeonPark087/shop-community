@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./Header.css";
 import Search from "./drawers/Search";
+import Login from "./drawers/Login";
 
 function Header() {
-    const [searchOpen, setSearchOpen] =
-    useState(false);
-
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [loginOpen, setLoginOpen] = useState(false);
     return (
       <>
       <header className="site-header">
@@ -24,7 +24,7 @@ function Header() {
             href="/"
             aria-label="Mooday home"
           >
-            <img src="/images/Logo.svg" alt="Mooday" />
+            <img src="/images/common/Logo.svg" alt="Mooday" />
           </a>
 
           <nav
@@ -32,26 +32,33 @@ function Header() {
             aria-label="Utilities"
           >
             <button
-                type="button"
-                onClick={() =>
-                  setSearchOpen(true)
-                }
-              >
-                Search
-              </button>
+              type="button"
+              onClick={() => setSearchOpen(true)}
+            >
+              Search
+            </button>
             <button type="button">Cart</button>
-            <button type="button">Account</button>
+            <button
+              type="button"
+              onClick={() => setLoginOpen(true)}
+            >
+              Account
+            </button>
             
           </nav>
         </div>
       </header>
 
       <Search
-          open={searchOpen}
-          onClose={() =>
-            setSearchOpen(false)
-          }
-        />
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
+
+      <Login
+        open={loginOpen}
+        onClose={() => setLoginOpen(false)}
+      />
+
       </>
 
   );

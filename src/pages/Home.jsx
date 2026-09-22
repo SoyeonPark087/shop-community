@@ -260,7 +260,7 @@ function BrandBanner() {
           <br />
           for a Better Day.
         </p>
-        <img className="brand-banner__logo" src="/images/Logo.svg" alt="Mooday" />
+        <img className="brand-banner__logo" src="/images/common/Logo.svg" alt="Mooday" />
       </div>
     </section>
   );

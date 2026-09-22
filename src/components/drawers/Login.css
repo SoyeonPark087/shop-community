@@ -1,0 +1,391 @@
+/* =========================
+   Login Drawer Layer
+========================= */
+
+.login-drawer-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.login-drawer-layer--open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================
+   Backdrop
+========================= */
+
+.login-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  background: rgba(40, 40, 40, 0.08);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  opacity: 0;
+
+  cursor: default;
+
+  transition:
+    opacity 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+.login-drawer-layer--open
+.login-drawer-backdrop {
+  opacity: 1;
+}
+
+/* =========================
+   Drawer
+========================= */
+
+.login-drawer,
+.login-drawer *,
+.login-drawer *::before,
+.login-drawer *::after {
+  box-sizing: border-box;
+}
+
+.login-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 700px;
+  max-width: 100vw;
+  height: 100dvh;
+
+  padding: 96px 64px 64px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  color: #282828;
+  background: #fafaf8;
+
+  font-family:
+    "Segoe UI",
+    "Pretendard",
+    sans-serif;
+
+  transform: translateX(100%);
+
+  transition:
+    transform 0.32s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.login-drawer-layer--open
+.login-drawer {
+  transform: translateX(0);
+}
+
+/* =========================
+   Header
+========================= */
+
+.login-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-drawer__header h2 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+
+  letter-spacing: 0.32em;
+}
+
+/* =========================
+   Close
+========================= */
+
+.login-drawer__close {
+  position: relative;
+
+  width: 32px;
+  height: 32px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.login-drawer__close-icon {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+}
+
+.login-drawer__close-icon::before,
+.login-drawer__close-icon::after {
+  content: "";
+
+  position: absolute;
+
+  top: 15px;
+  left: 1px;
+
+  width: 30px;
+  height: 2px;
+
+  background: #282828;
+}
+
+.login-drawer__close-icon::before {
+  transform: rotate(45deg);
+}
+
+.login-drawer__close-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* =========================
+   Body
+========================= */
+
+.login-drawer__body {
+  margin-top: 96px;
+}
+
+/* =========================
+   Inputs
+========================= */
+
+.login-drawer__fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-drawer__fields input {
+  width: 100%;
+  height: 74px;
+
+  padding: 0;
+
+  border: 0;
+  border-bottom: 1px solid rgba(40, 40, 40, 0.18);
+  border-radius: 0;
+
+  outline: 0;
+
+  color: #282828;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.login-drawer__fields input::placeholder {
+  color: #999791;
+  opacity: 1;
+}
+
+.login-drawer__fields input:focus {
+  border-bottom-color: #51514d;
+}
+
+/* =========================
+   Login Button
+========================= */
+
+.login-drawer__submit {
+  width: 100%;
+  height: 60px;
+
+  margin-top: 72px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+
+  color: #fff;
+  background: #315744;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.login-drawer__submit:hover {
+  background: #294a3a;
+}
+
+/* =========================
+   Find/Create Links
+========================= */
+
+.login-drawer__links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 36px;
+}
+
+.login-drawer__links-left {
+  display: flex;
+  gap: 28px;
+}
+
+.login-drawer__links button {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  color: #315744;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  cursor: pointer;
+}
+
+.login-drawer__create {
+  margin-left: auto !important;
+}
+
+/* =========================
+   Divider
+========================= */
+
+.login-drawer__divider {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 72px;
+
+  background: rgba(40, 40, 40, 0.16);
+}
+
+/* =========================
+   Social Login
+========================= */
+
+.login-drawer__social {
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+
+  margin-top: 72px;
+}
+
+.login-social {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+
+  padding: 0;
+
+  border: 0;
+
+  color: #282828;
+  background: transparent;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+.login-social__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #282828;
+}
+
+.login-social__logo {
+  width: 24px;
+  height: 24px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.login-social__name {
+  padding-left: 12px;
+
+  font-size: 17px;
+  font-weight: 400;
+
+  text-align: left;
+}
+
+.login-social__arrow {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 700px) {
+  .login-drawer {
+    width: 100%;
+
+    padding:
+      64px
+      32px
+      48px;
+  }
+
+  .login-drawer__body {
+    margin-top: 72px;
+  }
+
+  .login-drawer__submit {
+    margin-top: 56px;
+  }
+
+  .login-drawer__divider {
+    margin-top: 56px;
+  }
+
+  .login-drawer__social {
+    margin-top: 56px;
+  }
+}
