@@ -104,7 +104,7 @@ const moodCards = [
 
 function ArrowLink({ children, className = "" }) {
   return (
-    <a className={`arrow-link ${className}`} href="#">
+    <a className={`arrow-link ${className}`} href="/Signup.jsx">
       <span>{children}</span>
       <span aria-hidden="true">→</span>
     </a>
