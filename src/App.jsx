@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       <h1>저희 쇼핑몰입니다.</h1>
-      <Home><Home/>
-      <Shop><Shop/>
-      <Community><Community/>
+      <Home />
+      <Shop />
+      <Community />
     </>
   )
 }
