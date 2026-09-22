@@ -5,7 +5,6 @@ import viteLogo from './assets/vite.svg'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import './App.css'
-import Home from './pages/Home'
 
 function App() {
 
