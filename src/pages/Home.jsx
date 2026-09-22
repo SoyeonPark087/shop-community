@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./Home.css";
 
 const newArrivals = [
@@ -99,15 +101,6 @@ const moodCards = [
   },
 ];
 
-const footerLinks = [
-  "Agreement",
-  "Privacy",
-  "Membership",
-  "Order Tracking",
-  "Instagram",
-  "Customer Care",
-  "Notice",
-];
 
 function ArrowLink({ children, className = "" }) {
   return (
@@ -118,35 +111,11 @@ function ArrowLink({ children, className = "" }) {
   );
 }
 
-function Header() {
-  return (
-    <header className="site-header">
-      <div className="site-header__inner">
-        <nav className="site-header__nav site-header__nav--left" aria-label="Primary">
-          <a href="#shop">Shop</a>
-          <a href="#editorial">Editorial</a>
-          <a href="#community">Community</a>
-        </nav>
-
-        <a className="site-header__logo" href="#top" aria-label="Mooday home">
-          <img src="/images/Logo.svg" alt="Mooday" />
-        </a>
-
-        <nav className="site-header__nav site-header__nav--right" aria-label="Utilities">
-          <button type="button">Search</button>
-          <button type="button">Cart</button>
-          <button type="button">Account</button>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
 function Hero() {
   return (
     <section id="top" className="hero">
       <Header />
-      <img className="hero__image" src="/images/homebanner1.png" alt="" />
+      <img className="hero__image" src="/images/home/homebanner1.png" alt="" />
       <div className="hero__overlay" />
 
       <div className="hero__content">
@@ -284,7 +253,7 @@ function ShopByMood() {
 function BrandBanner() {
   return (
     <section className="brand-banner">
-      <img src="/images/homebanner2.png" alt="" />
+      <img src="/images/home/homebanner2.png" alt="" />
       <div className="brand-banner__content inner">
         <p>
           A New Perspective
@@ -297,24 +266,6 @@ function BrandBanner() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="footer">
-      <div className="inner footer__top">
-        <p className="footer__copyright">© Copyright ©2026 mooday All rights reserved.</p>
-        <nav className="footer__links" aria-label="Footer links">
-          {footerLinks.map((link) => <a key={link} href="#">{link}</a>)}
-        </nav>
-      </div>
-
-      <div className="inner footer__details">
-        <p>대표 | 기획브랜드&nbsp;&nbsp; 사업자등록번호 | 000-00-00000</p>
-        <p>통신판매업신고 | 제0000-서울-0000호</p>
-        <p>주소 | 서울특별시 000구 00로 00&nbsp;&nbsp; 고객센터 | 070-0000-0000&nbsp;&nbsp; E-mail | customer@mooday.com</p>
-      </div>
-    </footer>
-  );
-}
 
 export default function Home() {
   return (
