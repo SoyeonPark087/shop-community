@@ -3,6 +3,7 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import Home from './pages/Home'
+import Shop from './pages/Shop'
 import './App.css'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <>
     <h1>저희 쇼핑몰입니다.</h1>
     <Home></Home>
+    <Shop></Shop>
     </>
   )
 }
