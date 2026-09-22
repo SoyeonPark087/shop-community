@@ -6,25 +6,25 @@ const newArrivals = [
     id: 1,
     name: "Ribbed Tank Top",
     price: "₩ 49,000",
-    image: "/images/new1.png",
+    image: "/images/home/new1.png",
   },
   {
     id: 2,
     name: "Wide Nylon Pants",
     price: "₩ 89,000",
-    image: "/images/new2.png",
+    image: "/images/home/new2.png",
   },
   {
     id: 3,
     name: "Back Tie Long Sleeve",
     price: "₩ 56,000",
-    image: "/images/new3.png",
+    image: "/images/home/new3.png",
   },
   {
     id: 4,
     name: "Relaxed Knit Tee",
     price: "₩ 62,000",
-    image: "/images/new4.png",
+    image: "/images/home/new4.png",
   },
 ];
 
@@ -33,13 +33,13 @@ const editorialCards = [
     eyebrow: "EDITORIAL",
     title: "Soft\nStructures",
     description: "Relaxed shapes for a more\ngrounded you.",
-    image: "/images/edit1.png",
+    image: "/images/home/edit1.png",
   },
   {
     eyebrow: "STYLE GUIDE",
     title: "Weekend\nLayers",
     description: "Pieces that move with you",
-    image: "/images/edit2.png",
+    image: "/images/home/edit2.png",
   },
 ];
 
@@ -50,7 +50,7 @@ const communityLooks = [
     count: "3 items",
     tags: "#mood  #homewear",
     text: "Some mood, different day.",
-    image: "/images/look1.png",
+    image: "/images/home/look1.png",
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #outside",
     text: "오늘도 좋은 하루 :)",
-    image: "/images/look2.png",
+    image: "/images/home/look2.png",
   },
   {
     id: 3,
@@ -66,7 +66,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #sweater",
     text: "A slow morning, a better day!",
-    image: "/images/look3.png",
+    image: "/images/home/look3.png",
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#yoga  #outfit",
     text: "Everyday pieces, new perspective.",
-    image: "/images/look4.png",
+    image: "/images/home/look4.png",
   },
 ];
 
@@ -82,19 +82,19 @@ const moodCards = [
   {
     title: "City Ease",
     description: "Modern pieces for your rhythm.",
-    image: "/images/edit3.png",
+    image: "/images/home/edit3.png",
     tone: "light",
   },
   {
     title: "Soft Neutral",
     description: "Calm essentials for everyday",
-    image: "/images/edit4.png",
+    image: "/images/home/edit4.png",
     tone: "dark",
   },
   {
     title: "Weekend Calm",
     description: "A little white for your tone",
-    image: "/images/edit5.png",
+    image: "/images/home/edit5.png",
     tone: "light",
   },
 ];
