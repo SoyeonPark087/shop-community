@@ -1,11 +1,23 @@
 import { useState } from "react";
-import "./Header.css";
+
 import Search from "./drawers/Search";
 import Login from "./drawers/Login";
+import Cart from "./drawers/Cart";
 
-function Header() {
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [loginOpen, setLoginOpen] = useState(false);
+import "./Header.css";
+
+function Header({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
+  const [activeDrawer, setActiveDrawer] =
+    useState(null);
+
+  const closeDrawer = () => {
+    setActiveDrawer(null);
+  };
+
     return (
       <>
       <header className="site-header">
@@ -33,14 +45,19 @@ function Header() {
           >
             <button
               type="button"
-              onClick={() => setSearchOpen(true)}
+              onClick={() => setActiveDrawer("search")}
             >
               Search
             </button>
-            <button type="button">Cart</button>
             <button
               type="button"
-              onClick={() => setLoginOpen(true)}
+              onClick={() => setCartOpen(true)}
+            >
+              Cart
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveDrawer("login")}
             >
               Account
             </button>
@@ -49,16 +66,21 @@ function Header() {
         </div>
       </header>
 
-      <Search
-        open={searchOpen}
-        onClose={() => setSearchOpen(false)}
+       <Search
+        open={activeDrawer === "search"}
+        onClose={closeDrawer}
+      />
+
+      <Cart
+        open={cartOpen}
+        onClose={() => setCartOpen(false)}
+        items={cartItems}
       />
 
       <Login
-        open={loginOpen}
-        onClose={() => setLoginOpen(false)}
+        open={activeDrawer === "login"}
+        onClose={closeDrawer}
       />
-
       </>
 
   );

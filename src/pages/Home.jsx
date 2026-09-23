@@ -111,10 +111,18 @@ function ArrowLink({ children, className = "" }) {
   );
 }
 
-function Hero() {
+function Hero({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <section id="top" className="hero">
-      <Header />
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
       <img className="hero__image" src="/images/home/homebanner1.png" alt="" />
       <div className="hero__overlay" />
 
@@ -267,10 +275,19 @@ function BrandBanner() {
 }
 
 
-export default function Home() {
+export default function Home({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <main className="mooday-home">
-      <Hero />
+      <Hero
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
+
       <NewArrivals />
       <Editorial />
       <Community />
