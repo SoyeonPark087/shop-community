@@ -1,0 +1,1892 @@
+
+/*
+  =========================================
+  MOODAY COMMUNITY DETAIL
+  Responsive CSS v1.1
+  =========================================
+
+  Desktop:
+    1280px 이상
+
+  Tablet Wide:
+    1024px ~ 1279px
+
+  Tablet Compact:
+    768px ~ 1023px
+
+  Mobile:
+    767px 이하
+
+  변경 범위:
+    Community Detail 전용 스타일
+
+  Main / Header / Footer / Router는
+  수정하지 않습니다.
+*/
+
+
+/* =====================================
+   00. ROOT
+===================================== */
+
+.mooday-detail,
+.mooday-detail * {
+  box-sizing: border-box;
+}
+
+
+.mooday-detail {
+  width: 100%;
+
+  padding: 64px 0 120px;
+
+  background: #fff;
+  color: #282828;
+
+  font-family:
+    'Pretendard GOV',
+    Pretendard,
+    Arial,
+    sans-serif;
+}
+
+
+.mooday-detail__inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+  margin: 0 auto;
+}
+
+
+/* =====================================
+   01. HERO
+===================================== */
+
+/*
+  Desktop 기본 구조 유지.
+
+  큰 화면에서는 기존 820px 갤러리 기준.
+
+  좁은 Desktop / Tablet에서는
+  하단 media query에서 유동 폭으로 변경.
+*/
+
+.mooday-detail__hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 820px)
+    minmax(0, 1fr);
+
+  gap: clamp(32px, 5vw, 92px);
+
+  align-items: start;
+}
+
+
+/* =====================================
+   02. IMAGE GALLERY
+===================================== */
+
+.mooday-detail-gallery {
+  min-width: 0;
+  width: 100%;
+}
+
+
+/* 메인 이미지 */
+
+.mooday-detail-gallery__main {
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  background: #f0efed;
+}
+
+
+.mooday-detail-gallery__main img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* 이미지 누락 시 대체 슬롯 */
+
+.mooday-detail-gallery__placeholder {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f0efed;
+
+  color: #aaa;
+
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+
+/* =====================================
+   03. THUMBNAIL NAVIGATION
+===================================== */
+
+.mooday-detail-gallery__navigation {
+  position: relative;
+
+  margin-top: 20px;
+}
+
+
+.mooday-detail-gallery__track {
+  display: flex;
+
+  gap: 12px;
+
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+
+  scroll-snap-type: x mandatory;
+}
+
+
+.mooday-detail-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* 썸네일 4개 표시 */
+
+.mooday-detail-gallery__thumbnail {
+  display: block;
+
+  flex:
+    0 0 calc((100% - 36px) / 4);
+
+  aspect-ratio: 4 / 5;
+
+  min-width: 0;
+  height: auto;
+
+  padding: 0;
+
+  border: 2px solid transparent;
+
+  background: #f0efed;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  scroll-snap-align: start;
+}
+
+
+.mooday-detail-gallery__thumbnail img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* 현재 선택 썸네일 */
+
+.mooday-detail-gallery__thumbnail--selected {
+  border-color: #466858;
+}
+
+
+.mooday-detail-gallery__thumbnail:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: -4px;
+}
+
+
+/* 썸네일 화살표 */
+
+.mooday-detail-gallery__arrow {
+  position: absolute;
+
+  top: 50%;
+
+  display: flex;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #333;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  z-index: 2;
+}
+
+
+.mooday-detail-gallery__arrow--previous {
+  left: -18px;
+}
+
+
+.mooday-detail-gallery__arrow--next {
+  right: -18px;
+}
+
+
+.mooday-detail-gallery__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+
+/* =====================================
+   04. STYLED PRODUCTS
+===================================== */
+
+.mooday-detail-products {
+  width: 100%;
+  min-width: 0;
+}
+
+
+.mooday-detail-products__heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 10px 0 18px;
+
+  border-bottom: 1px solid #ddd;
+}
+
+
+.mooday-detail-products__heading h2 {
+  margin: 0;
+
+  font-size: 22px;
+  font-weight: 500;
+}
+
+
+.mooday-detail-products__heading span {
+  flex-shrink: 0;
+
+  color: #aaa;
+  font-size: 12px;
+}
+
+
+/* 상품 카드 */
+
+.mooday-detail-product {
+  display: flex;
+
+  width: 100%;
+
+  align-items: center;
+
+  gap: 24px;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid #e4e4e4;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.mooday-detail-product--linked:hover
+.mooday-detail-product__name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* 상품 이미지 */
+
+.mooday-detail-product__image {
+  display: flex;
+
+  flex: 0 0 130px;
+
+  width: 130px;
+  height: 130px;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #f1f0ee;
+}
+
+
+.mooday-detail-product__image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+.mooday-detail-product__image span {
+  color: #aaa;
+  font-size: 11px;
+}
+
+
+/* 상품 정보 */
+
+.mooday-detail-product__info {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.mooday-detail-product__brand {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+
+.mooday-detail-product__name {
+  font-size: 15px;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+
+.mooday-detail-product__price {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+.mooday-detail-product__arrow {
+  flex: 0 0 auto;
+
+  margin-left: auto;
+
+  font-size: 28px;
+  font-weight: 300;
+}
+
+
+/* =====================================
+   05. POST / COMMENTS
+===================================== */
+
+.mooday-detail__content {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 64px;
+
+  margin-top: 48px;
+
+  padding: 34px 0 50px;
+
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+
+.mooday-detail-section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0 0 22px;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+.mooday-detail-section-title span {
+  color: #333;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
+/* =====================================
+   06. POST
+===================================== */
+
+.mooday-detail-post {
+  min-width: 0;
+}
+
+
+.mooday-detail-post__header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+}
+
+
+.mooday-detail-post__author {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+
+/* 공통 프로필 아이콘 */
+
+.mooday-detail-avatar {
+  display: flex;
+
+  flex: 0 0 50px;
+
+  width: 50px;
+  height: 50px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #d9e2da;
+  color: #466858;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  overflow: hidden;
+}
+
+
+/* 댓글 프로필 */
+
+.mooday-detail-avatar--comment {
+  flex-basis: 42px;
+
+  width: 42px;
+  height: 42px;
+
+  font-size: 14px;
+}
+
+
+.mooday-detail-post__author-info {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.mooday-detail-post__author-info strong {
+  font-size: 15px;
+
+  overflow-wrap: anywhere;
+}
+
+
+.mooday-detail-post__author-info span {
+  color: #777;
+  font-size: 12px;
+}
+
+
+/* 좋아요 / 더보기 */
+
+.mooday-detail-post__actions {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  gap: 22px;
+}
+
+
+.mooday-detail-post__likes {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.mooday-detail-post__likes span {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+
+.mooday-detail-post__more {
+  color: #666;
+  font-size: 22px;
+}
+
+
+/* 본문 */
+
+.mooday-detail-post__body {
+  margin-top: 52px;
+}
+
+
+.mooday-detail-post__body p {
+  margin: 0 0 34px;
+
+  font-size: 17px;
+  line-height: 1.65;
+
+  white-space: pre-line;
+}
+
+
+/* =====================================
+   07. COMMENTS
+===================================== */
+
+.mooday-detail-comments {
+  min-width: 0;
+
+  padding-left: 64px;
+
+  border-left: 2px solid #ddd;
+}
+
+
+.mooday-detail-comments__list {
+  width: 100%;
+}
+
+
+.mooday-detail-comment {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 14px;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid #e7e7e7;
+}
+
+
+.mooday-detail-comment:first-child {
+  padding-top: 0;
+}
+
+
+.mooday-detail-comment:last-child {
+  border-bottom: 0;
+}
+
+
+.mooday-detail-comment__content {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.mooday-detail-comment__content strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+
+.mooday-detail-comment__content p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+
+.mooday-detail-comment__time {
+  color: #888;
+  font-size: 12px;
+}
+
+
+.mooday-detail-comment__more {
+  color: #777;
+  font-size: 20px;
+}
+
+
+/* =====================================
+   08. COMMENT COMPOSER
+===================================== */
+
+.mooday-detail-comments__composer {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 28px;
+}
+
+
+.mooday-detail-comments__input-group {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.mooday-detail-comments__input-group input {
+  flex: 1;
+  min-width: 0;
+
+  height: 48px;
+
+  padding: 0 15px;
+
+  border: 1px solid #ddd;
+
+  background: #fff;
+
+  font-family: inherit;
+  font-size: 12px;
+}
+
+
+.mooday-detail-comments__input-group button {
+  flex: 0 0 90px;
+
+  height: 48px;
+
+  border: 0;
+  border-radius: 4px;
+
+  background: #466858;
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.mooday-detail-comments__input-group button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+
+/* 접근성 */
+
+.mooday-detail-visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =====================================
+   09. HASHTAGS
+===================================== */
+
+.mooday-detail__hashtags {
+  padding: 48px 0 56px;
+
+  border-bottom: 2px solid #ddd;
+}
+
+
+.mooday-detail__hashtags h2 {
+  margin: 0 0 24px;
+
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+.mooday-detail__tag-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+
+.mooday-detail__tag,
+.mooday-detail__tag-add {
+  display: inline-flex;
+
+  min-height: 34px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 18px;
+
+  border: 1px solid #ddd;
+  border-radius: 40px;
+
+  background: #fff;
+
+  color: #555;
+
+  font-size: 13px;
+}
+
+
+.mooday-detail__tag-add {
+  width: 34px;
+
+  padding: 0;
+
+  font-size: 18px;
+}
+
+
+/* =====================================
+   10. RELATED STYLES
+===================================== */
+
+.mooday-detail__related {
+  padding-top: 72px;
+}
+
+
+.mooday-detail__related-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+
+
+.mooday-detail__related-heading h2 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 600;
+}
+
+
+.mooday-detail__related-heading a {
+  flex-shrink: 0;
+
+  color: #555;
+
+  font-size: 13px;
+  text-decoration: none;
+}
+
+
+.mooday-detail__related-heading a span {
+  margin-left: 8px;
+
+  font-size: 20px;
+}
+
+
+/* Related Styles 기본 4열 */
+
+.mooday-detail__related-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  column-gap: 24px;
+  row-gap: 30px;
+}
+
+
+/*
+  CommunityCard 실제 클래스명 확인 완료.
+
+  이 스타일은 Detail 내부의
+  Related Styles에만 적용됩니다.
+
+  Community Main에는 영향을 주지 않습니다.
+*/
+
+.mooday-detail__related-grid
+.mooday-community-card__body {
+  min-height: 0;
+
+  padding: 14px 0 10px;
+}
+
+
+.mooday-detail__related-grid
+.mooday-community-card__author {
+  font-size: 14px;
+}
+
+
+.mooday-detail__related-grid
+.mooday-community-card__items {
+  font-size: 12px;
+}
+
+
+.mooday-detail__related-grid
+.mooday-community-card__tags,
+.mooday-detail__related-grid
+.mooday-community-card__excerpt {
+  font-size: 12px;
+}
+
+
+/* =====================================
+   11. LOAD MORE
+===================================== */
+
+/*
+  Desktop / Tablet에서는 React에서
+  버튼 자체를 렌더링하지 않습니다.
+
+  Mobile에서만 나타나는 버튼입니다.
+*/
+
+.mooday-detail__load-more {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 48px;
+}
+
+
+.mooday-detail__load-more-button {
+  display: flex;
+
+  width: 100%;
+  max-width: 260px;
+
+  min-height: 48px;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 12px 24px;
+
+  border: 1px solid #d8d8d8;
+
+  background: #fff;
+  color: #282828;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail__load-more-button span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+
+.mooday-detail__load-more-button:hover {
+  border-color: #466858;
+}
+
+
+.mooday-detail__load-more-button:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 3px;
+}
+
+
+/* =====================================
+   12. EMPTY STATE
+===================================== */
+
+.mooday-detail__empty {
+  display: flex;
+
+  min-height: 420px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+}
+
+
+.mooday-detail__empty h1 {
+  font-size: 28px;
+}
+
+
+.mooday-detail__empty p {
+  color: #777;
+  font-size: 15px;
+}
+
+
+.mooday-detail__empty a {
+  margin-top: 22px;
+
+  color: #466858;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+
+/*
+  =========================================
+  RESPONSIVE START
+  =========================================
+*/
+
+
+/* =====================================
+   13. NARROW DESKTOP
+   1280px ~ 1599px
+===================================== */
+
+/*
+  기존 갤러리 820px을 그대로 배정하면
+  상품 영역이 좁아질 수 있습니다.
+
+  이 구간에서만 비율 기반으로 변경합니다.
+*/
+
+@media (min-width: 1280px) and (max-width: 1599px) {
+
+  .mooday-detail__hero {
+    grid-template-columns:
+      minmax(0, 1.12fr)
+      minmax(0, 1fr);
+
+    gap: 48px;
+  }
+
+}
+
+
+/* =====================================
+   14. TABLET WIDE
+   1024px ~ 1279px
+===================================== */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+
+  /* 페이지 여백 */
+
+  .mooday-detail {
+    padding-top: 48px;
+    padding-bottom: 100px;
+  }
+
+
+  .mooday-detail__inner {
+    width: calc(100% - 80px);
+  }
+
+
+  /* 상단 2열 */
+
+  .mooday-detail__hero {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(0, 1fr);
+
+    gap: 32px;
+  }
+
+
+  /* 갤러리 */
+
+  .mooday-detail-gallery__navigation {
+    margin-top: 16px;
+  }
+
+
+  .mooday-detail-gallery__track {
+    gap: 10px;
+  }
+
+
+  .mooday-detail-gallery__thumbnail {
+    flex-basis: calc((100% - 30px) / 4);
+  }
+
+
+  /* 상품 */
+
+  .mooday-detail-products__heading h2 {
+    font-size: 20px;
+  }
+
+
+  .mooday-detail-product {
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+
+  .mooday-detail-product__image {
+    flex-basis: 100px;
+
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .mooday-detail-product__brand,
+  .mooday-detail-product__name {
+    font-size: 14px;
+  }
+
+
+  .mooday-detail-product__price {
+    font-size: 16px;
+  }
+
+
+  /* Post / Comments 2열 유지 */
+
+  .mooday-detail__content {
+    gap: 24px;
+
+    margin-top: 40px;
+
+    padding: 30px 0 40px;
+  }
+
+
+  .mooday-detail-comments {
+    padding-left: 24px;
+  }
+
+
+  .mooday-detail-post__body {
+    margin-top: 40px;
+  }
+
+
+  .mooday-detail-post__body p {
+    font-size: 15px;
+  }
+
+
+  .mooday-detail-comments__composer {
+    gap: 10px;
+  }
+
+
+  .mooday-detail-comments__input-group {
+    gap: 8px;
+  }
+
+
+  .mooday-detail-comments__input-group button {
+    flex-basis: 64px;
+  }
+
+
+  /* Related Styles 3열 */
+
+  .mooday-detail__related-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    column-gap: 20px;
+    row-gap: 28px;
+  }
+
+
+  .mooday-detail__related {
+    padding-top: 60px;
+  }
+
+}
+
+
+/* =====================================
+   15. TABLET COMPACT
+   768px ~ 1023px
+===================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* 페이지 */
+
+  .mooday-detail {
+    padding-top: 40px;
+    padding-bottom: 88px;
+  }
+
+
+  .mooday-detail__inner {
+    width: calc(100% - 80px);
+  }
+
+
+  /* Hero 전체 1열 */
+
+  .mooday-detail__hero {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 40px;
+
+    justify-items: stretch;
+  }
+
+
+  /*
+    갤러리의 최대 너비만 제한합니다.
+
+    갤러리 자체에 이미지와 썸네일이
+    함께 포함되어 있으므로
+    두 요소의 좌우 정렬이 유지됩니다.
+  */
+
+  .mooday-detail-gallery {
+    width: 100%;
+    max-width: 560px;
+
+    margin: 0 auto;
+  }
+
+
+  .mooday-detail-gallery__navigation {
+    margin-top: 16px;
+  }
+
+
+  /*
+    이미지 4개 유지.
+    실제 넘침이 없으면 화살표 숨김.
+  */
+
+  .mooday-detail-gallery__track {
+    gap: 12px;
+  }
+
+
+  .mooday-detail-gallery__thumbnail {
+    flex-basis: calc((100% - 36px) / 4);
+  }
+
+
+  /* 상품은 갤러리 아래 전체 폭 */
+
+  .mooday-detail-products {
+    width: 100%;
+  }
+
+
+  .mooday-detail-product {
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+
+  .mooday-detail-product__image {
+    flex-basis: 110px;
+
+    width: 110px;
+    height: 110px;
+  }
+
+
+  /* Post / Comments 1열 */
+
+  .mooday-detail__content {
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 0;
+
+    margin-top: 48px;
+
+    padding: 32px 0 40px;
+  }
+
+
+  .mooday-detail-post__body {
+    margin-top: 36px;
+  }
+
+
+  .mooday-detail-post__body p {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+
+  /*
+    기존 댓글의 왼쪽 세로선 제거.
+
+    Post 아래에 가로 구분선 추가.
+  */
+
+  .mooday-detail-comments {
+    margin-top: 36px;
+
+    padding-top: 36px;
+    padding-left: 0;
+
+    border-left: 0;
+    border-top: 1px solid #ddd;
+  }
+
+
+  .mooday-detail-comments__input-group button {
+    flex-basis: 90px;
+  }
+
+
+  /* 해시태그 */
+
+  .mooday-detail__hashtags {
+    padding: 40px 0 48px;
+  }
+
+
+  /* Related Styles 2열 */
+
+  .mooday-detail__related {
+    padding-top: 56px;
+  }
+
+
+  .mooday-detail__related-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 20px;
+    row-gap: 32px;
+  }
+
+
+  .mooday-detail__related-heading h2 {
+    font-size: 26px;
+  }
+
+}
+
+
+/* =====================================
+   16. MOBILE
+   767px 이하
+===================================== */
+
+@media (max-width: 767px) {
+
+  /* =================================
+     MOBILE ROOT
+  ================================= */
+
+  .mooday-detail {
+    padding-top: 28px;
+    padding-bottom: 72px;
+  }
+
+
+  /*
+    Community Main과 동일하게
+    기본 좌우 패딩 20px.
+
+    단, 폭이 넓은 모바일에서는
+    콘텐츠 최대 560px로 제한합니다.
+  */
+
+  .mooday-detail__inner {
+    width: calc(100% - 40px);
+    max-width: 560px;
+  }
+
+
+  /* =================================
+     HERO
+  ================================= */
+
+  .mooday-detail__hero {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 36px;
+  }
+
+
+  /* =================================
+     GALLERY
+  ================================= */
+
+  .mooday-detail-gallery {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  .mooday-detail-gallery__main {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+  }
+
+
+  .mooday-detail-gallery__navigation {
+    margin-top: 12px;
+  }
+
+
+  /*
+    375px에서 썸네일 4개를 유지합니다.
+
+    콘텐츠 폭 335px 기준:
+    간격 8px × 3
+    썸네일 폭 약 77px
+
+    실제 넘침은 기존 Gallery가 감지합니다.
+  */
+
+  .mooday-detail-gallery__track {
+    gap: 8px;
+  }
+
+
+  .mooday-detail-gallery__thumbnail {
+    flex-basis: calc((100% - 24px) / 4);
+  }
+
+
+  /*
+    모바일에서 화살표가 썸네일 밖으로
+    과도하게 돌출되지 않도록 조정합니다.
+
+    화살표는 실제 넘침이 있을 때만
+    Gallery 컴포넌트가 출력합니다.
+  */
+
+  .mooday-detail-gallery__arrow {
+    width: 32px;
+    height: 32px;
+
+    font-size: 18px;
+  }
+
+
+  .mooday-detail-gallery__arrow--previous {
+    left: 0;
+  }
+
+
+  .mooday-detail-gallery__arrow--next {
+    right: 0;
+  }
+
+
+  /* =================================
+     STYLED PRODUCTS
+  ================================= */
+
+  .mooday-detail-products__heading {
+    padding: 8px 0 16px;
+  }
+
+
+  .mooday-detail-products__heading h2 {
+    font-size: 19px;
+  }
+
+
+  .mooday-detail-product {
+    gap: 14px;
+
+    padding: 18px 0;
+  }
+
+
+  .mooday-detail-product__image {
+    flex-basis: 88px;
+
+    width: 88px;
+    height: 88px;
+  }
+
+
+  .mooday-detail-product__info {
+    gap: 5px;
+  }
+
+
+  .mooday-detail-product__brand {
+    font-size: 13px;
+  }
+
+
+  .mooday-detail-product__name {
+    font-size: 13px;
+  }
+
+
+  .mooday-detail-product__price {
+    font-size: 15px;
+  }
+
+
+  .mooday-detail-product__arrow {
+    font-size: 23px;
+  }
+
+
+  /* =================================
+     POST / COMMENTS
+  ================================= */
+
+  .mooday-detail__content {
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 0;
+
+    margin-top: 40px;
+
+    padding: 28px 0 36px;
+  }
+
+
+  .mooday-detail-section-title {
+    margin-bottom: 20px;
+
+    font-size: 16px;
+  }
+
+
+  /* 본문 작성자 */
+
+  .mooday-detail-post__header {
+    gap: 10px;
+  }
+
+
+  .mooday-detail-post__author {
+    gap: 10px;
+  }
+
+
+  .mooday-detail-avatar {
+    flex-basis: 40px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 14px;
+  }
+
+
+  .mooday-detail-avatar--comment {
+    flex-basis: 34px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-detail-post__author-info strong {
+    font-size: 13px;
+  }
+
+
+  .mooday-detail-post__actions {
+    gap: 12px;
+  }
+
+
+  .mooday-detail-post__likes {
+    font-size: 12px;
+  }
+
+
+  .mooday-detail-post__likes span {
+    font-size: 21px;
+  }
+
+
+  .mooday-detail-post__more {
+    font-size: 19px;
+  }
+
+
+  /* 본문 */
+
+  .mooday-detail-post__body {
+    margin-top: 32px;
+  }
+
+
+  .mooday-detail-post__body p {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+
+  /* =================================
+     COMMENTS
+  ================================= */
+
+  .mooday-detail-comments {
+    margin-top: 32px;
+
+    padding-top: 32px;
+    padding-left: 0;
+
+    border-left: 0;
+    border-top: 1px solid #ddd;
+  }
+
+
+  .mooday-detail-comment {
+    gap: 10px;
+
+    padding: 16px 0;
+  }
+
+
+  .mooday-detail-comment__content strong {
+    font-size: 13px;
+  }
+
+
+  .mooday-detail-comment__content p {
+    font-size: 13px;
+  }
+
+
+  .mooday-detail-comment__time {
+    font-size: 11px;
+  }
+
+
+  /* =================================
+     COMMENT INPUT
+  ================================= */
+
+  .mooday-detail-comments__composer {
+    gap: 10px;
+
+    margin-top: 24px;
+  }
+
+
+  .mooday-detail-comments__input-group {
+    gap: 8px;
+  }
+
+
+  .mooday-detail-comments__input-group input {
+    min-width: 0;
+
+    height: 44px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-detail-comments__input-group button {
+    flex: 0 0 56px;
+
+    height: 44px;
+
+    font-size: 12px;
+  }
+
+
+  /* =================================
+     HASHTAGS
+  ================================= */
+
+  .mooday-detail__hashtags {
+    padding: 36px 0 42px;
+  }
+
+
+  .mooday-detail__hashtags h2 {
+    margin-bottom: 20px;
+
+    font-size: 16px;
+  }
+
+
+  .mooday-detail__tag-list {
+    gap: 8px;
+  }
+
+
+  .mooday-detail__tag,
+  .mooday-detail__tag-add {
+    min-height: 32px;
+
+    padding: 6px 12px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-detail__tag-add {
+    width: 32px;
+    padding: 0;
+
+    font-size: 17px;
+  }
+
+
+  /* =================================
+     RELATED STYLES
+  ================================= */
+
+  .mooday-detail__related {
+    padding-top: 48px;
+  }
+
+
+  .mooday-detail__related-heading {
+    gap: 12px;
+
+    margin-bottom: 24px;
+  }
+
+
+  .mooday-detail__related-heading h2 {
+    font-size: 22px;
+  }
+
+
+  .mooday-detail__related-heading a {
+    font-size: 12px;
+  }
+
+
+  /*
+    Main과 동일한 1열.
+
+    카드의 작성자 / 상품 수 / 해시태그 /
+    본문을 삭제하지 않습니다.
+  */
+
+  .mooday-detail__related-grid {
+    grid-template-columns: minmax(0, 1fr);
+
+    row-gap: 28px;
+  }
+
+
+  /*
+    기존 Main 카드의 기본 정보를 유지하면서
+    Detail 내부 여백만 조정합니다.
+  */
+
+  .mooday-detail__related-grid
+  .mooday-community-card__body {
+    padding: 12px 0 8px;
+  }
+
+
+  .mooday-detail__related-grid
+  .mooday-community-card__author {
+    font-size: 14px;
+  }
+
+
+  .mooday-detail__related-grid
+  .mooday-community-card__tags,
+  .mooday-detail__related-grid
+  .mooday-community-card__excerpt {
+    font-size: 12px;
+  }
+
+
+  /* Mobile Load More */
+
+  .mooday-detail__load-more {
+    margin-top: 36px;
+  }
+
+
+  .mooday-detail__load-more-button {
+    max-width: none;
+
+    min-height: 48px;
+  }
+
+}
+
+
+/* =====================================
+   17. SMALL MOBILE SAFETY
+   374px 이하
+===================================== */
+
+/*
+  새로운 레이아웃 구간이 아닙니다.
+
+  320px 등 좁은 화면에서
+  댓글 입력창과 상품 정보가
+  넘치지 않도록 크기만 보정합니다.
+*/
+
+@media (max-width: 374px) {
+
+  .mooday-detail {
+    padding-top: 24px;
+  }
+
+
+  .mooday-detail-product {
+    gap: 10px;
+  }
+
+
+  .mooday-detail-product__image {
+    flex-basis: 72px;
+
+    width: 72px;
+    height: 72px;
+  }
+
+
+  .mooday-detail-product__arrow {
+    font-size: 20px;
+  }
+
+
+  .mooday-detail-comments__composer {
+    gap: 8px;
+  }
+
+
+  .mooday-detail-comments__input-group {
+    gap: 6px;
+  }
+
+
+  .mooday-detail-comments__input-group input {
+    padding: 0 8px;
+  }
+
+
+  .mooday-detail-comments__input-group button {
+    flex-basis: 48px;
+  }
+
+
+  .mooday-detail__related-heading h2 {
+    font-size: 20px;
+  }
+
+}
+
+
+/*
+  =========================================
+  END OF COMMUNITY DETAIL RESPONSIVE
+  =========================================
+*/
