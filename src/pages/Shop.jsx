@@ -11,7 +11,7 @@ const sortProducts = (items, sortBy) => [...items].sort((a, b) => {
   if (sortBy === "popular") return b.popularity - a.popularity;
   if (sortBy === "price-low") return a.price - b.price;
   if (sortBy === "price-high") return b.price - a.price;
-  return b.featured - a.featured;
+  return a.id - b.id;
 });
 
 export default function Shop() {
