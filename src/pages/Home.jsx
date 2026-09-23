@@ -111,10 +111,18 @@ function ArrowLink({ children, className = "" }) {
   );
 }
 
-function Hero() {
+function Hero({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <section id="top" className="hero">
-      <Header />
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
       <img className="hero__image" src="/images/home/homebanner1.png" alt="" />
       <div className="hero__overlay" />
 
@@ -260,17 +268,26 @@ function BrandBanner() {
           <br />
           for a Better Day.
         </p>
-        <img className="brand-banner__logo" src="/images/Logo.svg" alt="Mooday" />
+        <img className="brand-banner__logo" src="/images/common/Logo.svg" alt="Mooday" />
       </div>
     </section>
   );
 }
 
 
-export default function Home() {
+export default function Home({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <main className="mooday-home">
-      <Hero />
+      <Hero
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
+
       <NewArrivals />
       <Editorial />
       <Community />

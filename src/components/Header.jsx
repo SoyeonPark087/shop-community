@@ -1,10 +1,22 @@
 import { useState } from "react";
-import "./Header.css";
-import Search from "./drawers/Search";
 
-function Header() {
-    const [searchOpen, setSearchOpen] =
-    useState(false);
+import Search from "./drawers/Search";
+import Login from "./drawers/Login";
+import Cart from "./drawers/Cart";
+
+import "./Header.css";
+
+function Header({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
+  const [activeDrawer, setActiveDrawer] =
+    useState(null);
+
+  const closeDrawer = () => {
+    setActiveDrawer(null);
+  };
 
     return (
       <>
@@ -24,7 +36,7 @@ function Header() {
             href="/"
             aria-label="Mooday home"
           >
-            <img src="/images/Logo.svg" alt="Mooday" />
+            <img src="/images/common/Logo.svg" alt="Mooday" />
           </a>
 
           <nav
@@ -32,26 +44,43 @@ function Header() {
             aria-label="Utilities"
           >
             <button
-                type="button"
-                onClick={() =>
-                  setSearchOpen(true)
-                }
-              >
-                Search
-              </button>
-            <button type="button">Cart</button>
-            <button type="button">Account</button>
+              type="button"
+              onClick={() => setActiveDrawer("search")}
+            >
+              Search
+            </button>
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
+            >
+              Cart
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveDrawer("login")}
+            >
+              Account
+            </button>
             
           </nav>
         </div>
       </header>
 
-      <Search
-          open={searchOpen}
-          onClose={() =>
-            setSearchOpen(false)
-          }
-        />
+       <Search
+        open={activeDrawer === "search"}
+        onClose={closeDrawer}
+      />
+
+      <Cart
+        open={cartOpen}
+        onClose={() => setCartOpen(false)}
+        items={cartItems}
+      />
+
+      <Login
+        open={activeDrawer === "login"}
+        onClose={closeDrawer}
+      />
       </>
 
   );
