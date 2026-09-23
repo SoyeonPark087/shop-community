@@ -123,7 +123,7 @@ function Hero({
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
       />
-      <img className="hero__image" src="/images/home/homebanner1.png" alt="" />
+      <img className="hero__image" src="/images/home/herobanner.png" alt="" />
       <div className="hero__overlay" />
 
       <div className="hero__content">
@@ -139,14 +139,6 @@ function Hero({
             MOODAY의 새로운 컬렉션을 만나보세요.
           </p>
           <ArrowLink className="hero__cta">지금, 만나보기</ArrowLink>
-        </div>
-
-        <div className="hero__pagination" aria-label="Hero slide 1 of 3">
-          <span className="hero__pagination-current">01</span>
-          <span className="hero__pagination-line">
-            <span />
-          </span>
-          <span className="hero__pagination-total">03</span>
         </div>
       </div>
     </section>
@@ -258,23 +250,6 @@ function ShopByMood() {
   );
 }
 
-function BrandBanner() {
-  return (
-    <section className="brand-banner">
-      <img src="/images/home/homebanner2.png" alt="" />
-      <div className="brand-banner__content inner">
-        <p>
-          A New Perspective
-          <br />
-          for a Better Day.
-        </p>
-        <img className="brand-banner__logo" src="/images/common/Logo.svg" alt="Mooday" />
-      </div>
-    </section>
-  );
-}
-
-
 export default function Home({
   cartItems,
   cartOpen,
@@ -292,7 +267,6 @@ export default function Home({
       <Editorial />
       <Community />
       <ShopByMood />
-      <BrandBanner />
       <Footer />
     </main>
   );

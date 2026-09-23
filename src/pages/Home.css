@@ -18,14 +18,22 @@
   white-space: nowrap;
 }
 
+.arrow-link span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
 .arrow-link span:last-child {
-  font-size: 17px;
-  transform: translateY(-1px);
+  font-size: 16px;
+  line-height: 1;
+
+  transform: none;
   transition: transform 180ms ease;
 }
 
 .arrow-link:hover span:last-child {
-  transform: translate(4px, -1px);
+  transform: translate(4px);
 }
 
 .section {
@@ -42,7 +50,7 @@
 
 .section-heading h2 {
   margin: 0;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.1;
   letter-spacing: -0.03em;
   font-weight: 650;
@@ -56,8 +64,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: clamp(760px, 49.5vw, 950px);
-  min-height: 760px;
+  height: clamp(620px, 72vw, 780px);
   overflow: hidden;
 }
 
@@ -73,7 +80,11 @@
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(245, 239, 230, 0.34) 0%, rgba(245, 239, 230, 0.1) 42%, rgba(0, 0, 0, 0) 68%);
+  background: linear-gradient(
+    90deg,
+    rgba(245, 239, 230, 0.34) 0%,
+    rgba(245, 239, 230, 0.1) 42%,
+    rgba(0, 0, 0, 0) 68%);
   pointer-events: none;
 }
 
@@ -82,67 +93,40 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: min(var(--inner-max), calc(100% - (var(--page-padding) * 2)));
+  justify-content: flex-end;
+  width:
+    min(var(--inner-max),
+    calc(100% - (var(--page-padding) * 2)));
   height: 100%;
   margin: 0 auto;
-  padding-top: 70px;
+  padding-top: 0px;
+  padding-bottom: 105px;
 }
 
 .hero__copy {
-  margin-top: 65px;
+  margin-top: 0;
 }
 
 .hero__copy h1 {
   margin: 0;
-  font-size: clamp(54px, 3.2vw, 66px);
+  font-size: clamp(44px, 2.7vw, 54px);
   line-height: 1.12;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
   font-weight: 450;
 }
 
 .hero__copy p {
-  margin: 30px 0 0;
+  margin: 24px 0 0;
   font-size: 16px;
   line-height: 1.65;
   letter-spacing: -0.02em;
+  line-height: 1.6;
 }
 
 .hero__cta {
-  margin-top: 54px;
-  font-size: 15px;
+  margin-top: 55px;
+  font-size: 13px;
   font-weight: 550;
-}
-
-.hero__pagination {
-  position: absolute;
-  left: 0;
-  bottom: 68px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-}
-
-.hero__pagination-total {
-  color: rgba(17, 17, 17, 0.38);
-}
-
-.hero__pagination-line {
-  position: relative;
-  width: 84px;
-  height: 1px;
-  background: rgba(17, 17, 17, 0.2);
-}
-
-.hero__pagination-line span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 33.333%;
-  height: 1px;
-  background: #111;
 }
 
 /* New Arrivals */
@@ -237,7 +221,7 @@
 
 .editorial-card__content h2 {
   margin: 0;
-  font-size: 56px;
+  font-size: 48px;
   line-height: 1.08;
   letter-spacing: -0.045em;
   font-weight: 400;
@@ -245,7 +229,7 @@
 
 .editorial-card__content p {
   margin: 28px 0 0;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(255,255,255,.9);
 }
@@ -328,7 +312,7 @@
 
 /* Shop by mood */
 .shop-by-mood {
-  padding: 0 0 78px;
+  padding: 0 0 120px;
 }
 
 .section-heading--simple {
@@ -381,7 +365,7 @@
 
 .mood-card__content h3 {
   margin: 0;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 600;
@@ -389,7 +373,7 @@
 
 .mood-card__content p {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -399,42 +383,6 @@
   font-weight: 550;
 }
 
-/* Footer banner */
-.brand-banner {
-  position: relative;
-  min-height: 260px;
-  overflow: hidden;
-}
-
-.brand-banner > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.brand-banner__content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 260px;
-}
-
-.brand-banner__content p {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-.brand-banner__logo {
-  width: 134px;
-  height: 32px;
-  object-fit: contain;
-}
 
 
 @media (max-width: 1440px) {
@@ -496,7 +444,7 @@
   }
 
   .hero {
-    height: 820px;
+    height: 700px;
   }
 
   .hero__image {
@@ -553,8 +501,9 @@
   }
 
   .hero {
-    height: 720px;
-    min-height: 720px;
+    height: 78svh;
+    min-height: 560px;
+    max-height: 680px;
   }
 
   .hero__content {
@@ -577,10 +526,6 @@
 
   .hero__cta {
     margin-top: 34px;
-  }
-
-  .hero__pagination {
-    bottom: 34px;
   }
 
   .section-heading h2 {
@@ -649,17 +594,8 @@
     min-height: 350px;
   }
 
-  .brand-banner,
-  .brand-banner__content {
-    min-height: 190px;
-  }
-
-  .brand-banner__content p {
-    font-size: 14px;
-  }
-
-  .brand-banner__logo {
-    width: 100px;
+  .shop-by-mood {
+  padding-bottom: 72px;
   }
 
   .footer {
