@@ -1,0 +1,958 @@
+/* ==================================================
+   mooday My Page - Profile v0.1
+
+   최종 반영 사항
+   --------------------------------------------------
+   - ID: 1-B Read Only Design
+   - ID Text: #686868
+   - Password: Masked Status UI
+   - Password Background: #F7F7F7
+   - Desktop / Tablet / Mobile Responsive
+
+   My Page 전용 CSS입니다.
+   Header / Footer / App / Community 등의
+   공통 또는 타 페이지 스타일은 수정하지 않습니다.
+================================================== */
+
+
+/* ==================================================
+   1. BASE
+================================================== */
+
+.mooday-mypage,
+.mooday-mypage * {
+  box-sizing: border-box;
+}
+
+.mooday-mypage {
+  --mooday-profile-sage: #344f41;
+  --mooday-profile-text: #282828;
+  --mooday-profile-border: #e5e5e5;
+
+  width: 100%;
+  min-width: 0;
+
+  background: #fff;
+  color: var(--mooday-profile-text);
+
+  font-family:
+    'Pretendard GOV',
+    Pretendard,
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* Desktop
+   1920px Canvas 기준
+   좌우 64px / Inner 최대 1792px
+*/
+
+.mooday-mypage__inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+
+  margin-inline: auto;
+}
+
+
+/* ==================================================
+   2. MY PAGE NAVIGATION
+================================================== */
+
+.mooday-mypage-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  min-width: 0;
+
+  padding-top: 120px;
+}
+
+
+/* 작은 화면에서 탭 메뉴만 가로 스크롤 */
+
+.mooday-mypage-nav__scroll {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.mooday-mypage-nav__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+.mooday-mypage-nav__scroll:focus-visible {
+  outline: 2px solid var(--mooday-profile-sage);
+  outline-offset: 5px;
+}
+
+
+/* 탭 목록 */
+
+.mooday-mypage-nav__list {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+  min-width: 100%;
+
+  gap: clamp(24px, 3.4vw, 64px);
+
+  margin: 0;
+  padding: 0 0 4px;
+
+  list-style: none;
+}
+
+
+.mooday-mypage-nav__item {
+  flex: 0 0 auto;
+}
+
+
+/* 탭 / Sort 공통 */
+
+.mooday-mypage-nav__tab,
+.mooday-mypage-nav__sort {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 28px;
+
+  white-space: nowrap;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+
+/* 현재 활성 메뉴: Profile */
+
+.mooday-mypage-nav__tab--active {
+  color: var(--mooday-profile-sage);
+
+  font-weight: 600;
+
+  border-bottom:
+    2px solid var(--mooday-profile-sage);
+}
+
+
+/* 아직 구현하지 않은 메뉴 */
+
+.mooday-mypage-nav__tab--inactive,
+.mooday-mypage-nav__sort {
+  color: #4c4c4c;
+
+  cursor: default;
+}
+
+
+/* Sort
+   현재는 시안만 표시하고 동작하지 않습니다.
+*/
+
+.mooday-mypage-nav__sort {
+  flex: 0 0 auto;
+
+  gap: 10px;
+
+  padding-bottom: 4px;
+
+  user-select: none;
+}
+
+
+/* ==================================================
+   3. PROFILE CONTENT
+================================================== */
+
+.mooday-mypage__content {
+  width: 100%;
+
+  padding:
+    210px
+    0
+    240px;
+}
+
+
+/* Profile 폼 */
+
+.mooday-profile-form {
+  /*
+    원본 My Page 시안처럼
+    중앙에 집중된 Profile 폼 폭을 유지합니다.
+  */
+  width: min(100%, 800px);
+
+  margin-inline: auto;
+}
+
+
+/* PROFILE 제목 */
+
+.mooday-profile-form__title {
+  margin:
+    0
+    0
+    58px;
+
+  color: var(--mooday-profile-text);
+
+  font-size: 18px;
+  font-weight: 600;
+
+  letter-spacing: 0.35em;
+
+  line-height: 1.4;
+}
+
+
+/* ==================================================
+   4. COMMON INPUT FIELDS
+================================================== */
+
+.mooday-profile-form__fields {
+  display: flex;
+  flex-direction: column;
+
+  gap: 54px;
+}
+
+
+.mooday-profile-form__field {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 10px;
+}
+
+
+/* 라벨 */
+
+.mooday-profile-form__field > label {
+  font-size: 15px;
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+
+/* 일반 입력창 */
+
+.mooday-profile-form__field input {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 60px;
+
+  padding:
+    0
+    16px;
+
+  border:
+    1px
+    solid
+    var(--mooday-profile-border);
+
+  border-radius: 0;
+
+  outline: none;
+
+  background: #ffffff;
+  color: var(--mooday-profile-text);
+
+  font: inherit;
+  font-size: 16px;
+
+  transition:
+    border-color
+    0.15s
+    ease;
+}
+
+
+/* 일반 편집 가능한 입력창 Focus */
+
+.mooday-profile-form__field
+input:focus-visible:not([readonly]) {
+  border-color:
+    var(--mooday-profile-sage);
+
+  box-shadow:
+    0
+    0
+    0
+    1px
+    var(--mooday-profile-sage);
+}
+
+
+/* Read Only 입력창 */
+
+.mooday-profile-form__field
+input[readonly] {
+  cursor: default;
+}
+
+
+/* ==================================================
+   5. ID SLOT - 1-B
+================================================== */
+
+/*
+  구조
+
+  아이디
+  ┌──────────────────────────────┐
+  │ mooday_user01            🔒  │
+  └──────────────────────────────┘
+  아이디는 변경할 수 없습니다.
+*/
+
+
+.mooday-profile-form__id-row {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 8px;
+}
+
+
+/* 아이디 입력창 + 잠금 아이콘 */
+
+.mooday-profile-form__id-control {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* 아이디 고정 슬롯 */
+
+.mooday-profile-form__id-control input {
+  width: 100%;
+
+  /* 잠금 아이콘 공간 확보 */
+  padding-right: 50px;
+
+  /* 일반 입력창보다 확실한 Read Only 표현 */
+  background: #f2f2f2;
+
+  /* 일반 본문 #282828보다 한 단계 부드러운 회색 */
+  color: #686868;
+
+  border-color: #dedede;
+
+  font-weight: 500;
+
+  cursor: default;
+}
+
+
+/* Read Only 아이디 Focus */
+
+.mooday-profile-form__id-control
+input:focus-visible {
+  outline:
+    2px
+    solid
+    var(--mooday-profile-sage);
+
+  outline-offset: 2px;
+}
+
+
+/* 잠금 아이콘 */
+
+.mooday-profile-form__lock-icon {
+  position: absolute;
+
+  top: 50%;
+  right: 18px;
+
+  transform: translateY(-50%);
+
+  width: 18px;
+  height: 18px;
+
+  color: #818181;
+
+  pointer-events: none;
+}
+
+
+/* 아이디 안내 */
+
+.mooday-profile-form__id-note {
+  display: block;
+
+  color: #999999;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  white-space: normal;
+}
+
+
+/* ==================================================
+   6. PASSWORD SLOT
+================================================== */
+
+/*
+  비밀번호는 아이디와 성격이 다릅니다.
+
+  아이디
+  = 실제 값이 표시되는 고정 정보
+
+  비밀번호
+  = 실제 값을 노출하지 않는 보안 정보
+
+  따라서 아이디보다 조금 밝은
+  #F7F7F7 배경을 사용합니다.
+*/
+
+
+.mooday-profile-form__password-row {
+  display: flex;
+  align-items: flex-end;
+
+  gap: 16px;
+
+  min-width: 0;
+}
+
+
+/* 비밀번호 상태 표시 슬롯 */
+
+.mooday-profile-form__password-row
+.mooday-profile-form__password-input {
+  flex: 1 1 auto;
+
+  width: 0;
+
+  /* 일반 입력창과 구분하되
+     ID 슬롯보다는 약하게 표현 */
+  background: #f7f7f7;
+
+  border-color: #e3e3e3;
+
+  cursor: default;
+}
+
+
+/*
+  실제 비밀번호 값이 아닙니다.
+
+  •••••••• 는 placeholder를 이용한
+  단순한 UI 상태 표현입니다.
+*/
+
+.mooday-profile-form__password-input::placeholder {
+  color: #686868;
+
+  opacity: 1;
+
+  /* 점 형태가 지나치게 붙어 보이지 않도록
+     아주 약한 자간만 적용 */
+  letter-spacing: 0.08em;
+}
+
+
+/* Read Only Password Focus */
+
+.mooday-profile-form__password-input:focus-visible {
+  outline:
+    2px
+    solid
+    var(--mooday-profile-sage);
+
+  outline-offset: 2px;
+}
+
+
+/* 비밀번호 변경 버튼 */
+
+.mooday-profile-form__password-button {
+  flex:
+    0
+    0
+    150px;
+
+  height: 60px;
+
+  padding:
+    0
+    12px;
+
+  border:
+    1px
+    solid
+    var(--mooday-profile-border);
+
+  border-radius: 0;
+
+  background: #ffffff;
+
+  color: #777777;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  cursor: default;
+}
+
+
+/*
+  disabled 기본 opacity가 브라우저마다 다를 수 있으므로
+  직접 1로 고정합니다.
+*/
+
+.mooday-profile-form__password-button:disabled {
+  opacity: 1;
+}
+
+
+/* ==================================================
+   7. CONSENT CHECKBOX
+================================================== */
+
+.mooday-profile-form__consents {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-top: 72px;
+}
+
+
+.mooday-profile-form__consent {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  color: #5b5b5b;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+
+/* 브랜드 색상 체크박스 */
+
+.mooday-profile-form__consent input {
+  flex: 0 0 auto;
+
+  width: 22px;
+  height: 22px;
+
+  margin:
+    1px
+    0
+    0;
+
+  accent-color:
+    var(--mooday-profile-sage);
+
+  cursor: pointer;
+}
+
+
+.mooday-profile-form__consent
+input:focus-visible {
+  outline:
+    2px
+    solid
+    var(--mooday-profile-sage);
+
+  outline-offset: 3px;
+}
+
+
+/* ==================================================
+   8. SUBMIT BUTTON
+================================================== */
+
+.mooday-profile-form__submit {
+  display: block;
+
+  width: 100%;
+
+  min-height: 88px;
+
+  margin-top: 98px;
+
+  padding: 20px;
+
+  border:
+    1px
+    solid
+    var(--mooday-profile-sage);
+
+  border-radius: 0;
+
+  background:
+    var(--mooday-profile-sage);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition:
+    background-color
+    0.15s
+    ease;
+}
+
+
+.mooday-profile-form__submit:hover {
+  background: #486b58;
+}
+
+
+.mooday-profile-form__submit:focus-visible {
+  outline:
+    2px
+    solid
+    var(--mooday-profile-sage);
+
+  outline-offset: 4px;
+}
+
+
+/* ==================================================
+   9. ACCESSIBILITY
+================================================== */
+
+.mooday-profile-form__visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  clip:
+    rect(
+      0,
+      0,
+      0,
+      0
+    );
+
+  clip-path: inset(50%);
+
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   10. TABLET
+   768px - 1279px
+================================================== */
+
+@media (max-width: 1279px) {
+
+  /* Tablet 좌우 40px */
+
+  .mooday-mypage__inner {
+    width:
+      calc(
+        100% - 80px
+      );
+  }
+
+
+  .mooday-mypage-nav {
+    padding-top: 88px;
+  }
+
+
+  .mooday-mypage-nav__list {
+    gap: 32px;
+  }
+
+
+  .mooday-mypage__content {
+    padding-top: 140px;
+
+    padding-bottom: 180px;
+  }
+
+
+  .mooday-profile-form {
+    max-width: 800px;
+  }
+}
+
+
+/* ==================================================
+   11. MOBILE
+   767px 이하
+================================================== */
+
+@media (max-width: 767px) {
+
+  /* Mobile 좌우 20px */
+
+  .mooday-mypage__inner {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  /* -----------------------------------------------
+     Mobile Navigation
+  ----------------------------------------------- */
+
+  .mooday-mypage-nav {
+    gap: 18px;
+
+    padding-top: 44px;
+  }
+
+
+  .mooday-mypage-nav__list {
+    gap: 26px;
+  }
+
+
+  .mooday-mypage-nav__tab,
+  .mooday-mypage-nav__sort {
+    font-size: 14px;
+  }
+
+
+  .mooday-mypage-nav__sort {
+    gap: 4px;
+  }
+
+
+  /* -----------------------------------------------
+     Mobile Profile
+  ----------------------------------------------- */
+
+  .mooday-mypage__content {
+    padding:
+      90px
+      0
+      120px;
+  }
+
+
+  .mooday-profile-form__title {
+    margin-bottom: 44px;
+
+    font-size: 15px;
+  }
+
+
+  .mooday-profile-form__fields {
+    gap: 30px;
+  }
+
+
+  .mooday-profile-form__field {
+    gap: 9px;
+  }
+
+
+  .mooday-profile-form__field > label {
+    font-size: 14px;
+  }
+
+
+  .mooday-profile-form__field input {
+    height: 52px;
+
+    font-size: 16px;
+  }
+
+
+  /* -----------------------------------------------
+     Mobile ID
+  ----------------------------------------------- */
+
+  .mooday-profile-form__id-row {
+    gap: 7px;
+  }
+
+
+  .mooday-profile-form__id-control input {
+    width: 100%;
+
+    padding-right: 44px;
+  }
+
+
+  .mooday-profile-form__lock-icon {
+    right: 14px;
+
+    width: 17px;
+    height: 17px;
+  }
+
+
+  .mooday-profile-form__id-note {
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------------
+     Mobile Password
+  ----------------------------------------------- */
+
+  /*
+    모바일에서는 입력창과 버튼을
+    세로로 배치합니다.
+  */
+
+  .mooday-profile-form__password-row {
+    align-items: stretch;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+
+  .mooday-profile-form__password-row
+  .mooday-profile-form__password-input {
+    flex: none;
+
+    width: 100%;
+  }
+
+
+  .mooday-profile-form__password-button {
+    flex: none;
+
+    width: 100%;
+
+    min-height: 48px;
+    height: 48px;
+  }
+
+
+  /* -----------------------------------------------
+     Mobile Consent
+  ----------------------------------------------- */
+
+  .mooday-profile-form__consents {
+    gap: 15px;
+
+    margin-top: 44px;
+  }
+
+
+  .mooday-profile-form__consent {
+    gap: 10px;
+
+    font-size: 13px;
+
+    line-height: 21px;
+  }
+
+
+  .mooday-profile-form__consent input {
+    width: 19px;
+    height: 19px;
+  }
+
+
+  /* -----------------------------------------------
+     Mobile Submit
+  ----------------------------------------------- */
+
+  .mooday-profile-form__submit {
+    min-height: 58px;
+
+    margin-top: 64px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* ==================================================
+   12. SMALL MOBILE
+   374px 이하
+================================================== */
+
+@media (max-width: 374px) {
+
+  .mooday-mypage-nav {
+    gap: 12px;
+  }
+
+
+  .mooday-mypage-nav__list {
+    gap: 20px;
+  }
+
+
+  .mooday-mypage-nav__sort {
+    font-size: 13px;
+  }
+}
+
+
+/* ==================================================
+   13. REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mooday-mypage * {
+    scroll-behavior: auto;
+
+    transition-duration: 0s;
+  }
+}
