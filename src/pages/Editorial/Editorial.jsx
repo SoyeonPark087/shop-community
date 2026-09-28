@@ -1,5 +1,5 @@
-import { editorials, featuredEditorial } from '../data/editorials'
-import '../styles/editorial.css'
+import { editorials, featuredEditorial } from '../../data/editorials'
+import './editorial.css'
 
 function Editorial() {
   const handleEditorialClick = (id) => {
@@ -16,22 +16,22 @@ function Editorial() {
             {/* 작은 사진 4개 */}
             <div className="editorial-hero__small-grid">
               <img
-                src="/images/editorial01-detail01.jpg"
+                src="/images/editorial/editorial01-detail01.png"
                 alt="햇살 아래 인물"
               />
 
               <img
-                src="/images/editorial01-detail02.png"
+                src="/images/editorial/editorial01-detail02.png"
                 alt="침구와 책"
               />
 
               <img
-                src="/images/editorial01-detail03.png"
+                src="/images/editorial/editorial01-detail03.png"
                 alt="빛을 받은 식물"
               />
 
               <img
-                src="/images/editorial01-detail04.png"
+                src="/images/editorial/editorial01-detail04.png"
                 alt="바닷가를 걷는 모습"
               />
             </div>
@@ -54,7 +54,7 @@ function Editorial() {
             {/* Weekend Calm 사진 */}
             <a className="editorial-hero__weekend" href="/shop">
               <img
-                src="/images/editorial-weekend.jpg"
+                src="/images/editorial/editorial-weekend.png"
                 alt="잔잔한 바다 풍경"
               />
 

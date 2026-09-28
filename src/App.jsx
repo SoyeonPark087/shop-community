@@ -1,8 +1,8 @@
 import Home from './pages/Home'
 import Shop from './pages/Shop/Shop.jsx'
 import ProductDetail from './pages/Shop/ProductDetail.jsx'
-import Editorial from './pages/Editorial'
-import EditorialDetail from './pages/EditorialDetail'
+import Editorial from './pages/Editorial/Editorial.jsx'
+import EditorialDetail from './pages/Editorial/EditorialDetail.jsx'
 import Community from './pages/Community'
 import './App.css'
 

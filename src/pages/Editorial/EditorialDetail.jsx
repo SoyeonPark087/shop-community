@@ -1,5 +1,5 @@
-import { editorials } from '../data/editorials'
-import '../styles/editorial-detail.css'
+import { editorials } from '../../data/editorials'
+import './editorial-detail.css'
 
 function EditorialDetail() {
   const editorialId = window.location.pathname
