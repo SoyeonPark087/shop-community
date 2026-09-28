@@ -1,11 +1,10 @@
 import Home from './pages/Home'
-import Shop from './pages/Shop'
-import ProductDetail from './pages/ProductDetail'
+import Shop from './pages/Shop/Shop.jsx'
+import ProductDetail from './pages/Shop/ProductDetail.jsx'
 import Editorial from './pages/Editorial'
 import EditorialDetail from './pages/EditorialDetail'
 import Community from './pages/Community'
 import './App.css'
-
 
 function App() {
   const pathname = window.location.pathname

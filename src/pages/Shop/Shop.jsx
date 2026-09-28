@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
-import CategoryMenu from "../components/shop/CategoryMenu";
-import ProductFilter from "../components/shop/ProductFilter";
-import ProductGrid from "../components/shop/ProductGrid";
-import ProductSort from "../components/shop/ProductSort";
-import SearchBox from "../components/shop/SearchBox";
-import { products, SHOP_CATEGORIES } from "../data/products";
-import "../styles/shop.css";
+import CategoryMenu from "../../components/shop/CategoryMenu";
+import ProductFilter from "../../components/shop/ProductFilter";
+import ProductGrid from "../../components/shop/ProductGrid";
+import ProductSort from "../../components/shop/ProductSort";
+import SearchBox from "../../components/shop/SearchBox";
+import { products, SHOP_CATEGORIES } from "../../data/products";
+import "./shop.css";
 
 const sortProducts = (items, sortBy) => [...items].sort((a, b) => {
   if (sortBy === "popular") return b.popularity - a.popularity;

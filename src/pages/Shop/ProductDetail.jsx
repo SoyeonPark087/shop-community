@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { products } from '../data/products'
-import '../styles/product-detail.css'
+import { products } from '../../data/products'
+import './product-detail.css'
 
 function ProductDetail() {
   const productId = window.location.pathname.split('/').pop()
