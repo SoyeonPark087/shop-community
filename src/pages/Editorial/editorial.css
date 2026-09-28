@@ -652,3 +652,13 @@
   grid-row: 2 / 4;
   object-position: center;
 }
+/* 공통 헤더 아래에서 에디토리얼 콘텐츠 시작 */
+.editorial-main {
+  padding-top: 96px;
+}
+
+@media (max-width: 768px) {
+  .editorial-main {
+    padding-top: 72px;
+  }
+}

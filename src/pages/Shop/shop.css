@@ -84,3 +84,32 @@
   .shop-sort { justify-self: end; }
   .shop-filter-wrap { justify-self: end; }
 }
+@media (max-width: 768px) {
+  .shop-page {
+    padding-top: 72px;
+  }
+
+  .shop-categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    width: 100%;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .shop-category {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+/* 공통 헤더 높이만큼 Shop 콘텐츠 내리기 */
+.shop-page {
+  padding-top: 72px;
+}
+@media (max-width: 768px) {
+  .shop-page {
+    padding-top: 72px;
+  }
+}

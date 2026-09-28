@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { products } from '../../data/products'
 import './product-detail.css'
 
@@ -9,11 +9,46 @@ function ProductDetail() {
     (item) => String(item.id) === String(productId)
   )
 
-  const galleryImages = product?.galleryImages || [product?.image]
+  const galleryImages =
+    product?.galleryImages?.length > 0
+      ? product.galleryImages
+      : product?.image
+        ? [product.image]
+        : []
 
-  const [selectedImage, setSelectedImage] = useState(
-    galleryImages[0]
-  )
+  const [selectedImageIndex, setSelectedImageIndex] =
+    useState(0)
+
+  const thumbnailRefs = useRef([])
+
+  const selectedImage =
+    galleryImages[selectedImageIndex] || galleryImages[0]
+
+  const handlePreviousImage = () => {
+    setSelectedImageIndex((currentIndex) =>
+      currentIndex === 0
+        ? galleryImages.length - 1
+        : currentIndex - 1
+    )
+  }
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((currentIndex) =>
+      currentIndex === galleryImages.length - 1
+        ? 0
+        : currentIndex + 1
+    )
+  }
+
+  useEffect(() => {
+    thumbnailRefs.current[
+      selectedImageIndex
+    ]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  }, [selectedImageIndex])
 
   if (!product) {
     return (
@@ -37,49 +72,79 @@ function ProductDetail() {
       <section className="product-detail__main">
         {/* 왼쪽 전체 사진 영역 */}
         <div className="product-detail__gallery">
+          {/* 썸네일 슬라이더 */}
+          <div className="product-detail__thumbnail-slider">
+            <button
+              type="button"
+              className="product-detail__gallery-arrow product-detail__gallery-arrow--left"
+              onClick={handlePreviousImage}
+              aria-label="이전 상품 이미지"
+            >
+              ‹
+            </button>
 
-          {/* 왼쪽 미니 사진 */}
-          <div className="product-detail__thumbnails">
-            {galleryImages.map((image, index) => (
-              <button
-                type="button"
-                key={`${image}-${index}`}
-                className={
-                  selectedImage === image
-                    ? 'product-detail__thumbnail product-detail__thumbnail--active'
-                    : 'product-detail__thumbnail'
-                }
-                onClick={() => setSelectedImage(image)}
-              >
-                <img
-                  src={image}
-                  alt={`${product.name} 썸네일 ${index + 1}`}
-                />
-              </button>
-            ))}
+            <div className="product-detail__thumbnails">
+              {galleryImages.map((image, index) => (
+                <button
+                  type="button"
+                  key={`${image}-${index}`}
+                  ref={(element) => {
+                    thumbnailRefs.current[index] = element
+                  }}
+                  className={
+                    selectedImageIndex === index
+                      ? 'product-detail__thumbnail product-detail__thumbnail--active'
+                      : 'product-detail__thumbnail'
+                  }
+                  onClick={() =>
+                    setSelectedImageIndex(index)
+                  }
+                  aria-label={`${product.name} 이미지 ${
+                    index + 1
+                  } 보기`}
+                >
+                  <img
+                    src={image}
+                    alt={`${product.name} 썸네일 ${
+                      index + 1
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="product-detail__gallery-arrow product-detail__gallery-arrow--right"
+              onClick={handleNextImage}
+              aria-label="다음 상품 이미지"
+            >
+              ›
+            </button>
           </div>
 
-          {/* 대표사진 */}
+          {/* 대표 사진 */}
           <div className="product-detail__main-image">
             <img
               src={selectedImage}
-              alt={product.name}
+              alt={`${product.name} 선택 이미지`}
             />
           </div>
 
-          {/* 아래 상세사진 — gallery 안으로 이동 */}
+          {/* 아래 상세 사진 */}
           {product.detailImages?.length > 0 && (
             <div className="product-detail__contents">
               {product.detailImages.map((image, index) => (
                 <img
                   key={`${image}-${index}`}
                   src={image}
-                  alt={`${product.name} 상세 이미지 ${index + 1}`}
+                  alt={`${product.name} 상세 이미지 ${
+                    index + 1
+                  }`}
                 />
               ))}
             </div>
           )}
-
         </div>
 
         {/* 오른쪽 상품 정보 */}

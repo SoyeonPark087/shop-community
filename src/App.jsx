@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 import Home from './pages/Home'
 import Signup from './pages/Signup'
@@ -9,9 +12,9 @@ import Editorial from './pages/Editorial/Editorial'
 import EditorialDetail from './pages/Editorial/EditorialDetail'
 import Community from './pages/Community'
 
-import './App.css'
-
 function App() {
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -59,52 +62,53 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            cartItems={cartItems}
-            cartOpen={cartOpen}
-            setCartOpen={setCartOpen}
-          />
-        }
+    <>
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
       />
 
-      <Route path="/signup" element={<Signup />} />
+      <div
+  className={
+    isHomePage
+      ? 'app-page app-page--home'
+      : 'app-page app-page--sub'
+  }
+>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/shop" element={<Shop />} />
 
-      <Route
-        path="/shop"
-        element={
-          <Shop
-            cartItems={cartItems}
-            cartOpen={cartOpen}
-            setCartOpen={setCartOpen}
-          />
-        }
-      />
+    <Route
+      path="/shop/:id"
+      element={
+        <ProductDetail
+          onAddToCart={handleAddToCart}
+        />
+      }
+    />
 
-      <Route
-        path="/shop/:id"
-        element={
-          <ProductDetail
-            cartItems={cartItems}
-            cartOpen={cartOpen}
-            setCartOpen={setCartOpen}
-            onAddToCart={handleAddToCart}
-          />
-        }
-      />
+    <Route
+      path="/editorial"
+      element={<Editorial />}
+    />
 
-      <Route path="/editorial" element={<Editorial />} />
+    <Route
+      path="/editorial/:id"
+      element={<EditorialDetail />}
+    />
 
-      <Route
-        path="/editorial/:id"
-        element={<EditorialDetail />}
-      />
+    <Route
+      path="/community"
+      element={<Community />}
+    />
+  </Routes>
+</div>
 
-      <Route path="/community" element={<Community />} />
-    </Routes>
+      <Footer />
+    </>
   )
 }
 
