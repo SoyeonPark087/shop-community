@@ -144,3 +144,61 @@ input::-webkit-search-cancel-button {
 
   cursor: pointer;
 }
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .search-content__input-wrap {
+    height: 42px;
+  }
+
+  .search-content__input-wrap input {
+    padding-right: 42px;
+
+    font-size: 12px;
+  }
+
+  .search-content__submit {
+    width: 32px;
+    height: 32px;
+  }
+
+  .search-content__icon {
+    top: 9px;
+    left: 8px;
+
+    width: 13px;
+    height: 13px;
+  }
+
+  .search-content__section {
+    margin-top: 40px;
+  }
+
+  .search-content__section h3 {
+    margin-bottom: 14px;
+
+    font-size: 12px;
+  }
+
+  .search-content__tags {
+    gap: 7px;
+  }
+
+  .search-content__tags button {
+    height: 26px;
+    padding: 0 10px;
+
+    font-size: 11px;
+  }
+
+  .search-content__list {
+    gap: 10px;
+  }
+
+  .search-content__list button {
+    font-size: 12px;
+  }
+}

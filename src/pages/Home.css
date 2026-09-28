@@ -57,7 +57,7 @@
 }
 
 .section-heading .arrow-link {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /* Hero */
@@ -213,7 +213,7 @@
 
 .editorial-card__eyebrow {
   display: block;
-  margin-bottom: 34px;
+  margin-bottom: 16px;
   font-size: 11px;
   letter-spacing: 0.42em;
   font-weight: 600;
@@ -221,23 +221,22 @@
 
 .editorial-card__content h2 {
   margin: 0;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 1.08;
   letter-spacing: -0.045em;
   font-weight: 400;
 }
 
 .editorial-card__content p {
-  margin: 28px 0 0;
+  margin: 14px 0 0;
   font-size: 14px;
   line-height: 1.55;
   color: rgba(255,255,255,.9);
 }
 
 .editorial-card__content .arrow-link {
-  margin-top: 56px;
-  font-size: 13px;
-  font-weight: 600;
+  margin-top: 24px;
+  font-size: 12px;
 }
 
 /* Community */
@@ -352,7 +351,6 @@
 
 .mood-card__content {
   position: absolute;
-  left: 64px;
   top: 50%;
   z-index: 2;
   transform: translateY(-50%);
@@ -461,7 +459,12 @@
   }
 
   .editorial-grid {
-    grid-template-columns: 1fr;
+    width: calc(
+    100% - (var(--page-padding) * 2)
+    );
+
+    margin: 0 auto;
+
     gap: 14px;
   }
 
@@ -483,22 +486,47 @@
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    --page-padding: 20px;
+@media screen and (max-width: 640px) {
+
+  /* =========================
+     Mobile Base
+  ========================= */
+
+  .mooday-home {
+    --page-padding: 24px;
   }
 
-  .site-header__nav--right {
-    gap: 14px;
+  .mooday-home .inner {
+    width: calc(100% - (var(--page-padding) * 2));
+    margin: 0 auto;
   }
 
-  .site-header__nav--right button:nth-child(1) {
-    display: none;
+
+  /* =========================
+     Header
+  ========================= */
+
+  .site-header__inner {
+    width: calc(100% - (var(--page-padding) * 2));
+    margin: 0 auto;
   }
 
   .site-header__logo {
     width: 94px;
   }
+
+  .site-header__nav--right {
+    gap: 10px;
+  }
+
+  .site-header__nav--right button {
+    font-size: 11px;
+  }
+
+
+  /* =========================
+     Hero
+  ========================= */
 
   .hero {
     height: 78svh;
@@ -507,8 +535,11 @@
   }
 
   .hero__content {
+    width: calc(100% - (var(--page-padding) * 2));
+    margin: 0 auto;
+
     justify-content: flex-end;
-    padding-bottom: 104px;
+    padding-bottom: 88px;
   }
 
   .hero__copy {
@@ -516,32 +547,63 @@
   }
 
   .hero__copy h1 {
+    margin: 0;
     font-size: 40px;
+    line-height: 1.12;
   }
 
   .hero__copy p {
-    margin-top: 22px;
-    font-size: 14px;
+    margin: 14px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   .hero__cta {
-    margin-top: 34px;
+    margin-top: 24px;
+    font-size: 12px;
+  }
+
+  .hero__content {
+    padding-bottom: 104px;
+  }
+
+  /* =========================
+     Common Section
+  ========================= */
+
+  .section-heading {
+    margin-bottom: 28px;
   }
 
   .section-heading h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
-  .new-arrivals,
-  .community {
-    padding-top: 58px;
-    padding-bottom: 64px;
-  }
+ .new-arrivals {
+  padding-top: 72px;
+  padding-bottom: 80px;
+}
 
-  .product-grid,
-  .community-grid {
-    grid-template-columns: 1fr 1fr;
+.community {
+  padding-top: 72px;
+  padding-bottom: 80px;
+}
+
+.shop-by-mood {
+  padding-bottom: 72px;
+}
+
+  /* =========================
+     New Arrivals
+  ========================= */
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px 10px;
+  }
+
+  .product-card__body {
+    padding-top: 12px;
   }
 
   .product-card__body h3,
@@ -549,17 +611,30 @@
     font-size: 12px;
   }
 
-  .editorial-card {
-    min-height: 520px;
+
+  /* =========================
+     Editorial
+     image: full bleed
+     text: page-padding
+  ========================= */
+
+  .editorial-grid {
+    width: 100%;
+    margin: 0;
+
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .editorial-card__content,
-  .mood-card__content {
-    left: 28px;
-    right: 28px;
+  .editorial-card {
+    width: 100%;
+    min-height: 520px;
+    margin: 0;
   }
 
   .editorial-card__content {
+    left: var(--page-padding);
+    right: var(--page-padding);
     bottom: 42px;
   }
 
@@ -569,6 +644,16 @@
 
   .editorial-card__content p {
     font-size: 14px;
+  }
+
+
+  /* =========================
+     Community
+  ========================= */
+
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 10px;
   }
 
   .community-card__meta {
@@ -590,13 +675,59 @@
     margin-top: 10px;
   }
 
-  .mood-card {
-    min-height: 350px;
-  }
+
+  /* =========================
+     Shop by mood
+     title: inner
+     images: full bleed
+     text: same line as Editorial
+  ========================= */
 
   .shop-by-mood {
-  padding-bottom: 72px;
+    padding-bottom: 0px;
   }
+
+  .shop-by-mood .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .shop-by-mood .mood-grid {
+    width: 100vw;
+
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .shop-by-mood .mood-card {
+    width: 100%;
+    min-height: 520px;
+    margin: 0;
+  }
+
+
+  .shop-by-mood .mood-card__content h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .shop-by-mood .mood-card__content p {
+    margin: 14px 0 0;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .shop-by-mood .mood-card__content .arrow-link {
+    margin-top: 24px;
+    font-size: 12px;
+  }
+
+
+  /* =========================
+     Footer
+  ========================= */
 
   .footer {
     height: auto;
@@ -605,6 +736,6 @@
 
   .footer__links {
     gap: 14px 22px;
+    margin-bottom: 24px;
   }
 }
-

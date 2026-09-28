@@ -161,3 +161,39 @@
 .drawer__close-icon::after {
   transform: rotate(-45deg);
 }
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .drawer {
+    width: 92vw;
+    max-width: 420px;
+    height: 100dvh;
+    padding: 32px 24px 28px;
+  }
+
+  .drawer__header h2 {
+    font-size: 13px;
+    letter-spacing: 0.28em;
+  }
+
+  .drawer__body {
+    margin-top: 36px;
+  }
+
+  .drawer__close {
+    width: 24px;
+    height: 24px;
+  }
+
+  .drawer__close-icon::before,
+  .drawer__close-icon::after {
+    top: 11px;
+    left: 3px;
+
+    width: 18px;
+  }
+}

@@ -61,3 +61,31 @@
   height: 30px;
   object-fit: contain;
 }
+
+
+@media (max-width: 640px) {
+  .site-header__inner {
+    width: calc(100% - (var(--page-padding) * 2));
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .site-header__logo {
+    width: 96px;
+  }
+
+  .site-header__nav--left {
+    display: none;
+  }
+
+  .site-header__nav--right {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .site-header__nav--right button {
+    display: block;
+    font-size: 12px;
+  }
+}
