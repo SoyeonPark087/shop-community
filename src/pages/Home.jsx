@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./Home.css";
 
 const newArrivals = [
@@ -6,25 +8,25 @@ const newArrivals = [
     id: 1,
     name: "Ribbed Tank Top",
     price: "₩ 49,000",
-    image: "/images/new1.png",
+    image: "/images/home/new1.png",
   },
   {
     id: 2,
     name: "Wide Nylon Pants",
     price: "₩ 89,000",
-    image: "/images/new2.png",
+    image: "/images/home/new2.png",
   },
   {
     id: 3,
     name: "Back Tie Long Sleeve",
     price: "₩ 56,000",
-    image: "/images/new3.png",
+    image: "/images/home/new3.png",
   },
   {
     id: 4,
     name: "Relaxed Knit Tee",
     price: "₩ 62,000",
-    image: "/images/new4.png",
+    image: "/images/home/new4.png",
   },
 ];
 
@@ -33,13 +35,13 @@ const editorialCards = [
     eyebrow: "EDITORIAL",
     title: "Soft\nStructures",
     description: "Relaxed shapes for a more\ngrounded you.",
-    image: "/images/edit1.png",
+    image: "/images/home/edit1.png",
   },
   {
     eyebrow: "STYLE GUIDE",
     title: "Weekend\nLayers",
     description: "Pieces that move with you",
-    image: "/images/edit2.png",
+    image: "/images/home/edit2.png",
   },
 ];
 
@@ -50,7 +52,7 @@ const communityLooks = [
     count: "3 items",
     tags: "#mood  #homewear",
     text: "Some mood, different day.",
-    image: "/images/look1.png",
+    image: "/images/home/look1.png",
   },
   {
     id: 2,
@@ -58,7 +60,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #outside",
     text: "오늘도 좋은 하루 :)",
-    image: "/images/look2.png",
+    image: "/images/home/look2.png",
   },
   {
     id: 3,
@@ -66,7 +68,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #sweater",
     text: "A slow morning, a better day!",
-    image: "/images/look3.png",
+    image: "/images/home/look3.png",
   },
   {
     id: 4,
@@ -74,7 +76,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#yoga  #outfit",
     text: "Everyday pieces, new perspective.",
-    image: "/images/look4.png",
+    image: "/images/home/look4.png",
   },
 ];
 
@@ -82,32 +84,23 @@ const moodCards = [
   {
     title: "City Ease",
     description: "Modern pieces for your rhythm.",
-    image: "/images/edit3.png",
+    image: "/images/home/edit3.png",
     tone: "light",
   },
   {
     title: "Soft Neutral",
     description: "Calm essentials for everyday",
-    image: "/images/edit4.png",
+    image: "/images/home/edit4.png",
     tone: "dark",
   },
   {
     title: "Weekend Calm",
     description: "A little white for your tone",
-    image: "/images/edit5.png",
+    image: "/images/home/edit5.png",
     tone: "light",
   },
 ];
 
-const footerLinks = [
-  "Agreement",
-  "Privacy",
-  "Membership",
-  "Order Tracking",
-  "Instagram",
-  "Customer Care",
-  "Notice",
-];
 
 function ArrowLink({ children, className = "" }) {
   return (
@@ -118,35 +111,19 @@ function ArrowLink({ children, className = "" }) {
   );
 }
 
-function Header() {
-  return (
-    <header className="site-header">
-      <div className="site-header__inner">
-        <nav className="site-header__nav site-header__nav--left" aria-label="Primary">
-          <a href="#shop">Shop</a>
-          <a href="#editorial">Editorial</a>
-          <a href="#community">Community</a>
-        </nav>
-
-        <a className="site-header__logo" href="#top" aria-label="Mooday home">
-          <img src="/images/Logo.svg" alt="Mooday" />
-        </a>
-
-        <nav className="site-header__nav site-header__nav--right" aria-label="Utilities">
-          <button type="button">Search</button>
-          <button type="button">Cart</button>
-          <button type="button">Account</button>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-function Hero() {
+function Hero({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <section id="top" className="hero">
-      <Header />
-      <img className="hero__image" src="/images/homebanner1.png" alt="" />
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
+      <img className="hero__image" src="/images/home/herobanner.png" alt="" />
       <div className="hero__overlay" />
 
       <div className="hero__content">
@@ -162,14 +139,6 @@ function Hero() {
             MOODAY의 새로운 컬렉션을 만나보세요.
           </p>
           <ArrowLink className="hero__cta">지금, 만나보기</ArrowLink>
-        </div>
-
-        <div className="hero__pagination" aria-label="Hero slide 1 of 3">
-          <span className="hero__pagination-current">01</span>
-          <span className="hero__pagination-line">
-            <span />
-          </span>
-          <span className="hero__pagination-total">03</span>
         </div>
       </div>
     </section>
@@ -281,50 +250,23 @@ function ShopByMood() {
   );
 }
 
-function BrandBanner() {
-  return (
-    <section className="brand-banner">
-      <img src="/images/homebanner2.png" alt="" />
-      <div className="brand-banner__content inner">
-        <p>
-          A New Perspective
-          <br />
-          for a Better Day.
-        </p>
-        <img className="brand-banner__logo" src="/images/Logo.svg" alt="Mooday" />
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="footer">
-      <div className="inner footer__top">
-        <p className="footer__copyright">© Copyright ©2026 mooday All rights reserved.</p>
-        <nav className="footer__links" aria-label="Footer links">
-          {footerLinks.map((link) => <a key={link} href="#">{link}</a>)}
-        </nav>
-      </div>
-
-      <div className="inner footer__details">
-        <p>대표 | 기획브랜드&nbsp;&nbsp; 사업자등록번호 | 000-00-00000</p>
-        <p>통신판매업신고 | 제0000-서울-0000호</p>
-        <p>주소 | 서울특별시 000구 00로 00&nbsp;&nbsp; 고객센터 | 070-0000-0000&nbsp;&nbsp; E-mail | customer@mooday.com</p>
-      </div>
-    </footer>
-  );
-}
-
-export default function Home() {
+export default function Home({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <main className="mooday-home">
-      <Hero />
+      <Hero
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
+
       <NewArrivals />
       <Editorial />
       <Community />
       <ShopByMood />
-      <BrandBanner />
       <Footer />
     </main>
   );
