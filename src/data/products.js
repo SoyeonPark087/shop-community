@@ -72,13 +72,13 @@ export const products = [
 
   // 대표 사진 아래에 순서대로 표시되는 상세 사진: 총 6장
   detailImages: [
-    '/images/shop/product02-detail01.jpg',
-    '/images/shop/product02-detail02.jpg',
-    '/images/shop/product02-detail03.jpg',
-    '/images/shop/product02-detail04.jpg',
-    '/images/shop/product02-detail05.jpg',
-    '/images/shop/product02-detail06.jpg',
-    '/images/shop/product02-detail07.jpg',
+    '/images/shop/product02-detail01.png',
+    '/images/shop/product02-detail02.png',
+    '/images/shop/product02-detail03.png',
+    '/images/shop/product02-detail04.png',
+    '/images/shop/product02-detail05.png',
+    '/images/shop/product02-detail06.png',
+    '/images/shop/product02-detail07.png',
   ],
 
   description:
@@ -145,6 +145,7 @@ export const products = [
     '/images/shop/product04-sub05.png',
     '/images/shop/product04-sub06.png',
     '/images/shop/product04-sub07.png',
+    '/images/shop/product04-sub08.png',
   ],
 
   // 페이지 아래쪽에 순서대로 표시되는 상세 사진: 총 8장

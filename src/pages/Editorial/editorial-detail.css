@@ -1,4 +1,18 @@
 /* ========================================
+   전체 페이지 배경
+======================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+
+/* ========================================
    EDITORIAL DETAIL
 ======================================== */
 
@@ -10,9 +24,11 @@
 .editorial-detail {
   width: 100%;
   max-width: 1440px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 55px 40px 120px;
-  background: #fff;
+  padding-top: 98px;
+  padding-bottom: 140px;
+  background-color: #ffffff;
   color: #1d1d1b;
   font-family:
     Pretendard,
@@ -24,7 +40,7 @@
 
 
 /* ========================================
-   상품 없음
+   에디토리얼 없음
 ======================================== */
 
 .editorial-detail--empty {
@@ -55,6 +71,7 @@
   gap: 65px;
   align-items: start;
   width: 100%;
+  background-color: #ffffff;
 }
 
 
@@ -63,9 +80,9 @@
 ======================================== */
 
 .editorial-detail__intro {
-  position: sticky;
-  top: 40px;
+  position: static;
   padding-top: 14px;
+  background-color: #ffffff;
 }
 
 .editorial-detail__label {
@@ -99,7 +116,7 @@
   width: 42px;
   height: 2px;
   margin: 48px 0 45px;
-  background: #999c91;
+  background-color: #999c91;
 }
 
 .editorial-detail__meta {
@@ -120,6 +137,7 @@
   width: 100%;
   max-width: 760px;
   margin-left: auto;
+  background-color: #ffffff;
 }
 
 .editorial-detail__body img {
@@ -128,7 +146,7 @@
   height: auto;
   margin: 0 0 20px;
   object-fit: cover;
-  background: #f1f0ed;
+  background-color: #ffffff;
 }
 
 .editorial-detail__main-image {
@@ -153,6 +171,7 @@
 .editorial-detail__shop {
   width: 100%;
   margin-top: 80px;
+  background-color: #ffffff;
 }
 
 .editorial-detail__shop h2,
@@ -181,7 +200,7 @@
   margin-bottom: 11px;
   overflow: hidden;
   aspect-ratio: 1.42 / 1;
-  background: #f1f0ed;
+  background-color: #ffffff;
 }
 
 .editorial-detail__product-image img {
@@ -221,24 +240,24 @@
 .editorial-detail__related {
   width: 100%;
   margin-top: 75px;
+  background-color: #ffffff;
 }
 
 .editorial-detail__section-heading {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
   margin-bottom: 22px;
 }
 
 .editorial-detail__section-heading h2 {
-  margin-bottom: 0;
+  margin: 0;
 }
 
+/* View All 링크 숨김 */
 .editorial-detail__section-heading > a {
-  color: #333;
-  font-size: 11px;
-  text-decoration: none;
+  display: none;
 }
 
 .editorial-detail__related-grid {
@@ -259,7 +278,7 @@
   margin-bottom: 12px;
   overflow: hidden;
   aspect-ratio: 1.6 / 1;
-  background: #f1f0ed;
+  background-color: #ffffff;
 }
 
 .editorial-detail__related-image img {
@@ -267,12 +286,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease;
 }
 
-.editorial-detail__related-card:hover img {
-  transform: scale(1.02);
-}
 
 .editorial-detail__related-card strong {
   display: block;
@@ -302,7 +317,7 @@
 
 @media (max-width: 1000px) {
   .editorial-detail {
-    padding: 40px 24px 90px;
+    padding: 72px 24px 110px;
   }
 
   .editorial-detail__article {
@@ -312,6 +327,7 @@
 
   .editorial-detail__intro {
     position: static;
+    padding-top: 14px;
   }
 
   .editorial-detail__label {
@@ -345,11 +361,16 @@
 
 @media (max-width: 640px) {
   .editorial-detail {
-    padding: 28px 18px 70px;
+    padding: 72px 18px 90px;
   }
 
   .editorial-detail__article {
     gap: 35px;
+  }
+
+  .editorial-detail__intro {
+    position: static;
+    padding-top: 0;
   }
 
   .editorial-detail__label {

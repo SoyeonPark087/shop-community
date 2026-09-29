@@ -1,5 +1,5 @@
 /* ========================================
-   EDITORIAL PAGE
+   EDITORIAL PAGE 기본 설정
 ======================================== */
 
 .editorial-page,
@@ -9,9 +9,10 @@
 
 .editorial-page {
   width: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: #fff;
+  background-color: #ffffff;
   color: #1d1d1b;
   font-family:
     Pretendard,
@@ -21,15 +22,23 @@
     sans-serif;
 }
 
-.editorial-page button {
-  font-family: inherit;
+.editorial-page img {
+  max-width: 100%;
 }
+
+
+/* ========================================
+   메인 콘텐츠
+
+   공통 헤더 72px
+   콘텐츠 추가 여백 24px
+======================================== */
 
 .editorial-main {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 50px 40px 120px;
+  padding: 96px 40px 120px;
 }
 
 
@@ -39,18 +48,17 @@
 
 .editorial-hero {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(340px, 2fr);
-  gap: 40px;
-  align-items: stretch;
+  grid-template-columns:
+    minmax(0, 3fr)
+    minmax(340px, 2fr);
   width: 100%;
+  align-items: stretch;
+  gap: 40px;
 }
 
 
 /* ========================================
    사진 콜라주 전체
-
-   작은 사진 4장  | 대표사진
-   Weekend 사진   | 대표사진
 ======================================== */
 
 .editorial-hero__collage {
@@ -60,11 +68,11 @@
   grid-template-areas:
     "small main"
     "weekend main";
-  gap: 4px;
   width: 100%;
   height: 560px;
   min-width: 0;
   overflow: hidden;
+  gap: 4px;
 }
 
 
@@ -73,16 +81,16 @@
 ======================================== */
 
 .editorial-hero__small-grid {
-  grid-area: small;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 4px;
+  grid-area: small;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 47fr 6fr 47fr;
   width: 100%;
   height: 100%;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  gap: 4px;
 }
 
 .editorial-hero__small-grid img {
@@ -96,14 +104,43 @@
   object-position: center;
 }
 
+/* 왼쪽 위 */
+.editorial-hero__small-grid img:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  object-position: center 35%;
+}
+
+/* 오른쪽 위 */
+.editorial-hero__small-grid img:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  object-position: center;
+}
+
+/* 왼쪽 아래 */
+.editorial-hero__small-grid img:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+  object-position: center;
+}
+
+/* 오른쪽 아래 */
+.editorial-hero__small-grid img:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  object-position: center;
+}
+
 
 /* ========================================
-   대표사진
+   대표 이미지
+   클릭 기능 없음
 ======================================== */
 
 .editorial-hero__main-image {
-  grid-area: main;
   display: block;
+  grid-area: main;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -113,8 +150,9 @@
   overflow: hidden;
   border: 0;
   border-radius: 0;
-  background: #f1f0ed;
-  cursor: pointer;
+  background-color: #f1f0ed;
+  cursor: default;
+  line-height: 0;
 }
 
 .editorial-hero__main-image img {
@@ -124,22 +162,19 @@
   margin: 0;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.4s ease;
-}
-
-.editorial-hero__main-image:hover img {
-  transform: scale(1.015);
+  transform: none;
 }
 
 
 /* ========================================
-   Weekend Calm 사진
+   Weekend Calm 이미지
+   사진 전체에는 링크 없음
 ======================================== */
 
 .editorial-hero__weekend {
   position: relative;
-  grid-area: weekend;
   display: block;
+  grid-area: weekend;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -147,7 +182,8 @@
   margin: 0;
   overflow: hidden;
   color: #1d1d1b;
-  text-decoration: none;
+  cursor: default;
+  line-height: 0;
 }
 
 .editorial-hero__weekend > img {
@@ -157,14 +193,14 @@
   margin: 0;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.4s ease;
+  transform: none;
 }
 
-.editorial-hero__weekend:hover > img {
-  transform: scale(1.015);
-}
 
-/* 사진 위 글자 */
+/* ========================================
+   Weekend Calm 이미지 위 텍스트
+======================================== */
+
 .editorial-hero__weekend-text {
   position: absolute;
   top: 50%;
@@ -173,9 +209,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  transform: translateY(-50%);
   color: #171715;
+  line-height: normal;
   pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .editorial-hero__weekend-text strong {
@@ -195,31 +232,48 @@
   line-height: 1.4;
 }
 
-.editorial-hero__weekend-text span {
-  display: block;
+
+/* ========================================
+   Weekend Calm의 Shop 링크
+======================================== */
+
+.editorial-hero__shop-link {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  margin: 0;
+  color: #171715;
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
+  text-decoration: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.editorial-hero__shop-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 
 /* ========================================
-   오른쪽 소개 글
+   오른쪽 소개 영역
 ======================================== */
 
 .editorial-hero__content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 100%;
   min-width: 0;
   min-height: 560px;
   padding: 15px 0 0;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .editorial-hero__label {
   margin: 0 0 52px;
-  color: #333;
+  color: #333333;
   font-size: 11px;
   font-weight: 400;
   line-height: 1;
@@ -243,58 +297,71 @@
   line-height: 1.65;
 }
 
+
+/* ========================================
+   Read Story 링크
+======================================== */
+
 .editorial-hero__button {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 58px;
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: 0;
-  background: #355f4d;
-  color: #fff;
+  align-items: center;
+  justify-content: center;
+  background-color: #355f4d;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
   cursor: pointer;
-  transition: background 0.25s ease;
+  user-select: none;
+  transition: background-color 0.25s ease;
 }
 
 .editorial-hero__button:hover {
-  background: #294c3d;
+  background-color: #294c3d;
+  color: #ffffff;
 }
 
 
 /* ========================================
    히어로 페이지 번호
+   클릭 기능 없음
 ======================================== */
 
 .editorial-hero__pagination {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 11px;
   width: 100%;
   margin-top: 36px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
   color: #1d1d1b;
   font-size: 11px;
+  font-weight: 400;
 }
 
-.editorial-hero__pagination button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 22px;
+.editorial-hero__pagination span {
+  display: inline-flex;
+  min-width: auto;
   height: 22px;
   margin: 0;
   padding: 0;
-  border: 0;
-  background: transparent;
-  color: #1d1d1b;
-  font-size: 18px;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  cursor: pointer;
+  cursor: default;
+}
+
+/* 이전·다음 화살표 */
+.editorial-hero__pagination span:nth-last-child(-n + 2) {
+  width: 22px;
+  font-size: 18px;
 }
 
 
@@ -307,26 +374,26 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-auto-flow: row;
   grid-auto-rows: auto;
+  width: 100%;
+  margin-top: 46px;
   align-items: start;
   column-gap: 14px;
   row-gap: 38px;
-  width: 100%;
-  margin-top: 46px;
 }
 
 
 /* ========================================
-   카드 너비
+   카드별 너비
 ======================================== */
 
 .editorial-card {
   grid-column: span 3;
-  align-self: start;
   width: 100%;
   min-width: 0;
   height: auto;
   min-height: 0;
   margin: 0;
+  align-self: start;
 }
 
 /* 첫 번째 줄 */
@@ -363,14 +430,15 @@
   grid-column: span 2;
 }
 
-/* 세 번째 줄 */
+/* 세 번째 줄 이후 */
 .editorial-card:nth-child(n + 9) {
   grid-column: span 3;
 }
 
 
 /* ========================================
-   카드 사진
+   카드 이미지
+   클릭 기능 없음
 ======================================== */
 
 .editorial-card__image {
@@ -384,8 +452,9 @@
   overflow: hidden;
   border: 0;
   border-radius: 0;
-  background: #f1f0ed;
-  cursor: pointer;
+  background-color: #f1f0ed;
+  cursor: default;
+  line-height: 0;
 }
 
 .editorial-card__image img {
@@ -395,22 +464,17 @@
   margin: 0;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.4s ease;
-}
-
-.editorial-card__image:hover img {
-  transform: scale(1.02);
+  transform: none;
 }
 
 
 /* ========================================
-   카드 제목과 설명
+   카드 제목 및 설명
+   클릭 기능 없음
 ======================================== */
 
 .editorial-card__text {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 100%;
   height: auto;
   min-height: 0;
@@ -418,10 +482,12 @@
   padding: 11px 0 0;
   overflow: hidden;
   border: 0;
-  background: transparent;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: transparent;
   color: #1d1d1b;
   text-align: left;
-  cursor: pointer;
+  cursor: default;
 }
 
 .editorial-card__text strong {
@@ -452,12 +518,37 @@
 
 
 /* ========================================
+   이미지 hover 효과 제거
+======================================== */
+
+.editorial-hero__main-image:hover img,
+.editorial-hero__weekend:hover > img,
+.editorial-card:hover img,
+.editorial-card__image:hover img {
+  transform: none;
+}
+
+
+/* ========================================
+   링크가 없는 요소들의 기본 커서
+======================================== */
+
+.editorial-hero__main-image,
+.editorial-hero__weekend,
+.editorial-card__image,
+.editorial-card__text,
+.editorial-hero__pagination span {
+  cursor: default;
+}
+
+
+/* ========================================
    태블릿
 ======================================== */
 
 @media (max-width: 1000px) {
   .editorial-main {
-    padding: 35px 24px 90px;
+    padding: 96px 24px 90px;
   }
 
   .editorial-hero {
@@ -488,9 +579,9 @@
 
   .editorial-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 55px;
     column-gap: 14px;
     row-gap: 34px;
-    margin-top: 55px;
   }
 
   .editorial-card,
@@ -511,13 +602,19 @@
 
 @media (max-width: 640px) {
   .editorial-main {
-    padding: 24px 18px 70px;
+    padding: 88px 18px 70px;
   }
 
   .editorial-hero {
     display: block;
   }
 
+  /*
+    모바일 이미지 순서:
+    1. 작은 사진 4개
+    2. 대표 이미지
+    3. Weekend Calm
+  */
   .editorial-hero__collage {
     grid-template-columns: 1fr;
     grid-template-rows: 250px 410px 145px;
@@ -525,19 +622,23 @@
       "small"
       "main"
       "weekend";
-    gap: 4px;
+    width: 100%;
     height: auto;
+    gap: 4px;
   }
 
   .editorial-hero__small-grid {
+    width: 100%;
     height: 250px;
   }
 
   .editorial-hero__main-image {
+    width: 100%;
     height: 410px;
   }
 
   .editorial-hero__weekend {
+    width: 100%;
     height: 145px;
   }
 
@@ -546,7 +647,17 @@
   }
 
   .editorial-hero__weekend-text strong {
+    margin-bottom: 7px;
     font-size: 17px;
+  }
+
+  .editorial-hero__weekend-text small {
+    margin-bottom: 10px;
+    font-size: 9px;
+  }
+
+  .editorial-hero__shop-link {
+    font-size: 9px;
   }
 
   .editorial-hero__content {
@@ -571,14 +682,19 @@
     font-size: 13px;
   }
 
+  .editorial-hero__button {
+    height: 54px;
+    font-size: 13px;
+  }
+
   .editorial-hero__pagination {
     margin-top: 22px;
   }
 
   .editorial-grid {
     grid-template-columns: 1fr;
-    row-gap: 30px;
     margin-top: 50px;
+    row-gap: 30px;
   }
 
   .editorial-card,
@@ -591,6 +707,10 @@
     aspect-ratio: 4 / 3;
   }
 
+  .editorial-card__text {
+    padding-top: 10px;
+  }
+
   .editorial-card__text strong {
     font-size: 14px;
   }
@@ -599,66 +719,35 @@
     font-size: 11px;
   }
 }
-/* 작은 사진 4장 — 경계가 어긋나는 콜라주 */
-.editorial-hero__small-grid {
-  grid-area: small;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 47fr 6fr 47fr;
-  gap: 4px;
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-}
 
-/* 모든 작은 사진 공통 */
-.editorial-hero__small-grid img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
-  margin: 0;
-  object-fit: cover;
-  object-position: center;
-}
 
-/* 왼쪽 위: 조금 더 긴 사진 */
-.editorial-hero__small-grid img:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1 / 3;
-  object-position: center 35%;
-}
+/* ========================================
+   작은 모바일
+======================================== */
 
-/* 오른쪽 위: 조금 짧은 사진 */
-.editorial-hero__small-grid img:nth-child(2) {
-  grid-column: 2;
-  grid-row: 1;
-  object-position: center;
-}
-
-/* 왼쪽 아래: 조금 짧은 사진 */
-.editorial-hero__small-grid img:nth-child(3) {
-  grid-column: 1;
-  grid-row: 3;
-  object-position: center;
-}
-
-/* 오른쪽 아래: 조금 더 긴 사진 */
-.editorial-hero__small-grid img:nth-child(4) {
-  grid-column: 2;
-  grid-row: 2 / 4;
-  object-position: center;
-}
-/* 공통 헤더 아래에서 에디토리얼 콘텐츠 시작 */
-.editorial-main {
-  padding-top: 96px;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 420px) {
   .editorial-main {
-    padding-top: 72px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .editorial-hero__collage {
+    grid-template-rows: 230px 380px 135px;
+  }
+
+  .editorial-hero__small-grid {
+    height: 230px;
+  }
+
+  .editorial-hero__main-image {
+    height: 380px;
+  }
+
+  .editorial-hero__weekend {
+    height: 135px;
+  }
+
+  .editorial-hero__content h1 {
+    font-size: 36px;
   }
 }

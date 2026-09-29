@@ -1,11 +1,10 @@
-import { editorials, featuredEditorial } from '../../data/editorials'
+import {
+  editorials,
+  featuredEditorial,
+} from '../../data/editorials'
 import './editorial.css'
 
 function Editorial() {
-  const handleEditorialClick = (id) => {
-    window.location.href = `/editorial/${id}`
-  }
-
   return (
     <main className="editorial-page">
       <div className="editorial-main">
@@ -36,34 +35,37 @@ function Editorial() {
               />
             </div>
 
-            {/* 대표사진 */}
-            <button
-              className="editorial-hero__main-image"
-              type="button"
-              onClick={() =>
-                handleEditorialClick(featuredEditorial.id)
-              }
-              aria-label={`${featuredEditorial.title} 상세 보기`}
-            >
+            {/* 대표 사진: 링크 없음 */}
+            <div className="editorial-hero__main-image">
               <img
                 src={featuredEditorial.heroImage}
                 alt={featuredEditorial.title}
               />
-            </button>
+            </div>
 
             {/* Weekend Calm 사진 */}
-            <a className="editorial-hero__weekend" href="/shop">
+            <div className="editorial-hero__weekend">
               <img
                 src="/images/editorial/editorial-weekend.png"
                 alt="잔잔한 바다 풍경"
               />
 
-              <span className="editorial-hero__weekend-text">
+              <div className="editorial-hero__weekend-text">
                 <strong>Weekend Calm</strong>
-                <small>Unwind in natural tones.</small>
-                <span>Shop&nbsp;&nbsp;→</span>
-              </span>
-            </a>
+
+                <small>
+                  Unwind in natural tones.
+                </small>
+
+                {/* Shop 글자와 화살표만 링크 */}
+                <a
+                  className="editorial-hero__shop-link"
+                  href="/shop"
+                >
+                  Shop&nbsp;&nbsp;→
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* 오른쪽 소개 영역 */}
@@ -88,34 +90,21 @@ function Editorial() {
               through clothing, movement, and every moment.
             </p>
 
-            <button
+            {/* 대표 에디토리얼 상세페이지 링크 */}
+            <a
               className="editorial-hero__button"
-              type="button"
-              onClick={() =>
-                handleEditorialClick(featuredEditorial.id)
-              }
+              href={`/editorial/${featuredEditorial.id}`}
             >
               Read Story
-            </button>
+            </a>
 
+            {/* 페이지 표시 */}
             <div className="editorial-hero__pagination">
               <span>01</span>
               <span>/</span>
               <span>08</span>
-
-              <button
-                type="button"
-                aria-label="이전 에디토리얼"
-              >
-                ‹
-              </button>
-
-              <button
-                type="button"
-                aria-label="다음 에디토리얼"
-              >
-                ›
-              </button>
+              <span aria-hidden="true">‹</span>
+              <span aria-hidden="true">›</span>
             </div>
           </div>
         </section>
@@ -130,33 +119,22 @@ function Editorial() {
               className="editorial-card"
               key={editorial.id}
             >
-              <button
-                className="editorial-card__image"
-                type="button"
-                onClick={() =>
-                  handleEditorialClick(editorial.id)
-                }
-                aria-label={`${editorial.title} 상세 보기`}
-              >
+              {/* 카드 이미지: 링크 없음 */}
+              <div className="editorial-card__image">
                 <img
                   src={editorial.image}
                   alt={editorial.title}
                 />
-              </button>
+              </div>
 
-              <button
-                className="editorial-card__text"
-                type="button"
-                onClick={() =>
-                  handleEditorialClick(editorial.id)
-                }
-              >
+              {/* 카드 텍스트: 링크 없음 */}
+              <div className="editorial-card__text">
                 <strong>{editorial.title}</strong>
 
                 <span>
                   {editorial.cardDescription}
                 </span>
-              </button>
+              </div>
             </article>
           ))}
         </section>

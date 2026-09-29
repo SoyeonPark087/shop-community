@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { products } from '../../data/products'
 import './product-detail.css'
 
 function ProductDetail() {
-  const productId = window.location.pathname.split('/').pop()
+  const productId = window.location.pathname
+    .split('/')
+    .filter(Boolean)
+    .pop()
 
   const product = products.find(
     (item) => String(item.id) === String(productId)
@@ -19,37 +22,6 @@ function ProductDetail() {
   const [selectedImageIndex, setSelectedImageIndex] =
     useState(0)
 
-  const thumbnailRefs = useRef([])
-
-  const selectedImage =
-    galleryImages[selectedImageIndex] || galleryImages[0]
-
-  const handlePreviousImage = () => {
-    setSelectedImageIndex((currentIndex) =>
-      currentIndex === 0
-        ? galleryImages.length - 1
-        : currentIndex - 1
-    )
-  }
-
-  const handleNextImage = () => {
-    setSelectedImageIndex((currentIndex) =>
-      currentIndex === galleryImages.length - 1
-        ? 0
-        : currentIndex + 1
-    )
-  }
-
-  useEffect(() => {
-    thumbnailRefs.current[
-      selectedImageIndex
-    ]?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    })
-  }, [selectedImageIndex])
-
   if (!product) {
     return (
       <main className="product-detail product-detail--empty">
@@ -58,6 +30,11 @@ function ProductDetail() {
       </main>
     )
   }
+
+  const selectedImage =
+    galleryImages[selectedImageIndex] ||
+    galleryImages[0] ||
+    ''
 
   return (
     <main className="product-detail">
@@ -72,77 +49,61 @@ function ProductDetail() {
       <section className="product-detail__main">
         {/* 왼쪽 전체 사진 영역 */}
         <div className="product-detail__gallery">
-          {/* 썸네일 슬라이더 */}
-          <div className="product-detail__thumbnail-slider">
-            <button
-              type="button"
-              className="product-detail__gallery-arrow product-detail__gallery-arrow--left"
-              onClick={handlePreviousImage}
-              aria-label="이전 상품 이미지"
-            >
-              ‹
-            </button>
-
-            <div className="product-detail__thumbnails">
-              {galleryImages.map((image, index) => (
-                <button
-                  type="button"
-                  key={`${image}-${index}`}
-                  ref={(element) => {
-                    thumbnailRefs.current[index] = element
-                  }}
-                  className={
-                    selectedImageIndex === index
-                      ? 'product-detail__thumbnail product-detail__thumbnail--active'
-                      : 'product-detail__thumbnail'
-                  }
-                  onClick={() =>
-                    setSelectedImageIndex(index)
-                  }
-                  aria-label={`${product.name} 이미지 ${
-                    index + 1
-                  } 보기`}
-                >
-                  <img
-                    src={image}
-                    alt={`${product.name} 썸네일 ${
-                      index + 1
-                    }`}
-                  />
-                </button>
-              ))}
-            </div>
-
-            <button
-              type="button"
-              className="product-detail__gallery-arrow product-detail__gallery-arrow--right"
-              onClick={handleNextImage}
-              aria-label="다음 상품 이미지"
-            >
-              ›
-            </button>
-          </div>
-
-          {/* 대표 사진 */}
-          <div className="product-detail__main-image">
-            <img
-              src={selectedImage}
-              alt={`${product.name} 선택 이미지`}
-            />
-          </div>
-
-          {/* 아래 상세 사진 */}
-          {product.detailImages?.length > 0 && (
-            <div className="product-detail__contents">
-              {product.detailImages.map((image, index) => (
+          {/* 왼쪽 세로 썸네일 */}
+          <div className="product-detail__thumbnails">
+            {galleryImages.map((image, index) => (
+              <button
+                type="button"
+                key={`${image}-${index}`}
+                className={
+                  selectedImageIndex === index
+                    ? 'product-detail__thumbnail product-detail__thumbnail--active'
+                    : 'product-detail__thumbnail'
+                }
+                onClick={() =>
+                  setSelectedImageIndex(index)
+                }
+                aria-label={`${product.name} 이미지 ${
+                  index + 1
+                } 보기`}
+                aria-pressed={
+                  selectedImageIndex === index
+                }
+              >
                 <img
-                  key={`${image}-${index}`}
                   src={image}
-                  alt={`${product.name} 상세 이미지 ${
+                  alt={`${product.name} 썸네일 ${
                     index + 1
                   }`}
                 />
-              ))}
+              </button>
+            ))}
+          </div>
+
+          {/* 대표 이미지 */}
+          {selectedImage && (
+            <div className="product-detail__main-image">
+              <img
+                src={selectedImage}
+                alt={`${product.name} 선택 이미지`}
+              />
+            </div>
+          )}
+
+          {/* 아래 상세 이미지 */}
+          {product.detailImages?.length > 0 && (
+            <div className="product-detail__contents">
+              {product.detailImages.map(
+                (image, index) => (
+                  <img
+                    key={`${image}-${index}`}
+                    src={image}
+                    alt={`${product.name} 상세 이미지 ${
+                      index + 1
+                    }`}
+                  />
+                )
+              )}
             </div>
           )}
         </div>
@@ -152,7 +113,7 @@ function ProductDetail() {
           <h1>{product.name}</h1>
 
           <p className="product-detail__price">
-            ₩ {product.price.toLocaleString()}
+            ₩ {Number(product.price).toLocaleString()}
           </p>
 
           <div className="product-detail__colors">
@@ -180,7 +141,9 @@ function ProductDetail() {
           </button>
 
           <div className="product-detail__description">
-            <p>{product.description}</p>
+            {product.description && (
+              <p>{product.description}</p>
+            )}
 
             {product.material && (
               <ul>

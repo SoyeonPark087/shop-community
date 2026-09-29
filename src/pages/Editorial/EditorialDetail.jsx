@@ -23,9 +23,6 @@ function EditorialDetail() {
   const detailImages = editorial.detailImages || []
   const paragraphs = editorial.paragraphs || []
   const shopProducts = editorial.shopProducts || []
-
-  // editorials.js의 해당 에디토리얼 안에 있는
-  // relatedStories 데이터를 가져옵니다.
   const relatedStories = editorial.relatedStories || []
 
   return (
@@ -108,7 +105,7 @@ function EditorialDetail() {
 
           {/* 문단이 3개보다 많을 때 */}
           {paragraphs.slice(3).map((paragraph, index) => (
-            <p key={`${paragraph}-${index}`}>
+            <p key={`paragraph-${index}`}>
               {paragraph}
             </p>
           ))}
@@ -146,38 +143,33 @@ function EditorialDetail() {
       )}
 
       {/* 관련 에디토리얼 영역 */}
-      {relatedStories.length > 0 && (
-        <section className="editorial-detail__related">
-          <div className="editorial-detail__section-heading">
-            <h2>Related Stories</h2>
+{relatedStories.length > 0 && (
+  <section className="editorial-detail__related">
+    <div className="editorial-detail__section-heading">
+      <h2>Related Stories</h2>
+    </div>
 
-            <a href="/editorial">
-              View All →
-            </a>
+    <div className="editorial-detail__related-grid">
+      {relatedStories.map((story) => (
+        <article
+          className="editorial-detail__related-card"
+          key={story.id}
+        >
+          <div className="editorial-detail__related-image">
+            <img
+              src={story.image}
+              alt={story.title}
+            />
           </div>
 
-          <div className="editorial-detail__related-grid">
-            {relatedStories.map((story) => (
-              <a
-                className="editorial-detail__related-card"
-                href={`/editorial/${story.id}`}
-                key={story.id}
-              >
-                <div className="editorial-detail__related-image">
-                  <img
-                    src={story.image}
-                    alt={story.title}
-                  />
-                </div>
+          <strong>{story.title}</strong>
 
-                <strong>{story.title}</strong>
-
-                <span>{story.description}</span>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+          <span>{story.description}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
     </main>
   )
 }
