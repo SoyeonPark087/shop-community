@@ -1,17 +1,30 @@
 /* ==================================================
-   mooday My Page - Profile v0.1
+   mooday My Page - Profile v0.3 / Phase 3
 
-   최종 반영 사항
+   기존 반영 사항
    --------------------------------------------------
-   - ID: 1-B Read Only Design
-   - ID Text: #686868
-   - Password: Masked Status UI
-   - Password Background: #F7F7F7
+   - ID Read Only Design
+   - Password Masked Status UI
    - Desktop / Tablet / Mobile Responsive
 
-   My Page 전용 CSS입니다.
-   Header / Footer / App / Community 등의
-   공통 또는 타 페이지 스타일은 수정하지 않습니다.
+   Phase 1
+   --------------------------------------------------
+   - Validation Error UI
+   - Error Border / Message / Focus
+
+   Phase 2
+   --------------------------------------------------
+   - 수정 감지
+   - Submit Active / Disabled
+
+   Phase 3
+   --------------------------------------------------
+   - 저장 성공 Toast
+   - Desktop / Tablet: 우측 하단
+   - Mobile: 하단 중앙
+
+   중요:
+   실제 서버 저장 기능은 없습니다.
 ================================================== */
 
 
@@ -24,10 +37,15 @@
   box-sizing: border-box;
 }
 
+
 .mooday-mypage {
   --mooday-profile-sage: #344f41;
   --mooday-profile-text: #282828;
   --mooday-profile-border: #e5e5e5;
+
+  --mooday-profile-error: #b85c5c;
+
+  --mooday-profile-disabled: #c8cec9;
 
   width: 100%;
   min-width: 0;
@@ -76,8 +94,6 @@
 }
 
 
-/* 작은 화면에서 탭 메뉴만 가로 스크롤 */
-
 .mooday-mypage-nav__scroll {
   flex: 1 1 auto;
 
@@ -103,8 +119,6 @@
 }
 
 
-/* 탭 목록 */
-
 .mooday-mypage-nav__list {
   display: flex;
   align-items: center;
@@ -126,8 +140,6 @@
 }
 
 
-/* 탭 / Sort 공통 */
-
 .mooday-mypage-nav__tab,
 .mooday-mypage-nav__sort {
   display: inline-flex;
@@ -143,8 +155,6 @@
 }
 
 
-/* 현재 활성 메뉴: Profile */
-
 .mooday-mypage-nav__tab--active {
   color: var(--mooday-profile-sage);
 
@@ -155,8 +165,6 @@
 }
 
 
-/* 아직 구현하지 않은 메뉴 */
-
 .mooday-mypage-nav__tab--inactive,
 .mooday-mypage-nav__sort {
   color: #4c4c4c;
@@ -164,10 +172,6 @@
   cursor: default;
 }
 
-
-/* Sort
-   현재는 시안만 표시하고 동작하지 않습니다.
-*/
 
 .mooday-mypage-nav__sort {
   flex: 0 0 auto;
@@ -194,20 +198,12 @@
 }
 
 
-/* Profile 폼 */
-
 .mooday-profile-form {
-  /*
-    원본 My Page 시안처럼
-    중앙에 집중된 Profile 폼 폭을 유지합니다.
-  */
   width: min(100%, 800px);
 
   margin-inline: auto;
 }
 
-
-/* PROFILE 제목 */
 
 .mooday-profile-form__title {
   margin:
@@ -248,8 +244,6 @@
 }
 
 
-/* 라벨 */
-
 .mooday-profile-form__field > label {
   font-size: 15px;
   font-weight: 500;
@@ -257,8 +251,6 @@
   line-height: 1.4;
 }
 
-
-/* 일반 입력창 */
 
 .mooday-profile-form__field input {
   display: block;
@@ -294,8 +286,6 @@
 }
 
 
-/* 일반 편집 가능한 입력창 Focus */
-
 .mooday-profile-form__field
 input:focus-visible:not([readonly]) {
   border-color:
@@ -310,8 +300,6 @@ input:focus-visible:not([readonly]) {
 }
 
 
-/* Read Only 입력창 */
-
 .mooday-profile-form__field
 input[readonly] {
   cursor: default;
@@ -319,19 +307,46 @@ input[readonly] {
 
 
 /* ==================================================
-   5. ID SLOT - 1-B
+   5. VALIDATION ERROR
 ================================================== */
 
-/*
-  구조
+.mooday-profile-form__field--error
+input:not([readonly]) {
+  border-color:
+    var(--mooday-profile-error);
+}
 
-  아이디
-  ┌──────────────────────────────┐
-  │ mooday_user01            🔒  │
-  └──────────────────────────────┘
-  아이디는 변경할 수 없습니다.
-*/
 
+.mooday-profile-form__field--error
+input:focus-visible:not([readonly]) {
+  border-color:
+    var(--mooday-profile-error);
+
+  box-shadow:
+    0
+    0
+    0
+    1px
+    var(--mooday-profile-error);
+}
+
+
+.mooday-profile-form__error-message {
+  margin: 0;
+
+  color:
+    var(--mooday-profile-error);
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.5;
+}
+
+
+/* ==================================================
+   6. ID SLOT
+================================================== */
 
 .mooday-profile-form__id-row {
   display: flex;
@@ -344,8 +359,6 @@ input[readonly] {
 }
 
 
-/* 아이디 입력창 + 잠금 아이콘 */
-
 .mooday-profile-form__id-control {
   position: relative;
 
@@ -354,18 +367,13 @@ input[readonly] {
 }
 
 
-/* 아이디 고정 슬롯 */
-
 .mooday-profile-form__id-control input {
   width: 100%;
 
-  /* 잠금 아이콘 공간 확보 */
   padding-right: 50px;
 
-  /* 일반 입력창보다 확실한 Read Only 표현 */
   background: #f2f2f2;
 
-  /* 일반 본문 #282828보다 한 단계 부드러운 회색 */
   color: #686868;
 
   border-color: #dedede;
@@ -375,8 +383,6 @@ input[readonly] {
   cursor: default;
 }
 
-
-/* Read Only 아이디 Focus */
 
 .mooday-profile-form__id-control
 input:focus-visible {
@@ -388,8 +394,6 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-
-/* 잠금 아이콘 */
 
 .mooday-profile-form__lock-icon {
   position: absolute;
@@ -408,8 +412,6 @@ input:focus-visible {
 }
 
 
-/* 아이디 안내 */
-
 .mooday-profile-form__id-note {
   display: block;
 
@@ -425,22 +427,8 @@ input:focus-visible {
 
 
 /* ==================================================
-   6. PASSWORD SLOT
+   7. PASSWORD SLOT
 ================================================== */
-
-/*
-  비밀번호는 아이디와 성격이 다릅니다.
-
-  아이디
-  = 실제 값이 표시되는 고정 정보
-
-  비밀번호
-  = 실제 값을 노출하지 않는 보안 정보
-
-  따라서 아이디보다 조금 밝은
-  #F7F7F7 배경을 사용합니다.
-*/
-
 
 .mooday-profile-form__password-row {
   display: flex;
@@ -452,16 +440,15 @@ input:focus-visible {
 }
 
 
-/* 비밀번호 상태 표시 슬롯 */
-
 .mooday-profile-form__password-row
 .mooday-profile-form__password-input {
-  flex: 1 1 auto;
+  flex:
+    1
+    1
+    auto;
 
   width: 0;
 
-  /* 일반 입력창과 구분하되
-     ID 슬롯보다는 약하게 표현 */
   background: #f7f7f7;
 
   border-color: #e3e3e3;
@@ -470,25 +457,14 @@ input:focus-visible {
 }
 
 
-/*
-  실제 비밀번호 값이 아닙니다.
-
-  •••••••• 는 placeholder를 이용한
-  단순한 UI 상태 표현입니다.
-*/
-
 .mooday-profile-form__password-input::placeholder {
   color: #686868;
 
   opacity: 1;
 
-  /* 점 형태가 지나치게 붙어 보이지 않도록
-     아주 약한 자간만 적용 */
   letter-spacing: 0.08em;
 }
 
-
-/* Read Only Password Focus */
 
 .mooday-profile-form__password-input:focus-visible {
   outline:
@@ -499,8 +475,6 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-
-/* 비밀번호 변경 버튼 */
 
 .mooday-profile-form__password-button {
   flex:
@@ -534,18 +508,13 @@ input:focus-visible {
 }
 
 
-/*
-  disabled 기본 opacity가 브라우저마다 다를 수 있으므로
-  직접 1로 고정합니다.
-*/
-
 .mooday-profile-form__password-button:disabled {
   opacity: 1;
 }
 
 
 /* ==================================================
-   7. CONSENT CHECKBOX
+   8. CONSENT CHECKBOX
 ================================================== */
 
 .mooday-profile-form__consents {
@@ -578,8 +547,6 @@ input:focus-visible {
 }
 
 
-/* 브랜드 색상 체크박스 */
-
 .mooday-profile-form__consent input {
   flex: 0 0 auto;
 
@@ -610,7 +577,7 @@ input:focus-visible {
 
 
 /* ==================================================
-   8. SUBMIT BUTTON
+   9. SUBMIT BUTTON
 ================================================== */
 
 .mooday-profile-form__submit {
@@ -644,18 +611,18 @@ input:focus-visible {
   cursor: pointer;
 
   transition:
-    background-color
-    0.15s
-    ease;
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 
-.mooday-profile-form__submit:hover {
+.mooday-profile-form__submit:not(:disabled):hover {
   background: #486b58;
 }
 
 
-.mooday-profile-form__submit:focus-visible {
+.mooday-profile-form__submit:not(:disabled):focus-visible {
   outline:
     2px
     solid
@@ -665,8 +632,110 @@ input:focus-visible {
 }
 
 
+.mooday-profile-form__submit:disabled {
+  border-color:
+    var(--mooday-profile-disabled);
+
+  background:
+    var(--mooday-profile-disabled);
+
+  color: #ffffff;
+
+  opacity: 1;
+
+  cursor: default;
+}
+
+
 /* ==================================================
-   9. ACCESSIBILITY
+   10. SAVE TOAST
+   Phase 3
+================================================== */
+
+/*
+  저장 성공 메시지
+
+  Desktop / Tablet
+  → 화면 우측 하단
+
+  Mobile
+  → 화면 하단 중앙
+*/
+
+.mooday-profile-toast {
+  position: fixed;
+
+  right: 32px;
+  bottom: 32px;
+
+  z-index: 2000;
+
+  min-width: 260px;
+  max-width: calc(100vw - 40px);
+
+  padding:
+    16px
+    20px;
+
+  border:
+    1px
+    solid
+    #d8ddd9;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--mooday-profile-text);
+
+  box-shadow:
+    0
+    8px
+    24px
+    rgba(0, 0, 0, 0.08);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  text-align: center;
+
+  pointer-events: none;
+
+  animation:
+    mooday-profile-toast-in
+    0.2s
+    ease;
+}
+
+
+/*
+  Toast 등장 효과
+
+  아주 짧고 가벼운 이동만 사용합니다.
+*/
+
+@keyframes mooday-profile-toast-in {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ==================================================
+   11. ACCESSIBILITY
 ================================================== */
 
 .mooday-profile-form__visually-hidden {
@@ -692,13 +761,11 @@ input:focus-visible {
 
 
 /* ==================================================
-   10. TABLET
+   12. TABLET
    768px - 1279px
 ================================================== */
 
 @media (max-width: 1279px) {
-
-  /* Tablet 좌우 40px */
 
   .mooday-mypage__inner {
     width:
@@ -732,13 +799,11 @@ input:focus-visible {
 
 
 /* ==================================================
-   11. MOBILE
+   13. MOBILE
    767px 이하
 ================================================== */
 
 @media (max-width: 767px) {
-
-  /* Mobile 좌우 20px */
 
   .mooday-mypage__inner {
     width:
@@ -748,9 +813,7 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile Navigation
-  ----------------------------------------------- */
+  /* Mobile Navigation */
 
   .mooday-mypage-nav {
     gap: 18px;
@@ -775,9 +838,7 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile Profile
-  ----------------------------------------------- */
+  /* Mobile Profile */
 
   .mooday-mypage__content {
     padding:
@@ -816,9 +877,14 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile ID
-  ----------------------------------------------- */
+  .mooday-profile-form__error-message {
+    font-size: 12px;
+
+    line-height: 1.5;
+  }
+
+
+  /* Mobile ID */
 
   .mooday-profile-form__id-row {
     gap: 7px;
@@ -845,14 +911,7 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile Password
-  ----------------------------------------------- */
-
-  /*
-    모바일에서는 입력창과 버튼을
-    세로로 배치합니다.
-  */
+  /* Mobile Password */
 
   .mooday-profile-form__password-row {
     align-items: stretch;
@@ -881,9 +940,7 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile Consent
-  ----------------------------------------------- */
+  /* Mobile Consent */
 
   .mooday-profile-form__consents {
     gap: 15px;
@@ -907,9 +964,7 @@ input:focus-visible {
   }
 
 
-  /* -----------------------------------------------
-     Mobile Submit
-  ----------------------------------------------- */
+  /* Mobile Submit */
 
   .mooday-profile-form__submit {
     min-height: 58px;
@@ -918,11 +973,37 @@ input:focus-visible {
 
     font-size: 16px;
   }
+
+
+  /* -----------------------------------------------
+     Mobile Toast
+
+     화면 양쪽 20px 여백을 확보하고
+     하단 중앙에 배치합니다.
+  ----------------------------------------------- */
+
+  .mooday-profile-toast {
+    right: 20px;
+    left: 20px;
+
+    bottom: 20px;
+
+    min-width: 0;
+    max-width: none;
+
+    width: auto;
+
+    padding:
+      14px
+      16px;
+
+    font-size: 13px;
+  }
 }
 
 
 /* ==================================================
-   12. SMALL MOBILE
+   14. SMALL MOBILE
    374px 이하
 ================================================== */
 
@@ -945,7 +1026,7 @@ input:focus-visible {
 
 
 /* ==================================================
-   13. REDUCED MOTION
+   15. REDUCED MOTION
 ================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -954,5 +1035,15 @@ input:focus-visible {
     scroll-behavior: auto;
 
     transition-duration: 0s;
+  }
+
+
+  /*
+    Motion 감소 설정을 사용하는 경우
+    Toast Animation도 제거합니다.
+  */
+
+  .mooday-profile-toast {
+    animation: none;
   }
 }

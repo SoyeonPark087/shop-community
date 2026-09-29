@@ -1,0 +1,1317 @@
+/*
+  =========================================
+  MOODAY COMMUNITY WRITE
+  Responsive CSS v2.1
+  GROUP 1 ~ GROUP 6
+  =========================================
+
+  Desktop:         1280px 이상
+  Tablet Wide:     1024px ~ 1279px
+  Tablet Compact:  768px ~ 1023px
+  Mobile:          767px 이하
+
+  Community Write 전용 CSS.
+
+  Main / Detail / Header / Footer 수정 없음.
+*/
+
+
+/* =====================================
+   00. ROOT
+===================================== */
+
+.mooday-write,
+.mooday-write * {
+  box-sizing: border-box;
+}
+
+.mooday-write {
+  width: 100%;
+
+  padding: 64px 0 120px;
+
+  background: #fff;
+  color: #282828;
+
+  font-family:
+    'Pretendard GOV',
+    Pretendard,
+    Arial,
+    sans-serif;
+}
+
+.mooday-write__inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================
+   01. MAIN LAYOUT
+===================================== */
+
+.mooday-write__layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 680px)
+    minmax(0, 1fr);
+
+  gap:
+    clamp(
+      48px,
+      5vw,
+      96px
+    );
+
+  align-items: start;
+}
+
+
+/* =====================================
+   02. GALLERY
+===================================== */
+
+.mooday-write-gallery {
+  width: 100%;
+  min-width: 0;
+  max-width: 680px;
+
+  scroll-margin-top: 110px;
+}
+
+.mooday-write-gallery__main {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  border:
+    1px solid transparent;
+
+  background: #f0efed;
+
+  transition:
+    border-color 0.2s ease;
+}
+
+.mooday-write-gallery__main--error {
+  border-color: #c98276;
+}
+
+
+/* =====================================
+   MAIN PREVIEW
+===================================== */
+
+.mooday-write-gallery__main-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* =====================================
+   03. IMAGE PLACEHOLDER
+===================================== */
+
+.mooday-write-image-placeholder {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f0efed;
+  color: #999;
+}
+
+.mooday-write-gallery__main-placeholder {
+  position: relative;
+}
+
+.mooday-write-gallery__representative {
+  position: absolute;
+
+  top: 16px;
+  left: 16px;
+
+  padding:
+    8px 12px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(
+      50,
+      50,
+      50,
+      0.55
+    );
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  z-index: 2;
+}
+
+.mooday-write-gallery__empty-content {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 24px;
+
+  text-align: center;
+}
+
+.mooday-write-gallery__empty-icon {
+  display: flex;
+
+  width: 54px;
+  height: 54px;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid #bbb;
+
+  border-radius: 50%;
+
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.mooday-write-gallery__empty-content p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 15px;
+}
+
+.mooday-write-gallery__empty-content
+> span:last-child {
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   04. THUMBNAIL STRIP
+===================================== */
+
+.mooday-write-gallery__bottom {
+  --write-gallery-gap: 12px;
+
+  display: flex;
+
+  width: 100%;
+
+  align-items: flex-start;
+
+  gap:
+    var(
+      --write-gallery-gap
+    );
+
+  margin-top: 20px;
+}
+
+.mooday-write-gallery__thumbnail-track {
+  display: flex;
+
+  flex: 1 1 0;
+
+  min-width: 0;
+
+  gap:
+    var(
+      --write-gallery-gap
+    );
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type:
+    x mandatory;
+
+  overscroll-behavior-x:
+    contain;
+
+  scrollbar-width: none;
+}
+
+.mooday-write-gallery__thumbnail-track::-webkit-scrollbar {
+  display: none;
+}
+
+.mooday-write-gallery__thumbnail-item {
+  position: relative;
+
+  flex:
+    0 0
+    calc(
+      (
+        100%
+        -
+        3
+        *
+        var(
+          --write-gallery-gap
+        )
+      )
+      /
+      4
+    );
+
+  min-width: 0;
+
+  aspect-ratio:
+    4 / 5;
+
+  scroll-snap-align:
+    start;
+}
+
+.mooday-write-gallery__thumbnail {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border:
+    2px solid transparent;
+
+  background: #f0efed;
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+.mooday-write-gallery__thumbnail img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.mooday-write-gallery__thumbnail--first {
+  border-color: #466858;
+}
+
+.mooday-write-gallery__thumbnail--active {
+  box-shadow:
+    inset
+    0 0 0 2px
+    rgba(
+      40,
+      40,
+      40,
+      0.55
+    );
+}
+
+.mooday-write-gallery__thumbnail:focus-visible {
+  outline:
+    2px solid #466858;
+
+  outline-offset: 2px;
+}
+
+
+/* =====================================
+   IMAGE DELETE
+===================================== */
+
+.mooday-write-gallery__thumbnail-delete {
+  position: absolute;
+
+  top: 6px;
+  right: 6px;
+
+  display: flex;
+
+  width: 24px;
+  height: 24px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background:
+    rgba(
+      40,
+      40,
+      40,
+      0.68
+    );
+
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 4;
+}
+
+.mooday-write-gallery__thumbnail-delete:hover {
+  background:
+    rgba(
+      40,
+      40,
+      40,
+      0.88
+    );
+}
+
+.mooday-write-gallery__thumbnail-delete:focus-visible {
+  outline:
+    2px solid #466858;
+
+  outline-offset: 2px;
+}
+
+
+/* =====================================
+   05. ADD BUTTON
+===================================== */
+
+.mooday-write-gallery__file-input {
+  display: none;
+}
+
+.mooday-write-gallery__add {
+  display: flex;
+
+  flex:
+    0 0
+    calc(
+      (
+        100%
+        -
+        4
+        *
+        var(
+          --write-gallery-gap
+        )
+      )
+      /
+      5
+    );
+
+  min-width: 0;
+
+  aspect-ratio:
+    4 / 5;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  padding:
+    8px 3px;
+
+  border:
+    1px dashed #ccc;
+
+  background: #fff;
+  color: #777;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.mooday-write-gallery__add:hover {
+  border-color: #9faf9f;
+
+  background: #fafbfa;
+}
+
+.mooday-write-gallery__add:focus-visible {
+  outline:
+    2px solid #466858;
+
+  outline-offset: 2px;
+}
+
+.mooday-write-gallery__add-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.mooday-write-gallery__add-limit {
+  color: #999;
+
+  font-size: 10px;
+}
+
+
+/* =====================================
+   GUIDE / NOTICE
+===================================== */
+
+.mooday-write-gallery__guide-row {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 14px;
+}
+
+.mooday-write-gallery__guide,
+.mooday-write-gallery__count {
+  margin: 0;
+
+  color: #888;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mooday-write-gallery__notice,
+.mooday-write-validation__message {
+  margin:
+    8px 0 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mooday-write-gallery__notice--warning,
+.mooday-write-validation__message {
+  color: #b35b4f;
+}
+
+.mooday-write-gallery__notice--limit {
+  color: #466858;
+}
+
+
+/* =====================================
+   06. FORM
+===================================== */
+
+.mooday-write-form {
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 56px;
+}
+
+.mooday-write-form__section {
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-write-form__heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 12px;
+}
+
+.mooday-write-form__heading label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.mooday-write-form__required {
+  margin-left: 8px;
+
+  color: #e34d4d;
+}
+
+.mooday-write-form__optional {
+  margin-left: 6px;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.mooday-write-form__counter {
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   07. CONTENT
+===================================== */
+
+.mooday-write-form__textarea {
+  display: block;
+
+  width: 100%;
+  min-height: 230px;
+
+  padding: 16px;
+
+  border:
+    1px solid #ddd;
+
+  outline: none;
+
+  background: #fff;
+  color: #282828;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.65;
+
+  resize: vertical;
+
+  scroll-margin-top: 110px;
+}
+
+.mooday-write-form__textarea:focus {
+  border-color: #466858;
+}
+
+.mooday-write-form__textarea--error {
+  border-color: #c98276;
+}
+
+.mooday-write-form__textarea--error:focus {
+  border-color: #b35b4f;
+}
+
+
+/* =====================================
+   08. TAG INPUT
+===================================== */
+
+.mooday-write-form__input {
+  width: 100%;
+  height: 48px;
+
+  padding:
+    0 15px;
+
+  border:
+    1px solid #ddd;
+
+  outline: none;
+
+  font-family: inherit;
+}
+
+.mooday-write-form__input:focus {
+  border-color: #466858;
+}
+
+.mooday-write-tags__notice {
+  color: #b35b4f;
+
+  font-size: 12px;
+}
+
+.mooday-write-tags__notice--input {
+  margin:
+    8px 0 0;
+}
+
+.mooday-write-tags__notice--recommended {
+  margin:
+    10px 0 0;
+}
+
+
+/* =====================================
+   09. SUBHEADING
+===================================== */
+
+.mooday-write-form__subheading {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-top: 58px;
+  margin-bottom: 14px;
+}
+
+.mooday-write-form__subheading h3 {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mooday-write-form__subheading h3 span {
+  margin-left: 8px;
+
+  font-weight: 400;
+}
+
+.mooday-write-form__subheading > span {
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   10. TAGS
+===================================== */
+
+.mooday-write-tags__empty {
+  display: flex;
+
+  min-height: 80px;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px dashed #ddd;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+.mooday-write-tags__selected {
+  display: flex;
+
+  min-height: 80px;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding: 14px;
+
+  border:
+    1px solid #e4e4e4;
+}
+
+.mooday-write-tags__selected-chip {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    6px 8px 6px 14px;
+
+  border:
+    1px solid #b8c5bd;
+
+  border-radius: 24px;
+
+  background: #f4f7f5;
+  color: #405a4d;
+
+  font-size: 13px;
+}
+
+.mooday-write-tags__remove {
+  width: 20px;
+  height: 20px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.mooday-write-form__subheading--recommended {
+  margin-top: 44px;
+}
+
+.mooday-write-tags__recommended {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.mooday-write-tags__chip {
+  min-height: 34px;
+
+  padding:
+    6px 16px;
+
+  border:
+    1px solid #e1e1e1;
+
+  border-radius: 24px;
+
+  background: #f5f5f5;
+  color: #555;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+.mooday-write-tags__chip--selected {
+  border-color: #789183;
+
+  background: #e5ede8;
+  color: #405a4d;
+}
+
+
+/* =====================================
+   11. PRODUCTS
+===================================== */
+
+.mooday-write-product-search {
+  display: flex;
+
+  height: 48px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    0 15px;
+
+  border:
+    1px solid #ddd;
+}
+
+.mooday-write-product-search input {
+  flex: 1;
+
+  min-width: 0;
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  font-family: inherit;
+}
+
+.mooday-write-products__results {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin-top: 18px;
+}
+
+.mooday-write-product-result {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    10px 14px;
+
+  background: #f1f5f3;
+}
+
+.mooday-write-product-result--selected {
+  background: #e7eeea;
+}
+
+.mooday-write-product-image {
+  display: flex;
+
+  flex:
+    0 0 46px;
+
+  width: 46px;
+  height: 46px;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #e4e9e4;
+}
+
+.mooday-write-product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.mooday-write-product-result__info {
+  display: flex;
+
+  flex: 1;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.mooday-write-product-result__add {
+  width: 34px;
+  height: 34px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+.mooday-write-product-result__add--selected,
+.mooday-write-product-result__add:disabled {
+  color: #466858;
+
+  cursor: default;
+}
+
+.mooday-write-products__empty-result,
+.mooday-write-products__selected-empty {
+  display: flex;
+
+  min-height: 84px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  border:
+    1px dashed #ddd;
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+.mooday-write-products__notice {
+  color: #b35b4f;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   SELECTED PRODUCTS
+===================================== */
+
+.mooday-write-form__subheading--selected-products {
+  margin-top: 72px;
+  margin-bottom: 20px;
+}
+
+.mooday-write-products__selected {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.mooday-write-selected-product {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  background: #f1f5f3;
+}
+
+.mooday-write-selected-product
+.mooday-write-product-image {
+  flex-basis: 64px;
+
+  width: 64px;
+  height: 64px;
+}
+
+.mooday-write-selected-product__info {
+  display: flex;
+
+  flex: 1;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.mooday-write-selected-product__remove {
+  position: absolute;
+
+  top: 6px;
+  right: 7px;
+
+  width: 20px;
+  height: 20px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #888;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+
+/* =====================================
+   12. ACTION BUTTONS
+===================================== */
+
+.mooday-write__actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 24px;
+
+  margin-top: 96px;
+  padding-top: 24px;
+
+  border-top:
+    1px solid #e4e4e4;
+}
+
+.mooday-write__button {
+  display: inline-flex;
+
+  width: 200px;
+  min-height: 50px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    12px 24px;
+
+  border:
+    1px solid transparent;
+
+  border-radius: 4px;
+
+  appearance: none;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.mooday-write__button--cancel {
+  border-color: #a8b8ad;
+
+  background: #fff;
+  color: #466858;
+}
+
+.mooday-write__button--submit {
+  background: #466858;
+  color: #fff;
+}
+
+.mooday-write__button--submit:hover {
+  background: #385345;
+}
+
+
+/* =====================================
+   13. DESKTOP SCROLLBAR
+===================================== */
+
+@media
+(min-width: 1024px) {
+
+  .mooday-write-gallery__thumbnail-track--scrollable {
+    padding-bottom: 8px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+      #aeb3af
+      #eeeeec;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable::-webkit-scrollbar {
+    display: block;
+
+    height: 6px;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable::-webkit-scrollbar-track {
+    background: #eeeeec;
+
+    border-radius: 999px;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable::-webkit-scrollbar-thumb {
+    background: #aeb3af;
+
+    border-radius: 999px;
+  }
+
+}
+
+
+/* =====================================
+   14. TABLET WIDE
+===================================== */
+
+@media
+(min-width: 1024px)
+and
+(max-width: 1279px) {
+
+  .mooday-write__inner {
+    width:
+      calc(100% - 80px);
+  }
+
+  .mooday-write__layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap: 32px;
+  }
+
+  .mooday-write-gallery__bottom {
+    --write-gallery-gap: 8px;
+  }
+
+  .mooday-write-form {
+    gap: 44px;
+  }
+
+  .mooday-write__button {
+    width: 170px;
+  }
+
+}
+
+
+/* =====================================
+   15. TABLET COMPACT
+===================================== */
+
+@media
+(min-width: 768px)
+and
+(max-width: 1023px) {
+
+  .mooday-write__inner {
+    width:
+      calc(100% - 80px);
+  }
+
+  .mooday-write__layout {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    gap: 64px;
+  }
+
+  .mooday-write-gallery {
+    max-width: 560px;
+
+    margin:
+      0 auto;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable {
+    padding-bottom: 0;
+
+    scrollbar-width: none;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mooday-write-form {
+    max-width: 760px;
+
+    margin:
+      0 auto;
+  }
+
+}
+
+
+/* =====================================
+   16. MOBILE
+===================================== */
+
+@media
+(max-width: 767px) {
+
+  .mooday-write {
+    padding:
+      28px 0 72px;
+  }
+
+  .mooday-write__inner {
+    width:
+      calc(100% - 40px);
+
+    max-width: 560px;
+  }
+
+  .mooday-write__layout {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    gap: 48px;
+  }
+
+  .mooday-write-gallery {
+    max-width: none;
+
+    scroll-margin-top: 84px;
+  }
+
+  .mooday-write-gallery__bottom {
+    --write-gallery-gap: 6px;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable {
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
+  .mooday-write-gallery__thumbnail-track--scrollable::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mooday-write-form {
+    gap: 40px;
+  }
+
+  .mooday-write-form__textarea {
+    min-height: 220px;
+
+    scroll-margin-top: 84px;
+  }
+
+  .mooday-write-products__selected {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    gap: 10px;
+  }
+
+  .mooday-write__actions {
+    gap: 12px;
+
+    margin-top: 64px;
+  }
+
+  .mooday-write__button {
+    flex:
+      1 1 0;
+
+    width: auto;
+    min-width: 0;
+  }
+
+}
+
+
+/* =====================================
+   17. SMALL MOBILE
+===================================== */
+
+@media
+(max-width: 374px) {
+
+  .mooday-write-gallery__bottom {
+    --write-gallery-gap: 4px;
+  }
+
+  .mooday-write__actions {
+    gap: 8px;
+  }
+
+}
+
+
+/*
+  =========================================
+  END OF COMMUNITY WRITE CSS
+  v0.2 — GROUP 1 ~ GROUP 6
+  =========================================
+*/

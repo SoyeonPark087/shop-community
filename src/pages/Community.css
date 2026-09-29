@@ -1,8 +1,7 @@
-
 /*
   ==========================================
   MOODAY COMMUNITY MAIN CSS
-  Version 1.3 - Breakpoint Update
+  Community Main v0.2 - GROUP 3
   ==========================================
 
   Desktop : 1280px 이상
@@ -15,6 +14,16 @@
   Mobile Side   : 20px
 
   Image Ratio   : 4:5
+
+  GROUP 2:
+  - Latest / Popular button 기능 대응
+  - 기존 active / pending 디자인 유지
+  - hover / focus-visible 보강
+
+  GROUP 3:
+  - Community Empty State 추가
+  - Empty State Write CTA 추가
+  - Desktop / Tablet / Mobile 대응
 
   Header / Footer는 수정하지 않습니다.
 */
@@ -82,7 +91,9 @@
 }
 
 
-/* Latest / Popular */
+/* =====================================
+   Latest / Popular
+===================================== */
 
 .mooday-community__tabs {
   display: flex;
@@ -90,15 +101,41 @@
   align-items: center;
 }
 
+
+/*
+  기존 span이 실제 button으로 변경되었기 때문에
+  브라우저 기본 button 디자인을 제거합니다.
+
+  기존 시안의 typography와 간격은 유지합니다.
+*/
+
 .mooday-community__tab {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: inherit;
+  font: inherit;
   font-size: 23px;
   line-height: 1.4;
+
+  cursor: pointer;
 }
+
+
+/* 현재 활성 정렬 */
 
 .mooday-community__tab--active {
   position: relative;
+
+  color: #282828;
   font-weight: 700;
 }
+
+
+/* 기존 활성 표시 underline */
 
 .mooday-community__tab--active::after {
   content: '';
@@ -113,12 +150,32 @@
   background: #282828;
 }
 
+
+/* 현재 선택되지 않은 정렬 */
+
 .mooday-community__tab--pending {
   color: #959595;
 }
 
 
-/* Write */
+/* 선택 가능한 상태를 가볍게 표현 */
+
+.mooday-community__tab--pending:hover {
+  color: #555;
+}
+
+
+/* 키보드 접근성 */
+
+.mooday-community__tab:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 5px;
+}
+
+
+/* =====================================
+   Write
+===================================== */
 
 .mooday-community__write {
   color: #555;
@@ -208,10 +265,6 @@
    04. COMMUNITY GRID
 ===================================== */
 
-/*
-  Desktop 3열 유지.
-*/
-
 .mooday-community-grid {
   display: grid;
 
@@ -252,12 +305,6 @@
 /* =====================================
    06. COMMUNITY IMAGE
 ===================================== */
-
-/*
-  기존 이미지 연결 기능 유지.
-
-  이미지 영역의 비율은 4:5입니다.
-*/
 
 .mooday-community-card__image {
   display: block;
@@ -307,17 +354,55 @@
 }
 
 .mooday-community-card__items {
+  /*
+    "2 items" 텍스트와 우측 셰브론을
+    하나의 가로 flex 행으로 묶습니다.
+
+    기존 baseline 정렬이 아니라
+    같은 세로 중앙선을 기준으로 맞추기 위한 설정입니다.
+  */
+  display: inline-flex;
+  align-items: center;
+
   font-size: 14px;
   color: #8b8b8b;
+
+  /*
+    텍스트와 셰브론의 높이 계산 차이를 줄여
+    시각적으로 중앙 정렬되도록 합니다.
+  */
+  line-height: 1;
 
   white-space: nowrap;
 }
 
 .mooday-community-card__items span {
-  font-size: 23px;
-  vertical-align: -1px;
+  /*
+    셰브론 자체도 flex 박스로 만들어
+    가운데 정렬되도록 합니다.
+  */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
+  /*
+    기존 셰브론 크기는 그대로 유지합니다.
+  */
+  font-size: 23px;
+  line-height: 1;
+
+  /*
+    "2 items"와 셰브론 사이의 기존 간격 유지
+  */
   margin-left: 5px;
+
+  /*
+    기존 vertical-align: -1px;
+    는 삭제합니다.
+
+    이제 baseline 보정이 아니라
+    flex 중앙 정렬을 사용합니다.
+  */
 }
 
 
@@ -353,7 +438,104 @@
 
 
 /* =====================================
-   08. LOAD MORE
+   08. EMPTY STATE
+===================================== */
+
+/*
+  GROUP 3 추가.
+
+  Community에 게시글이 하나도 없을 때
+  기존 Grid 대신 출력되는 안내 영역입니다.
+
+  과도한 카드 박스나 일러스트를 사용하지 않고
+  mooday의 미니멀한 페이지 톤을 유지합니다.
+*/
+
+.mooday-community-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 430px;
+
+  padding: 80px 24px;
+
+  text-align: center;
+}
+
+
+/* Empty State 제목 */
+
+.mooday-community-empty__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+
+/* Empty State 보조 설명 */
+
+.mooday-community-empty__description {
+  margin: 14px 0 0;
+
+  color: #8b8b8b;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/*
+  Empty State 내부 Write CTA.
+
+  별도의 큰 버튼을 만들기보다
+  기존 mooday 텍스트 링크 톤을 유지합니다.
+*/
+
+.mooday-community-empty__write {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: 30px;
+
+  color: #555;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.mooday-community-empty__write span {
+  margin-left: 8px;
+
+  font-weight: 400;
+}
+
+
+/* 마우스 hover */
+
+.mooday-community-empty__write:hover {
+  color: #466858;
+}
+
+
+/* 키보드 포커스 */
+
+.mooday-community-empty__write:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 5px;
+}
+
+
+/* =====================================
+   09. LOAD MORE
 ===================================== */
 
 .mooday-community__load-wrap {
@@ -397,29 +579,14 @@
 
 
 /* =====================================
-   09. TABLET
+   10. TABLET
    768px ~ 1279px
 ===================================== */
-
-/*
-  v1.3 핵심 변경
-
-  이전:
-  max-width: 1023px
-
-  변경:
-  max-width: 1279px
-
-  1024px ~ 1279px 구간에서도
-  Tablet 2열 레이아웃이 적용됩니다.
-*/
 
 @media (min-width: 768px) and (max-width: 1279px) {
 
   /*
     Tablet 좌우 여백 40px
-
-    768px - 80px = 688px
   */
 
   .mooday-community__inner {
@@ -488,11 +655,7 @@
   }
 
 
-  /*
-    Tablet 카드 2열 유지.
-
-    JSX에서 초기 6개를 전달합니다.
-  */
+  /* Tablet 카드 2열 */
 
   .mooday-community-grid {
     grid-template-columns:
@@ -524,6 +687,27 @@
   }
 
 
+  /* Empty State */
+
+  .mooday-community-empty {
+    min-height: 360px;
+    padding: 65px 20px;
+  }
+
+  .mooday-community-empty__title {
+    font-size: 21px;
+  }
+
+  .mooday-community-empty__description {
+    font-size: 14px;
+  }
+
+  .mooday-community-empty__write {
+    margin-top: 26px;
+    font-size: 15px;
+  }
+
+
   /* Load more */
 
   .mooday-community__load-wrap {
@@ -541,22 +725,14 @@
 
 
 /* =====================================
-   10. MOBILE
+   11. MOBILE
    767px 이하
 ===================================== */
-
-/*
-  Mobile 범위는 기존과 동일합니다.
-
-  1열 / 초기 3개 / Load more 3개씩 추가.
-*/
 
 @media (max-width: 767px) {
 
   /*
     Mobile 좌우 여백 20px
-
-    375px - 40px = 335px
   */
 
   .mooday-community__inner {
@@ -603,8 +779,6 @@
 
   /*
     해시태그 여러 줄 자동 줄바꿈
-
-    모든 태그 유지.
   */
 
   .mooday-community__tools {
@@ -644,11 +818,7 @@
   }
 
 
-  /*
-    Mobile 카드 1열.
-
-    JSX에서 처음 3개를 전달합니다.
-  */
+  /* Mobile 카드 1열 */
 
   .mooday-community-grid {
     grid-template-columns:
@@ -657,14 +827,6 @@
     column-gap: 0;
     row-gap: 20px;
   }
-
-
-  /*
-    이미지 4:5 공통 스타일 유지.
-
-    Mobile에서도 원본 이미지 경로와
-    이미지 표시 기능은 변경하지 않습니다.
-  */
 
 
   /* 카드 정보 */
@@ -693,6 +855,42 @@
 
   .mooday-community-card__excerpt {
     font-size: 12px;
+  }
+
+
+  /* =================================
+     Empty State - Mobile
+  ================================= */
+
+  .mooday-community-empty {
+    min-height: 320px;
+
+    padding:
+      55px
+      12px
+      65px;
+  }
+
+  .mooday-community-empty__title {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .mooday-community-empty__description {
+    margin-top: 12px;
+
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mooday-community-empty__write {
+    margin-top: 24px;
+
+    font-size: 14px;
+  }
+
+  .mooday-community-empty__write span {
+    margin-left: 6px;
   }
 
 

@@ -1,6 +1,6 @@
 import MyPageNav from '../components/mypage/MyPageNav.jsx'
 import ProfileForm from '../components/mypage/ProfileForm.jsx'
-import '../styles/myPage.css'
+import './MyPage.css'
 
 /**
  * 이 파일은 My Page 본문만 담당합니다.

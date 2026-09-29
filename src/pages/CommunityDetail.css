@@ -1,8 +1,7 @@
-
 /*
   =========================================
   MOODAY COMMUNITY DETAIL
-  Responsive CSS v1.1
+  Responsive CSS v1.2
   =========================================
 
   Desktop:
@@ -62,15 +61,6 @@
    01. HERO
 ===================================== */
 
-/*
-  Desktop 기본 구조 유지.
-
-  큰 화면에서는 기존 820px 갤러리 기준.
-
-  좁은 Desktop / Tablet에서는
-  하단 media query에서 유동 폭으로 변경.
-*/
-
 .mooday-detail__hero {
   display: grid;
 
@@ -94,8 +84,6 @@
 }
 
 
-/* 메인 이미지 */
-
 .mooday-detail-gallery__main {
   width: 100%;
 
@@ -117,8 +105,6 @@
   object-position: center;
 }
 
-
-/* 이미지 누락 시 대체 슬롯 */
 
 .mooday-detail-gallery__placeholder {
   display: flex;
@@ -172,8 +158,6 @@
 }
 
 
-/* 썸네일 4개 표시 */
-
 .mooday-detail-gallery__thumbnail {
   display: block;
 
@@ -210,8 +194,6 @@
 }
 
 
-/* 현재 선택 썸네일 */
-
 .mooday-detail-gallery__thumbnail--selected {
   border-color: #466858;
 }
@@ -222,8 +204,6 @@
   outline-offset: -4px;
 }
 
-
-/* 썸네일 화살표 */
 
 .mooday-detail-gallery__arrow {
   position: absolute;
@@ -310,8 +290,6 @@
 }
 
 
-/* 상품 카드 */
-
 .mooday-detail-product {
   display: flex;
 
@@ -336,8 +314,6 @@
   text-underline-offset: 3px;
 }
 
-
-/* 상품 이미지 */
 
 .mooday-detail-product__image {
   display: flex;
@@ -371,8 +347,6 @@
   font-size: 11px;
 }
 
-
-/* 상품 정보 */
 
 .mooday-detail-product__info {
   display: flex;
@@ -489,8 +463,6 @@
 }
 
 
-/* 공통 프로필 아이콘 */
-
 .mooday-detail-avatar {
   display: flex;
 
@@ -513,8 +485,6 @@
   overflow: hidden;
 }
 
-
-/* 댓글 프로필 */
 
 .mooday-detail-avatar--comment {
   flex-basis: 42px;
@@ -550,8 +520,6 @@
 }
 
 
-/* 좋아요 / 더보기 */
-
 .mooday-detail-post__actions {
   display: flex;
 
@@ -563,21 +531,54 @@
 }
 
 
+/*
+  GROUP 2 — LIKE BUTTON
+*/
+
 .mooday-detail-post__likes {
   display: inline-flex;
 
   align-items: center;
+  justify-content: center;
 
   gap: 6px;
 
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: #282828;
+
+  font-family: inherit;
   font-size: 14px;
   font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail-post__likes--active {
+  color: #466858;
 }
 
 
 .mooday-detail-post__likes span {
   font-size: 24px;
   font-weight: 400;
+  line-height: 1;
+}
+
+
+.mooday-detail-post__likes:hover {
+  color: #466858;
+}
+
+
+.mooday-detail-post__likes:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 4px;
 }
 
 
@@ -586,8 +587,6 @@
   font-size: 22px;
 }
 
-
-/* 본문 */
 
 .mooday-detail-post__body {
   margin-top: 52px;
@@ -623,6 +622,8 @@
 
 
 .mooday-detail-comment {
+  position: relative;
+
   display: flex;
 
   align-items: flex-start;
@@ -680,13 +681,290 @@
 
 
 .mooday-detail-comment__more {
+  flex: 0 0 auto;
+
   color: #777;
   font-size: 20px;
 }
 
 
 /* =====================================
-   08. COMMENT COMPOSER
+   08. GROUP 4
+   SESSION COMMENT MENU
+===================================== */
+
+/*
+  기존 샘플 댓글의 ··· span은 그대로 유지하고,
+  현재 세션 댓글의 ···만 button으로 사용합니다.
+*/
+
+.mooday-detail-comment__menu-wrap {
+  position: relative;
+
+  flex: 0 0 auto;
+}
+
+
+.mooday-detail-comment__more--button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 28px;
+  min-height: 28px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail-comment__more--button:hover {
+  color: #466858;
+}
+
+
+.mooday-detail-comment__more--button:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 2px;
+}
+
+
+.mooday-detail-comment__more--button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+
+/*
+  수정 / 삭제 메뉴.
+
+  댓글 오른쪽 ··· 아래에 작게 표시합니다.
+*/
+
+.mooday-detail-comment__menu {
+  position: absolute;
+
+  top: 30px;
+  right: 0;
+
+  z-index: 5;
+
+  display: flex;
+
+  width: 88px;
+
+  flex-direction: column;
+
+  padding: 6px;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+
+  background: #fff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+.mooday-detail-comment__menu button {
+  width: 100%;
+
+  padding: 8px 10px;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: transparent;
+  color: #333;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail-comment__menu button:hover {
+  background: #f4f5f3;
+}
+
+
+.mooday-detail-comment__menu button:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: -2px;
+}
+
+
+.mooday-detail-comment__menu-delete {
+  color: #9a4f4f !important;
+}
+
+
+/* =====================================
+   09. GROUP 4
+   COMMENT EDIT
+===================================== */
+
+.mooday-detail-comment__edit {
+  display: flex;
+
+  width: 100%;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 2px;
+}
+
+
+.mooday-detail-comment__edit input {
+  width: 100%;
+  min-width: 0;
+
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+
+  background: #fff;
+  color: #282828;
+
+  font-family: inherit;
+  font-size: 13px;
+}
+
+
+.mooday-detail-comment__edit input:focus-visible {
+  border-color: #466858;
+
+  outline: 2px solid rgba(70, 104, 88, 0.18);
+  outline-offset: 1px;
+}
+
+
+.mooday-detail-comment__edit-actions,
+.mooday-detail-comment__delete-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+}
+
+
+/*
+  수정 / 삭제 공통 소형 버튼.
+*/
+
+.mooday-detail-comment__action-button {
+  min-width: 58px;
+
+  height: 34px;
+
+  padding: 0 12px;
+
+  border-radius: 3px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail-comment__action-button--secondary {
+  border: 1px solid #d5d5d5;
+
+  background: #fff;
+  color: #555;
+}
+
+
+.mooday-detail-comment__action-button--primary {
+  border: 1px solid #466858;
+
+  background: #466858;
+  color: #fff;
+}
+
+
+.mooday-detail-comment__action-button--danger {
+  border: 1px solid #9a4f4f;
+
+  background: #9a4f4f;
+  color: #fff;
+}
+
+
+.mooday-detail-comment__action-button:hover {
+  opacity: 0.9;
+}
+
+
+.mooday-detail-comment__action-button:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 2px;
+}
+
+
+.mooday-detail-comment__action-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   10. GROUP 4
+   DELETE CONFIRM
+===================================== */
+
+.mooday-detail-comment__delete-confirm {
+  display: flex;
+
+  width: 100%;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 6px;
+
+  padding: 12px;
+
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+
+  background: #fafafa;
+}
+
+
+.mooday-detail-comment__delete-confirm p {
+  margin: 0;
+
+  color: #555;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   11. COMMENT COMPOSER
 ===================================== */
 
 .mooday-detail-comments__composer {
@@ -723,9 +1001,22 @@
   border: 1px solid #ddd;
 
   background: #fff;
+  color: #282828;
 
   font-family: inherit;
   font-size: 12px;
+}
+
+
+/*
+  GROUP 3 — 댓글 입력 focus.
+*/
+
+.mooday-detail-comments__input-group input:focus-visible {
+  border-color: #466858;
+
+  outline: 2px solid rgba(70, 104, 88, 0.18);
+  outline-offset: 1px;
 }
 
 
@@ -743,6 +1034,19 @@
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.mooday-detail-comments__input-group button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+
+.mooday-detail-comments__input-group button:focus-visible {
+  outline: 2px solid #466858;
+  outline-offset: 3px;
 }
 
 
@@ -772,7 +1076,7 @@
 
 
 /* =====================================
-   09. HASHTAGS
+   12. HASHTAGS
 ===================================== */
 
 .mooday-detail__hashtags {
@@ -831,7 +1135,7 @@
 
 
 /* =====================================
-   10. RELATED STYLES
+   13. RELATED STYLES
 ===================================== */
 
 .mooday-detail__related {
@@ -876,8 +1180,6 @@
 }
 
 
-/* Related Styles 기본 4열 */
-
 .mooday-detail__related-grid {
   display: grid;
 
@@ -888,15 +1190,6 @@
   row-gap: 30px;
 }
 
-
-/*
-  CommunityCard 실제 클래스명 확인 완료.
-
-  이 스타일은 Detail 내부의
-  Related Styles에만 적용됩니다.
-
-  Community Main에는 영향을 주지 않습니다.
-*/
 
 .mooday-detail__related-grid
 .mooday-community-card__body {
@@ -927,15 +1220,8 @@
 
 
 /* =====================================
-   11. LOAD MORE
+   14. LOAD MORE
 ===================================== */
-
-/*
-  Desktop / Tablet에서는 React에서
-  버튼 자체를 렌더링하지 않습니다.
-
-  Mobile에서만 나타나는 버튼입니다.
-*/
 
 .mooday-detail__load-more {
   display: flex;
@@ -993,7 +1279,7 @@
 
 
 /* =====================================
-   12. EMPTY STATE
+   15. EMPTY STATE
 ===================================== */
 
 .mooday-detail__empty {
@@ -1038,16 +1324,9 @@
 
 
 /* =====================================
-   13. NARROW DESKTOP
+   16. NARROW DESKTOP
    1280px ~ 1599px
 ===================================== */
-
-/*
-  기존 갤러리 820px을 그대로 배정하면
-  상품 영역이 좁아질 수 있습니다.
-
-  이 구간에서만 비율 기반으로 변경합니다.
-*/
 
 @media (min-width: 1280px) and (max-width: 1599px) {
 
@@ -1063,13 +1342,11 @@
 
 
 /* =====================================
-   14. TABLET WIDE
+   17. TABLET WIDE
    1024px ~ 1279px
 ===================================== */
 
 @media (min-width: 1024px) and (max-width: 1279px) {
-
-  /* 페이지 여백 */
 
   .mooday-detail {
     padding-top: 48px;
@@ -1082,8 +1359,6 @@
   }
 
 
-  /* 상단 2열 */
-
   .mooday-detail__hero {
     grid-template-columns:
       minmax(0, 1.1fr)
@@ -1092,8 +1367,6 @@
     gap: 32px;
   }
 
-
-  /* 갤러리 */
 
   .mooday-detail-gallery__navigation {
     margin-top: 16px;
@@ -1109,8 +1382,6 @@
     flex-basis: calc((100% - 30px) / 4);
   }
 
-
-  /* 상품 */
 
   .mooday-detail-products__heading h2 {
     font-size: 20px;
@@ -1141,8 +1412,6 @@
     font-size: 16px;
   }
 
-
-  /* Post / Comments 2열 유지 */
 
   .mooday-detail__content {
     gap: 24px;
@@ -1183,8 +1452,6 @@
   }
 
 
-  /* Related Styles 3열 */
-
   .mooday-detail__related-grid {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
@@ -1202,13 +1469,11 @@
 
 
 /* =====================================
-   15. TABLET COMPACT
+   18. TABLET COMPACT
    768px ~ 1023px
 ===================================== */
 
 @media (min-width: 768px) and (max-width: 1023px) {
-
-  /* 페이지 */
 
   .mooday-detail {
     padding-top: 40px;
@@ -1221,8 +1486,6 @@
   }
 
 
-  /* Hero 전체 1열 */
-
   .mooday-detail__hero {
     display: grid;
 
@@ -1233,14 +1496,6 @@
     justify-items: stretch;
   }
 
-
-  /*
-    갤러리의 최대 너비만 제한합니다.
-
-    갤러리 자체에 이미지와 썸네일이
-    함께 포함되어 있으므로
-    두 요소의 좌우 정렬이 유지됩니다.
-  */
 
   .mooday-detail-gallery {
     width: 100%;
@@ -1255,11 +1510,6 @@
   }
 
 
-  /*
-    이미지 4개 유지.
-    실제 넘침이 없으면 화살표 숨김.
-  */
-
   .mooday-detail-gallery__track {
     gap: 12px;
   }
@@ -1269,8 +1519,6 @@
     flex-basis: calc((100% - 36px) / 4);
   }
 
-
-  /* 상품은 갤러리 아래 전체 폭 */
 
   .mooday-detail-products {
     width: 100%;
@@ -1290,8 +1538,6 @@
     height: 110px;
   }
 
-
-  /* Post / Comments 1열 */
 
   .mooday-detail__content {
     grid-template-columns: minmax(0, 1fr);
@@ -1315,12 +1561,6 @@
   }
 
 
-  /*
-    기존 댓글의 왼쪽 세로선 제거.
-
-    Post 아래에 가로 구분선 추가.
-  */
-
   .mooday-detail-comments {
     margin-top: 36px;
 
@@ -1337,14 +1577,10 @@
   }
 
 
-  /* 해시태그 */
-
   .mooday-detail__hashtags {
     padding: 40px 0 48px;
   }
 
-
-  /* Related Styles 2열 */
 
   .mooday-detail__related {
     padding-top: 56px;
@@ -1368,15 +1604,11 @@
 
 
 /* =====================================
-   16. MOBILE
+   19. MOBILE
    767px 이하
 ===================================== */
 
 @media (max-width: 767px) {
-
-  /* =================================
-     MOBILE ROOT
-  ================================= */
 
   .mooday-detail {
     padding-top: 28px;
@@ -1384,23 +1616,11 @@
   }
 
 
-  /*
-    Community Main과 동일하게
-    기본 좌우 패딩 20px.
-
-    단, 폭이 넓은 모바일에서는
-    콘텐츠 최대 560px로 제한합니다.
-  */
-
   .mooday-detail__inner {
     width: calc(100% - 40px);
     max-width: 560px;
   }
 
-
-  /* =================================
-     HERO
-  ================================= */
 
   .mooday-detail__hero {
     display: grid;
@@ -1410,10 +1630,6 @@
     gap: 36px;
   }
 
-
-  /* =================================
-     GALLERY
-  ================================= */
 
   .mooday-detail-gallery {
     width: 100%;
@@ -1433,16 +1649,6 @@
   }
 
 
-  /*
-    375px에서 썸네일 4개를 유지합니다.
-
-    콘텐츠 폭 335px 기준:
-    간격 8px × 3
-    썸네일 폭 약 77px
-
-    실제 넘침은 기존 Gallery가 감지합니다.
-  */
-
   .mooday-detail-gallery__track {
     gap: 8px;
   }
@@ -1452,14 +1658,6 @@
     flex-basis: calc((100% - 24px) / 4);
   }
 
-
-  /*
-    모바일에서 화살표가 썸네일 밖으로
-    과도하게 돌출되지 않도록 조정합니다.
-
-    화살표는 실제 넘침이 있을 때만
-    Gallery 컴포넌트가 출력합니다.
-  */
 
   .mooday-detail-gallery__arrow {
     width: 32px;
@@ -1478,10 +1676,6 @@
     right: 0;
   }
 
-
-  /* =================================
-     STYLED PRODUCTS
-  ================================= */
 
   .mooday-detail-products__heading {
     padding: 8px 0 16px;
@@ -1533,10 +1727,6 @@
   }
 
 
-  /* =================================
-     POST / COMMENTS
-  ================================= */
-
   .mooday-detail__content {
     grid-template-columns: minmax(0, 1fr);
 
@@ -1554,8 +1744,6 @@
     font-size: 16px;
   }
 
-
-  /* 본문 작성자 */
 
   .mooday-detail-post__header {
     gap: 10px;
@@ -1612,8 +1800,6 @@
   }
 
 
-  /* 본문 */
-
   .mooday-detail-post__body {
     margin-top: 32px;
   }
@@ -1628,7 +1814,7 @@
 
 
   /* =================================
-     COMMENTS
+     MOBILE COMMENTS
   ================================= */
 
   .mooday-detail-comments {
@@ -1664,8 +1850,47 @@
   }
 
 
+  /* GROUP 4 모바일 메뉴 */
+
+  .mooday-detail-comment__menu {
+    top: 28px;
+
+    width: 82px;
+  }
+
+
+  /*
+    모바일에서는 수정 input 아래의 버튼을
+    그대로 우측 배치하되 크기를 줄입니다.
+  */
+
+  .mooday-detail-comment__edit input {
+    height: 40px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-detail-comment__action-button {
+    min-width: 52px;
+
+    height: 32px;
+
+    padding: 0 10px;
+
+    font-size: 11px;
+  }
+
+
+  .mooday-detail-comment__delete-confirm {
+    padding: 10px;
+  }
+
+
   /* =================================
-     COMMENT INPUT
+     MOBILE COMMENT INPUT
   ================================= */
 
   .mooday-detail-comments__composer {
@@ -1699,10 +1924,6 @@
     font-size: 12px;
   }
 
-
-  /* =================================
-     HASHTAGS
-  ================================= */
 
   .mooday-detail__hashtags {
     padding: 36px 0 42px;
@@ -1739,10 +1960,6 @@
   }
 
 
-  /* =================================
-     RELATED STYLES
-  ================================= */
-
   .mooday-detail__related {
     padding-top: 48px;
   }
@@ -1765,24 +1982,12 @@
   }
 
 
-  /*
-    Main과 동일한 1열.
-
-    카드의 작성자 / 상품 수 / 해시태그 /
-    본문을 삭제하지 않습니다.
-  */
-
   .mooday-detail__related-grid {
     grid-template-columns: minmax(0, 1fr);
 
     row-gap: 28px;
   }
 
-
-  /*
-    기존 Main 카드의 기본 정보를 유지하면서
-    Detail 내부 여백만 조정합니다.
-  */
 
   .mooday-detail__related-grid
   .mooday-community-card__body {
@@ -1804,8 +2009,6 @@
   }
 
 
-  /* Mobile Load More */
-
   .mooday-detail__load-more {
     margin-top: 36px;
   }
@@ -1821,17 +2024,9 @@
 
 
 /* =====================================
-   17. SMALL MOBILE SAFETY
+   20. SMALL MOBILE SAFETY
    374px 이하
 ===================================== */
-
-/*
-  새로운 레이아웃 구간이 아닙니다.
-
-  320px 등 좁은 화면에서
-  댓글 입력창과 상품 정보가
-  넘치지 않도록 크기만 보정합니다.
-*/
 
 @media (max-width: 374px) {
 
@@ -1875,6 +2070,25 @@
 
   .mooday-detail-comments__input-group button {
     flex-basis: 48px;
+  }
+
+
+  /*
+    GROUP 4:
+    320px 등 좁은 화면에서도
+    수정 / 삭제 버튼이 넘치지 않도록 보정.
+  */
+
+  .mooday-detail-comment__edit-actions,
+  .mooday-detail-comment__delete-actions {
+    gap: 6px;
+  }
+
+
+  .mooday-detail-comment__action-button {
+    min-width: 48px;
+
+    padding: 0 8px;
   }
 
 
