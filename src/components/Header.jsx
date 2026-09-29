@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import Search from "./drawers/Search";
-import Login from "./drawers/Login";
+import Login from "./drawers/Account";
 import Cart from "./drawers/Cart";
-import Menu from "./drawers/MenuDrawer";
+import Menu from "./drawers/MobileMenu";
 
 import "./Header.css";
 
@@ -86,7 +86,7 @@ function Header({
                 onClick={() => setCartOpen(true)}
               >
                 <img
-                  src="public/images/common/cart.svg"
+                  src="/icons/cart.svg"
                   alt=""
                   className="site-header__icon-image"
                 />
@@ -100,7 +100,7 @@ function Header({
                 onClick={() => setActiveDrawer("login")}
               >
                 <img
-                  src="public/images/common/account.svg"
+                  src="/icons/account.svg"
                   alt=""
                   className="site-header__icon-image"
                 />
@@ -116,7 +116,7 @@ function Header({
               onClick={() => setActiveDrawer("menu")}
             >
               <img
-                src="public/images/common/menu.svg"
+                src="icons/menu.svg"
                 alt=""
                 className="site-header__icon-image"
               />
@@ -143,7 +143,7 @@ function Header({
       />
 
 
-      {/* Login Drawer */}
+      {/* Account Drawer */}
       <Login
         open={activeDrawer === "login"}
         onClose={closeDrawer}
