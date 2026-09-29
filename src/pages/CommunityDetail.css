@@ -21,6 +21,12 @@
 
   Main / Header / Footer / Router는
   수정하지 않습니다.
+
+  누적 반영:
+  - STEP 1: Background / Surface / Color Token
+  - STEP 2: Typography Scale / Role Mapping
+  - STEP 3: Spacing / Rhythm / Card Internal Padding
+  - STEP 4: Mobile Load More Cross-page Consistency
 */
 
 
@@ -39,7 +45,18 @@
 
   padding: 64px 0 120px;
 
-  background: #fff;
+  /*
+    STEP 1 — PAGE BACKGROUND
+
+    mooday 공통 Visual Guideline에 맞춰
+    페이지 전체 배경을 순백색이 아닌
+    #FAFAF8 Off-white로 통일합니다.
+
+    Input / Menu / Tag 등 독립 Surface는
+    하단에서 #FFFFFF를 유지합니다.
+  */
+  background: #FAFAF8;
+
   color: #282828;
 
   font-family:
@@ -91,7 +108,10 @@
 
   overflow: hidden;
 
-  background: #f0efed;
+  /*
+    STEP 1 — MUTED IMAGE SURFACE
+  */
+  background: #F0F0ED;
 }
 
 
@@ -115,11 +135,13 @@
   align-items: center;
   justify-content: center;
 
-  background: #f0efed;
+  background: #F0F0ED;
 
-  color: #aaa;
+  color: #96968F;
 
-  font-size: 11px;
+  /* STEP 2 — Caption */
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: 0.03em;
 }
 
@@ -173,7 +195,7 @@
 
   border: 2px solid transparent;
 
-  background: #f0efed;
+  background: #F0F0ED;
 
   overflow: hidden;
 
@@ -194,13 +216,20 @@
 }
 
 
+/*
+  STEP 1 — PRIMARY ACTIVE
+
+  현재 선택된 Thumbnail은
+  Primary Sage를 사용합니다.
+*/
+
 .mooday-detail-gallery__thumbnail--selected {
-  border-color: #466858;
+  border-color: #344F41;
 }
 
 
 .mooday-detail-gallery__thumbnail:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: -4px;
 }
 
@@ -218,11 +247,15 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #e5e5e5;
+  border: 1px solid #DEDED8;
   border-radius: 50%;
 
+  /*
+    독립된 Icon Button Surface이므로
+    White Surface를 유지합니다.
+  */
   background: #fff;
-  color: #333;
+  color: #282828;
 
   font-size: 20px;
 
@@ -270,22 +303,29 @@
 
   padding: 10px 0 18px;
 
-  border-bottom: 1px solid #ddd;
+  /*
+    STEP 1 — DIVIDER TOKEN
+  */
+  border-bottom: 1px solid #E9E9E4;
 }
 
 
 .mooday-detail-products__heading h2 {
   margin: 0;
 
-  font-size: 22px;
-  font-weight: 500;
+  /*
+    STEP 2 — TYPOGRAPHY
+    Styled Products = H4 역할
+  */
+  font-size: 20px;
+  font-weight: 600;
 }
 
 
 .mooday-detail-products__heading span {
   flex-shrink: 0;
 
-  color: #aaa;
+  color: #96968F;
   font-size: 12px;
 }
 
@@ -301,7 +341,7 @@
 
   padding: 28px 0;
 
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid #E9E9E4;
 
   color: inherit;
   text-decoration: none;
@@ -328,7 +368,11 @@
 
   overflow: hidden;
 
-  background: #f1f0ee;
+  /*
+    Gallery Placeholder와 같은 역할의
+    Muted Image Surface로 통일합니다.
+  */
+  background: #F0F0ED;
 }
 
 
@@ -343,8 +387,11 @@
 
 
 .mooday-detail-product__image span {
-  color: #aaa;
-  font-size: 11px;
+  color: #96968F;
+
+  /* STEP 2 — Caption */
+  font-size: 12px;
+  font-weight: 400;
 }
 
 
@@ -361,13 +408,16 @@
 
 
 .mooday-detail-product__brand {
-  font-size: 15px;
-  font-weight: 700;
+  /* STEP 2 — Label */
+  font-size: 13px;
+  font-weight: 600;
 }
 
 
 .mooday-detail-product__name {
-  font-size: 15px;
+  /* STEP 2 — Body S */
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.4;
 
   overflow-wrap: anywhere;
@@ -375,8 +425,9 @@
 
 
 .mooday-detail-product__price {
-  font-size: 17px;
-  font-weight: 700;
+  /* STEP 2 — Body M 강조 */
+  font-size: 16px;
+  font-weight: 600;
 }
 
 
@@ -402,12 +453,19 @@
 
   gap: 64px;
 
-  margin-top: 48px;
+  margin-top: 60px;
 
-  padding: 34px 0 50px;
+  /* STEP 3 — Hero → Content / Content 내부 Rhythm */
+  padding: 40px 0;
 
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
+  /*
+    STEP 1 — DIVIDER TOKEN
+
+    기존 두께는 유지하고
+    색상만 공통 Divider Token으로 정리합니다.
+  */
+  border-top: 2px solid #E9E9E4;
+  border-bottom: 2px solid #E9E9E4;
 }
 
 
@@ -418,17 +476,30 @@
 
   gap: 8px;
 
-  margin: 0 0 22px;
+  /* STEP 3 — Section Title → Content */
+  margin: 0 0 24px;
 
-  font-size: 18px;
-  font-weight: 700;
+  /*
+    STEP 2 — TYPOGRAPHY
+    POST / COMMENTS = H4 역할
+  */
+  font-size: 20px;
+  font-weight: 600;
 }
 
 
 .mooday-detail-section-title span {
-  color: #333;
+  /*
+    STEP 1:
+    Section Count는 본문보다 한 단계 약한
+    Secondary Text를 사용합니다.
 
-  font-size: 14px;
+    STEP 2:
+    Count는 Caption 역할로 정리합니다.
+  */
+  color: #686863;
+
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -463,6 +534,11 @@
 }
 
 
+/*
+  Avatar는 Community 고유 표현이므로
+  STEP 1에서 기존 색을 유지합니다.
+*/
+
 .mooday-detail-avatar {
   display: flex;
 
@@ -479,7 +555,8 @@
   background: #d9e2da;
   color: #466858;
 
-  font-size: 17px;
+  /* STEP 2 — 공식 Scale에 맞춘 Avatar Initial */
+  font-size: 16px;
   font-weight: 600;
 
   overflow: hidden;
@@ -508,14 +585,20 @@
 
 
 .mooday-detail-post__author-info strong {
-  font-size: 15px;
+  /* STEP 2 — Body S 강조 */
+  font-size: 14px;
+  font-weight: 600;
 
   overflow-wrap: anywhere;
 }
 
 
 .mooday-detail-post__author-info span {
-  color: #777;
+  /*
+    작성 시간 = Meta
+  */
+  color: #96968F;
+
   font-size: 12px;
 }
 
@@ -559,8 +642,15 @@
 }
 
 
+/*
+  STEP 1 — SAGE ROLE
+
+  Active:
+  Primary Sage
+*/
+
 .mooday-detail-post__likes--active {
-  color: #466858;
+  color: #344F41;
 }
 
 
@@ -571,32 +661,41 @@
 }
 
 
+/*
+  Hover:
+  Secondary Sage
+*/
+
 .mooday-detail-post__likes:hover {
-  color: #466858;
+  color: #486858;
 }
 
 
 .mooday-detail-post__likes:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: 4px;
 }
 
 
 .mooday-detail-post__more {
-  color: #666;
+  color: #686863;
   font-size: 22px;
 }
 
 
 .mooday-detail-post__body {
-  margin-top: 52px;
+  /* STEP 3 — Post Header → Body */
+  margin-top: 40px;
 }
 
 
 .mooday-detail-post__body p {
-  margin: 0 0 34px;
+  /* STEP 3 — Paragraph Gap */
+  margin: 0 0 24px;
 
-  font-size: 17px;
+  /* STEP 2 — Body M */
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.65;
 
   white-space: pre-line;
@@ -610,9 +709,10 @@
 .mooday-detail-comments {
   min-width: 0;
 
-  padding-left: 64px;
+  /* STEP 3 — Divider → Comments Content */
+  padding-left: 40px;
 
-  border-left: 2px solid #ddd;
+  border-left: 2px solid #E9E9E4;
 }
 
 
@@ -628,11 +728,13 @@
 
   align-items: flex-start;
 
-  gap: 14px;
+  /* STEP 3 — Comment Avatar ↔ Content */
+  gap: 16px;
 
-  padding: 18px 0;
+  /* STEP 3 — 반복 댓글 Row 밀도 */
+  padding: 16px 0;
 
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid #E9E9E4;
 }
 
 
@@ -654,12 +756,16 @@
 
   flex-direction: column;
 
-  gap: 7px;
+  /* STEP 3 — Comment 내부 Micro Gap */
+  gap: 8px;
 }
 
 
 .mooday-detail-comment__content strong {
+  /* STEP 2 — Body S 강조 */
   font-size: 14px;
+  font-weight: 600;
+
   overflow-wrap: anywhere;
 }
 
@@ -667,7 +773,9 @@
 .mooday-detail-comment__content p {
   margin: 0;
 
+  /* STEP 2 — Body S */
   font-size: 14px;
+  font-weight: 400;
   line-height: 1.5;
 
   overflow-wrap: anywhere;
@@ -675,15 +783,24 @@
 
 
 .mooday-detail-comment__time {
-  color: #888;
+  /*
+    STEP 1:
+    댓글 시간 = Meta
+
+    STEP 2:
+    Caption 12px 유지
+  */
+  color: #96968F;
+
   font-size: 12px;
+  font-weight: 400;
 }
 
 
 .mooday-detail-comment__more {
   flex: 0 0 auto;
 
-  color: #777;
+  color: #686863;
   font-size: 20px;
 }
 
@@ -727,12 +844,12 @@
 
 
 .mooday-detail-comment__more--button:hover {
-  color: #466858;
+  color: #486858;
 }
 
 
 .mooday-detail-comment__more--button:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: 2px;
 }
 
@@ -747,6 +864,9 @@
   수정 / 삭제 메뉴.
 
   댓글 오른쪽 ··· 아래에 작게 표시합니다.
+
+  Menu는 Page Background와 구분되는
+  독립 White Surface를 유지합니다.
 */
 
 .mooday-detail-comment__menu {
@@ -765,7 +885,7 @@
 
   padding: 6px;
 
-  border: 1px solid #e1e1e1;
+  border: 1px solid #DEDED8;
   border-radius: 4px;
 
   background: #fff;
@@ -785,7 +905,7 @@
   border-radius: 3px;
 
   background: transparent;
-  color: #333;
+  color: #282828;
 
   font-family: inherit;
   font-size: 12px;
@@ -797,15 +917,22 @@
 
 
 .mooday-detail-comment__menu button:hover {
-  background: #f4f5f3;
+  /*
+    Brand 계열의 매우 옅은 Hover Surface
+  */
+  background: #F2F5F3;
 }
 
 
 .mooday-detail-comment__menu button:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: -2px;
 }
 
+
+/*
+  Danger 상태는 STEP 1에서 유지합니다.
+*/
 
 .mooday-detail-comment__menu-delete {
   color: #9a4f4f !important;
@@ -824,7 +951,8 @@
 
   flex-direction: column;
 
-  gap: 10px;
+  /* STEP 3 — Edit Input ↔ Action */
+  gap: 12px;
 
   margin-top: 2px;
 }
@@ -838,21 +966,30 @@
 
   padding: 0 12px;
 
-  border: 1px solid #cfcfcf;
+  border: 1px solid #DEDED8;
   border-radius: 3px;
 
+  /*
+    Editable Surface는 White 유지.
+  */
   background: #fff;
   color: #282828;
 
   font-family: inherit;
-  font-size: 13px;
+
+  /*
+    STEP 2 — Form Input
+    Community Write / My Page와 같은 Body M 16px.
+  */
+  font-size: 16px;
+  font-weight: 400;
 }
 
 
 .mooday-detail-comment__edit input:focus-visible {
-  border-color: #466858;
+  border-color: #344F41;
 
-  outline: 2px solid rgba(70, 104, 88, 0.18);
+  outline: 2px solid rgba(52, 79, 65, 0.18);
   outline-offset: 1px;
 }
 
@@ -889,17 +1026,17 @@
 
 
 .mooday-detail-comment__action-button--secondary {
-  border: 1px solid #d5d5d5;
+  border: 1px solid #DEDED8;
 
   background: #fff;
-  color: #555;
+  color: #686863;
 }
 
 
 .mooday-detail-comment__action-button--primary {
-  border: 1px solid #466858;
+  border: 1px solid #344F41;
 
-  background: #466858;
+  background: #344F41;
   color: #fff;
 }
 
@@ -918,7 +1055,7 @@
 
 
 .mooday-detail-comment__action-button:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: 2px;
 }
 
@@ -941,23 +1078,28 @@
 
   flex-direction: column;
 
-  gap: 10px;
+  /* STEP 3 — Delete Message ↔ Action */
+  gap: 12px;
 
   margin-top: 6px;
 
   padding: 12px;
 
-  border: 1px solid #e4e4e4;
+  border: 1px solid #DEDED8;
   border-radius: 4px;
 
-  background: #fafafa;
+  /*
+    Page #FAFAF8와 구분되는
+    Soft Status Surface.
+  */
+  background: #F8F4F0;
 }
 
 
 .mooday-detail-comment__delete-confirm p {
   margin: 0;
 
-  color: #555;
+  color: #686863;
 
   font-size: 12px;
 }
@@ -972,9 +1114,11 @@
 
   align-items: center;
 
-  gap: 14px;
+  /* STEP 3 — Composer Avatar ↔ Input Group */
+  gap: 16px;
 
-  margin-top: 28px;
+  /* STEP 3 — Comment List → Composer */
+  margin-top: 32px;
 }
 
 
@@ -998,13 +1142,22 @@
 
   padding: 0 15px;
 
-  border: 1px solid #ddd;
+  border: 1px solid #DEDED8;
 
+  /*
+    Editable Surface는 White 유지.
+  */
   background: #fff;
   color: #282828;
 
   font-family: inherit;
-  font-size: 12px;
+
+  /*
+    STEP 2 — Form Input
+    사용자 입력 텍스트는 Body M 16px로 통일합니다.
+  */
+  font-size: 16px;
+  font-weight: 400;
 }
 
 
@@ -1013,9 +1166,9 @@
 */
 
 .mooday-detail-comments__input-group input:focus-visible {
-  border-color: #466858;
+  border-color: #344F41;
 
-  outline: 2px solid rgba(70, 104, 88, 0.18);
+  outline: 2px solid rgba(52, 79, 65, 0.18);
   outline-offset: 1px;
 }
 
@@ -1028,7 +1181,10 @@
   border: 0;
   border-radius: 4px;
 
-  background: #466858;
+  /*
+    Primary Action
+  */
+  background: #344F41;
   color: #fff;
 
   font-family: inherit;
@@ -1045,7 +1201,7 @@
 
 
 .mooday-detail-comments__input-group button:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: 3px;
 }
 
@@ -1080,17 +1236,22 @@
 ===================================== */
 
 .mooday-detail__hashtags {
-  padding: 48px 0 56px;
+  /* STEP 3 — Hashtag Section Rhythm */
+  padding: 60px 0;
 
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #E9E9E4;
 }
 
 
 .mooday-detail__hashtags h2 {
   margin: 0 0 24px;
 
-  font-size: 18px;
-  font-weight: 500;
+  /*
+    STEP 2 — TYPOGRAPHY
+    Hashtags = H4 역할
+  */
+  font-size: 20px;
+  font-weight: 600;
 }
 
 
@@ -1099,7 +1260,8 @@
 
   flex-wrap: wrap;
 
-  gap: 12px;
+  /* STEP 3 — Community Write Tag Gap과 통일 */
+  gap: 8px;
 }
 
 
@@ -1112,16 +1274,28 @@
   align-items: center;
   justify-content: center;
 
-  padding: 6px 18px;
+  /* STEP 3 — Tag Internal Padding */
+  padding: 6px 16px;
 
-  border: 1px solid #ddd;
-  border-radius: 40px;
+  /*
+    Community Write와 같은
+    General Border Token을 사용합니다.
+
+    Radius / Padding은
+    STEP 3에서 별도 검토합니다.
+  */
+  border: 1px solid #DEDED8;
+
+  /* STEP 3 — Community Write Tag Shape와 통일 */
+  border-radius: 24px;
 
   background: #fff;
 
-  color: #555;
+  color: #686863;
 
+  /* STEP 2 — Label */
   font-size: 13px;
+  font-weight: 400;
 }
 
 
@@ -1139,7 +1313,8 @@
 ===================================== */
 
 .mooday-detail__related {
-  padding-top: 72px;
+  /* STEP 3 — Hashtags → Related Styles */
+  padding-top: 80px;
 }
 
 
@@ -1151,14 +1326,19 @@
 
   gap: 20px;
 
-  margin-bottom: 30px;
+  /* STEP 3 — Related Heading → Grid */
+  margin-bottom: 32px;
 }
 
 
 .mooday-detail__related-heading h2 {
   margin: 0;
 
-  font-size: 28px;
+  /*
+    STEP 2 — TYPOGRAPHY
+    Related Styles = H3 역할
+  */
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -1166,7 +1346,7 @@
 .mooday-detail__related-heading a {
   flex-shrink: 0;
 
-  color: #555;
+  color: #686863;
 
   font-size: 13px;
   text-decoration: none;
@@ -1187,7 +1367,7 @@
     repeat(4, minmax(0, 1fr));
 
   column-gap: 24px;
-  row-gap: 30px;
+  row-gap: 32px;
 }
 
 
@@ -1195,7 +1375,8 @@
 .mooday-community-card__body {
   min-height: 0;
 
-  padding: 14px 0 10px;
+  /* STEP 3 — Main 카드 언어를 유지하는 내부 좌우 여백 */
+  padding: 14px 16px 10px;
 }
 
 
@@ -1228,7 +1409,8 @@
 
   justify-content: center;
 
-  margin-top: 48px;
+  /* STEP 3 — Related Grid → Action */
+  margin-top: 40px;
 }
 
 
@@ -1247,8 +1429,11 @@
 
   padding: 12px 24px;
 
-  border: 1px solid #d8d8d8;
+  border: 1px solid #DEDED8;
 
+  /*
+    Secondary Action Surface
+  */
   background: #fff;
   color: #282828;
 
@@ -1268,12 +1453,12 @@
 
 
 .mooday-detail__load-more-button:hover {
-  border-color: #466858;
+  border-color: #486858;
 }
 
 
 .mooday-detail__load-more-button:focus-visible {
-  outline: 2px solid #466858;
+  outline: 2px solid #344F41;
   outline-offset: 3px;
 }
 
@@ -1297,21 +1482,29 @@
 
 
 .mooday-detail__empty h1 {
-  font-size: 28px;
+  /* STEP 2 — H3 */
+  font-size: 24px;
+  font-weight: 600;
 }
 
 
 .mooday-detail__empty p {
-  color: #777;
-  font-size: 15px;
+  color: #686863;
+
+  /* STEP 2 — Body S */
+  font-size: 14px;
+  font-weight: 400;
 }
 
 
 .mooday-detail__empty a {
   margin-top: 22px;
 
-  color: #466858;
-  font-size: 15px;
+  color: #344F41;
+
+  /* STEP 2 — Body S / Text Action */
+  font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -1350,7 +1543,7 @@
 
   .mooday-detail {
     padding-top: 48px;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
   }
 
 
@@ -1402,7 +1595,16 @@
   }
 
 
-  .mooday-detail-product__brand,
+  /*
+    STEP 2:
+    Tablet에서도 Desktop과 같은 역할 Scale을 유지합니다.
+  */
+
+  .mooday-detail-product__brand {
+    font-size: 13px;
+  }
+
+
   .mooday-detail-product__name {
     font-size: 14px;
   }
@@ -1418,7 +1620,7 @@
 
     margin-top: 40px;
 
-    padding: 30px 0 40px;
+    padding: 32px 0 40px;
   }
 
 
@@ -1433,12 +1635,12 @@
 
 
   .mooday-detail-post__body p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
 
   .mooday-detail-comments__composer {
-    gap: 10px;
+    gap: 16px;
   }
 
 
@@ -1457,7 +1659,7 @@
       repeat(3, minmax(0, 1fr));
 
     column-gap: 20px;
-    row-gap: 28px;
+    row-gap: 32px;
   }
 
 
@@ -1477,7 +1679,7 @@
 
   .mooday-detail {
     padding-top: 40px;
-    padding-bottom: 88px;
+    padding-bottom: 80px;
   }
 
 
@@ -1544,14 +1746,14 @@
 
     gap: 0;
 
-    margin-top: 48px;
+    margin-top: 40px;
 
     padding: 32px 0 40px;
   }
 
 
   .mooday-detail-post__body {
-    margin-top: 36px;
+    margin-top: 32px;
   }
 
 
@@ -1568,7 +1770,7 @@
     padding-left: 0;
 
     border-left: 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #E9E9E4;
   }
 
 
@@ -1578,12 +1780,12 @@
 
 
   .mooday-detail__hashtags {
-    padding: 40px 0 48px;
+    padding: 40px 0;
   }
 
 
   .mooday-detail__related {
-    padding-top: 56px;
+    padding-top: 60px;
   }
 
 
@@ -1597,7 +1799,7 @@
 
 
   .mooday-detail__related-heading h2 {
-    font-size: 26px;
+    font-size: 24px;
   }
 
 }
@@ -1611,8 +1813,8 @@
 @media (max-width: 767px) {
 
   .mooday-detail {
-    padding-top: 28px;
-    padding-bottom: 72px;
+    padding-top: 32px;
+    padding-bottom: 60px;
   }
 
 
@@ -1683,7 +1885,7 @@
 
 
   .mooday-detail-products__heading h2 {
-    font-size: 19px;
+    font-size: 18px;
   }
 
 
@@ -1708,7 +1910,7 @@
 
 
   .mooday-detail-product__brand {
-    font-size: 13px;
+    font-size: 12px;
   }
 
 
@@ -1718,7 +1920,7 @@
 
 
   .mooday-detail-product__price {
-    font-size: 15px;
+    font-size: 14px;
   }
 
 
@@ -1734,14 +1936,19 @@
 
     margin-top: 40px;
 
-    padding: 28px 0 36px;
+    padding: 32px 0;
   }
 
 
   .mooday-detail-section-title {
     margin-bottom: 20px;
 
-    font-size: 16px;
+    /*
+      STEP 2:
+      Mobile에서는 H4 20px에서
+      Body L 18px로 한 단계 축소합니다.
+    */
+    font-size: 18px;
   }
 
 
@@ -1776,7 +1983,7 @@
 
 
   .mooday-detail-post__author-info strong {
-    font-size: 13px;
+    font-size: 14px;
   }
 
 
@@ -1824,29 +2031,29 @@
     padding-left: 0;
 
     border-left: 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #E9E9E4;
   }
 
 
   .mooday-detail-comment {
-    gap: 10px;
+    gap: 12px;
 
     padding: 16px 0;
   }
 
 
   .mooday-detail-comment__content strong {
-    font-size: 13px;
+    font-size: 14px;
   }
 
 
   .mooday-detail-comment__content p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
 
   .mooday-detail-comment__time {
-    font-size: 11px;
+    font-size: 12px;
   }
 
 
@@ -1869,7 +2076,11 @@
 
     padding: 0 10px;
 
-    font-size: 12px;
+    /*
+      STEP 2:
+      Mobile에서도 Form Input은 16px 유지.
+    */
+    font-size: 16px;
   }
 
 
@@ -1880,7 +2091,7 @@
 
     padding: 0 10px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
 
@@ -1894,7 +2105,7 @@
   ================================= */
 
   .mooday-detail-comments__composer {
-    gap: 10px;
+    gap: 12px;
 
     margin-top: 24px;
   }
@@ -1912,7 +2123,11 @@
 
     padding: 0 10px;
 
-    font-size: 12px;
+    /*
+      STEP 2:
+      Mobile에서도 사용자 입력은 Body M 16px 유지.
+    */
+    font-size: 16px;
   }
 
 
@@ -1926,14 +2141,14 @@
 
 
   .mooday-detail__hashtags {
-    padding: 36px 0 42px;
+    padding: 40px 0;
   }
 
 
   .mooday-detail__hashtags h2 {
     margin-bottom: 20px;
 
-    font-size: 16px;
+    font-size: 18px;
   }
 
 
@@ -1944,16 +2159,20 @@
 
   .mooday-detail__tag,
   .mooday-detail__tag-add {
-    min-height: 32px;
+    min-height: 34px;
 
     padding: 6px 12px;
 
-    font-size: 12px;
+    /*
+      STEP 2:
+      Tag는 Mobile에서도 Label 13px 유지.
+    */
+    font-size: 13px;
   }
 
 
   .mooday-detail__tag-add {
-    width: 32px;
+    width: 34px;
     padding: 0;
 
     font-size: 17px;
@@ -1961,7 +2180,7 @@
 
 
   .mooday-detail__related {
-    padding-top: 48px;
+    padding-top: 60px;
   }
 
 
@@ -1973,7 +2192,7 @@
 
 
   .mooday-detail__related-heading h2 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
 
@@ -1985,13 +2204,13 @@
   .mooday-detail__related-grid {
     grid-template-columns: minmax(0, 1fr);
 
-    row-gap: 28px;
+    row-gap: 32px;
   }
 
 
   .mooday-detail__related-grid
   .mooday-community-card__body {
-    padding: 12px 0 8px;
+    padding: 12px 12px 8px;
   }
 
 
@@ -2010,14 +2229,39 @@
 
 
   .mooday-detail__load-more {
-    margin-top: 36px;
+    margin-top: 32px;
   }
 
 
   .mooday-detail__load-more-button {
-    max-width: none;
+    /*
+      STEP 4 — CROSS-PAGE CONSISTENCY
 
-    min-height: 48px;
+      Community Main 모바일 Load More와 같은
+      가벼운 centered pill 형태로 맞춥니다.
+
+      Desktop / Tablet의 기존 Load More 스타일은
+      변경하지 않습니다.
+    */
+    width: 160px;
+    max-width: 160px;
+
+    min-height: 44px;
+
+    padding: 10px 20px;
+
+    border-radius: 22px;
+
+    gap: 0;
+  }
+
+
+  .mooday-detail__load-more-button span {
+    /*
+      Detail에서만 표시되던 '+'를 모바일에서 숨겨
+      Community Main의 텍스트 중심 Load More와 통일합니다.
+    */
+    display: none;
   }
 
 }

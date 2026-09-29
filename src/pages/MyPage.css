@@ -1,5 +1,5 @@
 /* ==================================================
-   mooday My Page - Profile v0.3 / Phase 3
+   mooday My Page - Profile
 
    기존 반영 사항
    --------------------------------------------------
@@ -23,7 +23,59 @@
    - Desktop / Tablet: 우측 하단
    - Mobile: 하단 중앙
 
-   중요:
+   STEP 1
+   --------------------------------------------------
+   - 사용하지 않는 Sort UI 완전 제거
+   - Sort 전용 CSS 제거
+   - Nav를 탭 전용 구조로 정리
+
+   STEP 2
+   --------------------------------------------------
+   - Profile 입력 필드 그룹 간격 축소
+   - Desktop / Tablet: 40px
+   - Mobile: 24px
+
+   STEP 3
+   --------------------------------------------------
+   - My Page Page Background
+     #fafaf8 적용
+   - Editable Input / Toast는
+     #ffffff Surface 유지
+
+   STEP 4-1
+   --------------------------------------------------
+   - Figma Text Style 기준 Typography 정리
+   - PROFILE:
+     Desktop / Tablet 20px
+     Mobile 18px
+   - Form Label:
+     Desktop / Tablet / Mobile 13px
+
+   STEP 4-2
+   --------------------------------------------------
+   - Major Vertical Spacing 정리
+   - Content Top / Bottom
+     Desktop 120px
+     Tablet 80px
+     Mobile 60px
+   - PROFILE → First Field
+     Desktop / Tablet 40px
+     Mobile 32px
+
+   STEP 4-3
+   --------------------------------------------------
+   - Minor Spacing 정리
+   - Label ↔ Input
+   - Consent Top
+   - Consent Internal Gap
+   - Submit Top
+
+   중요
+   --------------------------------------------------
+   이번 STEP 4-3까지 완료하면
+   현재 계획한 My Page Typography / Spacing
+   정리 작업은 일단 완료 상태가 됩니다.
+
    실제 서버 저장 기능은 없습니다.
 ================================================== */
 
@@ -50,7 +102,14 @@
   width: 100%;
   min-width: 0;
 
-  background: #fff;
+  /*
+    STEP 3
+
+    mooday 범용 Style Guide 기준
+    Page Background는 #fafaf8을 사용합니다.
+  */
+  background: #fafaf8;
+
   color: var(--mooday-profile-text);
 
   font-family:
@@ -84,15 +143,23 @@
 .mooday-mypage-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
-  gap: 24px;
+  /*
+    STEP 1
 
+    기존 우측 Sort 요소가 제거되어
+    현재는 Tab Scroll 영역 하나만 사용합니다.
+  */
   min-width: 0;
 
   padding-top: 120px;
 }
 
+
+/*
+  작은 화면에서는 탭 메뉴만
+  가로 스크롤됩니다.
+*/
 
 .mooday-mypage-nav__scroll {
   flex: 1 1 auto;
@@ -119,6 +186,8 @@
 }
 
 
+/* 탭 목록 */
+
 .mooday-mypage-nav__list {
   display: flex;
   align-items: center;
@@ -140,8 +209,12 @@
 }
 
 
-.mooday-mypage-nav__tab,
-.mooday-mypage-nav__sort {
+/*
+  Navigation
+  Figma Body M 16px 기준
+*/
+
+.mooday-mypage-nav__tab {
   display: inline-flex;
   align-items: center;
 
@@ -155,6 +228,8 @@
 }
 
 
+/* 현재 활성 메뉴: Profile */
+
 .mooday-mypage-nav__tab--active {
   color: var(--mooday-profile-sage);
 
@@ -165,22 +240,12 @@
 }
 
 
-.mooday-mypage-nav__tab--inactive,
-.mooday-mypage-nav__sort {
+/* 아직 구현하지 않은 메뉴 */
+
+.mooday-mypage-nav__tab--inactive {
   color: #4c4c4c;
 
   cursor: default;
-}
-
-
-.mooday-mypage-nav__sort {
-  flex: 0 0 auto;
-
-  gap: 10px;
-
-  padding-bottom: 4px;
-
-  user-select: none;
 }
 
 
@@ -188,13 +253,21 @@
    3. PROFILE CONTENT
 ================================================== */
 
+/*
+  STEP 4-2
+
+  Desktop Major Section Spacing:
+  Top 120px
+  Bottom 120px
+*/
+
 .mooday-mypage__content {
   width: 100%;
 
   padding:
-    210px
+    120px
     0
-    240px;
+    120px;
 }
 
 
@@ -205,15 +278,25 @@
 }
 
 
+/*
+  STEP 4-1
+  PROFILE Heading:
+  H4 20px / 600
+
+  STEP 4-2
+  Heading → First Field:
+  40px
+*/
+
 .mooday-profile-form__title {
   margin:
     0
     0
-    58px;
+    40px;
 
   color: var(--mooday-profile-text);
 
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 
   letter-spacing: 0.35em;
@@ -226,13 +309,34 @@
    4. COMMON INPUT FIELDS
 ================================================== */
 
+/*
+  STEP 2
+
+  Desktop / Tablet
+  Field Group Gap 40px
+*/
+
 .mooday-profile-form__fields {
   display: flex;
   flex-direction: column;
 
-  gap: 54px;
+  gap: 40px;
 }
 
+
+/*
+  STEP 4-3
+
+  Label ↔ Input / Field Content 간격
+
+  기존:
+  10px
+
+  변경:
+  12px
+
+  범용 Spacing Scale의 S 12px을 사용합니다.
+*/
 
 .mooday-profile-form__field {
   display: flex;
@@ -240,17 +344,32 @@
 
   min-width: 0;
 
-  gap: 10px;
+  gap: 12px;
 }
 
 
+/*
+  STEP 4-1
+  Figma Label Style
+
+  13px / 500
+*/
+
 .mooday-profile-form__field > label {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
 
   line-height: 1.4;
 }
 
+
+/*
+  Input Text
+  Figma Body M 16px
+
+  Page Background와 분리되는
+  White Surface 유지
+*/
 
 .mooday-profile-form__field input {
   display: block;
@@ -331,6 +450,10 @@ input:focus-visible:not([readonly]) {
 }
 
 
+/*
+  Caption 12px
+*/
+
 .mooday-profile-form__error-message {
   margin: 0;
 
@@ -355,6 +478,13 @@ input:focus-visible:not([readonly]) {
   width: 100%;
   min-width: 0;
 
+  /*
+    Input ↔ Read Only 안내문은
+    기존 8px 유지
+
+    현재 Spacing Scale의 XS와
+    정확히 일치합니다.
+  */
   gap: 8px;
 }
 
@@ -412,6 +542,11 @@ input:focus-visible {
 }
 
 
+/*
+  ID Note
+  Caption 12px
+*/
+
 .mooday-profile-form__id-note {
   display: block;
 
@@ -434,6 +569,10 @@ input:focus-visible {
   display: flex;
   align-items: flex-end;
 
+  /*
+    Input ↔ Button
+    16px은 Spacing Scale의 M과 일치하므로 유지
+  */
   gap: 16px;
 
   min-width: 0;
@@ -517,21 +656,53 @@ input:focus-visible {
    8. CONSENT CHECKBOX
 ================================================== */
 
+/*
+  STEP 4-3
+
+  Password / Form Fields ↔ Consent Section
+
+  기존:
+  72px
+
+  변경:
+  60px
+
+  페이지 내부 Sub Section 분리용으로
+  60px Spacing Token을 적용합니다.
+
+  Consent Row 간 간격:
+  18px → 16px
+*/
+
 .mooday-profile-form__consents {
   display: flex;
   flex-direction: column;
 
-  gap: 18px;
+  gap: 16px;
 
-  margin-top: 72px;
+  margin-top: 60px;
 }
 
+
+/*
+  STEP 4-3
+
+  Checkbox ↔ Text
+
+  기존:
+  18px
+
+  변경:
+  16px
+
+  Spacing Scale M 16px 적용
+*/
 
 .mooday-profile-form__consent {
   display: flex;
   align-items: flex-start;
 
-  gap: 18px;
+  gap: 16px;
 
   width: fit-content;
   max-width: 100%;
@@ -580,6 +751,24 @@ input:focus-visible {
    9. SUBMIT BUTTON
 ================================================== */
 
+/*
+  STEP 4-3
+
+  Consent Section ↔ Submit Button
+
+  기존:
+  margin-top 98px
+
+  변경:
+  margin-top 80px
+
+  큰 Action 영역 분리를 위해
+  80px Spacing Token을 사용합니다.
+
+  버튼 자체 크기는 이번 단계에서
+  변경하지 않습니다.
+*/
+
 .mooday-profile-form__submit {
   display: block;
 
@@ -587,7 +776,7 @@ input:focus-visible {
 
   min-height: 88px;
 
-  margin-top: 98px;
+  margin-top: 80px;
 
   padding: 20px;
 
@@ -649,17 +838,19 @@ input:focus-visible {
 
 /* ==================================================
    10. SAVE TOAST
-   Phase 3
 ================================================== */
 
 /*
-  저장 성공 메시지
+  Save Toast
 
-  Desktop / Tablet
-  → 화면 우측 하단
+  Desktop / Tablet:
+  우측 하단
 
-  Mobile
-  → 화면 하단 중앙
+  Mobile:
+  하단 중앙
+
+  Floating Surface이므로
+  #ffffff 유지
 */
 
 .mooday-profile-toast {
@@ -710,11 +901,7 @@ input:focus-visible {
 }
 
 
-/*
-  Toast 등장 효과
-
-  아주 짧고 가벼운 이동만 사용합니다.
-*/
+/* Toast 등장 효과 */
 
 @keyframes mooday-profile-toast-in {
 
@@ -785,16 +972,42 @@ input:focus-visible {
   }
 
 
-  .mooday-mypage__content {
-    padding-top: 140px;
+  /*
+    STEP 4-2
+    Tablet Major Section Spacing:
+    Top / Bottom 80px
+  */
 
-    padding-bottom: 180px;
+  .mooday-mypage__content {
+    padding-top: 80px;
+
+    padding-bottom: 80px;
   }
 
 
   .mooday-profile-form {
     max-width: 800px;
   }
+
+
+  /*
+    Tablet은 기본 Desktop 값 사용:
+
+    PROFILE → Fields
+    40px
+
+    Field Group
+    40px
+
+    Label → Input
+    12px
+
+    Consent Top
+    60px
+
+    Submit Top
+    80px
+  */
 }
 
 
@@ -813,11 +1026,11 @@ input:focus-visible {
   }
 
 
-  /* Mobile Navigation */
+  /* -----------------------------------------------
+     Mobile Navigation
+  ----------------------------------------------- */
 
   .mooday-mypage-nav {
-    gap: 18px;
-
     padding-top: 44px;
   }
 
@@ -827,46 +1040,76 @@ input:focus-visible {
   }
 
 
-  .mooday-mypage-nav__tab,
-  .mooday-mypage-nav__sort {
+  .mooday-mypage-nav__tab {
     font-size: 14px;
   }
 
 
-  .mooday-mypage-nav__sort {
-    gap: 4px;
-  }
+  /* -----------------------------------------------
+     Mobile Profile
+  ----------------------------------------------- */
 
+  /*
+    STEP 4-2
 
-  /* Mobile Profile */
+    Mobile Major Section Spacing:
+    Top / Bottom 60px
+  */
 
   .mooday-mypage__content {
     padding:
-      90px
+      60px
       0
-      120px;
+      60px;
   }
 
+
+  /*
+    PROFILE
+    18px 유지
+
+    PROFILE → First Field
+    32px 유지
+  */
 
   .mooday-profile-form__title {
-    margin-bottom: 44px;
+    margin-bottom: 32px;
 
-    font-size: 15px;
+    font-size: 18px;
   }
 
+
+  /*
+    Mobile Field Group Gap
+    24px 유지
+  */
 
   .mooday-profile-form__fields {
-    gap: 30px;
+    gap: 24px;
   }
 
 
+  /*
+    STEP 4-3
+
+    Label ↔ Input
+
+    기존:
+    9px
+
+    변경:
+    8px
+
+    XS Spacing Token 사용
+  */
+
   .mooday-profile-form__field {
-    gap: 9px;
+    gap: 8px;
   }
 
 
   .mooday-profile-form__field > label {
-    font-size: 14px;
+    font-size: 13px;
   }
 
 
@@ -884,7 +1127,17 @@ input:focus-visible {
   }
 
 
-  /* Mobile ID */
+  /* -----------------------------------------------
+     Mobile ID
+  ----------------------------------------------- */
+
+  /*
+    기존 7px은 화면상 문제가 없으므로
+    이번 STEP에서는 별도로 변경하지 않습니다.
+
+    필요하면 최종 Micro Polish에서
+    8px로 정리할 수 있습니다.
+  */
 
   .mooday-profile-form__id-row {
     gap: 7px;
@@ -911,7 +1164,9 @@ input:focus-visible {
   }
 
 
-  /* Mobile Password */
+  /* -----------------------------------------------
+     Mobile Password
+  ----------------------------------------------- */
 
   .mooday-profile-form__password-row {
     align-items: stretch;
@@ -940,17 +1195,35 @@ input:focus-visible {
   }
 
 
-  /* Mobile Consent */
+  /* -----------------------------------------------
+     Mobile Consent
+  ----------------------------------------------- */
+
+  /*
+    STEP 4-3
+
+    Consent Top
+    44px → 40px
+
+    Consent Row Gap
+    15px → 12px
+  */
 
   .mooday-profile-form__consents {
-    gap: 15px;
+    gap: 12px;
 
-    margin-top: 44px;
+    margin-top: 40px;
   }
 
 
+  /*
+    Checkbox ↔ Text
+
+    10px → 8px
+  */
+
   .mooday-profile-form__consent {
-    gap: 10px;
+    gap: 8px;
 
     font-size: 13px;
 
@@ -964,12 +1237,23 @@ input:focus-visible {
   }
 
 
-  /* Mobile Submit */
+  /* -----------------------------------------------
+     Mobile Submit
+  ----------------------------------------------- */
+
+  /*
+    STEP 4-3
+
+    Submit Top
+    64px → 60px
+
+    버튼 자체 높이와 Typography는 유지
+  */
 
   .mooday-profile-form__submit {
     min-height: 58px;
 
-    margin-top: 64px;
+    margin-top: 60px;
 
     font-size: 16px;
   }
@@ -977,9 +1261,6 @@ input:focus-visible {
 
   /* -----------------------------------------------
      Mobile Toast
-
-     화면 양쪽 20px 여백을 확보하고
-     하단 중앙에 배치합니다.
   ----------------------------------------------- */
 
   .mooday-profile-toast {
@@ -1009,19 +1290,26 @@ input:focus-visible {
 
 @media (max-width: 374px) {
 
-  .mooday-mypage-nav {
-    gap: 12px;
-  }
-
-
   .mooday-mypage-nav__list {
     gap: 20px;
   }
 
 
-  .mooday-mypage-nav__sort {
-    font-size: 13px;
-  }
+  /*
+    320px에서도 Mobile 기준을 그대로 사용합니다.
+
+    Field Group:
+    24px
+
+    Label → Input:
+    8px
+
+    Consent Top:
+    40px
+
+    Submit Top:
+    60px
+  */
 }
 
 
@@ -1039,8 +1327,8 @@ input:focus-visible {
 
 
   /*
-    Motion 감소 설정을 사용하는 경우
-    Toast Animation도 제거합니다.
+    Motion 감소 설정 사용 시
+    Toast Animation 제거
   */
 
   .mooday-profile-toast {

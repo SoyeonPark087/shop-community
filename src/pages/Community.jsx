@@ -13,7 +13,8 @@ import './Community.css'
 /*
   ==========================================
   MOODAY COMMUNITY MAIN
-  Community Main v0.2 - GROUP 3
+  Community Main v0.2
+  Visual Feedback - STEP 2
   ==========================================
 
   Desktop : 1280px 이상
@@ -27,27 +28,36 @@ import './Community.css'
 
   Load more 클릭 시 3개 추가
 
-  GROUP 1:
+  기존 기능 GROUP:
+  GROUP 1
   - community.js에 createdAt 추가
   - community.js에 popularityScore 추가
 
-  GROUP 2:
+  GROUP 2
   - Latest 실제 정렬
   - Popular 실제 정렬
   - 정렬 상태 UI 연결
   - 기존 Load more와 정렬 기능 연계
 
-  GROUP 3:
+  GROUP 3
   - 게시글이 하나도 없을 때 Empty State 표시
   - Empty State에서는 Grid / Load more 숨김
   - Empty State에서는 태그 / Filter 영역 숨김
   - Empty State 내부 Write CTA 제공
 
+  Visual Feedback STEP 1
+  - Page Background #FAFAF8
+  - Surface hierarchy 정리
+  - Neutral / Border / Sage Color Token 정리
+
+  Visual Feedback STEP 2
+  - 기존 문자형 Filter 아이콘 제거
+  - Figma 기준 filter.svg 실제 SVG asset 적용
+  - Filter Text ↔ Icon 중앙 정렬
+
   중요:
-  - GROUP 1 / GROUP 2 기능은 그대로 유지합니다.
-  - 정렬은 전체 게시글을 먼저 대상으로 합니다.
-  - 정렬 완료 후 visibleCount만큼 잘라서 표시합니다.
-  - 정렬 변경 시 현재 Load more 노출 개수는 유지합니다.
+  - 기존 정렬 / Load More / Empty State 로직은 유지합니다.
+  - Typography / 전체 Spacing 정리는 아직 진행하지 않습니다.
   - Header / Footer / Router는 수정하지 않습니다.
 */
 
@@ -154,8 +164,8 @@ function getSortedPosts(posts, sortMode) {
   Desktop / Tablet / Mobile을 구분합니다.
 
   중요:
-  아래 기준은 community.css의
-  미디어 쿼리와 반드시 일치해야 합니다.
+  아래 기준은 Community.css의
+  media query와 반드시 일치해야 합니다.
 */
 
 function getDeviceType() {
@@ -223,8 +233,6 @@ export default function Community() {
     현재 디바이스 유형과
     Load more로 추가 표시한 게시글 수를
     함께 관리합니다.
-
-    기존 Community Main 구조를 유지합니다.
   */
 
   const [displayState, setDisplayState] = useState(() => ({
@@ -321,8 +329,6 @@ export default function Community() {
   ================================= */
 
   /*
-    GROUP 2 핵심 로직 유지.
-
     반드시:
 
     전체 communityPosts
@@ -347,16 +353,11 @@ export default function Community() {
   ================================= */
 
   /*
-    GROUP 3 핵심.
-
     전체 정렬 결과에 게시글이 하나도 없으면
     Community가 비어 있는 것으로 판단합니다.
 
-    별도의 React state를 만들지 않고,
-    현재 데이터에서 바로 계산되는 파생값으로 둡니다.
-
-    현재 communityPosts에는 9개의 게시글이 있으므로
-    정상 운영 화면에서는 false입니다.
+    별도의 React state를 만들지 않고
+    현재 데이터에서 계산되는 파생값으로 둡니다.
   */
 
   const isEmpty = sortedPosts.length === 0
@@ -379,9 +380,6 @@ export default function Community() {
 
     전체 정렬 결과보다 커지지 않도록
     Math.min()으로 제한합니다.
-
-    Empty State에서는 sortedPosts.length가 0이므로
-    visibleCount 역시 자동으로 0이 됩니다.
   */
 
   const visibleCount = Math.min(
@@ -404,11 +402,6 @@ export default function Community() {
   /*
     아직 표시하지 않은 게시글이 존재할 때만
     Load more 버튼을 표시합니다.
-
-    Empty State에서는:
-    0 < 0 → false
-
-    가 되므로 Load more가 자동으로 표시되지 않습니다.
   */
 
   const hasMorePosts =
@@ -424,11 +417,6 @@ export default function Community() {
 
     정렬을 변경하더라도
     현재 Load more 노출 개수는 초기화하지 않습니다.
-
-    예:
-    Mobile Latest 6개
-    → Popular 선택
-    → Popular 상위 6개 유지
   */
 
   function handleLatestSort() {
@@ -439,12 +427,12 @@ export default function Community() {
   /*
     Popular 선택.
 
-    GROUP 1에서 추가한
-    popularityScore를 기준으로 정렬합니다.
+    현재는 GROUP 1에서 추가한
+    popularityScore 기준입니다.
 
-    현재 popularityScore는
-    실제 Detail Like와 연결된 값이 아니라
-    Main v0.2 시연용 임시 데이터입니다.
+    추후 Community Detail의 실제 초기 likes가
+    공통 데이터로 정리되면 likes 기준으로
+    교체할 수 있습니다.
   */
 
   function handlePopularSort() {
@@ -459,7 +447,7 @@ export default function Community() {
   function handleLoadMore() {
 
     /*
-      현재 정렬 결과의 카드 아래에
+      현재 정렬 결과 아래에
       게시글을 3개씩 추가합니다.
 
       Latest / Popular 모두
@@ -499,10 +487,6 @@ export default function Community() {
         {/*
           게시글이 없는 경우에도
           페이지의 기본 Navigation 구조는 유지합니다.
-
-          따라서:
-          Latest / Popular / Write
-          영역은 Empty State에서도 그대로 표시됩니다.
         */}
 
         <div className="mooday-community__top">
@@ -514,9 +498,6 @@ export default function Community() {
 
             {/*
               Latest
-
-              현재 선택 상태에 따라
-              active / pending 클래스를 전환합니다.
             */}
 
             <button
@@ -539,10 +520,6 @@ export default function Community() {
 
             {/*
               Popular
-
-              현재는 GROUP 1의
-              popularityScore가 높은 게시글부터
-              화면에 표시합니다.
             */}
 
             <button
@@ -567,9 +544,6 @@ export default function Community() {
 
           {/*
             기존 상단 Write 진입 링크.
-
-            Empty State 여부와 관계없이
-            항상 유지합니다.
           */}
 
           <a
@@ -593,17 +567,8 @@ export default function Community() {
         ================================= */}
 
         {/*
-          GROUP 3 정책:
-
           게시글이 존재할 때만
-          태그 / Filter 영역을 표시합니다.
-
-          Community 전체에 게시글이 하나도 없는 상황에서
-          실제 필터 기능도 없는 태그들이 먼저 노출되는
-          어색함을 피하기 위한 처리입니다.
-
-          향후 실제 태그 필터 기능이 구현될 경우에는
-          이 정책을 다시 검토할 수 있습니다.
+          Tag / Filter 영역을 표시합니다.
         */}
 
         {!isEmpty && (
@@ -638,11 +603,36 @@ export default function Community() {
             </div>
 
 
-            {/*
-              Filter 기능은 기존과 동일하게
-              아직 미구현 상태입니다.
+            {/* =================================
+                FILTER
+                Visual Feedback STEP 2
+            ================================= */}
 
-              위치와 디자인만 유지합니다.
+            {/*
+              현재 Filter 기능 자체는 아직 미구현입니다.
+
+              STEP 2에서는 기존 문자형 아이콘:
+
+              ☷
+
+              을 제거하고,
+              Figma에서 전달받은 실제 SVG asset을
+              그대로 사용합니다.
+
+              실제 파일 위치:
+
+              public/images/community/icons/filter.svg
+
+              따라서 JSX에서는 public 폴더를 제외한:
+
+              /images/community/icons/filter.svg
+
+              경로를 사용합니다.
+
+              SVG는 Filter 텍스트의 의미를
+              보조하는 장식 아이콘이므로
+              alt="" + aria-hidden="true"로
+              중복 읽기를 방지합니다.
             */}
 
             <span
@@ -652,9 +642,12 @@ export default function Community() {
 
               Filter
 
-              <span aria-hidden="true">
-                ☷
-              </span>
+              <img
+                className="mooday-community__filter-icon"
+                src="/images/community/icons/filter.svg"
+                alt=""
+                aria-hidden="true"
+              />
 
             </span>
 
@@ -666,19 +659,6 @@ export default function Community() {
         {/* =================================
             14. GRID / EMPTY STATE
         ================================= */}
-
-        {/*
-          GROUP 3 핵심 렌더링 분기.
-
-          게시글 있음:
-          → CommunityGrid
-
-          게시글 없음:
-          → Empty State
-
-          CommunityGrid 자체에는 Empty 로직을 넣지 않아
-          기존 컴포넌트의 책임을 그대로 유지합니다.
-        */}
 
         {isEmpty ? (
 
@@ -703,18 +683,6 @@ export default function Community() {
               새로운 스타일을 공유해 보세요.
             </p>
 
-
-            {/*
-              Empty State 안의 상황별 CTA.
-
-              상단 Write 링크과 목적은 같지만,
-              비어 있는 콘텐츠 영역에서도
-              사용자가 다음 행동을 쉽게 찾을 수 있도록
-              추가합니다.
-
-              별도 새로운 기능은 아니며
-              기존 /community/write 주소를 사용합니다.
-            */}
 
             <a
               className="mooday-community-empty__write"
@@ -743,16 +711,6 @@ export default function Community() {
         {/* =================================
             15. LOAD MORE BUTTON
         ================================= */}
-
-        {/*
-          게시글이 있고,
-          현재 정렬 결과에서
-          아직 표시하지 않은 게시글이 있을 때만
-          Load more 버튼을 표시합니다.
-
-          Empty State에서는 hasMorePosts가 false이므로
-          버튼이 렌더링되지 않습니다.
-        */}
 
         {hasMorePosts && (
 
