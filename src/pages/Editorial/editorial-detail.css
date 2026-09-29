@@ -446,3 +446,27 @@ body,
     font-size: 11px;
   }
 }
+  /* 에디토리얼 상세 좌우 여백 64px 통일 */
+.editorial-detail {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 72px 64px 100px;
+}
+
+@media (max-width: 1023px) {
+  .editorial-detail {
+    width: 100%;
+    max-width: none;
+    padding: 72px 64px 90px;
+  }
+}
+
+@media (max-width: 640px) {
+  .editorial-detail {
+    width: 100%;
+    max-width: none;
+    padding: 72px 64px 70px;
+  }
+}

@@ -517,3 +517,32 @@
     row-gap: 26px;
   }
 }
+/* ========================================
+   SHOP 좌우 여백 64px 통일
+======================================== */
+
+.shop-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-right: 64px;
+  padding-left: 64px;
+}
+
+/* 기존 반응형 좌우 여백 덮어쓰기 */
+@media (max-width: 1023px) {
+  .shop-inner {
+    width: 100%;
+    padding-right: 64px;
+    padding-left: 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .shop-inner {
+    width: 100%;
+    padding-right: 64px;
+    padding-left: 64px;
+  }
+}

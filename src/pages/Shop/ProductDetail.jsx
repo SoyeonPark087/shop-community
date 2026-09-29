@@ -26,7 +26,10 @@ function ProductDetail() {
     return (
       <main className="product-detail product-detail--empty">
         <h1>상품을 찾을 수 없습니다.</h1>
-        <a href="/shop">Shop으로 돌아가기</a>
+
+        <a href="/shop">
+          Shop으로 돌아가기
+        </a>
       </main>
     )
   }
@@ -36,10 +39,34 @@ function ProductDetail() {
     galleryImages[0] ||
     ''
 
+  const hasMultipleImages = galleryImages.length > 1
+
+  const handlePreviousImage = () => {
+    if (!hasMultipleImages) return
+
+    setSelectedImageIndex((currentIndex) =>
+      currentIndex === 0
+        ? galleryImages.length - 1
+        : currentIndex - 1
+    )
+  }
+
+  const handleNextImage = () => {
+    if (!hasMultipleImages) return
+
+    setSelectedImageIndex((currentIndex) =>
+      currentIndex === galleryImages.length - 1
+        ? 0
+        : currentIndex + 1
+    )
+  }
+
   return (
     <main className="product-detail">
+      {/* 상품 경로 */}
       <nav className="product-detail__breadcrumb">
         <a href="/shop">Shop</a>
+
         <span>/</span>
         <span>{product.category}</span>
         <span>/</span>
@@ -49,35 +76,68 @@ function ProductDetail() {
       <section className="product-detail__main">
         {/* 왼쪽 전체 사진 영역 */}
         <div className="product-detail__gallery">
-          {/* 왼쪽 세로 썸네일 */}
-          <div className="product-detail__thumbnails">
-            {galleryImages.map((image, index) => (
+          {/* 썸네일 영역 */}
+          <div className="product-detail__thumbnail-slider">
+            {/* 모바일 이전 화살표 */}
+            {hasMultipleImages && (
               <button
                 type="button"
-                key={`${image}-${index}`}
-                className={
-                  selectedImageIndex === index
-                    ? 'product-detail__thumbnail product-detail__thumbnail--active'
-                    : 'product-detail__thumbnail'
-                }
-                onClick={() =>
-                  setSelectedImageIndex(index)
-                }
-                aria-label={`${product.name} 이미지 ${
-                  index + 1
-                } 보기`}
-                aria-pressed={
-                  selectedImageIndex === index
-                }
+                className="
+                  product-detail__gallery-arrow
+                  product-detail__gallery-arrow--left
+                "
+                onClick={handlePreviousImage}
+                aria-label="이전 상품 이미지"
               >
-                <img
-                  src={image}
-                  alt={`${product.name} 썸네일 ${
-                    index + 1
-                  }`}
-                />
+                ‹
               </button>
-            ))}
+            )}
+
+            {/* 썸네일 목록 */}
+            <div className="product-detail__thumbnails">
+              {galleryImages.map((image, index) => (
+                <button
+                  type="button"
+                  key={`${image}-${index}`}
+                  className={
+                    selectedImageIndex === index
+                      ? 'product-detail__thumbnail product-detail__thumbnail--active'
+                      : 'product-detail__thumbnail'
+                  }
+                  onClick={() =>
+                    setSelectedImageIndex(index)
+                  }
+                  aria-label={`${product.name} 이미지 ${
+                    index + 1
+                  } 보기`}
+                  aria-pressed={
+                    selectedImageIndex === index
+                  }
+                >
+                  <img
+                    src={image}
+                    alt={`${product.name} 썸네일 ${
+                      index + 1
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* 모바일 다음 화살표 */}
+            {hasMultipleImages && (
+              <button
+                type="button"
+                className="
+                  product-detail__gallery-arrow
+                  product-detail__gallery-arrow--right
+                "
+                onClick={handleNextImage}
+                aria-label="다음 상품 이미지"
+              >
+                ›
+              </button>
+            )}
           </div>
 
           {/* 대표 이미지 */}
@@ -90,7 +150,7 @@ function ProductDetail() {
             </div>
           )}
 
-          {/* 아래 상세 이미지 */}
+          {/* 상세 이미지 */}
           {product.detailImages?.length > 0 && (
             <div className="product-detail__contents">
               {product.detailImages.map(
@@ -108,7 +168,7 @@ function ProductDetail() {
           )}
         </div>
 
-        {/* 오른쪽 상품 정보 */}
+        {/* 상품 정보 */}
         <div className="product-detail__information">
           <h1>{product.name}</h1>
 
@@ -116,23 +176,29 @@ function ProductDetail() {
             ₩ {Number(product.price).toLocaleString()}
           </p>
 
+          {/* 색상 */}
           <div className="product-detail__colors">
             <p>Color</p>
             <span>{product.color}</span>
           </div>
 
+          {/* 사이즈 */}
           <div className="product-detail__option">
             <p>Size</p>
 
             <div className="product-detail__sizes">
               {['S', 'M', 'L'].map((size) => (
-                <button type="button" key={size}>
+                <button
+                  type="button"
+                  key={size}
+                >
                   {size}
                 </button>
               ))}
             </div>
           </div>
 
+          {/* 장바구니 */}
           <button
             type="button"
             className="product-detail__cart"
@@ -140,6 +206,7 @@ function ProductDetail() {
             Add to Cart
           </button>
 
+          {/* 상품 설명 */}
           <div className="product-detail__description">
             {product.description && (
               <p>{product.description}</p>

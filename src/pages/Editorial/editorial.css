@@ -751,3 +751,55 @@
     font-size: 36px;
   }
 }
+/* 에디토리얼 콘텐츠를 Shop처럼 화면 가득 사용 */
+.editorial-main {
+  width: calc(100% - 40px);
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.editorial-hero,
+.editorial-grid {
+  width: 100%;
+  max-width: none;
+}
+
+/* 태블릿 */
+@media (max-width: 1023px) {
+  .editorial-main {
+    width: calc(100% - 40px);
+  }
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+  .editorial-main {
+    width: calc(100% - 32px);
+  }
+}
+/* 에디토리얼 좌우 여백 64px 통일 */
+.editorial-main {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-right: 64px;
+  padding-left: 64px;
+}
+
+@media (max-width: 1023px) {
+  .editorial-main {
+    width: 100%;
+    padding-right: 64px;
+    padding-left: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .editorial-main {
+    width: 100%;
+    padding-right: 64px;
+    padding-left: 64px;
+  }
+}

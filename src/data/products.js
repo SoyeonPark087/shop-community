@@ -106,6 +106,7 @@ export const products = [
     '/images/shop/product03-sub05.png',
     '/images/shop/product03-sub06.png',
     '/images/shop/product03-sub07.png',
+    '/images/shop/product03-sub08.png',
   ],
 
   // 페이지 아래쪽에 순서대로 표시되는 상세 사진: 총 8장
