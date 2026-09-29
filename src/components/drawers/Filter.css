@@ -1,0 +1,377 @@
+/* =========================
+   Layout
+========================= */
+
+.filter-content {
+  min-height:
+    calc(
+      100dvh
+      - 56px
+      - 24px
+      - 56px
+      - 40px
+    );
+
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-content__main {
+  width: 100%;
+}
+
+
+/* =========================
+   Section
+========================= */
+
+.filter-section {
+  padding-bottom: 32px;
+
+  border-bottom:
+    1px solid
+    rgba(40, 40, 40, 0.14);
+}
+
+.filter-section + .filter-section {
+  padding-top: 28px;
+}
+
+.filter-section h3 {
+  margin:
+    0
+    0
+    18px;
+
+  color: #282828;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+
+/* =========================
+   Color
+========================= */
+
+.filter-colors {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 24px);
+
+  gap: 14px 18px;
+}
+
+.filter-color {
+  position: relative;
+
+  width: 24px;
+  height: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.filter-color span {
+  display: block;
+
+  width: 24px;
+  height: 24px;
+
+  border:
+    1px solid
+    rgba(40, 40, 40, 0.12);
+
+  border-radius: 50%;
+}
+
+.filter-color--selected::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border: 1px solid #315744;
+  border-radius: 50%;
+}
+
+
+/* =========================
+   Size
+========================= */
+
+.filter-sizes {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.filter-size {
+  display: flex;
+  align-items: center;
+
+  width: fit-content;
+
+  gap: 10px;
+
+  color: #55514b;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.filter-size input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+}
+
+.filter-size__checkbox {
+  position: relative;
+
+  width: 14px;
+  height: 14px;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid
+    #aaa7a1;
+}
+
+.filter-size input:checked
+  + .filter-size__checkbox {
+  border-color: #315744;
+  background: #315744;
+}
+
+.filter-size input:checked
+  + .filter-size__checkbox::after {
+  content: "";
+
+  position: absolute;
+
+  top: 1px;
+  left: 4px;
+
+  width: 4px;
+  height: 8px;
+
+  border-right:
+    1px solid #fff;
+
+  border-bottom:
+    1px solid #fff;
+
+  transform: rotate(45deg);
+}
+
+
+/* =========================
+   Price
+========================= */
+
+.filter-section--price {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.filter-price {
+  width: 100%;
+}
+
+.filter-price__slider {
+  position: relative;
+
+  width: 100%;
+  height: 18px;
+}
+
+.filter-price__track,
+.filter-price__active {
+  position: absolute;
+
+  top: 8px;
+
+  height: 1px;
+}
+
+.filter-price__track {
+  left: 0;
+
+  width: 100%;
+
+  background:
+    rgba(40, 40, 40, 0.22);
+}
+
+.filter-price__active {
+  background: #315744;
+}
+
+.filter-price input {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 18px;
+
+  margin: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: transparent;
+
+  pointer-events: none;
+}
+
+.filter-price
+input::-webkit-slider-runnable-track {
+  height: 1px;
+
+  background: transparent;
+}
+
+.filter-price
+input::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+
+  margin-top: -5.5px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #315744;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+}
+
+.filter-price
+input::-moz-range-track {
+  height: 1px;
+
+  background: transparent;
+}
+
+.filter-price
+input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #315744;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+}
+
+.filter-price__labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 7px;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+}
+
+
+/* =========================
+   Actions
+========================= */
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-top: auto;
+
+  padding-top: 48px;
+}
+
+.filter-actions button {
+  width: 100%;
+  height: 40px;
+
+  padding: 0;
+
+  border-radius: 0;
+
+  font: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.filter-actions__reset {
+  border:
+    1px solid
+    rgba(40, 40, 40, 0.18);
+
+  color: #315744;
+  background: transparent;
+}
+
+.filter-actions__apply {
+  border:
+    1px solid
+    #315744;
+
+  color: #fff;
+  background: #315744;
+}
+
+.filter-actions__apply:hover {
+  background: #294a3a;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .filter-content {
+    min-height:
+      calc(
+        100dvh
+        - 40px
+        - 24px
+        - 40px
+        - 32px
+      );
+  }
+}
