@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import CommunityGrid from '../components/community/CommunityGrid.jsx'
+import CommunityFilter from '../components/community/CommunityFilter.jsx'
 
 import {
   communityMainTags,
@@ -13,8 +14,8 @@ import './Community.css'
 /*
   ==========================================
   MOODAY COMMUNITY MAIN
-  Community Main v0.2
-  Visual Feedback - STEP 2
+  Community Main v0.2.2
+  STEP 4 — OPTIONAL ADVANCED FILTER
   ==========================================
 
   Desktop : 1280px 이상
@@ -28,37 +29,84 @@ import './Community.css'
 
   Load more 클릭 시 3개 추가
 
-  기존 기능 GROUP:
-  GROUP 1
-  - community.js에 createdAt 추가
-  - community.js에 popularityScore 추가
 
-  GROUP 2
+  STEP 1
+  - Card별 likes 추가
+  - Card별 postType / scene 추가
+  - Detail Like Single Source 연결
+  - Card별 Comment Count 연결
+
+
+  STEP 2
   - Latest 실제 정렬
-  - Popular 실제 정렬
-  - 정렬 상태 UI 연결
-  - 기존 Load more와 정렬 기능 연계
+  - Popular을 likes 기준으로 전환
+  - 기존 popularityScore 제거
 
-  GROUP 3
-  - 게시글이 하나도 없을 때 Empty State 표시
-  - Empty State에서는 Grid / Load more 숨김
-  - Empty State에서는 태그 / Filter 영역 숨김
-  - Empty State 내부 Write CTA 제공
 
-  Visual Feedback STEP 1
-  - Page Background #FAFAF8
-  - Surface hierarchy 정리
-  - Neutral / Border / Sage Color Token 정리
+  STEP 3
+  - Main Tag 실제 필터 구현
+  - selectedTag 상태 추가
+  - Tag → Sort → Slice 구조 적용
+  - Tag 변경 시 Load More 초기화
+  - Tag UI span → button
+  - Tag 순서 자연스럽게 재배치
 
-  Visual Feedback STEP 2
-  - 기존 문자형 Filter 아이콘 제거
-  - Figma 기준 filter.svg 실제 SVG asset 적용
-  - Filter Text ↔ Icon 중앙 정렬
+
+  STEP 4
+  - 우측 Filter 실제 기능 구현
+  - CommunityFilter.jsx 분리
+  - Post Type / Scene
+  - Draft / Applied State 분리
+  - Reset / Apply
+  - Filter Active 상태
+  - Advanced Filter 적용 시 Load More 초기화
+  - Community Empty / Filter No Results 분리
+
+
+  STEP 4 RESET UX 보정
+  - 일반 Option 선택은 Draft만 변경
+  - Apply를 눌러야 실제 Filter 반영
+  - Reset은 예외적으로 즉시 실행
+  - Reset 시 Post Type / Scene → All
+  - Reset 시 Load More 초기화
+  - Reset 시 Main Tag는 유지
+  - Reset 후 Popover는 열린 상태 유지
+
 
   중요:
-  - 기존 정렬 / Load More / Empty State 로직은 유지합니다.
-  - Typography / 전체 Spacing 정리는 아직 진행하지 않습니다.
-  - Header / Footer / Router는 수정하지 않습니다.
+
+  Filter는 Optional Module로 설계합니다.
+
+  기본 Main 구조:
+
+  communityPosts
+  → Main Tag
+  → Advanced Filter
+  → Latest / Popular
+  → Responsive Slice
+  → Grid
+
+
+  향후 Advanced Filter를 폐기하는 경우:
+
+  communityPosts
+  → Main Tag
+  → Latest / Popular
+  → Responsive Slice
+  → Grid
+
+  로 다시 연결할 수 있어야 합니다.
+
+  따라서:
+
+  - Tag
+  - Sort
+  - Load More
+  - Grid
+
+  로직을 CommunityFilter 내부에 넣지 않습니다.
+
+  Header / Footer / Router는 수정하지 않습니다.
 */
 
 
@@ -92,13 +140,6 @@ const LOAD_MORE_COUNT = 3
    02. SORT SETTINGS
 ===================================== */
 
-/*
-  Community Main에서 사용하는 정렬 모드.
-
-  문자열을 코드 곳곳에 직접 반복하지 않고
-  한 곳에서 관리합니다.
-*/
-
 const SORT_MODE = {
   latest: 'latest',
   popular: 'popular',
@@ -106,18 +147,16 @@ const SORT_MODE = {
 
 
 /*
-  게시글 배열을 정렬하는 함수.
+  게시글 배열 정렬.
 
-  중요:
-  Array.prototype.sort()는 원본 배열 자체를
-  변경할 수 있기 때문에
-  반드시 [...posts]로 복사한 뒤 정렬합니다.
+  원본 배열을 변경하지 않도록
+  반드시 복사 후 sort합니다.
 
   Latest:
   → createdAt 최신순
 
   Popular:
-  → popularityScore 높은 순
+  → likes 높은 순
 */
 
 function getSortedPosts(posts, sortMode) {
@@ -125,26 +164,15 @@ function getSortedPosts(posts, sortMode) {
   const copiedPosts = [...posts]
 
 
-  /*
-    Popular 정렬
-  */
-
   if (sortMode === SORT_MODE.popular) {
 
     return copiedPosts.sort(
       (a, b) =>
-        b.popularityScore - a.popularityScore
+        b.likes - a.likes
     )
 
   }
 
-
-  /*
-    Latest 정렬.
-
-    예상하지 못한 sortMode가 들어와도
-    Latest를 기본 정렬 방식으로 사용합니다.
-  */
 
   return copiedPosts.sort(
     (a, b) =>
@@ -159,19 +187,10 @@ function getSortedPosts(posts, sortMode) {
    03. DEVICE DETECTION
 ===================================== */
 
-/*
-  현재 브라우저 너비를 기준으로
-  Desktop / Tablet / Mobile을 구분합니다.
-
-  중요:
-  아래 기준은 Community.css의
-  media query와 반드시 일치해야 합니다.
-*/
-
 function getDeviceType() {
 
   /*
-    브라우저가 없는 환경에서는
+    SSR 등 브라우저가 없는 환경에서는
     Desktop을 기본값으로 사용합니다.
   */
 
@@ -218,10 +237,12 @@ function getDeviceType() {
 
 export default function Community() {
 
-  /*
-    현재 정렬 방식.
+  /* =================================
+     SORT STATE
+  ================================= */
 
-    최초 진입 시 Latest가 기본값입니다.
+  /*
+    최초 진입은 Latest.
   */
 
   const [sortMode, setSortMode] = useState(
@@ -229,10 +250,53 @@ export default function Community() {
   )
 
 
+  /* =================================
+     MAIN TAG STATE
+  ================================= */
+
   /*
-    현재 디바이스 유형과
-    Load more로 추가 표시한 게시글 수를
-    함께 관리합니다.
+    STEP 3.
+
+    Main 상단 Tag Filter.
+
+    기본:
+    All
+  */
+
+  const [selectedTag, setSelectedTag] = useState('All')
+
+
+  /* =================================
+     ADVANCED FILTER STATE
+  ================================= */
+
+  /*
+    STEP 4.
+
+    실제 Grid에 적용된 Filter 값입니다.
+
+    CommunityFilter 내부 Draft State와
+    구분합니다.
+
+    초기값:
+    Post Type = All
+    Scene     = All
+  */
+
+  const [appliedPostType, setAppliedPostType] =
+    useState('all')
+
+  const [appliedScene, setAppliedScene] =
+    useState('all')
+
+
+  /* =================================
+     DISPLAY STATE
+  ================================= */
+
+  /*
+    현재 Device와
+    Load More 추가 노출 수를 함께 관리합니다.
   */
 
   const [displayState, setDisplayState] = useState(() => ({
@@ -251,18 +315,12 @@ export default function Community() {
 
       const nextDevice = getDeviceType()
 
+
       setDisplayState((previous) => {
 
         /*
-          같은 디바이스 구간 안에서
-          브라우저 크기만 변경된 경우에는
-          기존 Load more 상태를 유지합니다.
-
-          예:
-          800px → 1100px
-
-          둘 다 Tablet이므로
-          extraCount를 유지합니다.
+          같은 Device 구간에서는
+          Load More 상태를 유지합니다.
         */
 
         if (previous.device === nextDevice) {
@@ -271,17 +329,17 @@ export default function Community() {
 
 
         /*
-          breakpoint를 넘어
-          디바이스 구간 자체가 변경된 경우에는
-          새로운 디바이스의 초기 게시글 수로
-          돌아갑니다.
+          Breakpoint를 넘어 Device가 변경되면
+          해당 Device의 초기 개수로 복귀합니다.
 
-          예:
-          1279px → 1280px
-          Tablet → Desktop
+          유지:
+          - selectedTag
+          - sortMode
+          - appliedPostType
+          - appliedScene
 
-          정렬 방식(sortMode)은 유지하고
-          Load more 상태만 초기화합니다.
+          초기화:
+          - extraCount
         */
 
         return {
@@ -294,25 +352,14 @@ export default function Community() {
     }
 
 
-    /*
-      최초 렌더링 이후
-      실제 화면 크기를 한 번 더 확인합니다.
-    */
-
     handleResize()
 
 
-    /*
-      브라우저 크기 변경 감지
-    */
+    window.addEventListener(
+      'resize',
+      handleResize
+    )
 
-    window.addEventListener('resize', handleResize)
-
-
-    /*
-      컴포넌트가 제거될 때
-      이벤트 리스너를 정리합니다.
-    */
 
     return () => {
       window.removeEventListener(
@@ -325,62 +372,138 @@ export default function Community() {
 
 
   /* =================================
-     06. SORTED POSTS
+     06. MAIN TAG FILTER
   ================================= */
 
   /*
-    반드시:
+    STEP 3.
 
-    전체 communityPosts
-    → 정렬
-    → visibleCount만큼 slice
+    Main 카드의 대표 tags를 기준으로
+    첫 번째 Filtering Layer를 만듭니다.
 
-    순서로 처리합니다.
+    All:
+    → 전체 게시글
 
-    Tablet / Mobile에서 먼저 slice한 뒤
-    정렬하면 아직 Load more되지 않은 게시글이
-    정렬 대상에서 빠질 수 있기 때문입니다.
+    특정 Tag:
+    → 해당 Tag를 가진 게시글
+  */
+
+  const tagFilteredPosts =
+    selectedTag === 'All'
+      ? communityPosts
+      : communityPosts.filter(
+          (post) =>
+            post.tags.includes(selectedTag)
+        )
+
+
+  /* =================================
+     07. ADVANCED FILTER
+  ================================= */
+
+  /*
+    STEP 4.
+
+    Tag 결과에 Post Type / Scene 조건을
+    추가로 AND 결합합니다.
+
+    예:
+
+    #knitwear
+    AND
+    Outfit
+    AND
+    Indoor
+
+
+    중요한 구조:
+
+    tagFilteredPosts
+    ↓
+    advancedFilteredPosts
+
+    Advanced Filter가 별도 Layer이므로
+    향후 해당 기능을 폐기해도
+    tagFilteredPosts를 바로 Sort에 연결할 수 있습니다.
+  */
+
+  const advancedFilteredPosts =
+    tagFilteredPosts.filter((post) => {
+
+      const matchesPostType =
+        appliedPostType === 'all'
+        || post.postType === appliedPostType
+
+
+      const matchesScene =
+        appliedScene === 'all'
+        || post.scene === appliedScene
+
+
+      return (
+        matchesPostType
+        && matchesScene
+      )
+
+    })
+
+
+  /* =================================
+     08. SORT
+  ================================= */
+
+  /*
+    최종 처리 순서:
+
+    Community Posts
+    → Tag
+    → Advanced Filter
+    → Sort
+    → Slice
   */
 
   const sortedPosts = getSortedPosts(
-    communityPosts,
+    advancedFilteredPosts,
     sortMode
   )
 
 
   /* =================================
-     07. EMPTY STATE
+     09. EMPTY / NO RESULTS
   ================================= */
 
   /*
-    전체 정렬 결과에 게시글이 하나도 없으면
-    Community가 비어 있는 것으로 판단합니다.
+    진짜 Community Empty.
 
-    별도의 React state를 만들지 않고
-    현재 데이터에서 계산되는 파생값으로 둡니다.
+    원본 게시글 자체가 하나도 없는 상태입니다.
   */
 
-  const isEmpty = sortedPosts.length === 0
+  const isEmpty =
+    communityPosts.length === 0
+
+
+  /*
+    Filter No Results.
+
+    원본 Community에는 게시글이 있지만
+    현재 Tag + Advanced Filter 조합에
+    일치하는 게시글이 없는 상태입니다.
+
+    Community Empty와 반드시 구분합니다.
+  */
+
+  const hasNoResults =
+    !isEmpty
+    && advancedFilteredPosts.length === 0
 
 
   /* =================================
-     08. VISIBLE POST COUNT
+     10. VISIBLE COUNT
   ================================= */
-
-  /*
-    현재 디바이스의 초기 게시글 개수.
-  */
 
   const initialCount =
     INITIAL_VISIBLE_COUNT[displayState.device]
 
-
-  /*
-    초기 개수 + Load more로 펼친 개수.
-
-    전체 정렬 결과보다 커지지 않도록
-    Math.min()으로 제한합니다.
-  */
 
   const visibleCount = Math.min(
     initialCount + displayState.extraCount,
@@ -388,35 +511,136 @@ export default function Community() {
   )
 
 
-  /*
-    정렬된 게시글 중
-    현재 화면에서 실제로 보여줄 게시글만 선택합니다.
-  */
-
   const visiblePosts = sortedPosts.slice(
     0,
     visibleCount
   )
 
 
-  /*
-    아직 표시하지 않은 게시글이 존재할 때만
-    Load more 버튼을 표시합니다.
-  */
-
   const hasMorePosts =
     visibleCount < sortedPosts.length
 
 
   /* =================================
-     09. SORT HANDLERS
+     11. TAG HANDLER
+  ================================= */
+
+  function handleTagSelect(tag) {
+
+    setSelectedTag(tag)
+
+
+    /*
+      Tag는 게시글 집합 자체를 변경하므로
+      Load More 상태를 초기화합니다.
+    */
+
+    setDisplayState((previous) => ({
+
+      ...previous,
+
+      extraCount: 0,
+
+    }))
+
+  }
+
+
+  /* =================================
+     12. ADVANCED FILTER HANDLERS
   ================================= */
 
   /*
-    Latest 선택.
+    CommunityFilter의 Apply를 통해
+    실제 Filter 값을 전달받습니다.
 
-    정렬을 변경하더라도
-    현재 Load more 노출 개수는 초기화하지 않습니다.
+    일반 Option 선택은 CommunityFilter 내부의
+    Draft에서만 이루어지며,
+    Apply를 눌러야 이 함수가 호출됩니다.
+  */
+
+  function handleAdvancedFilterApply({
+    postType,
+    scene,
+  }) {
+
+    setAppliedPostType(postType)
+    setAppliedScene(scene)
+
+
+    /*
+      Advanced Filter도 게시글 집합 자체를
+      변경하므로 Load More를 초기화합니다.
+    */
+
+    setDisplayState((previous) => ({
+
+      ...previous,
+
+      extraCount: 0,
+
+    }))
+
+  }
+
+
+  /*
+    STEP 4 Reset UX 보정.
+
+    Reset은 Apply와 달리
+    즉시 실제 Advanced Filter를 초기화합니다.
+
+    초기화:
+    - Post Type → All
+    - Scene → All
+    - Load More → 초기 상태
+
+    유지:
+    - Main Tag
+    - Latest / Popular
+    - Device
+
+
+    예:
+
+    #knitwear
+    + Outfit
+    + Indoor
+
+    Reset
+
+    ↓
+
+    #knitwear
+    + All
+    + All
+  */
+
+  function handleAdvancedFilterReset() {
+
+    setAppliedPostType('all')
+    setAppliedScene('all')
+
+
+    setDisplayState((previous) => ({
+
+      ...previous,
+
+      extraCount: 0,
+
+    }))
+
+  }
+
+
+  /* =================================
+     13. SORT HANDLERS
+  ================================= */
+
+  /*
+    Sort는 게시글 집합을 바꾸는 것이 아니라
+    현재 결과의 순서만 변경하므로
+    Load More 상태를 유지합니다.
   */
 
   function handleLatestSort() {
@@ -424,35 +648,16 @@ export default function Community() {
   }
 
 
-  /*
-    Popular 선택.
-
-    현재는 GROUP 1에서 추가한
-    popularityScore 기준입니다.
-
-    추후 Community Detail의 실제 초기 likes가
-    공통 데이터로 정리되면 likes 기준으로
-    교체할 수 있습니다.
-  */
-
   function handlePopularSort() {
     setSortMode(SORT_MODE.popular)
   }
 
 
   /* =================================
-     10. LOAD MORE
+     14. LOAD MORE
   ================================= */
 
   function handleLoadMore() {
-
-    /*
-      현재 정렬 결과 아래에
-      게시글을 3개씩 추가합니다.
-
-      Latest / Popular 모두
-      동일한 Load more 규칙을 사용합니다.
-    */
 
     setDisplayState((previous) => ({
 
@@ -467,7 +672,7 @@ export default function Community() {
 
 
   /* =================================
-     11. PAGE RENDER
+     15. PAGE RENDER
   ================================= */
 
   return (
@@ -481,13 +686,8 @@ export default function Community() {
 
 
         {/* =================================
-            12. LATEST / POPULAR / WRITE
+            16. LATEST / POPULAR / WRITE
         ================================= */}
-
-        {/*
-          게시글이 없는 경우에도
-          페이지의 기본 Navigation 구조는 유지합니다.
-        */}
 
         <div className="mooday-community__top">
 
@@ -495,10 +695,6 @@ export default function Community() {
             className="mooday-community__tabs"
             aria-label="게시글 정렬"
           >
-
-            {/*
-              Latest
-            */}
 
             <button
               type="button"
@@ -517,10 +713,6 @@ export default function Community() {
               Latest
             </button>
 
-
-            {/*
-              Popular
-            */}
 
             <button
               type="button"
@@ -542,10 +734,6 @@ export default function Community() {
           </div>
 
 
-          {/*
-            기존 상단 Write 진입 링크.
-          */}
-
           <a
             className="mooday-community__write"
             href="/community/write"
@@ -563,93 +751,78 @@ export default function Community() {
 
 
         {/* =================================
-            13. HASHTAGS / FILTER
+            17. MAIN TAG / ADVANCED FILTER
         ================================= */}
 
         {/*
-          게시글이 존재할 때만
-          Tag / Filter 영역을 표시합니다.
+          Community 자체가 Empty일 때만
+          Tool 영역을 숨깁니다.
+
+          No Results 상태에서는 사용자가
+          조건을 다시 변경할 수 있어야 하므로
+          Tag / Filter 영역을 계속 표시합니다.
         */}
 
         {!isEmpty && (
 
           <div className="mooday-community__tools">
 
+            {/* =================================
+                MAIN TAG FILTER
+            ================================= */}
+
             <div
               className="mooday-community__chips"
-              aria-label="커뮤니티 해시태그"
+              aria-label="커뮤니티 해시태그 필터"
             >
 
-              {communityMainTags.map((tag) => (
+              {communityMainTags.map((tag) => {
 
-                <span
-                  key={tag}
+                const isSelected =
+                  selectedTag === tag
 
-                  className={
-                    `mooday-community__chip${
-                      tag === 'All'
-                        ? ' mooday-community__chip--selected'
-                        : ''
-                    }`
-                  }
-                >
 
-                  {tag === 'All' ? tag : `#${tag}`}
+                return (
 
-                </span>
+                  <button
+                    key={tag}
+                    type="button"
+                    className={
+                      `mooday-community__chip${
+                        isSelected
+                          ? ' mooday-community__chip--selected'
+                          : ''
+                      }`
+                    }
+                    onClick={() =>
+                      handleTagSelect(tag)
+                    }
+                    aria-pressed={isSelected}
+                  >
 
-              ))}
+                    {tag === 'All'
+                      ? tag
+                      : `#${tag}`}
+
+                  </button>
+
+                )
+
+              })}
 
             </div>
 
 
             {/* =================================
-                FILTER
-                Visual Feedback STEP 2
+                OPTIONAL ADVANCED FILTER
             ================================= */}
 
-            {/*
-              현재 Filter 기능 자체는 아직 미구현입니다.
-
-              STEP 2에서는 기존 문자형 아이콘:
-
-              ☷
-
-              을 제거하고,
-              Figma에서 전달받은 실제 SVG asset을
-              그대로 사용합니다.
-
-              실제 파일 위치:
-
-              public/images/community/icons/filter.svg
-
-              따라서 JSX에서는 public 폴더를 제외한:
-
-              /images/community/icons/filter.svg
-
-              경로를 사용합니다.
-
-              SVG는 Filter 텍스트의 의미를
-              보조하는 장식 아이콘이므로
-              alt="" + aria-hidden="true"로
-              중복 읽기를 방지합니다.
-            */}
-
-            <span
-              className="mooday-community__filter"
-              aria-label="필터 기능은 추후 구현"
-            >
-
-              Filter
-
-              <img
-                className="mooday-community__filter-icon"
-                src="/images/community/icons/filter.svg"
-                alt=""
-                aria-hidden="true"
-              />
-
-            </span>
+            <CommunityFilter
+              appliedPostType={appliedPostType}
+              appliedScene={appliedScene}
+              onApply={handleAdvancedFilterApply}
+              onReset={handleAdvancedFilterReset}
+            />
 
           </div>
 
@@ -657,13 +830,13 @@ export default function Community() {
 
 
         {/* =================================
-            14. GRID / EMPTY STATE
+            18. GRID / EMPTY / NO RESULTS
         ================================= */}
 
         {isEmpty ? (
 
           /* -----------------------------
-             EMPTY STATE
+             COMMUNITY EMPTY
           ----------------------------- */
 
           <section
@@ -697,6 +870,40 @@ export default function Community() {
 
           </section>
 
+        ) : hasNoResults ? (
+
+          /* -----------------------------
+             FILTER NO RESULTS
+          ----------------------------- */
+
+          <section
+            className="mooday-community-no-results"
+            aria-labelledby="community-no-results-title"
+          >
+
+            <h2
+              className="mooday-community-no-results__title"
+              id="community-no-results-title"
+            >
+              조건에 맞는 게시글이 없습니다.
+            </h2>
+
+
+            <p className="mooday-community-no-results__description">
+              필터 조건을 다시 선택해 주세요.
+            </p>
+
+
+            <button
+              type="button"
+              className="mooday-community-no-results__reset"
+              onClick={handleAdvancedFilterReset}
+            >
+              Reset filters
+            </button>
+
+          </section>
+
         ) : (
 
           /* -----------------------------
@@ -709,7 +916,7 @@ export default function Community() {
 
 
         {/* =================================
-            15. LOAD MORE BUTTON
+            19. LOAD MORE
         ================================= */}
 
         {hasMorePosts && (

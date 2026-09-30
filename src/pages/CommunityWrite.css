@@ -1112,21 +1112,144 @@
 
 
 /* =====================================
+   STEP 4 — CUSTOM SEARCH CLEAR BUTTON
+===================================== */
+
+/*
+  type="search"의 브라우저 기본 X 버튼을 숨기고
+  mooday 전용 Clear Button을 사용합니다.
+
+  브라우저 기본 Clear UI는
+  Chrome / Edge / Safari 등에서 표현이 달라
+  Hover / Focus / Cursor를 일관되게 제어하기 어렵습니다.
+*/
+
+.mooday-write-product-search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mooday-write-product-search__clear {
+  display: inline-flex;
+
+  flex: 0 0 32px;
+
+  width: 32px;
+  height: 32px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #777;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.mooday-write-product-search__clear:hover {
+  background: #eef2ef;
+  color: #405a4d;
+}
+
+.mooday-write-product-search__clear:focus-visible {
+  outline:
+    2px solid #466858;
+
+  outline-offset: 2px;
+}
+
+
+/* =====================================
    PRODUCT RESULT LIST
 ===================================== */
 
 .mooday-write-products__results {
+  /*
+    STEP 3 — PRODUCT RESULT SCROLL
+
+    전체 상품 데이터는 모두 렌더링하되
+    최초 화면에는 상품 4개 높이까지만 노출합니다.
+
+    현재 Product Result 1개 높이:
+    - Product Image 46px
+    - Vertical Padding 12px + 12px
+    = 70px
+
+    4 Rows:
+    - 70px × 4
+    - Gap 12px × 3
+    = 316px
+  */
+
   display: flex;
 
   flex-direction: column;
 
   gap: 12px;
 
+  max-height: 316px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  overscroll-behavior-y: contain;
+
   /*
-    STEP 3
+    Scrollbar와 상품 카드 사이의
+    시각적 여유를 확보합니다.
+  */
+  padding-right: 6px;
+
+  /*
+    Firefox
+  */
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #aeb3af
+    #eeeeec;
+
+  /*
     Search → Results는 Small 관계.
   */
   margin-top: 16px;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.mooday-write-products__results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mooday-write-products__results::-webkit-scrollbar-track {
+  background: #eeeeec;
+
+  border-radius: 999px;
+}
+
+.mooday-write-products__results::-webkit-scrollbar-thumb {
+  background: #aeb3af;
+
+  border-radius: 999px;
+}
+
+.mooday-write-products__results::-webkit-scrollbar-thumb:hover {
+  background: #8f9691;
 }
 
 .mooday-write-product-result {
@@ -1728,6 +1851,19 @@ and
 
     scroll-margin-top: 84px;
   }
+
+  /*
+    STEP 3 — MOBILE PRODUCT RESULT SCROLL
+
+    별도 Drag JavaScript 없이
+    브라우저의 기본 Touch Scroll을 사용합니다.
+  */
+
+  .mooday-write-products__results {
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
 
   .mooday-write-products__selected {
     grid-template-columns:

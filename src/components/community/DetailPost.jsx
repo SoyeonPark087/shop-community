@@ -4,7 +4,7 @@ import { useState } from 'react'
 /*
   =========================================
   DETAIL POST
-  GROUP 2 — LIKE INTERACTION
+  GROUP 2 — LIKE INTERACTION / STEP 1 DATA LINK
   =========================================
 
   기존 유지:
@@ -14,18 +14,23 @@ import { useState } from 'react'
   - 게시글 본문
   - 더보기 UI
 
-  GROUP 2 추가:
+  Like 기능:
 
   1. 좋아요 버튼 클릭 가능
   2. 좋아요 On / Off 토글
   3. Like Count +1 / -1
   4. aria-pressed 접근성 상태
 
+  STEP 1 변경:
+
+  - Like 초기값을 communityDetail.js의 detail.likes가 아니라
+    community.js의 post.likes에서 가져옵니다.
+
   중요:
 
   - 실제 DB 저장은 하지 않습니다.
   - localStorage / sessionStorage에도 저장하지 않습니다.
-  - 새로고침 시 communityDetail.js의 초기 Like 값으로 돌아갑니다.
+  - 새로고침 시 community.js의 post.likes 초기값으로 돌아갑니다.
   - CommunityDetail.jsx에서 key={currentPostId}를 사용하므로
     다른 게시글로 이동하면 해당 게시글의 Like 상태로 초기화됩니다.
 */
@@ -62,15 +67,20 @@ export default function DetailPost({
   /*
     화면에 출력할 Like Count입니다.
 
-    초기값은 현재 게시글의 detail.likes를 그대로 사용합니다.
+    STEP 1부터 Like의 단일 기준값은:
+    community.js → post.likes
 
-    혹시 데이터가 숫자가 아닌 경우를 대비해
+    Main Popular과 Detail 초기 Like가
+    같은 값을 사용할 수 있도록
+    Detail 데이터의 중복 likes 값을 제거합니다.
+
+    데이터가 숫자가 아닌 경우를 대비해
     0으로 안전하게 대체합니다.
   */
 
   const [likeCount, setLikeCount] = useState(
-    Number.isFinite(detail.likes)
-      ? detail.likes
+    Number.isFinite(post.likes)
+      ? post.likes
       : 0
   )
 
@@ -84,11 +94,10 @@ export default function DetailPost({
     /*
       현재 좋아요가 On 상태라면:
 
-      true -> false
+      true → false
       count - 1
 
-      Math.max()를 이용해
-      혹시라도 0 아래로 내려가지 않게 방어합니다.
+      Math.max()로 0 아래로 내려가지 않게 방어합니다.
     */
 
     if (isLiked) {
@@ -107,7 +116,7 @@ export default function DetailPost({
     /*
       현재 좋아요가 Off 상태라면:
 
-      false -> true
+      false → true
       count + 1
     */
 
@@ -166,16 +175,10 @@ export default function DetailPost({
         <div className="mooday-detail-post__actions">
 
           {/* =================================
-              GROUP 2 — LIKE BUTTON
+              LIKE BUTTON
           ================================= */}
 
           {/*
-            기존 v0.1에서는 단순 span으로
-            Like 아이콘과 숫자만 표시했습니다.
-
-            GROUP 2에서는 실제 클릭 기능이 있으므로
-            semantic button으로 변경합니다.
-
             Off:
             ♡ + 초기 Like 수
 
@@ -198,14 +201,6 @@ export default function DetailPost({
                 : `좋아요 추가, 현재 ${likeCount}개`
             }
           >
-
-            {/*
-              별도 아이콘 라이브러리를 설치하지 않고
-              기존 문자 하트를 그대로 확장합니다.
-
-              Off -> ♡
-              On  -> ♥
-            */}
 
             <span aria-hidden="true">
               {isLiked ? '♥' : '♡'}

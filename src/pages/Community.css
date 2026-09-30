@@ -1,8 +1,9 @@
 /*
   ==========================================
   MOODAY COMMUNITY MAIN CSS
-  Community Main v0.2
-  Visual Feedback - STEP 4
+  Community Main v0.2.2
+  Visual Feedback STEP 4
+  + Functional STEP 3 / STEP 4
   ==========================================
 
   Desktop : 1280px 이상
@@ -16,12 +17,32 @@
 
   Image Ratio   : 4:5
 
+
   기존 기능:
   - Latest / Popular 실제 정렬
+  - likes 기준 Popular
   - Load More 연계
   - Empty State
   - Desktop / Tablet / Mobile 대응
   - Card items + chevron 중앙 정렬 보정
+
+
+  Functional STEP 3:
+  - Main Tag 실제 Button
+  - Main Tag Filter
+  - Tag Hover / Focus
+  - 선택 Tag 상태
+
+
+  Functional STEP 4:
+  - Filter Trigger Button
+  - Filter Active 상태
+  - Filter Popover
+  - Post Type / Scene
+  - Reset / Apply
+  - Filter No Results
+  - Optional Filter Module
+
 
   Visual Feedback STEP 1:
   - Page Background #FAFAF8
@@ -30,6 +51,7 @@
   - Border / Placeholder Token 정리
   - Sage Active / Hover / Focus 역할 분리
 
+
   Visual Feedback STEP 2:
   - 문자형 Filter 아이콘 제거
   - 실제 Figma filter.svg 사용
@@ -37,73 +59,60 @@
   - Text ↔ Icon gap 8px
   - Responsive SVG 크기 지정
 
+
   Visual Feedback STEP 3:
   - 공통 Typography Scale 기준으로 글자 크기 정리
   - Card Author / Meta / Excerpt / Empty State 등
     역할 기반 Typography hierarchy 정리
   - 비표준 중간값 최소화
 
+
   Visual Feedback STEP 3.1:
-  - 실제 Desktop 화면 검토 후
-    상단 UI의 과도한 시각적 강조를 조정
   - Latest / Popular:
     Desktop 20
     Tablet 18
     Mobile 16
+
   - Write:
     Desktop 16
     Tablet 14
     Mobile 14
+
   - Tag:
     Desktop 13
     Tablet 12
     Mobile 12
+
   - Filter:
     Desktop 13
     Tablet 12
     Mobile 12
 
-  Visual Feedback STEP 4:
-  - 공통 Spacing Token을 기준으로
-    Page / Control / Grid / Card / Empty State Rhythm 정리
-  - 기존 임의 중간값을 관계 기반으로 정돈
-  - Desktop Page Top / Bottom:
-    94 / 155 → 80 / 120
-  - Top Navigation → Tools:
-    43 → 40
-  - Latest ↔ Popular:
-    34 → 32
-  - Tools → Grid:
-    42 → 40
-  - Chip Gap:
-    14 → 12
-  - Desktop Grid Row Gap:
-    26 → 24
-  - Card Body Padding:
-    18 22 17 → 16 20 16
-  - Card Meta ↔ Tags / Tags ↔ Excerpt:
-    8px rhythm
-  - Grid → Load More:
-    76 → 60
-  - Responsive Spacing도 Token 단계로 정리
 
-  중요:
-  - STEP 1 / STEP 2 / STEP 3 / STEP 3.1 변경은 유지합니다.
-  - 이번 STEP은 Spacing / Padding / Gap만 정리합니다.
-  - Typography / Color / Icon / 기능 로직은 수정하지 않습니다.
-  - Header / Footer / Router는 수정하지 않습니다.
+  Visual Feedback STEP 4:
+  - 공통 Spacing Token 기준 Rhythm 정리
+
+  Desktop Page:
+  Top 80
+  Bottom 120
+
+  Tablet:
+  Top 60
+  Bottom 80
+
+  Mobile:
+  Top 40
+  Bottom 60
+
 
   Spacing 기본 Token:
   8 / 12 / 16 / 20 / 24 / 32 / 40 / 60 / 80 / 120
 
-  Major Section Rhythm 참고:
-  Desktop 120
-  Tablet 80
-  Mobile 60
 
-  단:
-  위 Major Rhythm을 모든 컴포넌트에 기계적으로
-  적용하지 않습니다.
+  중요:
+  - 기존 Visual Feedback 디자인을 유지합니다.
+  - Filter 기능 추가 때문에 Main Grid 규격을 변경하지 않습니다.
+  - Header / Footer / Router는 수정하지 않습니다.
 */
 
 
@@ -114,27 +123,8 @@
 .mooday-community {
   width: 100%;
 
-  /*
-    STEP 4 변경.
-
-    기존:
-    Desktop Top    94px
-    Desktop Bottom 155px
-
-    변경:
-    Top    80px
-    Bottom 120px
-
-    Header 이후 첫 콘텐츠 진입은 80px,
-    Community Content ↔ Footer 관계는
-    Major Section Rhythm인 120px을 사용합니다.
-  */
   padding: 80px 0 120px;
 
-  /*
-    STEP 1 확정:
-    mooday 공통 Page Background.
-  */
   background: #fafaf8;
 
   color: #282828;
@@ -163,8 +153,6 @@
   Desktop 1920px 기준
 
   1920 - 64 - 64 = 1792px
-
-  기존 확정 Grid를 유지합니다.
 */
 
 .mooday-community__inner {
@@ -186,23 +174,6 @@
 }
 
 
-/*
-  STEP 4 변경.
-
-  Latest / Popular / Write
-  ↓
-  Tag / Filter
-
-  관계를 Large Content Block보다 작은
-  40px Rhythm으로 정리합니다.
-
-  기존:
-  43px
-
-  변경:
-  40px
-*/
-
 .mooday-community__top {
   margin-bottom: 40px;
 }
@@ -212,33 +183,12 @@
    Latest / Popular
 ===================================== */
 
-/*
-  STEP 4 변경.
-
-  동일 기능군 안의 Navigation 간격.
-
-  기존:
-  34px
-
-  변경:
-  32px
-
-  Medium Component Token 사용.
-*/
-
 .mooday-community__tabs {
   display: flex;
   gap: 32px;
   align-items: center;
 }
 
-
-/*
-  STEP 3.1 확정.
-
-  Latest / Popular은 페이지 제목이 아니라
-  정렬 Navigation 역할입니다.
-*/
 
 .mooday-community__tab {
   margin: 0;
@@ -257,9 +207,7 @@
 }
 
 
-/*
-  현재 활성 정렬.
-*/
+/* 현재 활성 정렬 */
 
 .mooday-community__tab--active {
   position: relative;
@@ -269,13 +217,7 @@
 }
 
 
-/*
-  활성 표시 underline.
-
-  bottom -10px은 underline의
-  Typography-specific positioning 값이므로
-  STEP 4에서 기계적으로 변경하지 않습니다.
-*/
+/* 활성 표시 underline */
 
 .mooday-community__tab--active::after {
   content: '';
@@ -317,13 +259,6 @@
    Write
 ===================================== */
 
-/*
-  STEP 3.1 확정.
-
-  Write:
-  Desktop 16px / 600
-*/
-
 .mooday-community__write {
   color: #686863;
 
@@ -335,19 +270,11 @@
 }
 
 
-/*
-  기존 화살표와 Text 사이 10px은
-  현재 시각 균형을 위한 component-specific 값입니다.
-
-  이번 STEP에서는 수정하지 않습니다.
-
-  필요 시 마지막 Micro QA에서만 재검토합니다.
-*/
-
 .mooday-community__write span {
   margin-left: 10px;
   font-weight: 400;
 }
+
 
 .mooday-community__write:hover,
 .mooday-community__write:focus-visible {
@@ -356,45 +283,23 @@
 
 
 /* =====================================
-   03. TAG / FILTER
+   03. TAG / FILTER TOOLS
 ===================================== */
-
-/*
-  STEP 4.
-
-  Tag Group과 Filter는 같은 Tool Block입니다.
-
-  Desktop에서는 가로 배치이므로
-  둘 사이의 내부 관계는 기존 24px을 유지합니다.
-
-  Tag / Filter Block
-  ↓
-  Community Grid
-
-  기존:
-  42px
-
-  변경:
-  40px
-*/
 
 .mooday-community__tools {
   gap: 24px;
   margin-bottom: 40px;
+
+  /*
+    Filter Popover는 별도 Filter Wrapper를 기준으로
+    위치를 잡으므로 Tools 자체는 기존 Layout을 유지합니다.
+  */
 }
 
 
-/*
-  STEP 4 변경.
-
-  Chip ↔ Chip은 Micro UI 관계입니다.
-
-  기존:
-  14px
-
-  변경:
-  12px
-*/
+/* =====================================
+   MAIN TAG CHIPS
+===================================== */
 
 .mooday-community__chips {
   display: flex;
@@ -404,19 +309,6 @@
   min-width: 0;
 }
 
-
-/*
-  기본 Tag Chip.
-
-  Page와 구분되는 White Surface 유지.
-
-  STEP 3.1:
-  Desktop Label 13px.
-
-  min-height / 내부 padding은
-  Chip 자체의 Touch / Visual Shape에 영향을 주므로
-  이번 Rhythm 정리에서는 유지합니다.
-*/
 
 .mooday-community__chip {
   display: inline-flex;
@@ -431,58 +323,131 @@
 
   background: #ffffff;
 
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: inherit;
+
+  font-family: inherit;
   font-size: 13px;
   font-weight: 500;
+  line-height: inherit;
 
   white-space: nowrap;
+
+  cursor: pointer;
 }
 
 
-/* All 선택 상태 */
+/* 선택되지 않은 Main Tag Hover */
+
+.mooday-community__chip:not(
+  .mooday-community__chip--selected
+):hover {
+  border-color: #486858;
+  color: #486858;
+}
+
+
+/* Main Tag Keyboard Focus */
+
+.mooday-community__chip:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 3px;
+}
+
+
+/* 현재 선택된 Tag */
 
 .mooday-community__chip--selected {
   background: #344f41;
   border-color: #344f41;
+
   color: #ffffff;
 }
 
 
 /* =====================================
-   Filter
-   Visual Feedback STEP 2 + STEP 3.1
+   04. ADVANCED FILTER WRAPPER
+===================================== */
+
+/*
+  Filter Button + Popover 전용 Wrapper.
+
+  Popover는 이 Wrapper를 기준으로
+  오른쪽 아래에 배치합니다.
+
+  향후 Filter 기능 폐기 시
+  이 영역을 독립적으로 제거할 수 있습니다.
+*/
+
+.mooday-community-filter {
+  position: relative;
+
+  flex: 0 0 auto;
+}
+
+
+/* =====================================
+   FILTER TRIGGER
 ===================================== */
 
 .mooday-community__filter {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 
-  /*
-    STEP 2 확정.
-
-    Filter Text ↔ Icon은 Micro 관계로
-    8px Token을 사용합니다.
-  */
   gap: 8px;
 
-  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
 
-  font-size: 13px;
-  font-weight: 500;
+  border: 0;
+  background: transparent;
+
+  appearance: none;
+  -webkit-appearance: none;
+
   color: #686863;
 
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+
   white-space: nowrap;
+
+  cursor: pointer;
+}
+
+
+/* Filter Hover */
+
+.mooday-community__filter:hover {
+  color: #486858;
 }
 
 
 /*
-  STEP 2 확정.
-
-  Desktop Filter Icon:
-  18 × 18px
-
-  이 값은 Spacing이 아니라 Icon Size이므로
-  STEP 4에서 변경하지 않습니다.
+  실제 Post Type 또는 Scene Filter가
+  적용되어 있는 상태.
 */
+
+.mooday-community__filter--active {
+  color: #344f41;
+  font-weight: 600;
+}
+
+
+/* Filter Keyboard Focus */
+
+.mooday-community__filter:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 4px;
+}
+
+
+/* Filter SVG */
 
 .mooday-community__filter-icon {
   display: block;
@@ -495,22 +460,224 @@
 
 
 /* =====================================
-   04. COMMUNITY GRID
+   05. FILTER POPOVER
 ===================================== */
 
-/*
-  Desktop Grid.
+.mooday-community-filter__popover {
+  position: absolute;
 
-  Column Gap:
-  24px 유지
+  top: calc(100% + 12px);
+  right: 0;
 
-  Row Gap:
-  기존 26px
-  → 24px
+  z-index: 20;
 
-  Card ↔ Card 관계를
-  Medium Component 24px으로 통일합니다.
-*/
+  width: 320px;
+
+  padding: 20px;
+
+  border: 1px solid #deded8;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 12px 32px
+    rgba(40, 40, 40, 0.09);
+}
+
+
+/* =====================================
+   FILTER GROUP
+===================================== */
+
+.mooday-community-filter__group + 
+.mooday-community-filter__group {
+  margin-top: 24px;
+}
+
+
+/* Group Title */
+
+.mooday-community-filter__title {
+  margin: 0 0 12px;
+
+  color: #686863;
+
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.02em;
+}
+
+
+/* Options Container */
+
+.mooday-community-filter__options {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+
+/* =====================================
+   FILTER OPTION
+===================================== */
+
+.mooday-community-filter__option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 34px;
+
+  padding: 5px 12px;
+
+  border: 1px solid #deded8;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #686863;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  cursor: pointer;
+}
+
+
+/* Filter Option Hover */
+
+.mooday-community-filter__option:not(
+  .mooday-community-filter__option--selected
+):hover {
+  border-color: #486858;
+  color: #486858;
+}
+
+
+/* Selected Option */
+
+.mooday-community-filter__option--selected {
+  border-color: #344f41;
+  background: #344f41;
+
+  color: #ffffff;
+}
+
+
+/* Filter Option Keyboard Focus */
+
+.mooday-community-filter__option:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 2px;
+}
+
+
+/* =====================================
+   RESET / APPLY
+===================================== */
+
+.mooday-community-filter__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 24px;
+  padding-top: 16px;
+
+  border-top: 1px solid #eeeeea;
+}
+
+
+/* Reset */
+
+.mooday-community-filter__reset {
+  min-height: 36px;
+
+  padding: 0 4px;
+
+  border: 0;
+  background: transparent;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #96968f;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.mooday-community-filter__reset:hover {
+  color: #486858;
+}
+
+
+.mooday-community-filter__reset:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 3px;
+}
+
+
+/* Apply */
+
+.mooday-community-filter__apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 92px;
+  height: 38px;
+
+  padding: 0 20px;
+
+  border: 1px solid #344f41;
+  border-radius: 19px;
+
+  background: #344f41;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.mooday-community-filter__apply:hover {
+  background: #486858;
+  border-color: #486858;
+}
+
+
+.mooday-community-filter__apply:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 3px;
+}
+
+
+/* =====================================
+   06. COMMUNITY GRID
+===================================== */
 
 .mooday-community-grid {
   display: grid;
@@ -524,20 +691,15 @@
 
 
 /* =====================================
-   05. COMMUNITY CARD
+   07. COMMUNITY CARD
 ===================================== */
 
 .mooday-community-card {
   min-width: 0;
 
-  /*
-    STEP 1 확정.
-
-    Image-first Content Block이므로
-    Page Background를 그대로 따릅니다.
-  */
   background: transparent;
 }
+
 
 .mooday-community-card__link {
   display: block;
@@ -557,7 +719,7 @@
 
 
 /* =====================================
-   06. COMMUNITY IMAGE
+   08. COMMUNITY IMAGE
 ===================================== */
 
 .mooday-community-card__image {
@@ -581,27 +743,12 @@
 
 
 /* =====================================
-   07. CARD INFORMATION
+   09. CARD INFORMATION
 ===================================== */
-
-/*
-  STEP 4 변경.
-
-  기존:
-  padding: 18px 22px 17px;
-
-  변경:
-  padding: 16px 20px 16px;
-
-  Image ↔ Card Text 관계는
-  Small Component 16px,
-
-  좌우 내부 여백은
-  20px Token을 사용합니다.
-*/
 
 .mooday-community-card__body {
   min-height: 130px;
+
   padding: 16px 20px 16px;
 }
 
@@ -615,24 +762,9 @@
   justify-content: space-between;
   align-items: baseline;
 
-  /*
-    기존 10px은 두 요소가 충돌할 때 필요한
-    최소 내부 안전 간격 역할이므로
-    이번 STEP에서는 유지합니다.
-
-    카드 내 실제 시각 간격의 핵심값은 아니며,
-    이후 필요 시 12px로 정리할 수 있습니다.
-  */
   gap: 10px;
 }
 
-
-/*
-  STEP 3 확정.
-
-  Author:
-  14px / 600
-*/
 
 .mooday-community-card__author {
   font-size: 14px;
@@ -642,15 +774,7 @@
 }
 
 
-/*
-  items + chevron
-
-  이전 피드백에서 적용한
-  중앙 정렬 보정을 그대로 유지합니다.
-
-  상품 수:
-  Caption 12px
-*/
+/* items + chevron */
 
 .mooday-community-card__items {
   display: inline-flex;
@@ -664,21 +788,15 @@
   white-space: nowrap;
 }
 
+
 .mooday-community-card__items span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  /*
-    기존 셰브론 크기는 그대로 유지합니다.
-  */
   font-size: 23px;
   line-height: 1;
 
-  /*
-    5px은 chevron의 optical spacing 성격이므로
-    공식 Spacing Token으로 강제 치환하지 않습니다.
-  */
   margin-left: 5px;
 }
 
@@ -686,24 +804,6 @@
 /* =====================================
    해시태그
 ===================================== */
-
-/*
-  STEP 4 변경.
-
-  기존:
-  margin: 9px 0 6px;
-
-  변경:
-  margin: 8px 0 8px;
-
-  Meta → Tags
-  8px
-
-  Tags → Excerpt
-  8px
-
-  Micro Rhythm을 동일하게 맞춥니다.
-*/
 
 .mooday-community-card__tags {
   margin: 8px 0 8px;
@@ -718,13 +818,6 @@
 /* =====================================
    게시글 미리보기
 ===================================== */
-
-/*
-  STEP 3 확정.
-
-  Excerpt:
-  Body S 14px
-*/
 
 .mooday-community-card__excerpt {
   margin: 0;
@@ -744,15 +837,8 @@
 
 
 /* =====================================
-   08. EMPTY STATE
+   10. COMMUNITY EMPTY STATE
 ===================================== */
-
-/*
-  STEP 4.
-
-  Desktop Empty State outer padding은
-  이미 80 / 24 Token 조합이므로 유지합니다.
-*/
 
 .mooday-community-empty {
   display: flex;
@@ -769,10 +855,6 @@
 }
 
 
-/* =====================================
-   Empty State 제목
-===================================== */
-
 .mooday-community-empty__title {
   margin: 0;
 
@@ -784,25 +866,6 @@
 }
 
 
-/* =====================================
-   Empty State 보조 설명
-===================================== */
-
-/*
-  STEP 4 변경.
-
-  Title → Description
-
-  기존:
-  14px
-
-  변경:
-  12px
-
-  서로 직접 연결된 Text Block이므로
-  Micro / Small 중 12px을 사용합니다.
-*/
-
 .mooday-community-empty__description {
   margin: 12px 0 0;
 
@@ -812,24 +875,6 @@
   line-height: 1.6;
 }
 
-
-/* =====================================
-   Empty State 내부 Write CTA
-===================================== */
-
-/*
-  STEP 4 변경.
-
-  Description → Action
-
-  기존:
-  30px
-
-  변경:
-  24px
-
-  Medium Component 관계로 정리합니다.
-*/
 
 .mooday-community-empty__write {
   display: inline-flex;
@@ -845,6 +890,7 @@
   text-decoration: none;
 }
 
+
 .mooday-community-empty__write span {
   margin-left: 8px;
 
@@ -852,14 +898,10 @@
 }
 
 
-/* Mouse Hover */
-
 .mooday-community-empty__write:hover {
   color: #486858;
 }
 
-
-/* Keyboard Focus */
 
 .mooday-community-empty__write:focus-visible {
   outline: 2px solid #344f41;
@@ -868,25 +910,97 @@
 
 
 /* =====================================
-   09. LOAD MORE
+   11. FILTER NO RESULTS
 ===================================== */
 
 /*
-  STEP 4 변경.
+  Community 자체 Empty와 구분되는 상태.
 
-  Community Grid
-  ↓
-  Load More
-
-  기존:
-  76px
-
-  변경:
-  60px
-
-  Content Block ↔ Action Block 관계로
-  Large 60px Token을 사용합니다.
+  원본 게시글은 존재하지만
+  현재 Tag + Filter 조합에
+  일치하는 게시글이 없는 경우 사용합니다.
 */
+
+.mooday-community-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 320px;
+
+  padding: 60px 24px;
+
+  text-align: center;
+}
+
+
+.mooday-community-no-results__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+
+.mooday-community-no-results__description {
+  margin: 12px 0 0;
+
+  color: #96968f;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.mooday-community-no-results__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 132px;
+  height: 40px;
+
+  margin-top: 24px;
+  padding: 0 20px;
+
+  border: 1px solid #deded8;
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #686863;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.mooday-community-no-results__reset:hover {
+  border-color: #486858;
+  color: #486858;
+}
+
+
+.mooday-community-no-results__reset:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 4px;
+}
+
+
+/* =====================================
+   12. LOAD MORE
+===================================== */
 
 .mooday-community__load-wrap {
   display: flex;
@@ -895,14 +1009,6 @@
   margin-top: 60px;
 }
 
-
-/*
-  Load More는 독립 Interactive Surface이므로
-  White Surface를 유지합니다.
-
-  Button 자체 크기는 이번 STEP에서
-  변경하지 않습니다.
-*/
 
 .mooday-community__load {
   display: inline-flex;
@@ -929,15 +1035,11 @@
 }
 
 
-/* Hover */
-
 .mooday-community__load:hover {
   border-color: #486858;
   color: #486858;
 }
 
-
-/* Keyboard Focus */
 
 .mooday-community__load:focus-visible {
   outline: 2px solid #344f41;
@@ -946,15 +1048,13 @@
 
 
 /* =====================================
-   10. TABLET
+   13. TABLET
    768px ~ 1279px
 ===================================== */
 
 @media (min-width: 768px) and (max-width: 1279px) {
 
-  /*
-    Tablet 좌우 여백 40px.
-  */
+  /* Tablet 좌우 여백 40px */
 
   .mooday-community__inner {
     width: calc(100% - 80px);
@@ -964,21 +1064,6 @@
   /* =================================
      Page Rhythm
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    기존:
-    Top    65px
-    Bottom 110px
-
-    변경:
-    Top    60px
-    Bottom 80px
-
-    Tablet의 Page Bottom은
-    Major Rhythm 80px을 사용합니다.
-  */
 
   .mooday-community {
     padding-top: 60px;
@@ -990,52 +1075,20 @@
      Latest / Popular / Write
   ================================= */
 
-  /*
-    STEP 4 변경.
-
-    Top Navigation → Tools
-
-    기존:
-    35px
-
-    변경:
-    32px
-  */
-
   .mooday-community__top {
     margin-bottom: 32px;
   }
 
-
-  /*
-    STEP 4 변경.
-
-    Latest ↔ Popular
-
-    기존:
-    26px
-
-    변경:
-    24px
-  */
 
   .mooday-community__tabs {
     gap: 24px;
   }
 
 
-  /*
-    STEP 3.1 확정.
-  */
-
   .mooday-community__tab {
     font-size: 18px;
   }
 
-
-  /*
-    STEP 3.1 확정.
-  */
 
   .mooday-community__write {
     font-size: 14px;
@@ -1043,22 +1096,8 @@
 
 
   /* =================================
-     태그 영역
+     Tag / Filter Tools
   ================================= */
-
-  /*
-    Tablet에서는 Tool 영역이 세로 배치됩니다.
-
-    STEP 4 변경.
-
-    Tags ↔ Filter:
-    기존 18px
-    → 16px
-
-    Tools ↔ Grid:
-    기존 30px
-    → 32px
-  */
 
   .mooday-community__tools {
     flex-direction: column;
@@ -1069,29 +1108,10 @@
   }
 
 
-  /*
-    STEP 4 변경.
-
-    Chip ↔ Chip
-
-    기존:
-    10px
-
-    변경:
-    8px
-  */
-
   .mooday-community__chips {
     gap: 8px;
   }
 
-
-  /*
-    Tablet Tag.
-
-    내부 Chip Shape 관련 값은
-    이번 STEP에서 유지합니다.
-  */
 
   .mooday-community__chip {
     min-height: 32px;
@@ -1102,19 +1122,18 @@
 
 
   /* =================================
-     Filter - Tablet
+     Advanced Filter - Tablet
   ================================= */
 
-  .mooday-community__filter {
+  .mooday-community-filter {
     align-self: flex-end;
-
-    font-size: 12px;
   }
 
 
-  /*
-    STEP 2 확정.
-  */
+  .mooday-community__filter {
+    font-size: 12px;
+  }
+
 
   .mooday-community__filter-icon {
     width: 16px;
@@ -1122,20 +1141,21 @@
   }
 
 
+  .mooday-community-filter__popover {
+    width: 310px;
+
+    padding: 20px;
+  }
+
+
+  .mooday-community-filter__option {
+    font-size: 12px;
+  }
+
+
   /* =================================
-     Tablet 카드 2열
+     Tablet Grid 2열
   ================================= */
-
-  /*
-    Tablet Grid Gap은 현재 값이
-    이미 관계상 적절한 Token에 가까우므로 유지합니다.
-
-    Column:
-    20px
-
-    Row:
-    24px
-  */
 
   .mooday-community-grid {
     grid-template-columns:
@@ -1147,64 +1167,30 @@
 
 
   /* =================================
-     카드 정보
+     Card
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    기존:
-    15px 15px 16px
-
-    변경:
-    16px
-
-    Card 내부 Padding을
-    Small Component Token 하나로 통일합니다.
-  */
 
   .mooday-community-card__body {
     min-height: 115px;
+
     padding: 16px;
   }
 
-
-  /*
-    STEP 3 확정.
-  */
 
   .mooday-community-card__author {
     font-size: 14px;
   }
 
 
-  /*
-    Items:
-    Caption 12px 유지.
-  */
-
   .mooday-community-card__items {
     font-size: 12px;
   }
 
 
-  /*
-    Card Tags:
-    Caption 12px 유지.
-
-    margin은 Desktop의
-    8 / 8 rhythm을 그대로 상속합니다.
-  */
-
   .mooday-community-card__tags {
     font-size: 12px;
   }
 
-
-  /*
-    Excerpt:
-    Body S 14px 유지.
-  */
 
   .mooday-community-card__excerpt {
     font-size: 14px;
@@ -1212,24 +1198,12 @@
 
 
   /* =================================
-     Empty State
+     Empty
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    기존:
-    padding: 65px 20px;
-
-    변경:
-    padding: 60px 20px;
-
-    Tablet Large Block Rhythm을
-    60px으로 정리합니다.
-  */
 
   .mooday-community-empty {
     min-height: 360px;
+
     padding: 60px 20px;
   }
 
@@ -1239,49 +1213,37 @@
   }
 
 
-  /*
-    Title → Description 12px은
-    Desktop 규칙을 상속합니다.
-  */
-
   .mooday-community-empty__description {
     font-size: 14px;
   }
 
 
-  /*
-    STEP 4 변경.
-
-    Description → Write
-
-    기존 Tablet:
-    26px
-
-    변경:
-    24px
-  */
-
   .mooday-community-empty__write {
     margin-top: 24px;
+
     font-size: 16px;
   }
 
 
   /* =================================
-     Load more
+     No Results
   ================================= */
 
-  /*
-    STEP 4 변경.
+  .mooday-community-no-results {
+    min-height: 280px;
 
-    Grid → Load More
+    padding: 48px 20px;
+  }
 
-    기존:
-    55px
 
-    변경:
-    40px
-  */
+  .mooday-community-no-results__title {
+    font-size: 18px;
+  }
+
+
+  /* =================================
+     Load More
+  ================================= */
 
   .mooday-community__load-wrap {
     margin-top: 40px;
@@ -1299,15 +1261,13 @@
 
 
 /* =====================================
-   11. MOBILE
+   14. MOBILE
    767px 이하
 ===================================== */
 
 @media (max-width: 767px) {
 
-  /*
-    Mobile 좌우 여백 20px.
-  */
+  /* Mobile 좌우 여백 20px */
 
   .mooday-community__inner {
     width: calc(100% - 40px);
@@ -1317,19 +1277,6 @@
   /* =================================
      Page Rhythm
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    Top은 기존 40px 유지.
-
-    Bottom:
-    기존 80px
-    → 60px
-
-    Mobile Footer 이전 Major Rhythm으로
-    60px을 사용합니다.
-  */
 
   .mooday-community {
     padding-top: 40px;
@@ -1341,75 +1288,34 @@
      Latest / Popular / Write
   ================================= */
 
-  /*
-    STEP 4 변경.
-
-    Navigation → Tools
-
-    기존:
-    30px
-
-    변경:
-    24px
-  */
-
   .mooday-community__top {
     gap: 12px;
+
     margin-bottom: 24px;
   }
 
 
-  /*
-    STEP 4 변경.
-
-    Latest ↔ Popular
-
-    기존:
-    18px
-
-    변경:
-    16px
-  */
-
   .mooday-community__tabs {
     gap: 16px;
+
     min-width: 0;
   }
 
-
-  /*
-    STEP 3.1 확정.
-  */
 
   .mooday-community__tab {
     font-size: 16px;
   }
 
 
-  /*
-    Underline offset은
-    component-specific positioning이므로 유지합니다.
-  */
-
   .mooday-community__tab--active::after {
     bottom: -7px;
   }
 
 
-  /*
-    STEP 3.1 확정.
-  */
-
   .mooday-community__write {
     font-size: 14px;
   }
 
-
-  /*
-    Mobile arrow 간격 4px은
-    좁은 화면에서의 optical value이므로
-    이번 STEP에서는 유지합니다.
-  */
 
   .mooday-community__write span {
     margin-left: 4px;
@@ -1417,34 +1323,18 @@
 
 
   /* =================================
-     해시태그
+     Tag / Filter Tools
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    Tags ↔ Filter:
-    기존 15px
-    → 16px
-
-    Tools ↔ Grid:
-    기존 26px
-    → 24px
-  */
 
   .mooday-community__tools {
     flex-direction: column;
     align-items: stretch;
 
     gap: 16px;
+
     margin-bottom: 24px;
   }
 
-
-  /*
-    Mobile Chip Gap 8px은
-    이미 Micro Token이므로 유지합니다.
-  */
 
   .mooday-community__chips {
     display: flex;
@@ -1454,15 +1344,9 @@
   }
 
 
-  /*
-    Mobile Tag.
-
-    Chip Shape 관련 padding은
-    이번 STEP에서 유지합니다.
-  */
-
   .mooday-community__chip {
     min-height: 30px;
+
     padding: 5px 12px;
 
     font-size: 12px;
@@ -1471,19 +1355,18 @@
 
 
   /* =================================
-     Filter - Mobile
+     Advanced Filter - Mobile
   ================================= */
 
-  .mooday-community__filter {
+  .mooday-community-filter {
     align-self: flex-end;
-
-    font-size: 12px;
   }
 
 
-  /*
-    STEP 2 확정.
-  */
+  .mooday-community__filter {
+    font-size: 12px;
+  }
+
 
   .mooday-community__filter-icon {
     width: 16px;
@@ -1491,14 +1374,72 @@
   }
 
 
-  /* =================================
-     Mobile 카드 1열
-  ================================= */
-
   /*
-    Mobile Row Gap 20px은
-    Small Component 관계로 적절하므로 유지합니다.
+    화면 폭이 320px처럼 좁아져도
+    Popover가 Viewport 밖으로 나가지 않도록
+    최대 폭을 현재 화면 좌우 20px 안으로 제한합니다.
   */
+
+  .mooday-community-filter__popover {
+    width: min(
+      320px,
+      calc(100vw - 40px)
+    );
+
+    padding: 16px;
+
+    border-radius: 12px;
+  }
+
+
+  .mooday-community-filter__group +
+  .mooday-community-filter__group {
+    margin-top: 20px;
+  }
+
+
+  .mooday-community-filter__title {
+    margin-bottom: 10px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-community-filter__options {
+    gap: 8px;
+  }
+
+
+  .mooday-community-filter__option {
+    min-height: 32px;
+
+    padding: 5px 11px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-community-filter__actions {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+
+  .mooday-community-filter__reset,
+  .mooday-community-filter__apply {
+    font-size: 12px;
+  }
+
+
+  .mooday-community-filter__apply {
+    min-width: 84px;
+    height: 36px;
+  }
+
+
+  /* =================================
+     Mobile Grid 1열
+  ================================= */
 
   .mooday-community-grid {
     grid-template-columns:
@@ -1510,85 +1451,37 @@
 
 
   /* =================================
-     카드 정보
+     Card
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    기존:
-    14px 10px 16px
-
-    변경:
-    12px 8px 16px
-
-    Image ↔ Metadata는 12px,
-    좌우는 8px,
-    다음 Card Block과 연결되는 하단은 16px.
-
-    Mobile의 좁은 카드 폭에서
-    불필요한 좌우 Padding을 줄입니다.
-  */
 
   .mooday-community-card__body {
     min-height: 112px;
+
     padding: 12px 8px 16px;
   }
 
-
-  /*
-    Author:
-    Body S 14px 유지.
-  */
 
   .mooday-community-card__author {
     font-size: 14px;
   }
 
 
-  /*
-    Items:
-    Caption 12px 유지.
-  */
-
   .mooday-community-card__items {
     font-size: 12px;
   }
 
-
-  /*
-    셰브론은 기존 Mobile 크기 18px 유지.
-  */
 
   .mooday-community-card__items span {
     font-size: 18px;
   }
 
 
-  /*
-    STEP 4 변경.
-
-    기존 Mobile에서는 margin-top만 8px로
-    별도 override하고 있었습니다.
-
-    STEP 4부터 Desktop / Tablet과 동일하게:
-
-    Meta → Tags 8px
-    Tags → Excerpt 8px
-
-    rhythm을 사용합니다.
-  */
-
   .mooday-community-card__tags {
     margin: 8px 0 8px;
+
     font-size: 12px;
   }
 
-
-  /*
-    Excerpt:
-    Body S 14px 유지.
-  */
 
   .mooday-community-card__excerpt {
     font-size: 14px;
@@ -1596,27 +1489,8 @@
 
 
   /* =================================
-     Empty State - Mobile
+     Empty State
   ================================= */
-
-  /*
-    STEP 4 변경.
-
-    기존:
-    padding:
-      55px
-      12px
-      65px;
-
-    변경:
-    padding:
-      40px
-      12px
-      60px;
-
-    Mobile Large Block / Major Rhythm에 맞춰
-    40 / 60을 사용합니다.
-  */
 
   .mooday-community-empty {
     min-height: 320px;
@@ -1634,12 +1508,6 @@
   }
 
 
-  /*
-    STEP 4:
-    Title → Description
-    12px 유지.
-  */
-
   .mooday-community-empty__description {
     margin-top: 12px;
 
@@ -1648,17 +1516,12 @@
   }
 
 
-  /*
-    STEP 4:
-    Description → Write
-    24px 유지.
-  */
-
   .mooday-community-empty__write {
     margin-top: 24px;
 
     font-size: 14px;
   }
+
 
   .mooday-community-empty__write span {
     margin-left: 6px;
@@ -1666,22 +1529,42 @@
 
 
   /* =================================
-     Load more
+     Filter No Results
   ================================= */
 
-  /*
-    STEP 4 변경.
+  .mooday-community-no-results {
+    min-height: 240px;
 
-    Grid → Load More
+    padding:
+      40px
+      12px;
+  }
 
-    기존:
-    40px
 
-    변경:
-    32px
+  .mooday-community-no-results__title {
+    font-size: 17px;
+    line-height: 1.45;
+  }
 
-    Mobile에서는 Medium Block 32px을 사용합니다.
-  */
+
+  .mooday-community-no-results__description {
+    font-size: 13px;
+  }
+
+
+  .mooday-community-no-results__reset {
+    min-width: 124px;
+    height: 38px;
+
+    margin-top: 20px;
+
+    font-size: 12px;
+  }
+
+
+  /* =================================
+     Load More
+  ================================= */
 
   .mooday-community__load-wrap {
     margin-top: 32px;

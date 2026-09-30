@@ -8,6 +8,10 @@ import {
   useNavigate,
 } from 'react-router-dom'
 
+import {
+  communityPosts,
+} from '../data/community.js'
+
 import './CommunityWrite.css'
 
 
@@ -102,31 +106,66 @@ const MAX_PRODUCT_COUNT = 5
 const sampleProducts = [
   {
     id: 'write-product-01',
-    name: 'Bouclé Knit Cardigan',
-    price: '₩89,000',
-    image:
-      '/images/community/write/products/boucle-knit-cardigan.jpg',
-  },
-  {
-    id: 'write-product-02',
-    name: 'Soft Hood Zip-up',
-    price: '₩79,000',
-    image:
-      '/images/community/write/products/soft-hood-zipup.jpg',
-  },
-  {
-    id: 'write-product-03',
-    name: 'Wide Nylon Pants',
-    price: '₩89,000',
-    image:
-      '/images/community/write/products/wide-nylon-pants.jpg',
-  },
-  {
-    id: 'write-product-04',
     name: 'Cotton Sleeveless Top',
     price: '₩49,000',
     image:
-      '/images/community/write/products/cotton-sleeveless-top.jpg',
+      '/images/community/products/community01_product01.jpg',
+  },
+  {
+    id: 'write-product-02',
+    name: 'Wide Nylon Pants',
+    price: '₩89,000',
+    image:
+      '/images/community/products/community01_product02.jpg',
+  },
+  {
+    id: 'write-product-03',
+    name: 'Cable Knit Pullover',
+    price: '₩85,000',
+    image:
+      '/images/community/products/community02_product01.jpg',
+  },
+  {
+    id: 'write-product-04',
+    name: 'Loose-fit Cotton Blouson Jacket',
+    price: '₩149,000',
+    image:
+      '/images/community/products/community03_product01.jpg',
+  },
+  {
+    id: 'write-product-05',
+    name: 'Back-Open Hoodie',
+    price: '₩95,000',
+    image:
+      '/images/community/products/community04_product01.jpg',
+  },
+  {
+    id: 'write-product-06',
+    name: 'Bouclé Knit Cardigan',
+    price: '₩89,000',
+    image:
+      '/images/community/products/community05_product01.jpg',
+  },
+  {
+    id: 'write-product-07',
+    name: 'Soft Zip-up Hoodie',
+    price: '₩79,000',
+    image:
+      '/images/community/products/community06_product01.jpg',
+  },
+  {
+    id: 'write-product-08',
+    name: 'Soft Bouclé Cardigan',
+    price: '₩125,000',
+    image:
+      '/images/community/products/community08_product01.jpg',
+  },
+  {
+    id: 'write-product-09',
+    name: 'Back Tie Long Sleeve',
+    price: '₩56,000',
+    image:
+      '/images/community/products/community09_product01.jpg',
   },
 ]
 
@@ -136,17 +175,11 @@ const sampleProducts = [
 ===================================== */
 
 const recommendedTags = [
-  'daily',
-  'minimal',
-  'knit',
-  'outer',
-  'bag',
-  'shoes',
-  'acc',
-  'layered',
-  'homewear',
-  'weekend',
-  'neutral',
+  ...new Set(
+    communityPosts.flatMap(
+      (post) => post.tags
+    )
+  ),
 ]
 
 
@@ -905,6 +938,16 @@ export default function CommunityWrite() {
               )
         )
       : sampleProducts
+
+
+  /* =====================================
+     STEP 4 — CLEAR PRODUCT SEARCH
+  ===================================== */
+
+  const clearProductSearch = () => {
+    setProductQuery('')
+    setProductNotice('')
+  }
 
 
   /* =====================================
@@ -2238,6 +2281,21 @@ export default function CommunityWrite() {
                     setProductNotice('')
                   }}
                 />
+
+
+                {productQuery && (
+                  <button
+                    type="button"
+                    className="mooday-write-product-search__clear"
+                    onClick={
+                      clearProductSearch
+                    }
+                    aria-label="상품 검색어 지우기"
+                    title="검색어 지우기"
+                  >
+                    ×
+                  </button>
+                )}
 
               </div>
 
