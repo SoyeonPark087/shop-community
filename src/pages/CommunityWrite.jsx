@@ -2474,7 +2474,29 @@ export default function CommunityWrite() {
             console에서 구조를 확인합니다.
         ================================= */}
 
-        {lastSubmission && null}
+        {/* =================================
+            GROUP 6 — DEMO SUBMIT NOTICE
+
+            실제 서버 / DB 저장은 하지 않습니다.
+
+            Validation을 통과하고
+            submission 객체 생성까지 완료되면
+            사용자에게 현재 데모 동작 상태를 안내합니다.
+
+            Main / Detail에는 게시글이 추가되지 않으며
+            작성 중인 입력값도 그대로 유지합니다.
+        ================================= */}
+
+        {lastSubmission && (
+          <p
+            className="mooday-write__submit-notice"
+            role="status"
+            aria-live="polite"
+          >
+            게시글 데이터가 준비되었습니다.
+            현재는 데모 모드이며 실제 게시글로 저장되지는 않습니다.
+          </p>
+        )}
 
       </div>
 
