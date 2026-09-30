@@ -19,8 +19,33 @@ function ProductDetail() {
         ? [product.image]
         : []
 
+  /*
+    products.js에 colors 배열이 있으면 해당 데이터를 사용하고,
+    아직 colors가 없는 상품은 기존 color와 colorHex를 사용합니다.
+  */
+  const productColors =
+    product?.colors?.length > 0
+      ? product.colors
+      : [
+          {
+            name: product?.color || 'Default',
+            hex: product?.colorHex || '#dddddd',
+          },
+        ]
+
+  const productSizes =
+    product?.sizes?.length > 0
+      ? product.sizes
+      : ['S', 'M', 'L']
+
   const [selectedImageIndex, setSelectedImageIndex] =
     useState(0)
+
+  const [selectedColorIndex, setSelectedColorIndex] =
+    useState(0)
+
+  const [selectedSize, setSelectedSize] =
+    useState('')
 
   if (!product) {
     return (
@@ -39,34 +64,15 @@ function ProductDetail() {
     galleryImages[0] ||
     ''
 
-  const hasMultipleImages = galleryImages.length > 1
-
-  const handlePreviousImage = () => {
-    if (!hasMultipleImages) return
-
-    setSelectedImageIndex((currentIndex) =>
-      currentIndex === 0
-        ? galleryImages.length - 1
-        : currentIndex - 1
-    )
-  }
-
-  const handleNextImage = () => {
-    if (!hasMultipleImages) return
-
-    setSelectedImageIndex((currentIndex) =>
-      currentIndex === galleryImages.length - 1
-        ? 0
-        : currentIndex + 1
-    )
-  }
+  const selectedColor =
+    productColors[selectedColorIndex] ||
+    productColors[0]
 
   return (
     <main className="product-detail">
-      {/* 상품 경로 */}
+      {/* 경로 */}
       <nav className="product-detail__breadcrumb">
         <a href="/shop">Shop</a>
-
         <span>/</span>
         <span>{product.category}</span>
         <span>/</span>
@@ -74,26 +80,20 @@ function ProductDetail() {
       </nav>
 
       <section className="product-detail__main">
-        {/* 왼쪽 전체 사진 영역 */}
+        {/* 메인사진과 서브사진 */}
         <div className="product-detail__gallery">
-          {/* 썸네일 영역 */}
-          <div className="product-detail__thumbnail-slider">
-            {/* 모바일 이전 화살표 */}
-            {hasMultipleImages && (
-              <button
-                type="button"
-                className="
-                  product-detail__gallery-arrow
-                  product-detail__gallery-arrow--left
-                "
-                onClick={handlePreviousImage}
-                aria-label="이전 상품 이미지"
-              >
-                ‹
-              </button>
-            )}
+          {/* 메인사진 */}
+          {selectedImage && (
+            <div className="product-detail__main-image">
+              <img
+                src={selectedImage}
+                alt={`${product.name} 선택 이미지`}
+              />
+            </div>
+          )}
 
-            {/* 썸네일 목록 */}
+          {/* 서브사진 */}
+          {galleryImages.length > 1 && (
             <div className="product-detail__thumbnails">
               {galleryImages.map((image, index) => (
                 <button
@@ -123,52 +123,10 @@ function ProductDetail() {
                 </button>
               ))}
             </div>
-
-            {/* 모바일 다음 화살표 */}
-            {hasMultipleImages && (
-              <button
-                type="button"
-                className="
-                  product-detail__gallery-arrow
-                  product-detail__gallery-arrow--right
-                "
-                onClick={handleNextImage}
-                aria-label="다음 상품 이미지"
-              >
-                ›
-              </button>
-            )}
-          </div>
-
-          {/* 대표 이미지 */}
-          {selectedImage && (
-            <div className="product-detail__main-image">
-              <img
-                src={selectedImage}
-                alt={`${product.name} 선택 이미지`}
-              />
-            </div>
-          )}
-
-          {/* 상세 이미지 */}
-          {product.detailImages?.length > 0 && (
-            <div className="product-detail__contents">
-              {product.detailImages.map(
-                (image, index) => (
-                  <img
-                    key={`${image}-${index}`}
-                    src={image}
-                    alt={`${product.name} 상세 이미지 ${
-                      index + 1
-                    }`}
-                  />
-                )
-              )}
-            </div>
           )}
         </div>
 
-        {/* 상품 정보 */}
+        {/* 상품정보 */}
         <div className="product-detail__information">
           <h1>{product.name}</h1>
 
@@ -176,21 +134,75 @@ function ProductDetail() {
             ₩ {Number(product.price).toLocaleString()}
           </p>
 
-          {/* 색상 */}
+          {/* 컬러 정보 */}
           <div className="product-detail__colors">
-            <p>Color</p>
-            <span>{product.color}</span>
+            <div className="product-detail__color-heading">
+              <p>Color</p>
+
+              <span>{selectedColor?.name}</span>
+            </div>
+
+            <div
+              className="product-detail__color-options"
+              aria-label="상품 컬러"
+            >
+              {productColors.map((color, index) => (
+                <button
+                  type="button"
+                  key={`${color.name}-${index}`}
+                  className={
+                    selectedColorIndex === index
+                      ? 'product-detail__color-button product-detail__color-button--active'
+                      : 'product-detail__color-button'
+                  }
+                  onClick={() =>
+                    setSelectedColorIndex(index)
+                  }
+                  aria-label={`${color.name} 컬러 선택`}
+                  aria-pressed={
+                    selectedColorIndex === index
+                  }
+                >
+                  <span
+                    className="product-detail__color-swatch"
+                    style={{
+                      backgroundColor: color.hex,
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* 사이즈 */}
+          {/* 사이즈 정보 */}
           <div className="product-detail__option">
-            <p>Size</p>
+            <div className="product-detail__size-heading">
+              <p>Size</p>
+
+              <button
+                type="button"
+                className="product-detail__size-guide"
+              >
+                Size Guide
+              </button>
+            </div>
 
             <div className="product-detail__sizes">
-              {['S', 'M', 'L'].map((size) => (
+              {productSizes.map((size) => (
                 <button
                   type="button"
                   key={size}
+                  className={
+                    selectedSize === size
+                      ? 'is-selected'
+                      : ''
+                  }
+                  onClick={() =>
+                    setSelectedSize(size)
+                  }
+                  aria-pressed={
+                    selectedSize === size
+                  }
                 >
                   {size}
                 </button>
@@ -198,7 +210,7 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* 장바구니 */}
+          {/* 장바구니 버튼 */}
           <button
             type="button"
             className="product-detail__cart"
@@ -206,21 +218,65 @@ function ProductDetail() {
             Add to Cart
           </button>
 
+          {/* 아코디언 메뉴 */}
+          <div className="product-detail__accordions">
+            <button
+              type="button"
+              className="product-detail__accordion"
+            >
+              <span>Product Details</span>
+              <span aria-hidden="true">＋</span>
+            </button>
+
+            <button
+              type="button"
+              className="product-detail__accordion"
+            >
+              <span>Size &amp; Fit</span>
+              <span aria-hidden="true">＋</span>
+            </button>
+
+            <button
+              type="button"
+              className="product-detail__accordion"
+            >
+              <span>Shipping &amp; Returns</span>
+              <span aria-hidden="true">＋</span>
+            </button>
+          </div>
+
           {/* 상품 설명 */}
           <div className="product-detail__description">
             {product.description && (
               <p>{product.description}</p>
             )}
 
-            {product.material && (
-              <ul>
-                <li>{product.material}</li>
-                <li>Relaxed Fit</li>
-                <li>Prewashed</li>
-              </ul>
-            )}
+            <ul>
+              <li>
+                {product.material || '100% Cotton'}
+              </li>
+              <li>Relaxed Fit</li>
+              <li>Prewashed</li>
+            </ul>
           </div>
         </div>
+
+        {/* 상세사진 */}
+        {product.detailImages?.length > 0 && (
+          <div className="product-detail__contents">
+            {product.detailImages.map(
+              (image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  src={image}
+                  alt={`${product.name} 상세 이미지 ${
+                    index + 1
+                  }`}
+                />
+              )
+            )}
+          </div>
+        )}
       </section>
     </main>
   )
