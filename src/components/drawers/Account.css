@@ -176,3 +176,69 @@
   font-weight: 300;
   line-height: 1;
 }
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .login-content__fields input {
+    height: 48px;
+
+    font-size: 12px;
+  }
+
+  .login-content__submit {
+    height: 44px;
+
+    margin-top: 40px;
+
+    font-size: 12px;
+  }
+
+  .login-content__links {
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 22px;
+  }
+
+  .login-content__links-left {
+    gap: 18px;
+  }
+
+  .login-content__links button {
+    font-size: 11px;
+  }
+
+  .login-content__divider {
+    margin-top: 40px;
+  }
+
+  .login-content__social {
+    gap: 18px;
+
+    margin-top: 36px;
+  }
+
+  .login-social {
+    grid-template-columns: 24px 1fr auto;
+  }
+
+  .login-social__logo {
+    width: 18px;
+    height: 18px;
+  }
+
+  .login-social__name {
+    padding-left: 8px;
+
+    font-size: 12px;
+  }
+
+  .login-social__arrow {
+    font-size: 18px;
+  }
+}

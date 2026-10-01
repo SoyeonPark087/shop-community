@@ -125,7 +125,7 @@
 
   column-gap: 12px;
 
-  min-height: 160x;
+  min-height: 160px;
 
   padding:
     20px
@@ -363,4 +363,169 @@
 .cart-actions__selected:disabled {
   opacity: 0.45;
   cursor: default;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .cart-select-all {
+    padding-bottom: 16px;
+  }
+
+  .cart-check {
+    gap: 9px;
+
+    font-size: 11px;
+  }
+
+  .cart-check__box {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cart-check input:checked
+    + .cart-check__box::after {
+    left: 3px;
+    top: 0;
+
+    width: 5px;
+    height: 8px;
+  }
+
+  .cart-remove-selected {
+    font-size: 11px;
+  }
+
+
+  /* 상품 */
+
+  .cart-item {
+    grid-template-columns:
+      14px
+      72px
+      minmax(0, 1fr);
+
+    column-gap: 10px;
+
+    min-height: auto;
+
+    padding: 18px 0;
+  }
+
+  .cart-item__check {
+    margin-top: 1px;
+  }
+
+  .cart-item__image {
+    width: 72px;
+    height: 108px;
+  }
+
+  .cart-item__info {
+    padding-right: 22px;
+  }
+
+  .cart-item__info h3 {
+    font-size: 13px;
+    line-height: 1.35;
+
+    word-break: break-word;
+  }
+
+  .cart-item__name-ko {
+    margin-top: 10px;
+
+    font-size: 11px;
+  }
+
+  .cart-item__option {
+    margin-top: 10px;
+
+    font-size: 11px;
+  }
+
+
+  /* 수량 */
+
+  .cart-quantity {
+    width: 104px;
+    height: 32px;
+
+    margin-top: 12px;
+  }
+
+  .cart-quantity button,
+  .cart-quantity span {
+    font-size: 11px;
+  }
+
+
+  /* 삭제 */
+
+  .cart-item__remove {
+    top: 17px;
+    right: 0;
+
+    font-size: 18px;
+  }
+
+
+  /* 가격을 PC처럼 absolute로 두지 않고
+     모바일에서는 상품 정보 아래로 이동 */
+
+  .cart-item__price {
+    position: static;
+
+    grid-column: 3;
+
+    justify-self: end;
+
+    margin-top: 4px;
+
+    font-size: 13px;
+  }
+
+
+  /* Summary */
+
+  .cart-summary {
+    padding: 18px 0;
+  }
+
+  .cart-summary > div {
+    font-size: 11px;
+  }
+
+  .cart-summary > div + div {
+    margin-top: 12px;
+  }
+
+
+  /* Total */
+
+  .cart-total {
+    margin-top: 18px;
+    margin-bottom: 32px;
+
+    font-size: 12px;
+  }
+
+  .cart-total strong:last-child {
+    font-size: 14px;
+  }
+
+
+  /* Buttons */
+
+  .cart-actions {
+    gap: 8px;
+  }
+
+  .cart-actions button {
+    height: 44px;
+
+    font-size: 12px;
+  }
 }

@@ -1,11 +1,7 @@
 .footer {
   width: 100%;
-  min-height: 224px;
-
-  padding: 48px 0 60px;
-
+  padding: 34px 0 38px;
   box-sizing: border-box;
-
   background: var(--warm);
 }
 
@@ -50,10 +46,8 @@
 }
 
 .footer__details {
-  margin-top: 24px;
-
+  margin-top: 16px;
   color: #77736d;
-
   font-size: 9px;
   line-height: 1.55;
 }
@@ -63,5 +57,5 @@
 }
 
 .footer__details p + p {
-  margin-top: 6px;
+  margin-top: 4px;
 }
