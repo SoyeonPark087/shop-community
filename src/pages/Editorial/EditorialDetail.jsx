@@ -15,7 +15,10 @@ function EditorialDetail() {
     return (
       <main className="editorial-detail editorial-detail--empty">
         <h1>에디토리얼을 찾을 수 없습니다.</h1>
-        <a href="/editorial">Editorial로 돌아가기</a>
+
+        <a href="/editorial">
+          Editorial로 돌아가기
+        </a>
       </main>
     )
   }
@@ -28,14 +31,17 @@ function EditorialDetail() {
   return (
     <main className="editorial-detail">
       {/* 상단 기사 영역 */}
-      <section className="editorial-detail__article">
+      <section
+        className="editorial-detail__article"
+        aria-labelledby="editorial-detail-title"
+      >
         {/* 왼쪽 제목 영역 */}
         <aside className="editorial-detail__intro">
           <p className="editorial-detail__label">
             EDITORIAL
           </p>
 
-          <h1>
+          <h1 id="editorial-detail-title">
             {editorial.koreanTitle || editorial.title}
           </h1>
 
@@ -45,7 +51,10 @@ function EditorialDetail() {
             </p>
           )}
 
-          <span className="editorial-detail__line" />
+          <span
+            className="editorial-detail__line"
+            aria-hidden="true"
+          />
 
           <div className="editorial-detail__meta">
             <span>
@@ -65,6 +74,7 @@ function EditorialDetail() {
               className="editorial-detail__main-image"
               src={detailImages[0]}
               alt={`${editorial.title} 이미지 1`}
+              decoding="async"
             />
           )}
 
@@ -76,6 +86,8 @@ function EditorialDetail() {
             <img
               src={detailImages[1]}
               alt={`${editorial.title} 이미지 2`}
+              loading="lazy"
+              decoding="async"
             />
           )}
 
@@ -87,6 +99,8 @@ function EditorialDetail() {
             <img
               src={detailImages[2]}
               alt={`${editorial.title} 이미지 3`}
+              loading="lazy"
+              decoding="async"
             />
           )}
 
@@ -100,6 +114,8 @@ function EditorialDetail() {
               key={`${image}-${index}`}
               src={image}
               alt={`${editorial.title} 이미지 ${index + 4}`}
+              loading="lazy"
+              decoding="async"
             />
           ))}
 
@@ -112,22 +128,28 @@ function EditorialDetail() {
         </article>
       </section>
 
-      {/* 상품 연결 영역 */}
+      {/* Shop the Story */}
       {shopProducts.length > 0 && (
-        <section className="editorial-detail__shop">
-          <h2>Shop the Story</h2>
+        <section
+          className="editorial-detail__shop"
+          aria-labelledby="shop-story-title"
+        >
+          <h2 id="shop-story-title">
+            Shop the Story
+          </h2>
 
           <div className="editorial-detail__products">
             {shopProducts.map((product) => (
-              <a
+              <article
                 className="editorial-detail__product"
-                href={`/shop/${product.id}`}
                 key={product.id}
               >
                 <div className="editorial-detail__product-image">
                   <img
                     src={product.image}
                     alt={product.name}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -136,40 +158,47 @@ function EditorialDetail() {
                 <span>
                   ₩ {Number(product.price).toLocaleString()}
                 </span>
-              </a>
+              </article>
             ))}
           </div>
         </section>
       )}
 
-      {/* 관련 에디토리얼 영역 */}
-{relatedStories.length > 0 && (
-  <section className="editorial-detail__related">
-    <div className="editorial-detail__section-heading">
-      <h2>Related Stories</h2>
-    </div>
-
-    <div className="editorial-detail__related-grid">
-      {relatedStories.map((story) => (
-        <article
-          className="editorial-detail__related-card"
-          key={story.id}
+      {/* Related Stories */}
+      {relatedStories.length > 0 && (
+        <section
+          className="editorial-detail__related"
+          aria-labelledby="related-stories-title"
         >
-          <div className="editorial-detail__related-image">
-            <img
-              src={story.image}
-              alt={story.title}
-            />
+          <div className="editorial-detail__section-heading">
+            <h2 id="related-stories-title">
+              Related Stories
+            </h2>
           </div>
 
-          <strong>{story.title}</strong>
+          <div className="editorial-detail__related-grid">
+            {relatedStories.map((story) => (
+              <article
+                className="editorial-detail__related-card"
+                key={story.id}
+              >
+                <div className="editorial-detail__related-image">
+                  <img
+                    src={story.image}
+                    alt={story.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
 
-          <span>{story.description}</span>
-        </article>
-      ))}
-    </div>
-  </section>
-)}
+                <strong>{story.title}</strong>
+
+                <span>{story.description}</span>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   )
 }

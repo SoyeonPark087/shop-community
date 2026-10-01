@@ -345,10 +345,11 @@ function ProductDetail() {
           <div className="product-detail__section-heading">
             <h2>You May Also Like</h2>
 
-            <a href="/shop">
+            {/* 링크가 아닌 일반 텍스트 */}
+            <span className="product-detail__view-all">
               View All
               <span aria-hidden="true">→</span>
-            </a>
+            </span>
           </div>
 
           <div className="product-detail__recommend-grid">
@@ -357,10 +358,8 @@ function ProductDetail() {
                 className="product-detail__recommend-card"
                 key={item.id}
               >
-                <a
-                  className="product-detail__recommend-link"
-                  href={`/shop/${item.id}`}
-                >
+                {/* 링크가 아닌 일반 콘텐츠 */}
+                <div className="product-detail__recommend-content">
                   <div className="product-detail__recommend-image">
                     <img
                       src={item.image}
@@ -389,7 +388,7 @@ function ProductDetail() {
                       ))}
                     </div>
                   </div>
-                </a>
+                </div>
               </article>
             ))}
           </div>
@@ -400,10 +399,11 @@ function ProductDetail() {
           <div className="product-detail__section-heading">
             <h2>Community Looks</h2>
 
-            <a href="/community">
+            {/* 링크가 아닌 일반 텍스트 */}
+            <span className="product-detail__view-all">
               View All
               <span aria-hidden="true">→</span>
-            </a>
+            </span>
           </div>
 
           <div className="product-detail__community-grid">

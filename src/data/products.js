@@ -332,7 +332,6 @@ export const products = [
       '/images/shop/product07-detail06.png',
       '/images/shop/product07-detail07.png',
       '/images/shop/product07-detail08.png',
-      '/images/shop/product07-detail09.png',
     ],
 
     description:
@@ -378,7 +377,6 @@ export const products = [
       '/images/shop/product08-detail05.png',
       '/images/shop/product08-detail06.png',
       '/images/shop/product08-detail07.png',
-      '/images/shop/product08-detail08.png',
     ],
 
     description:
