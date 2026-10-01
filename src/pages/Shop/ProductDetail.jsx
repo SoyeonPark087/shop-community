@@ -2,6 +2,64 @@ import { useState } from 'react'
 import { products } from '../../data/products'
 import './product-detail.css'
 
+const recommendedProducts = [
+  {
+    id: 1,
+    name: 'Ribbed Tank Top',
+    price: 49000,
+    image: '/images/shop/Like01.png',
+    colors: ['#2f3130', '#ded8cd', '#8e8f88'],
+  },
+  {
+    id: 2,
+    name: 'Wide Nylon Pants',
+    price: 89000,
+    image: '/images/shop/Like02.png',
+    colors: ['#111111', '#ddd9cf', '#73746e'],
+  },
+  {
+    id: 3,
+    name: 'Back Tie Long Sleeve',
+    price: 56000,
+    image: '/images/shop/Like03.png',
+    colors: ['#50514d', '#dedbd2', '#2b2b2b'],
+  },
+  {
+    id: 4,
+    name: 'Relaxed Knit Tee',
+    price: 62000,
+    image: '/images/shop/Like04.png',
+    colors: ['#e4e0d8', '#a3a19b', '#2e302e'],
+  },
+]
+
+const communityLooks = [
+  {
+    id: 1,
+    user: '@mood__i',
+    description: 'A slow morning, a better day.',
+    image: '/images/shop/Community_Looks01.png',
+  },
+  {
+    id: 2,
+    user: '@mood__i',
+    description: 'Comfortable pieces for everyday.',
+    image: '/images/shop/Community_Looks02.png',
+  },
+  {
+    id: 3,
+    user: '@mood__i',
+    description: 'A softer mood for the day.',
+    image: '/images/shop/Community_Looks03.png',
+  },
+  {
+    id: 4,
+    user: '@mood__i',
+    description: 'Simple moments, better mood.',
+    image: '/images/shop/Community_Looks04.png',
+  },
+]
+
 function ProductDetail() {
   const productId = window.location.pathname
     .split('/')
@@ -47,6 +105,9 @@ function ProductDetail() {
   const [selectedSize, setSelectedSize] =
     useState('')
 
+  const [reviewsOpen, setReviewsOpen] =
+    useState(false)
+
   if (!product) {
     return (
       <main className="product-detail product-detail--empty">
@@ -70,7 +131,7 @@ function ProductDetail() {
 
   return (
     <main className="product-detail">
-      {/* 경로 */}
+      {/* 현재 페이지 경로 */}
       <nav className="product-detail__breadcrumb">
         <a href="/shop">Shop</a>
         <span>/</span>
@@ -79,10 +140,10 @@ function ProductDetail() {
         <span>{product.name}</span>
       </nav>
 
+      {/* 상품 상단 및 상세 이미지 */}
       <section className="product-detail__main">
-        {/* 메인사진과 서브사진 */}
+        {/* 메인 이미지와 서브 이미지 */}
         <div className="product-detail__gallery">
-          {/* 메인사진 */}
           {selectedImage && (
             <div className="product-detail__main-image">
               <img
@@ -92,7 +153,6 @@ function ProductDetail() {
             </div>
           )}
 
-          {/* 서브사진 */}
           {galleryImages.length > 1 && (
             <div className="product-detail__thumbnails">
               {galleryImages.map((image, index) => (
@@ -126,7 +186,7 @@ function ProductDetail() {
           )}
         </div>
 
-        {/* 상품정보 */}
+        {/* 상품 정보 */}
         <div className="product-detail__information">
           <h1>{product.name}</h1>
 
@@ -134,11 +194,10 @@ function ProductDetail() {
             ₩ {Number(product.price).toLocaleString()}
           </p>
 
-          {/* 컬러 정보 */}
+          {/* 컬러 선택 */}
           <div className="product-detail__colors">
             <div className="product-detail__color-heading">
               <p>Color</p>
-
               <span>{selectedColor?.name}</span>
             </div>
 
@@ -174,7 +233,7 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* 사이즈 정보 */}
+          {/* 사이즈 선택 */}
           <div className="product-detail__option">
             <div className="product-detail__size-heading">
               <p>Size</p>
@@ -210,7 +269,7 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* 장바구니 버튼 */}
+          {/* 장바구니 */}
           <button
             type="button"
             className="product-detail__cart"
@@ -218,7 +277,7 @@ function ProductDetail() {
             Add to Cart
           </button>
 
-          {/* 아코디언 메뉴 */}
+          {/* 상품 정보 메뉴 */}
           <div className="product-detail__accordions">
             <button
               type="button"
@@ -261,7 +320,7 @@ function ProductDetail() {
           </div>
         </div>
 
-        {/* 상세사진 */}
+        {/* 상세 이미지 */}
         {product.detailImages?.length > 0 && (
           <div className="product-detail__contents">
             {product.detailImages.map(
@@ -278,6 +337,119 @@ function ProductDetail() {
           </div>
         )}
       </section>
+
+      {/* 상세페이지 하단 콘텐츠 */}
+      <div className="product-detail__bottom">
+        {/* 추천 상품 */}
+        <section className="product-detail__recommend">
+          <div className="product-detail__section-heading">
+            <h2>You May Also Like</h2>
+
+            {/* 링크가 아닌 일반 텍스트 */}
+            <span className="product-detail__view-all">
+              View All
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
+
+          <div className="product-detail__recommend-grid">
+            {recommendedProducts.map((item) => (
+              <article
+                className="product-detail__recommend-card"
+                key={item.id}
+              >
+                {/* 링크가 아닌 일반 콘텐츠 */}
+                <div className="product-detail__recommend-content">
+                  <div className="product-detail__recommend-image">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                    />
+                  </div>
+
+                  <div className="product-detail__recommend-info">
+                    <h3>{item.name}</h3>
+
+                    <p>
+                      ₩ {Number(item.price).toLocaleString()}
+                    </p>
+
+                    <div
+                      className="product-detail__recommend-colors"
+                      aria-label={`${item.name} 컬러`}
+                    >
+                      {item.colors.map((color, index) => (
+                        <span
+                          key={`${color}-${index}`}
+                          style={{
+                            backgroundColor: color,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 커뮤니티 스타일 */}
+        <section className="product-detail__community">
+          <div className="product-detail__section-heading">
+            <h2>Community Looks</h2>
+
+            {/* 링크가 아닌 일반 텍스트 */}
+            <span className="product-detail__view-all">
+              View All
+              <span aria-hidden="true">→</span>
+            </span>
+          </div>
+
+          <div className="product-detail__community-grid">
+            {communityLooks.map((look) => (
+              <article
+                className="product-detail__community-card"
+                key={look.id}
+              >
+                <div className="product-detail__community-image">
+                  <img
+                    src={look.image}
+                    alt={`${look.user} 커뮤니티 스타일`}
+                  />
+                </div>
+
+                <strong>{look.user}</strong>
+                <p>{look.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 리뷰 */}
+        <section className="product-detail__reviews">
+          <button
+            type="button"
+            className="product-detail__reviews-button"
+            onClick={() =>
+              setReviewsOpen((current) => !current)
+            }
+            aria-expanded={reviewsOpen}
+          >
+            <span>Reviews (112)</span>
+
+            <span aria-hidden="true">
+              {reviewsOpen ? '−' : '＋'}
+            </span>
+          </button>
+
+          {reviewsOpen && (
+            <div className="product-detail__reviews-content">
+              <p>아직 작성된 리뷰가 없습니다.</p>
+            </div>
+          )}
+        </section>
+      </div>
     </main>
   )
 }
