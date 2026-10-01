@@ -223,8 +223,15 @@ function ShopByMood() {
         </div>
 
         <div className="mood-grid">
-          {moodCards.map((mood) => (
-            <article className={`mood-card mood-card--${mood.tone}`} key={mood.title}>
+          {moodCards.map((mood, index) => (
+            <article
+              className={`
+                mood-card
+                mood-card--${mood.tone}
+                ${index === 0 ? "mood-card--large" : "mood-card--small"}
+              `}
+              key={mood.title}
+            >
               <img src={mood.image} alt="" />
               <div className="mood-card__shade" />
               <div className="mood-card__content">

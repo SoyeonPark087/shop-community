@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Drawer from "./Drawer";
-import "./Login.css";
+import "./Account.css";
 
 export default function Login({
   open,
@@ -76,7 +76,7 @@ export default function Login({
           >
             <img
               className="login-social__logo"
-              src="/images/common/kakao-talk.svg"
+              src="icons/kakao-talk.svg"
               alt=""
             />
 
@@ -98,7 +98,7 @@ export default function Login({
           >
             <img
               className="login-social__logo"
-              src="/images/common/naver.svg"
+              src="icons/naver.svg"
               alt=""
             />
 
