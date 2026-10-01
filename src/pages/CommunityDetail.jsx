@@ -29,11 +29,11 @@ import './CommunityDetail.css'
      - 존재하지 않는 post ID
      - 잘못된 URL 형식
 
-  3. 기존 Related Styles 구조 유지
+  3. Related Styles 최신 반응형 정책
      - 현재 게시글 제외
-     - Desktop / Tablet 전체 8개
-     - Mobile 초기 4개
-     - Load More 후 전체 8개
+     - Desktop / Tablet / Mobile 전체 8개 표시
+     - Mobile 2열 × 4행
+     - Mobile Load More 제거
 
   4. [GROUP 1 신규]
      게시글 ID 변경 시 페이지 상단으로 이동
@@ -78,44 +78,14 @@ function getPostIdFromPath() {
 
 
 /* =====================================
-   02. MOBILE CHECK
-===================================== */
-
-/*
-  Community Main과 동일하게
-  767px 이하를 Mobile로 판단합니다.
-
-  이 값은 Related Styles에서:
-
-  Desktop / Tablet
-  → 8개 전체 표시
-
-  Mobile
-  → 최초 4개 표시
-
-  로 구분하기 위해 사용합니다.
-*/
-
-function getIsMobile() {
-
-  if (typeof window === 'undefined') {
-    return false
-  }
-
-  return window.matchMedia('(max-width: 767px)').matches
-
-}
-
-
-/* =====================================
-   03. MAIN COMPONENT
+   02. MAIN COMPONENT
 ===================================== */
 
 export default function CommunityDetail({ postId }) {
 
 
   /* =================================
-     03-1. CURRENT POST ID
+     02-1. CURRENT POST ID
   ================================= */
 
   /*
@@ -166,7 +136,7 @@ export default function CommunityDetail({ postId }) {
 
 
   /* =================================
-     03-2. GROUP 1
+     02-2. GROUP 1
      POST CHANGE SCROLL RESET
   ================================= */
 
@@ -210,113 +180,6 @@ export default function CommunityDetail({ postId }) {
     })
 
   }, [currentPostId])
-
-
-  /* =================================
-     03-3. RESPONSIVE STATE
-  ================================= */
-
-  const [isMobile, setIsMobile] = useState(
-    getIsMobile
-  )
-
-
-  /*
-    화면 폭이 Mobile 구간으로 진입하거나
-    Mobile에서 벗어나는 경우만
-    React 상태를 갱신합니다.
-
-    별도 npm 패키지는 사용하지 않습니다.
-  */
-
-  useEffect(() => {
-
-    const mediaQuery = window.matchMedia(
-      '(max-width: 767px)'
-    )
-
-
-    function handleChange(event) {
-      setIsMobile(event.matches)
-    }
-
-
-    /*
-      최초 mount 시에도
-      현재 브라우저 크기를 다시 반영합니다.
-    */
-
-    setIsMobile(mediaQuery.matches)
-
-
-    /*
-      최신 브라우저
-    */
-
-    if (mediaQuery.addEventListener) {
-
-      mediaQuery.addEventListener(
-        'change',
-        handleChange
-      )
-
-      return () => {
-
-        mediaQuery.removeEventListener(
-          'change',
-          handleChange
-        )
-
-      }
-
-    }
-
-
-    /*
-      구형 브라우저 호환 처리
-    */
-
-    mediaQuery.addListener(handleChange)
-
-    return () => {
-      mediaQuery.removeListener(handleChange)
-    }
-
-  }, [])
-
-
-  /* =================================
-     03-4. RELATED LOAD MORE STATE
-  ================================= */
-
-  /*
-    Mobile Related Styles의 펼침 상태입니다.
-
-    단순 true / false 대신
-    "어느 게시글에서 펼쳤는가"를 저장합니다.
-
-    예:
-
-    expandedPostId = 'post-01'
-
-    post-01에서는 펼쳐진 상태지만
-    post-02로 이동하면:
-
-    expandedPostId !== currentPostId
-
-    가 되므로 자동으로 초기 상태로 돌아갑니다.
-
-    따라서 별도의 reset useEffect가 필요 없습니다.
-  */
-
-  const [
-    expandedPostId,
-    setExpandedPostId,
-  ] = useState(null)
-
-
-  const isRelatedExpanded =
-    expandedPostId === currentPostId
 
 
   /* =================================
@@ -413,47 +276,14 @@ export default function CommunityDetail({ postId }) {
 
 
   /*
-    Desktop / Tablet:
-    → 전체 8개
+    최신 Related Styles 정책:
 
-    Mobile:
-    → 초기 4개
+    Desktop / Tablet / Mobile 모두
+    현재 게시글을 제외한 8개를 한 번에 표시합니다.
 
-    Mobile에서 Load More를 누른 경우:
-    → 전체 8개
+    Mobile은 2열 × 4행으로 구성하며,
+    별도의 Load More 상태나 버튼을 사용하지 않습니다.
   */
-
-  const shouldLimitRelated =
-    isMobile && !isRelatedExpanded
-
-
-  const visibleRelatedPosts =
-    shouldLimitRelated
-      ? relatedPosts.slice(0, 4)
-      : relatedPosts
-
-
-  /*
-    Mobile에서만,
-    실제 숨겨진 게시글이 있을 경우
-    Load More 버튼을 출력합니다.
-  */
-
-  const showLoadMore =
-    shouldLimitRelated
-    && relatedPosts.length > 4
-
-
-  function handleLoadMore() {
-
-    /*
-      현재 게시글 ID를 저장하여
-      이 게시글에서만 Related를 펼칩니다.
-    */
-
-    setExpandedPostId(currentPostId)
-
-  }
 
 
   /* =====================================
@@ -662,11 +492,11 @@ export default function CommunityDetail({ postId }) {
               currentPostId를 제외한
               다른 게시글만 렌더링합니다.
 
-              Desktop / Tablet:
-              → 8개
+              Desktop / Tablet / Mobile:
+              → 현재 게시글 제외 8개 전체 표시
 
               Mobile:
-              → 최초 4개
+              → 2열 × 4행
           ----------------------------- */}
 
           <div
@@ -674,7 +504,7 @@ export default function CommunityDetail({ postId }) {
             id="mooday-detail-related-grid"
           >
 
-            {visibleRelatedPosts.map(
+            {relatedPosts.map(
               (relatedPost) => (
 
                 <CommunityCard
@@ -688,39 +518,10 @@ export default function CommunityDetail({ postId }) {
           </div>
 
 
-          {/* -----------------------------
-              MOBILE LOAD MORE
-
-              Mobile 최초 상태에서만 표시.
-
-              클릭:
-              4개 → 8개
-
-              전체 표시 후 버튼은 사라집니다.
-          ----------------------------- */}
-
-          {showLoadMore && (
-
-            <div className="mooday-detail__load-more">
-
-              <button
-                type="button"
-                className="mooday-detail__load-more-button"
-                onClick={handleLoadMore}
-                aria-controls="mooday-detail-related-grid"
-              >
-
-                Load More
-
-                <span aria-hidden="true">
-                  +
-                </span>
-
-              </button>
-
-            </div>
-
-          )}
+          {/*
+            Mobile도 Related 8개를 모두 표시하므로
+            별도의 Load More UI는 사용하지 않습니다.
+          */}
 
 
         </section>

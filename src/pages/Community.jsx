@@ -25,9 +25,16 @@ import './Community.css'
   최초 게시글:
   Desktop : 9개
   Tablet  : 6개
-  Mobile  : 3개
+  Mobile  : 4개
 
-  Load more 클릭 시 3개 추가
+  Load more 클릭 시:
+  Desktop / Tablet : 3개 추가
+  Mobile           : 4개 추가
+
+  Mobile 2열 Grid에서는
+  Load More가 남아 있는 중간 단계에서
+  홀수 카드 때문에 빈 칸이 생기지 않도록
+  4 → 8 → 마지막 전체 순서로 노출합니다.
 
 
   STEP 1
@@ -117,23 +124,45 @@ import './Community.css'
 /*
   디바이스별 초기 노출 개수.
 
-  기존 Community Main의
-  9 / 6 / 3 규칙을 그대로 유지합니다.
+  Desktop / Tablet은 기존 9 / 6 규칙을 유지합니다.
+
+  Mobile은 2열 Grid 피드백에 맞춰
+  3개 → 4개로 변경합니다.
+
+  이렇게 하면 최초 화면이
+  2 × 2 형태로 완성되어
+  Load More 위에 빈 Grid 칸이 생기지 않습니다.
 */
 
 const INITIAL_VISIBLE_COUNT = {
   desktop: 9,
   tablet: 6,
-  mobile: 3,
+  mobile: 4,
 }
 
 
 /*
-  Load more 클릭 시
-  추가로 표시할 게시글 수입니다.
+  Load More 증가량도 Device별로 구분합니다.
+
+  Desktop / Tablet:
+  → 기존 +3 유지
+
+  Mobile:
+  → 2열 Grid의 중간 단계에서 홀수 카드가
+    남지 않도록 +4 사용
+
+  예: 총 9개 기준
+  4 → 8 → 9
+
+  마지막 단계는 남은 전체 게시글만 노출되므로
+  최종 1개가 남는 경우에만 홀수 상태를 허용합니다.
 */
 
-const LOAD_MORE_COUNT = 3
+const LOAD_MORE_COUNT = {
+  desktop: 3,
+  tablet: 3,
+  mobile: 4,
+}
 
 
 /* =====================================
@@ -664,11 +693,29 @@ export default function Community() {
       ...previous,
 
       extraCount:
-        previous.extraCount + LOAD_MORE_COUNT,
+        previous.extraCount
+        + LOAD_MORE_COUNT[previous.device],
 
     }))
 
   }
+
+
+  /*
+    현재 Device에서 Load More 한 번에
+    실제로 더 보여줄 게시글 수입니다.
+
+    마지막 단계에서는 남은 게시글 수가
+    증가 단위보다 작을 수 있으므로
+    Math.min()으로 실제 남은 개수만 계산합니다.
+
+    이 값은 aria-label에도 사용합니다.
+  */
+
+  const nextLoadMoreCount = Math.min(
+    LOAD_MORE_COUNT[displayState.device],
+    sortedPosts.length - visibleCount
+  )
 
 
   /* =================================
@@ -927,7 +974,7 @@ export default function Community() {
               type="button"
               className="mooday-community__load"
               onClick={handleLoadMore}
-              aria-label="게시글 3개 더 보기"
+              aria-label={`게시글 ${nextLoadMoreCount}개 더 보기`}
             >
 
               Load more

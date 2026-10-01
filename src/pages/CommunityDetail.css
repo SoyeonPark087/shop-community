@@ -26,7 +26,7 @@
   - STEP 1: Background / Surface / Color Token
   - STEP 2: Typography Scale / Role Mapping
   - STEP 3: Spacing / Rhythm / Card Internal Padding
-  - STEP 4: Mobile Load More Cross-page Consistency
+  - STEP 4: Mobile Related 2-column / Full 8-card Display
 */
 
 
@@ -1401,70 +1401,7 @@
 
 
 /* =====================================
-   14. LOAD MORE
-===================================== */
-
-.mooday-detail__load-more {
-  display: flex;
-
-  justify-content: center;
-
-  /* STEP 3 — Related Grid → Action */
-  margin-top: 40px;
-}
-
-
-.mooday-detail__load-more-button {
-  display: flex;
-
-  width: 100%;
-  max-width: 260px;
-
-  min-height: 48px;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  padding: 12px 24px;
-
-  border: 1px solid #DEDED8;
-
-  /*
-    Secondary Action Surface
-  */
-  background: #fff;
-  color: #282828;
-
-  font-family: inherit;
-
-  font-size: 13px;
-  font-weight: 500;
-
-  cursor: pointer;
-}
-
-
-.mooday-detail__load-more-button span {
-  font-size: 18px;
-  line-height: 1;
-}
-
-
-.mooday-detail__load-more-button:hover {
-  border-color: #486858;
-}
-
-
-.mooday-detail__load-more-button:focus-visible {
-  outline: 2px solid #344F41;
-  outline-offset: 3px;
-}
-
-
-/* =====================================
-   15. EMPTY STATE
+   14. EMPTY STATE
 ===================================== */
 
 .mooday-detail__empty {
@@ -2202,66 +2139,79 @@
 
 
   .mooday-detail__related-grid {
-    grid-template-columns: minmax(0, 1fr);
+    /*
+      Community Main 최신 Mobile 카드 규격과 통일합니다.
 
-    row-gap: 32px;
+      현재 post를 제외한 Related 8개를
+      2열 × 4행으로 한 번에 표시합니다.
+    */
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 12px;
+    row-gap: 20px;
   }
 
 
   .mooday-detail__related-grid
   .mooday-community-card__body {
-    padding: 12px 12px 8px;
+    /*
+      Main Mobile 카드와 같은 내부 밀도 사용.
+      Related에서는 min-height: 0을 그대로 유지해
+      4행 전체 높이가 불필요하게 늘어나지 않게 합니다.
+    */
+    padding: 12px 8px 16px;
   }
 
 
   .mooday-detail__related-grid
   .mooday-community-card__author {
     font-size: 14px;
+
+    /*
+      2열 카드에서 긴 ID가 두 줄로 깨지지 않도록
+      한 줄 유지 + 말줄임 처리를 적용합니다.
+    */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
 
   .mooday-detail__related-grid
-  .mooday-community-card__tags,
+  .mooday-community-card__items {
+    /*
+      Main 최신 Mobile 정책과 동일하게
+      좁은 2열 카드에서는 Item Count를 숨깁니다.
+    */
+    display: none;
+  }
+
+
   .mooday-detail__related-grid
-  .mooday-community-card__excerpt {
+  .mooday-community-card__tags {
+    margin: 8px 0 8px;
     font-size: 12px;
   }
 
 
-  .mooday-detail__load-more {
-    margin-top: 32px;
-  }
-
-
-  .mooday-detail__load-more-button {
+  .mooday-detail__related-grid
+  .mooday-community-card__excerpt {
     /*
-      STEP 4 — CROSS-PAGE CONSISTENCY
+      Main 최신 Mobile 카드와 같은 14px 본문을 사용하되
+      최대 2줄까지만 표시합니다.
 
-      Community Main 모바일 Load More와 같은
-      가벼운 centered pill 형태로 맞춥니다.
-
-      Desktop / Tablet의 기존 Load More 스타일은
-      변경하지 않습니다.
+      원본 excerpt 데이터는 수정하지 않습니다.
     */
-    width: 160px;
-    max-width: 160px;
+    font-size: 14px;
 
-    min-height: 44px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 
-    padding: 10px 20px;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
 
-    border-radius: 22px;
-
-    gap: 0;
-  }
-
-
-  .mooday-detail__load-more-button span {
-    /*
-      Detail에서만 표시되던 '+'를 모바일에서 숨겨
-      Community Main의 텍스트 중심 Load More와 통일합니다.
-    */
-    display: none;
+    overflow: hidden;
   }
 
 }

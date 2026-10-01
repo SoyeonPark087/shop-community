@@ -476,7 +476,13 @@
   padding: 20px;
 
   border: 1px solid #deded8;
-  border-radius: 14px;
+
+  /*
+    Filter Visual Feedback:
+    Popover 외곽 박스의 라운드를 제거합니다.
+    내부 Option / Apply Button radius는 유지합니다.
+  */
+  border-radius: 0;
 
   background: #ffffff;
 
@@ -490,7 +496,7 @@
    FILTER GROUP
 ===================================== */
 
-.mooday-community-filter__group + 
+.mooday-community-filter__group +
 .mooday-community-filter__group {
   margin-top: 24px;
 }
@@ -1388,7 +1394,10 @@
 
     padding: 16px;
 
-    border-radius: 12px;
+    /*
+      공통 Popover의 border-radius: 0을 그대로 사용합니다.
+      Mobile에서 별도의 radius를 다시 적용하지 않습니다.
+    */
   }
 
 
@@ -1438,14 +1447,22 @@
 
 
   /* =================================
-     Mobile Grid 1열
+     Mobile Grid 2열
   ================================= */
 
   .mooday-community-grid {
-    grid-template-columns:
-      minmax(0, 1fr);
+    /*
+      Mobile Feedback Revision:
+      기존 1열 Grid를 2열로 변경합니다.
 
-    column-gap: 0;
+      Tablet도 2열이지만 Mobile에서는
+      더 좁은 12px Column Gap을 사용해
+      더 compact한 밀도를 유지합니다.
+    */
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 12px;
     row-gap: 20px;
   }
 
@@ -1461,14 +1478,35 @@
   }
 
 
-  .mooday-community-card__author {
-    font-size: 14px;
-  }
+.mooday-community-card__author {
+  font-size: 14px;
+
+  /*
+    Mobile 2열에서는 카드 폭이 좁기 때문에
+    긴 Author ID가 두 줄로 깨질 수 있습니다.
+
+    작성자 ID는 게시글 식별 정보이므로
+    Mobile 전체에서 한 줄을 유지합니다.
+  */
+  white-space: nowrap;
+}
 
 
-  .mooday-community-card__items {
-    font-size: 12px;
-  }
+.mooday-community-card__items {
+  /*
+    Mobile 2열에서는 Author와 Item Count를
+    같은 행에 함께 표시할 공간이 부족합니다.
+
+    작성자 ID를 우선 보존하고,
+    중요도가 낮은 Item Count는
+    Mobile 전체에서 숨깁니다.
+
+    Desktop / Tablet에서는 기존대로 표시됩니다.
+  */
+  display: none;
+
+  font-size: 12px;
+}
 
 
   .mooday-community-card__items span {
@@ -1485,6 +1523,21 @@
 
   .mooday-community-card__excerpt {
     font-size: 14px;
+
+    /*
+      Mobile 2열에서는 카드 폭이 좁아지므로
+      Excerpt가 카드마다 과도하게 길어지는 것을 막습니다.
+
+      원본 excerpt 데이터는 수정하지 않고
+      화면에서 최대 2줄까지만 표시합니다.
+    */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
   }
 
 
@@ -1579,3 +1632,5 @@
   }
 
 }
+
+
