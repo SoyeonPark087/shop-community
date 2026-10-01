@@ -14,20 +14,6 @@ function MenuDrawer({
    * Drawer가 열려 있을 때
    * body scroll 방지
    */
-  useEffect(() => {
-    if (!open) {
-      return undefined;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [open]);
-
 
   /*
    * ESC로 Drawer 닫기

@@ -427,55 +427,114 @@
   }
 }
 
+
+/* ========================================
+   Tablet
+   1024px 이하부터 Mobile Header 사용
+======================================== */
+
 @media (max-width: 1024px) {
-  :root {
-    --page-padding: 28px;
+
+  .site-header {
+    height: 64px;
   }
 
-  .hero {
-    height: 700px;
+  /* Layout */
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    padding-left: 28px;
+    padding-right: 28px;
+
+    box-sizing: border-box;
   }
 
-  .hero__image {
-    object-position: 62% center;
+  /* Desktop Navigation Hide */
+  .site-header__nav--left,
+  .site-header__nav--right {
+    display: none;
   }
 
-  .hero__copy h1 {
-    font-size: 52px;
+  /* Logo */
+  .site-header__logo {
+    display: flex;
+    align-items: center;
+
+    order: 0;
+
+    width: 76px;
+
+    margin: 0;
+    padding: 0;
+
+    line-height: 0;
   }
 
-  .product-grid,
-  .community-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .site-header__logo img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
   }
 
-  .editorial-grid {
-    width: calc(
-    100% - (var(--page-padding) * 2)
-    );
+  /* Tablet / Mobile Actions */
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
-    margin: 0 auto;
+    gap: 10px;
 
-    gap: 14px;
+    margin: 0;
+    margin-left: auto;
+
+    padding: 0;
   }
 
-  .editorial-card {
-    min-height: 620px;
+  /* Icon Button */
+  .site-header__icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    color: #282828;
+    background: transparent;
+
+    -webkit-tap-highlight-color: transparent;
+
+    cursor: pointer;
   }
 
-  .mood-grid {
-    grid-template-columns: 1fr;
-  }
+  /* Icon */
+  .site-header__icon-image {
+    display: block;
 
-  .mood-card {
-    min-height: 460px;
-  }
+    width: 18px;
+    height: 18px;
 
-  .footer__top {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 }
+
+
 @media screen and (max-width: 640px) {
 
   /* =========================
