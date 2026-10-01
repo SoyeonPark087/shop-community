@@ -1,21 +1,33 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+import Home from './pages/Home'
+import Signup from './pages/Signup'
+import Shop from './pages/Shop/Shop'
+import ProductDetail from './pages/Shop/ProductDetail'
+import Editorial from './pages/Editorial/Editorial'
+import EditorialDetail from './pages/Editorial/EditorialDetail'
+import Community from './pages/Community'
 
 function App() {
-  const [cartItems, setCartItems] = useState([{
-    id: 1,
-    name: "Soft Cotton Shirt_Pink",
-    nameKo: "소프트 코튼 셔츠_핑크",
-    option: "S",
-    price: 93000,
-    quantity: 1,
-    image: "/images/shop/cart-shirt-pink.png",
-  },]);
-  const [cartOpen, setCartOpen] = useState(false);
-  
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      name: 'Soft Cotton Shirt_Pink',
+      nameKo: '소프트 코튼 셔츠_핑크',
+      option: 'S',
+      price: 93000,
+      quantity: 1,
+      image: '/images/shop/cart-shirt-pink.png',
+    },
+  ])
+
+  const [cartOpen, setCartOpen] = useState(false)
 
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
@@ -23,7 +35,7 @@ function App() {
         (item) =>
           item.id === product.id &&
           item.option === product.option
-      );
+      )
 
       if (existing) {
         return prev.map((item) =>
@@ -34,7 +46,7 @@ function App() {
                 quantity: item.quantity + 1,
               }
             : item
-        );
+        )
       }
 
       return [
@@ -43,45 +55,61 @@ function App() {
           ...product,
           quantity: 1,
         },
-      ];
-    });
+      ]
+    })
 
-    // 상품 추가와 동시에 Cart Drawer 열기
-    setCartOpen(true);
-  };
+    setCartOpen(true)
+  }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            cartItems={cartItems}
-            cartOpen={cartOpen}
-            setCartOpen={setCartOpen}
-          />
-        }
+    <>
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
       />
 
-      <Route
-        path="/signup"
-        element={<Signup />}
-      />
+      <div
+  className={
+    isHomePage
+      ? 'app-page app-page--home'
+      : 'app-page app-page--sub'
+  }
+>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/shop" element={<Shop />} />
 
-      {/*
-        나중에 상품 상세 페이지가 들어오면:
-
-        <Route
-          path="/product/:id"
-          element={
-            <ProductDetail
-              onAddToCart={handleAddToCart}
-            />
-          }
+    <Route
+      path="/shop/:id"
+      element={
+        <ProductDetail
+          onAddToCart={handleAddToCart}
         />
-      */}
-    </Routes>
-  );
+      }
+    />
+
+    <Route
+      path="/editorial"
+      element={<Editorial />}
+    />
+
+    <Route
+      path="/editorial/:id"
+      element={<EditorialDetail />}
+    />
+
+    <Route
+      path="/community"
+      element={<Community />}
+    />
+  </Routes>
+</div>
+
+      <Footer />
+    </>
+  )
 }
 
-export default App;
+export default App
