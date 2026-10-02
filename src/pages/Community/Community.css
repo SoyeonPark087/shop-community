@@ -527,384 +527,708 @@
   cursor: default;
 }
 
+/* 00. COMMUNITY ROOT */
+
+/* 01. MAIN CONTAINER */
+
+/* 02. TOP NAVIGATION */
+
+/* TAG / FILTER */
+
+/* COMMUNITY GRID */
+
+/* COMMUNITY CARD */
+
+/* IMAGE */
+
+/* CARD INFO */
+
+/* EMPTY */
+
+/* PAGINATION */
 
 
+/* 여기까지 기존 Desktop CSS 그대로 */
 
-/* =========================
+
+/* =========================================================
    TABLET
-========================= */
+   768px ~ 1279px
+   Desktop 디자인을 유지하면서
+   레이아웃과 여백만 Tablet에 맞게 조정
+========================================================= */
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
 
-  /* =================================
-     Page Rhythm
-  ================================= */
+  /* =========================
+     Page
+  ========================= */
 
   .mooday-community {
-  width: 100%;
+    width: 100%;
 
-  padding: 116px 0 120px;
-
-  background: #fafaf8;
-  color: #282828;
-}
-
-
-  /* =================================
-     Latest / Popular / Write
-  ================================= */
-
-  .mooday-community__top {
-    margin-bottom: 32px;
+    padding-top: 96px;
+    padding-bottom: 96px;
   }
-
-
-  .mooday-community__tabs {
-    gap: 24px;
-  }
-
-
-  .mooday-community__tab {
-    font-size: 18px;
-  }
-
-
-  .mooday-community__write {
-    font-size: 14px;
-  }
-
-
-  /* =================================
-     Tag / Filter Tools
-  ================================= */
-
-  .mooday-community__tools {
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-
-  .mooday-community__chips {
-    gap: 8px;
-  }
-
-
-  .mooday-community__chip {
-    min-height: 32px;
-    padding: 4px 15px;
-
-    font-size: 12px;
-  }
-
-
-  /* =================================
-     Tablet Grid 2열
-  ================================= */
-
-  .mooday-community-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    column-gap: 20px;
-    row-gap: 24px;
-  }
-
-
-  /* =================================
-     Card
-  ================================= */
-
-  .mooday-community-card__body {
-    min-height: 115px;
-
-    padding: 16px;
-  }
-
-
-  .mooday-community-card__author {
-    font-size: 14px;
-  }
-
-
-  .mooday-community-card__items {
-    font-size: 12px;
-  }
-
-
-  .mooday-community-card__tags {
-    font-size: 12px;
-  }
-
-
-  .mooday-community-card__excerpt {
-    font-size: 14px;
-  }
-
-
-  /* =================================
-     Empty
-  ================================= */
-
-  .mooday-community-empty {
-    min-height: 360px;
-
-    padding: 60px 20px;
-  }
-
-
-  .mooday-community-empty__title {
-    font-size: 20px;
-  }
-
-
-  .mooday-community-empty__description {
-    font-size: 14px;
-  }
-
-
-  .mooday-community-empty__write {
-    margin-top: 24px;
-
-    font-size: 16px;
-  }
-
-
-  /* =================================
-     No Results
-  ================================= */
-
-  .mooday-community-no-results {
-    min-height: 280px;
-
-    padding: 48px 20px;
-  }
-
-
-  .mooday-community-no-results__title {
-    font-size: 18px;
-  }
-}
-
-
-@media (max-width: 767px) {
-
-  /* Mobile 좌우 여백 20px */
 
   .mooday-community__inner {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px);
+    max-width: 1792px;
+
+    margin: 0 auto;
   }
 
+/* =========================
+   Latest / Popular / Write
+========================= */
 
-  /* =================================
-     Page Rhythm
-  ================================= */
+.mooday-community__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .mooday-community {
-    padding-top: 40px;
-    padding-bottom: 60px;
-  }
+  width: 100%;
+  min-width: 0;
 
+  gap: 24px;
 
-  /* =================================
-     Latest / Popular / Write
-  ================================= */
+  margin-bottom: 28px;
+}
 
-  .mooday-community__top {
-    gap: 12px;
+.mooday-community__tabs {
+  display: flex;
+  align-items: center;
 
-    margin-bottom: 24px;
-  }
+  min-width: 0;
 
+  gap: 26px;
+}
 
-  .mooday-community__tabs {
-    gap: 16px;
+.mooday-community__tab {
+  flex: 0 0 auto;
 
-    min-width: 0;
-  }
+  padding: 4px 0;
 
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
 
-  .mooday-community__tab {
-    font-size: 16px;
-  }
+  white-space: nowrap;
+}
 
+.mooday-community__tab--active {
+  font-weight: 500;
+}
 
-  .mooday-community__tab--active::after {
-    bottom: -7px;
-  }
+.mooday-community__write {
+  flex: 0 0 auto;
 
+  margin-left: auto;
 
-  .mooday-community__write {
-    font-size: 14px;
-  }
+  padding-bottom: 2px;
 
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
 
-  /* =================================
-     Tag / Filter Tools
-  ================================= */
+  white-space: nowrap;
+}
+
+  /* =========================
+     Tag / Filter
+  ========================= */
 
   .mooday-community__tools {
     flex-direction: column;
     align-items: stretch;
 
-    gap: 16px;
+    gap: 14px;
 
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
-
 
   .mooday-community__chips {
     display: flex;
     flex-wrap: wrap;
 
     gap: 8px;
-  }
 
+    min-width: 0;
+  }
 
   .mooday-community__chip {
-    min-height: 30px;
+    min-height: 28px;
 
-    padding: 5px 12px;
+    padding: 4px 12px;
 
-    font-size: 12px;
-    line-height: 1.2;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1;
+
+    white-space: nowrap;
   }
 
 
-
-  /* =================================
-     Mobile Grid 2열
-  ================================= */
+  /* =========================
+     Community Grid
+     Desktop 3열 → Tablet 2열
+  ========================= */
 
   .mooday-community-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
 
-    column-gap: 12px;
-    row-gap: 20px;
+    column-gap: 20px;
+    row-gap: 38px;
+  }
+
+  .mooday-community-card {
+    min-width: 0;
+  }
+
+  .mooday-community-card__link {
+    min-width: 0;
   }
 
 
-  /* =================================
-     Card
-  ================================= */
+  /* =========================
+     Image
+  ========================= */
+
+  .mooday-community-card__image {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+
+  /* =========================
+     Card Body
+
+     Desktop과 동일하게
+     좌우 padding을 만들지 않는다.
+  ========================= */
 
   .mooday-community-card__body {
-    min-height: 112px;
+    min-width: 0;
+    min-height: 0;
 
-    padding: 12px 8px 16px;
+    padding: 12px 0 0;
   }
 
 
-.mooday-community-card__author {
-  font-size: 14px;
-  white-space: nowrap;
-}
+  /* =========================
+     Author / Items
+  ========================= */
 
+  .mooday-community-card__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 
-.mooday-community-card__items {
-  display: none;
-  font-size: 12px;
-}
+    min-width: 0;
 
+    gap: 12px;
+  }
+
+  .mooday-community-card__author {
+    min-width: 0;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .mooday-community-card__items {
+    flex: 0 0 auto;
+
+    font-size: 9px;
+    line-height: 1;
+
+    white-space: nowrap;
+  }
 
   .mooday-community-card__items span {
-    font-size: 18px;
+    margin-left: 4px;
+
+    font-size: 12px;
+    font-weight: 300;
   }
 
 
+  /* =========================
+     Tags
+  ========================= */
+
   .mooday-community-card__tags {
-    margin: 8px 0 8px;
+    margin: 6px 0;
+
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* =========================
+     Excerpt
+  ========================= */
+
+  .mooday-community-card__excerpt {
+    margin: 0;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+
+  /* =========================
+     Empty State
+  ========================= */
+
+  .mooday-community-empty {
+    min-height: 360px;
+
+    padding: 60px 24px;
+  }
+
+  .mooday-community-empty__title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .mooday-community-empty__description {
+    margin-top: 10px;
+
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mooday-community-empty__write {
+    margin-top: 22px;
+
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+  /* =========================
+     No Results
+  ========================= */
+
+  .mooday-community-no-results {
+    min-height: 280px;
+
+    padding: 48px 24px;
+  }
+
+  .mooday-community-no-results__title {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .mooday-community-no-results__description {
+    margin-top: 10px;
+
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mooday-community-no-results__reset {
+    min-width: 128px;
+    height: 38px;
+
+    margin-top: 22px;
 
     font-size: 12px;
   }
 
 
-  .mooday-community-card__excerpt {
-    font-size: 14px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
+  /* =========================
+     Pagination
+  ========================= */
+
+  .mooday-community__pagination {
+    gap: 14px;
+
+    margin-top: 52px;
+  }
+
+  .mooday-community__pagination button {
+    min-width: 18px;
+
+    padding: 4px;
+
+    font-size: 10px;
+  }
+}
+
+
+
+/* =========================================================
+   MOBILE
+   0px ~ 767px
+
+   Desktop의 이미지 중심 분위기를 유지하면서
+   2열 구조를 사용
+========================================================= */
+
+@media screen and (max-width: 767px) {
+
+  /* =========================
+     Page
+  ========================= */
+
+  .mooday-community {
+    width: 100%;
+
+    padding-top: 100px;
+    padding-bottom: 64px;
+  }
+
+  /*
+   * Mooday 모바일 공통 여백 기준
+   * 좌우 24px
+   */
+  .mooday-community__inner {
+    width: calc(100% - 48px);
+
+    margin: 0 auto;
+  }
+/* =========================
+   Latest / Popular / Write
+========================= */
+
+.mooday-community__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+.mooday-community__tabs {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 18px;
+}
+
+.mooday-community__tab {
+  flex: 0 0 auto;
+
+  padding: 4px 0;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+.mooday-community__tab--active {
+  font-weight: 500;
+}
+
+.mooday-community__tab--active::after {
+  bottom: 0;
+}
+
+.mooday-community__write {
+  flex: 0 0 auto;
+
+  margin-left: auto;
+
+  padding-bottom: 2px;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+  /* =========================
+     Tag / Filter
+  ========================= */
+
+  .mooday-community__tools {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+  }
+
+  .mooday-community__chips {
+    display: flex;
+    flex-wrap: wrap;
+
+    min-width: 0;
+
+    gap: 6px;
+  }
+
+  .mooday-community__chip {
+    min-height: 28px;
+
+    padding: 4px 10px;
+
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1;
+
+    white-space: nowrap;
   }
 
 
-  /* =================================
+  /* =========================
+     Community Grid
+     Mobile 2열
+  ========================= */
+
+  .mooday-community-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 10px;
+    row-gap: 28px;
+  }
+
+  .mooday-community-card {
+    min-width: 0;
+  }
+
+  .mooday-community-card__link {
+    display: block;
+
+    min-width: 0;
+  }
+
+
+  /* =========================
+     Image
+  ========================= */
+
+  .mooday-community-card__image {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+
+  /* =========================
+     Card Body
+
+     이미지와 텍스트의 좌측 라인을 맞추기 위해
+     좌우 padding을 사용하지 않는다.
+  ========================= */
+
+  .mooday-community-card__body {
+    min-width: 0;
+    min-height: 0;
+
+    padding: 10px 0 0;
+  }
+
+
+  /* =========================
+     Author / Items
+  ========================= */
+
+  .mooday-community-card__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    min-width: 0;
+
+    gap: 6px;
+  }
+
+  .mooday-community-card__author {
+    min-width: 0;
+    max-width: 100%;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.35;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /*
+   * 모바일 2열에서는 폭이 좁기 때문에
+   * 연동 상품 수는 숨긴다.
+   */
+  .mooday-community-card__items {
+    display: none;
+  }
+
+
+  /* =========================
+     Tags
+  ========================= */
+
+  .mooday-community-card__tags {
+    margin: 5px 0 6px;
+
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+
+  /* =========================
+     Excerpt
+  ========================= */
+
+  .mooday-community-card__excerpt {
+    display: -webkit-box;
+
+    margin: 0;
+
+    color: #282828;
+
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    line-clamp: 2;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+
+  /* =========================
      Empty State
-  ================================= */
+  ========================= */
 
   .mooday-community-empty {
-    min-height: 320px;
+    min-height: 300px;
 
-    padding:
-      40px
-      12px
-      60px;
+    padding: 44px 12px 56px;
   }
-
 
   .mooday-community-empty__title {
+    margin: 0;
+
     font-size: 18px;
-    line-height: 1.45;
+    font-weight: 600;
+    line-height: 1.4;
   }
 
-
   .mooday-community-empty__description {
-    margin-top: 12px;
+    margin-top: 10px;
 
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.6;
   }
 
-
   .mooday-community-empty__write {
-    margin-top: 24px;
+    margin-top: 20px;
 
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
   }
-
 
   .mooday-community-empty__write span {
     margin-left: 6px;
   }
 
 
-  /* =================================
-     Filter No Results
-  ================================= */
+  /* =========================
+     No Results
+  ========================= */
 
   .mooday-community-no-results {
     min-height: 240px;
 
-    padding:
-      40px
-      12px;
+    padding: 40px 12px;
   }
 
-
   .mooday-community-no-results__title {
-    font-size: 17px;
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.45;
   }
 
-
   .mooday-community-no-results__description {
-    font-size: 13px;
-  }
-
-
-  .mooday-community-no-results__reset {
-    min-width: 124px;
-    height: 38px;
-
-    margin-top: 20px;
+    margin-top: 10px;
 
     font-size: 12px;
+    line-height: 1.6;
   }
 
+  .mooday-community-no-results__reset {
+    min-width: 120px;
+    height: 36px;
+
+    margin-top: 18px;
+
+    padding: 0 16px;
+
+    font-size: 11px;
+  }
+
+
+  /* =========================
+     Pagination
+  ========================= */
+
+  .mooday-community__pagination {
+    gap: 12px;
+
+    margin-top: 42px;
+  }
+
+  .mooday-community__pagination button {
+    min-width: 18px;
+
+    padding: 4px 3px;
+
+    font-size: 10px;
+  }
 }
-
-

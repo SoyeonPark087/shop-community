@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "../../components/common/Header";
-import Footer from "../../components/common/Footer";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 const newArrivals = [
@@ -102,28 +101,31 @@ const moodCards = [
 ];
 
 
-function ArrowLink({ children, className = "" }) {
+function ArrowLink({
+  children,
+  to,
+  className = "",
+}) {
   return (
-    <a className={`arrow-link ${className}`} href="#">
+    <Link
+      className={`arrow-link ${className}`}
+      to={to}
+    >
       <span>{children}</span>
       <span aria-hidden="true">→</span>
-    </a>
+    </Link>
   );
 }
 
-function Hero({
-  cartItems,
-  cartOpen,
-  setCartOpen,
-}) {
+function Hero() {
   return (
     <section id="top" className="hero">
-      <Header
-        cartItems={cartItems}
-        cartOpen={cartOpen}
-        setCartOpen={setCartOpen}
+      <img
+        className="hero__image"
+        src="/images/home/herobanner.png"
+        alt=""
       />
-      <img className="hero__image" src="/images/home/herobanner.png" alt="" />
+
       <div className="hero__overlay" />
 
       <div className="hero__content">
@@ -133,12 +135,16 @@ function Hero({
             <br />
             좋은 무드를 입다
           </h1>
+
           <p>
             일상의 순간이 더 특별해지는
             <br />
             MOODAY의 새로운 컬렉션을 만나보세요.
           </p>
-          <ArrowLink className="hero__cta">지금, 만나보기</ArrowLink>
+
+          <ArrowLink className="hero__cta">
+            지금, 만나보기
+          </ArrowLink>
         </div>
       </div>
     </section>
@@ -151,7 +157,7 @@ function NewArrivals() {
       <div className="inner">
         <div className="section-heading">
           <h2>New Arrivals</h2>
-          <ArrowLink>View All</ArrowLink>
+          <ArrowLink to="/shop">View All</ArrowLink>
         </div>
 
         <div className="product-grid">
@@ -174,18 +180,21 @@ function NewArrivals() {
 
 function Editorial() {
   return (
-    <section id="editorial" className="editorial-grid">
+    <section id="editorial" className="home-editorial-grid">
       {editorialCards.map((card, index) => (
-        <article className={`editorial-card editorial-card--${index + 1}`} key={card.title}>
+        <article
+          className={`home-editorial-card home-editorial-card--${index + 1}`}
+          key={card.title}
+        >
           <img src={card.image} alt="" />
-          <div className="editorial-card__shade" />
-          <div className="editorial-card__content">
-            <span className="editorial-card__eyebrow">{card.eyebrow}</span>
+          <div className="home-editorial-card__shade" />
+          <div className="home-editorial-card__content">
+            <span className="home-editorial-card__eyebrow">{card.eyebrow}</span>
             <h2>{card.title.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}</h2>
             <p>
               {card.description.split("\n").map((line) => <React.Fragment key={line}>{line}<br /></React.Fragment>)}
             </p>
-            <ArrowLink>Read More</ArrowLink>
+            <ArrowLink to="/editorial">Read More</ArrowLink>
           </div>
         </article>
       ))}
@@ -199,7 +208,7 @@ function Community() {
       <div className="inner">
         <div className="section-heading">
           <h2>Community Looks</h2>
-          <ArrowLink>View All</ArrowLink>
+          <ArrowLink to="/community">View All</ArrowLink>
         </div>
 
         <div className="community-grid">
@@ -257,24 +266,14 @@ function ShopByMood() {
   );
 }
 
-export default function Home({
-  cartItems,
-  cartOpen,
-  setCartOpen,
-}) {
+export default function Home() {
   return (
     <main className="mooday-home">
-      <Hero
-        cartItems={cartItems}
-        cartOpen={cartOpen}
-        setCartOpen={setCartOpen}
-      />
-
+      <Hero />
       <NewArrivals />
       <Editorial />
       <Community />
       <ShopByMood />
-      <Footer />
     </main>
   );
 }

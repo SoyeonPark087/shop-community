@@ -1,0 +1,1301 @@
+.mooday-home {
+  width: 100%;
+  overflow-x: hidden;
+  background: #FAFAF8;
+}
+
+.mooday-home .inner {
+  width: min(
+    var(--inner-max),
+    calc(100% - (var(--page-padding) * 2))
+  );
+
+  margin: 0 auto;
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.arrow-link span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.arrow-link span:last-child {
+  font-size: 16px;
+  line-height: 1;
+
+  transform: none;
+  transition: transform 180ms ease;
+}
+
+.arrow-link:hover span:last-child {
+  transform: translate(4px);
+}
+
+.section {
+  width: 100%;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+
+.section-heading .arrow-link {
+  font-size: 11px;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  width: 100%;
+  height: clamp(620px, 72vw, 780px);
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 239, 230, 0.34) 0%,
+    rgba(245, 239, 230, 0.1) 42%,
+    rgba(0, 0, 0, 0) 68%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width:
+    min(var(--inner-max),
+    calc(100% - (var(--page-padding) * 2)));
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 0px;
+  padding-bottom: 105px;
+}
+
+.hero__copy {
+  margin-top: 0;
+}
+
+.hero__copy h1 {
+  margin: 0;
+  font-size: clamp(44px, 2.7vw, 54px);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  font-weight: 450;
+}
+
+.hero__copy p {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+}
+
+.hero__cta {
+  margin-top: 55px;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+/* New Arrivals */
+.new-arrivals {
+  padding: 84px 0 94px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.product-card__image {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 0.705 / 1;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms cubic-bezier(.2,.7,.2,1);
+}
+
+
+.product-card__body {
+  padding-top: 20px;
+}
+
+.product-card__body h3,
+.product-card__body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 450;
+  letter-spacing: -0.015em;
+}
+
+.product-card__body p {
+  margin-top: 4px;
+  color: #222;
+}
+
+/* Editorial */
+
+.home-editorial-grid {
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  gap: 0;
+  width: 100%;
+}
+
+.home-editorial-card {
+  position: relative;
+  min-height: 780px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.home-editorial-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 650ms cubic-bezier(.2,.7,.2,1);
+}
+
+.home-editorial-card__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.32) 0%,
+      rgba(0,0,0,.06) 64%,
+      rgba(0,0,0,0) 100%
+    );
+}
+
+.home-editorial-card__content {
+  position: absolute;
+  left: 64px;
+  bottom: 80px;
+  z-index: 2;
+}
+
+.home-editorial-card__eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  font-weight: 600;
+}
+
+.home-editorial-card__content h2 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+}
+
+.home-editorial-card__content p {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.9);
+}
+
+.home-editorial-card__content .arrow-link {
+  margin-top: 24px;
+  font-size: 12px;
+}
+
+/* Community */
+.community {
+  padding: 84px 0 82px;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.community-card {
+  border: 1px solid #efefef;
+  background: #fff;
+}
+
+.community-card__image {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.12;
+  background: #fff;
+}
+
+.community-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms cubic-bezier(.2,.7,.2,1);
+}
+
+.community-card__meta {
+  min-height: 140px;
+  padding: 16px 18px 18px;
+}
+
+.community-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.community-card__row strong,
+.community-card__row a {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.community-card__row strong {
+  font-weight: 650;
+}
+
+.community-card__row a {
+  color: #a2a2a2;
+}
+
+.community-card__tags {
+  margin: 15px 0 0;
+  color: #8a8a8a;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.community-card__text {
+  margin: 16px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* Shop by mood */
+.shop-by-mood {
+  padding: 0 0 120px;
+}
+
+.section-heading--simple {
+  margin-bottom: 30px;
+}
+
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 0;
+
+  width: calc(
+    100% + (var(--page-padding) * 2)
+  );
+
+  margin-left:
+    calc(var(--page-padding) * -1);
+
+  margin-right:
+    calc(var(--page-padding) * -1);
+}
+
+.mood-card {
+  position: relative;
+  min-height: 445px;
+  overflow: hidden;
+}
+
+.mood-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 520ms cubic-bezier(.2,.7,.2,1);
+}
+
+.mood-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.30), rgba(0,0,0,.02) 70%);
+}
+
+.mood-card--dark .mood-card__shade {
+  background: linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+}
+
+.mood-card__content {
+  position: absolute;
+  top: 50%;
+  left: var(--page-padding);
+  right: var(--page-padding);
+  z-index: 2;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.mood-card--dark .mood-card__content {
+  color: #161616;
+}
+
+.mood-card__content h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.mood-card__content p {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.mood-card__content .arrow-link {
+  margin-top: 42px;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+/* =========================================================
+   Tablet
+   641px ~ 1024px
+
+   Desktop / Mobile 스타일은 건드리지 않고
+   중간 화면에서만 레이아웃과 여백을 보정한다.
+========================================================= */
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+
+  /* =========================
+     Tablet Base
+  ========================= */
+
+  .mooday-home {
+    --page-padding: 40px;
+  }
+
+  .mooday-home .inner {
+    width: calc(
+      100% - (var(--page-padding) * 2)
+    );
+
+    margin: 0 auto;
+  }
+
+  /*
+   * Grid/Flex 내부 텍스트가
+   * 컨테이너 너비보다 강제로 커지는 현상 방지
+   */
+  .product-card,
+  .community-card,
+  .home-editorial-card,
+  .mood-card {
+    min-width: 0;
+  }
+
+
+  /* =========================
+     Header
+  ========================= */
+
+  .site-header__nav {
+    gap: 24px;
+  }
+
+
+  /* =========================
+     Hero
+  ========================= */
+
+  .hero {
+    height: clamp(600px, 72vw, 700px);
+  }
+
+  .hero__content {
+    width: calc(
+      100% - (var(--page-padding) * 2)
+    );
+
+    margin: 0 auto;
+
+    padding-top: 0;
+    padding-bottom: 72px;
+  }
+
+  .hero__copy {
+    width: min(520px, 100%);
+    margin: 0;
+  }
+
+  .hero__copy h1 {
+    margin: 0;
+
+    font-size: clamp(36px, 5vw, 44px);
+    font-weight: 450;
+    line-height: 1.12;
+
+    letter-spacing: -0.045em;
+
+    overflow-wrap: break-word;
+  }
+
+  .hero__copy p {
+    max-width: 480px;
+
+    margin: 18px 0 0;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    letter-spacing: -0.015em;
+  }
+
+  .hero__cta {
+    margin-top: 36px;
+
+    font-size: 12px;
+    font-weight: 550;
+  }
+
+
+  /* =========================
+     Common Section Heading
+  ========================= */
+
+  .section-heading {
+    gap: 20px;
+
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2 {
+    min-width: 0;
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+
+    overflow-wrap: break-word;
+  }
+
+  .section-heading .arrow-link {
+    flex-shrink: 0;
+
+    font-size: 11px;
+  }
+
+  .arrow-link {
+    gap: 8px;
+
+    white-space: nowrap;
+  }
+
+
+  /* =========================
+     Section Spacing
+  ========================= */
+
+  .new-arrivals {
+    padding-top: 68px;
+    padding-bottom: 72px;
+  }
+
+  .community {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+
+  .shop-by-mood {
+    padding-top: 0;
+    padding-bottom: 84px;
+  }
+
+
+  /* =========================
+     New Arrivals
+     Desktop 4열 → Tablet 3열
+  ========================= */
+
+  .product-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 34px 18px;
+  }
+
+  .product-card {
+    min-width: 0;
+  }
+
+  .product-card__image {
+    width: 100%;
+
+    aspect-ratio: 0.705 / 1;
+  }
+
+  .product-card__body {
+    min-width: 0;
+
+    padding-top: 14px;
+  }
+
+  .product-card__body h3,
+  .product-card__body p {
+    max-width: 100%;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    overflow-wrap: break-word;
+  }
+
+  .product-card__body h3 {
+    font-weight: 500;
+  }
+
+  .product-card__body p {
+    margin-top: 4px;
+
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+
+  /* =========================
+     Editorial
+
+     기존 Desktop 58 : 42 비율은
+     Tablet에서 오른쪽 영역이 너무 좁아지므로
+     1 : 1로 조정한다.
+  ========================= */
+
+  .home-editorial-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+
+    gap: 0;
+  }
+
+  .home-editorial-card {
+    width: 100%;
+    min-width: 0;
+
+    min-height: 520px;
+  }
+
+  .home-editorial-card__content {
+    left: 32px;
+    right: 32px;
+    bottom: 48px;
+
+    max-width: calc(100% - 64px);
+  }
+
+  .home-editorial-card__eyebrow {
+    margin-bottom: 12px;
+
+    font-size: 10px;
+    font-weight: 550;
+    line-height: 1.2;
+
+    letter-spacing: 0.28em;
+  }
+
+  /*
+   * 1440px 구간에서 48px로 커지는 제목을
+   * Tablet에서는 다시 안정적인 크기로 제한
+   */
+  .home-editorial-card__content h2 {
+    max-width: 100%;
+    margin: 0;
+
+    font-size: clamp(28px, 3.6vw, 36px);
+    font-weight: 400;
+    line-height: 1.1;
+
+    letter-spacing: -0.04em;
+
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+  }
+
+  .home-editorial-card__content p {
+    max-width: 100%;
+
+    margin: 12px 0 0;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.55;
+
+    letter-spacing: -0.01em;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  .home-editorial-card__content .arrow-link {
+    margin-top: 22px;
+
+    font-size: 11px;
+  }
+
+
+  /* =========================
+     Community
+     Desktop 4열 → Tablet 2열
+  ========================= */
+
+  .community-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 28px 18px;
+  }
+
+  .community-card {
+    min-width: 0;
+  }
+
+  .community-card__image {
+    width: 100%;
+  }
+
+  .community-card__meta {
+    min-height: 132px;
+
+    padding: 14px 16px 16px;
+  }
+
+  .community-card__row {
+    min-width: 0;
+
+    gap: 12px;
+  }
+
+  .community-card__row strong {
+    min-width: 0;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+
+    overflow-wrap: break-word;
+  }
+
+  .community-card__row a {
+    flex-shrink: 0;
+
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .community-card__tags {
+    margin-top: 12px;
+
+    font-size: 10px;
+    line-height: 1.4;
+
+    overflow-wrap: break-word;
+  }
+
+  .community-card__text {
+    margin-top: 12px;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    letter-spacing: -0.01em;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+
+  /* =========================
+     Shop by Mood
+     Desktop 구조인 3열 유지
+     Tablet에서는 높이 / 내부 여백만 축소
+  ========================= */
+
+  .shop-by-mood .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .shop-by-mood .mood-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 0;
+
+    width: calc(
+      100% + (var(--page-padding) * 2)
+    );
+
+    margin-left:
+      calc(var(--page-padding) * -1);
+
+    margin-right:
+      calc(var(--page-padding) * -1);
+  }
+
+  .shop-by-mood .mood-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 330px;
+  }
+
+  .shop-by-mood .mood-card__content {
+    top: 50%;
+
+    left: 28px;
+    right: 28px;
+
+    transform: translateY(-50%);
+  }
+
+  .shop-by-mood .mood-card__content h3 {
+    max-width: 100%;
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 550;
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  .shop-by-mood .mood-card__content p {
+    max-width: 100%;
+
+    margin: 8px 0 0;
+
+    font-size: 11px;
+    line-height: 1.45;
+
+    overflow-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  .shop-by-mood .mood-card__content .arrow-link {
+    margin-top: 28px;
+
+    font-size: 11px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 640px) {
+
+  /* =========================
+     Mobile Base
+  ========================= */
+
+  .mooday-home {
+    --page-padding: 24px;
+  }
+
+  .mooday-home .inner {
+    width: calc(
+      100% - (var(--page-padding) * 2)
+    );
+
+    margin: 0 auto;
+  }
+
+
+  /* =========================
+     Hero
+  ========================= */
+
+  .hero {
+    height: 78svh;
+
+    min-height: 560px;
+    max-height: 680px;
+  }
+
+  .hero__content {
+    width: calc(
+      100% - (var(--page-padding) * 2)
+    );
+
+    margin: 0 auto;
+
+    justify-content: flex-end;
+
+    padding-bottom: 104px;
+  }
+
+  .hero__copy {
+    margin: 0;
+  }
+
+  .hero__copy h1 {
+    margin: 0;
+
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.15;
+
+    letter-spacing: -0.04em;
+  }
+
+  .hero__copy p {
+    margin: 12px 0 0;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.55;
+
+    letter-spacing: -0.015em;
+  }
+
+  .hero__cta {
+    margin-top: 20px;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+
+  /* =========================
+     Common Section
+  ========================= */
+
+  .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading .arrow-link {
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .arrow-link {
+    gap: 8px;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .arrow-link span:last-child {
+    font-size: 13px;
+  }
+
+
+  /* =========================
+     Section Spacing
+  ========================= */
+
+  .new-arrivals {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .community {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .shop-by-mood {
+    padding-top: 0;
+    padding-bottom: 48px;
+  }
+
+
+  /* =========================
+     New Arrivals
+  ========================= */
+
+  .product-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 18px 10px;
+  }
+
+  .product-card__body {
+    padding-top: 12px;
+  }
+
+  .product-card__body h3 {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    letter-spacing: -0.015em;
+  }
+
+  .product-card__body p {
+    margin: 4px 0 0;
+
+    color: #222;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.4;
+
+    letter-spacing: -0.01em;
+  }
+
+
+  /* =========================
+     Editorial
+     기존 520px → 약 25% 축소
+  ========================= */
+
+  .home-editorial-grid {
+    width: 100%;
+    margin: 0;
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .home-editorial-card {
+    width: 100%;
+
+    min-height: 390px;
+
+    margin: 0;
+  }
+
+  .home-editorial-card__content {
+    left: var(--page-padding);
+    right: var(--page-padding);
+    bottom: 32px;
+  }
+
+  .home-editorial-card__eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    letter-spacing: 0.22em;
+  }
+
+  .home-editorial-card__content h2 {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.15;
+
+    letter-spacing: -0.035em;
+  }
+
+  .home-editorial-card__content p {
+    margin: 10px 0 0;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    letter-spacing: -0.01em;
+  }
+
+  .home-editorial-card__content .arrow-link {
+    margin-top: 18px;
+
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+
+  /* =========================
+     Community
+  ========================= */
+
+  .community-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 18px 10px;
+  }
+
+  .community-card__meta {
+    min-height: 124px;
+
+    padding: 12px;
+  }
+
+  .community-card__row {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .community-card__row strong {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .community-card__row a {
+    color: #a2a2a2;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .community-card__tags {
+    margin-top: 8px;
+
+    color: #8a8a8a;
+
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .community-card__text {
+    margin-top: 8px;
+
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.45;
+
+    letter-spacing: -0.01em;
+  }
+
+
+  /* =========================
+     Shop by Mood
+     1 Large + 2 Small
+  ========================= */
+
+  .shop-by-mood .section-heading {
+    margin-bottom: 16px;
+  }
+
+  .shop-by-mood .mood-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 0;
+
+    /*
+     * inner 좌우 여백만큼 확장해서
+     * full-bleed 처리.
+     *
+     * 100vw를 사용하지 않아
+     * scrollbar에 따른 좌우 오차 방지.
+     */
+    width: calc(
+      100% + (var(--page-padding) * 2)
+    );
+
+    margin-left:
+      calc(var(--page-padding) * -1);
+
+    margin-right:
+      calc(var(--page-padding) * -1);
+  }
+
+
+  /* Common Card */
+
+  .shop-by-mood .mood-card {
+    position: relative;
+
+    width: 100%;
+    min-height: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+  }
+
+
+  /* Large Card */
+
+  .shop-by-mood .mood-card--large {
+    grid-column: 1 / -1;
+
+    height: 300px;
+  }
+
+
+  /* Small Card */
+
+  .shop-by-mood .mood-card--small {
+    height: 220px;
+  }
+
+
+  /* Image */
+
+  .shop-by-mood .mood-card > img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+
+  /* =========================
+     Large Card Content
+  ========================= */
+
+  .shop-by-mood
+  .mood-card--large
+  .mood-card__content {
+    left: var(--page-padding);
+    right: var(--page-padding);
+  }
+
+  .shop-by-mood
+  .mood-card--large
+  .mood-card__content h3 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+  }
+
+  .shop-by-mood
+  .mood-card--large
+  .mood-card__content p {
+    margin: 8px 0 0;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  .shop-by-mood
+  .mood-card--large
+  .mood-card__content .arrow-link {
+    margin-top: 18px;
+
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+
+  /* =========================
+     Small Card Content
+  ========================= */
+
+  .shop-by-mood
+  .mood-card--small
+  .mood-card__content {
+    top: 50%;
+    bottom: auto;
+
+    left: 16px;
+    right: 16px;
+
+    transform: translateY(-50%);
+  }
+
+  .shop-by-mood
+  .mood-card--small
+  .mood-card__content h3 {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+
+    letter-spacing: -0.02em;
+  }
+
+  /*
+   * Small 카드에서는 제목만 노출
+   */
+  .shop-by-mood
+  .mood-card--small
+  .mood-card__content p,
+
+  .shop-by-mood
+  .mood-card--small
+  .mood-card__content .arrow-link {
+    display: none;
+  }
+}

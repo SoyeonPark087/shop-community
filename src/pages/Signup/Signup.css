@@ -1,4 +1,29 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+/* ==================================================
+   MOODAY SIGN UP
+   Unified Form UI
+
+   Desktop
+   - Form max-width: 960px
+   - Page side axis: 64px minimum
+
+   Tablet
+   - Side axis: 40px
+
+   Mobile
+   - Side axis: 24px
+
+   Form UI
+   - Section title: 14px
+   - Label: 12px
+   - Input: 46px
+   - Secondary button: 46px
+   - Primary CTA: 46px
+================================================== */
+
+
+/* ==================================================
+   ROOT
+================================================== */
 
 .signup-page {
   width: 100%;
@@ -10,10 +35,9 @@
   color: #282828;
   background: #fafaf8;
 
-  font-family:
-    "Segoe UI",
-    "Pretendard",
-    sans-serif;
+  font-family: inherit;
+
+  line-height: 1.5;
 
   -webkit-font-smoothing: antialiased;
 }
@@ -24,29 +48,38 @@
   box-sizing: border-box;
 }
 
-/* =========================
-   Main
-========================= */
+
+/* ==================================================
+   MAIN
+================================================== */
 
 .signup-main {
   flex: 1;
+
   width: 100%;
 }
 
 .signup-inner {
-  width: min(960px, calc(100% - 128px));
+  width: min(
+    960px,
+    calc(100% - 128px)
+  );
+
   margin: 0 auto;
+
   padding-top: 120px;
-  padding-bottom: 128px;
+  padding-bottom: 120px;
 }
 
-/* =========================
-   Heading
-========================= */
+
+/* ==================================================
+   HEADING
+================================================== */
 
 .signup-heading {
+  margin-bottom: 56px;
+
   text-align: center;
-  margin-bottom: 92px;
 }
 
 .signup-heading h1 {
@@ -54,28 +87,27 @@
 
   color: #282828;
 
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
 
   letter-spacing: -0.02em;
 }
 
 .signup-heading p {
-  margin: 14px 0 0;
+  margin: 8px 0 0;
 
   color: #99958f;
 
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 1.5;
-
-  letter-spacing: -0.02em;
 }
 
-/* =========================
-   Form
-========================= */
+
+/* ==================================================
+   FORM
+================================================== */
 
 .signup-form {
   width: 100%;
@@ -83,37 +115,46 @@
 
 .signup-section {
   width: 100%;
+
   margin: 0;
 }
 
 .signup-section + .signup-section {
-  margin-top: 62px;
+  margin-top: 52px;
 }
 
 .signup-section__title {
-  margin: 0 0 24px;
+  margin: 0 0 22px;
 
   color: #111;
 
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
 
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .signup-section__body {
   width: 100%;
 }
 
-.form-row {
-  width: 100%;
 
+/* ==================================================
+   FORM ROW
+================================================== */
+
+.form-row {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  column-gap: 32px;
+
+  grid-template-columns:
+    170px minmax(0, 1fr);
 
   align-items: center;
+
+  column-gap: 32px;
+
+  width: 100%;
 }
 
 .form-row + .form-row {
@@ -123,21 +164,27 @@
 .form-row__label {
   color: #282828;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .required-mark {
   display: inline-block;
-  margin-left: 5px;
+
+  margin-left: 4px;
 }
 
 .form-row__field {
   min-width: 0;
 }
+
+
+/* ==================================================
+   INPUT / SELECT
+================================================== */
 
 .form-row input[type="text"],
 .form-row input[type="password"],
@@ -145,21 +192,22 @@
 .form-row input[type="tel"],
 .form-row select {
   width: 100%;
-  height: 50px;
+  height: 46px;
+
+  padding: 0 14px;
 
   border: 1px solid #deddd9;
   border-radius: 0;
 
-  padding: 0 16px;
-
   outline: none;
 
   color: #282828;
-  background: #fff;
+  background: #ffffff;
 
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
+  line-height: 1.4;
 
   transition:
     border-color 0.18s ease,
@@ -167,7 +215,10 @@
 }
 
 .form-row input::placeholder {
-  color: #bbb8b2;
+  color: #aaa7a1;
+
+  font-size: 12px;
+
   opacity: 1;
 }
 
@@ -176,78 +227,105 @@
   border-color: #77736c;
 }
 
-/* =========================
-   Address
-========================= */
+
+/* ==================================================
+   ADDRESS
+================================================== */
 
 .address-search {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 138px;
-  gap: 12px;
+
+  grid-template-columns:
+    minmax(0, 1fr) 126px;
+
+  gap: 10px;
 }
 
 .address-search__button {
   width: 100%;
-  height: 50px;
+  height: 46px;
+
+  padding: 0 12px;
 
   border: 1px solid #deddd9;
   border-radius: 0;
 
   color: #77736c;
-  background: #fff;
+  background: #ffffff;
 
   font-family: inherit;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
+  line-height: 1;
 
   cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .address-search__button:hover {
   border-color: #aaa69f;
+
+  color: #282828;
 }
 
-/* =========================
-   Gender
-========================= */
+.address-search__button:focus-visible {
+  outline: 1px solid #344f41;
+  outline-offset: 2px;
+}
+
+
+/* ==================================================
+   GENDER
+================================================== */
 
 .gender-options {
-  min-height: 50px;
-
   display: flex;
   align-items: center;
-  gap: 26px;
+
+  min-height: 46px;
+
+  gap: 24px;
 }
 
 .gender-options label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
 
-  cursor: pointer;
+  gap: 8px;
 
   color: #282828;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
+  line-height: 1.4;
+
+  cursor: pointer;
 }
 
 .gender-options input[type="radio"] {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
+
   margin: 0;
 
-  accent-color: #315c4b;
+  accent-color: #344f41;
 }
 
-/* =========================
-   Birthday
-========================= */
+
+/* ==================================================
+   BIRTHDAY
+================================================== */
 
 .birth-selects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
 }
 
 .birth-selects select {
@@ -263,105 +341,137 @@
   color: #282828;
 }
 
-/* =========================
-   Agreement
-========================= */
+
+/* ==================================================
+   AGREEMENT
+================================================== */
 
 .agreement-list {
   width: 100%;
 }
 
 .agreement-row {
-  min-height: 42px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  min-height: 38px;
+
+  gap: 16px;
 }
 
 .agreement-check {
   display: inline-flex;
   align-items: center;
-  gap: 13px;
+
+  min-width: 0;
+
+  gap: 10px;
 
   cursor: pointer;
 }
 
 .agreement-check input {
   position: absolute;
+
   width: 1px;
   height: 1px;
 
   opacity: 0;
+
   pointer-events: none;
 }
+
+
+/* ==================================================
+   CUSTOM CHECKBOX
+================================================== */
 
 .agreement-check__box {
   position: relative;
 
   flex: 0 0 auto;
 
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
 
   border: 1px solid #aaa8a2;
-  background: #fff;
+
+  background: #ffffff;
 }
 
 .agreement-check input:checked
-  + .agreement-check__box {
-  border-color: #315c4b;
-  background: #315c4b;
++ .agreement-check__box {
+  border-color: #344f41;
+
+  background: #344f41;
 }
 
 .agreement-check input:checked
-  + .agreement-check__box::after {
++ .agreement-check__box::after {
   content: "";
 
   position: absolute;
 
-  left: 7px;
-  top: 3px;
+  top: 2px;
+  left: 6px;
 
-  width: 5px;
-  height: 10px;
+  width: 4px;
+  height: 9px;
 
-  border-right: 1.5px solid #fff;
-  border-bottom: 1.5px solid #fff;
+  border-right: 1.5px solid #ffffff;
+  border-bottom: 1.5px solid #ffffff;
 
   transform: rotate(45deg);
 }
 
+.agreement-check input:focus-visible
++ .agreement-check__box {
+  outline: 1px solid #344f41;
+  outline-offset: 2px;
+}
+
+
+/* ==================================================
+   AGREEMENT TEXT
+================================================== */
+
 .agreement-check__text {
   color: #55514b;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.5;
 
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 
 .agreement-row--strong {
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .agreement-row--strong
-  .agreement-check__text {
+.agreement-check__text {
   color: #282828;
-  font-weight: 600;
+
+  font-weight: 500;
 }
 
 .agreement-view {
-  border: 0;
+  flex: 0 0 auto;
+
+  margin: 0;
   padding: 0;
+
+  border: 0;
 
   color: #9b9892;
   background: transparent;
 
   font-family: inherit;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
+  line-height: 1.4;
 
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -369,150 +479,372 @@
   cursor: pointer;
 }
 
-/* =========================
-   Submit
-========================= */
+.agreement-view:hover {
+  color: #55514b;
+}
+
+
+/* ==================================================
+   SUBMIT
+================================================== */
 
 .signup-submit {
-  width: 100%;
-  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  margin-top: 112px;
+  width: 100%;
+  height: 46px;
+
+  margin-top: 64px;
+  padding: 0 16px;
 
   border: 0;
   border-radius: 0;
 
-  color: #fff;
-  background: #315744;
+  color: #ffffff;
+  background: #344f41;
 
   font-family: inherit;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
 
   letter-spacing: 0;
 
   cursor: pointer;
 
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease;
 }
 
 .signup-submit:hover {
   background: #294a3a;
 }
 
-/* =========================
-   Footer
-========================= */
-
-.signup-footer {
-  width: 100%;
-  height: 224px;
-
-  padding: 48px 0;
-
-  background: #f7f4ef;
+.signup-submit:focus-visible {
+  outline: 1px solid #344f41;
+  outline-offset: 3px;
 }
 
-.signup-footer__inner {
-  width: calc(100% - 128px);
-  max-width: 1792px;
 
-  height: 100%;
+/* ==================================================
+   TABLET
+   768px ~ 1024px
+================================================== */
 
-  margin: 0 auto;
-}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 
-.signup-footer__top {
-  display: flex;
-  align-items: flex-start;
-}
+  /* =========================
+     Page
+  ========================= */
 
-.signup-footer__copyright {
-  flex: 0 0 320px;
-
-  margin: 0;
-
-  color: #6e6a64;
-
-  font-size: 10px;
-  font-weight: 400;
-}
-
-.signup-footer__links {
-  display: flex;
-  align-items: center;
-
-  gap: 62px;
-}
-
-.signup-footer__links a {
-  color: #57534e;
-
-  font-size: 10px;
-  font-weight: 400;
-
-  text-decoration: none;
-}
-
-.signup-footer__details {
-  margin-top: 28px;
-  margin-left: 320px;
-}
-
-.signup-footer__details p {
-  margin: 0;
-
-  color: #aaa69f;
-
-  font-size: 9px;
-  font-weight: 400;
-  line-height: 1.65;
-}
-
-/* =========================
-   Responsive fallback
-========================= */
-
-@media (max-width: 1024px) {
   .signup-inner {
     width: calc(100% - 80px);
+    max-width: 960px;
+
+    padding-top: 104px;
+    padding-bottom: 96px;
   }
 
-  .signup-footer__inner {
-    width: calc(100% - 80px);
-  }
 
-  .signup-footer__links {
-    gap: 28px;
-  }
-}
-
-@media (max-width: 768px) {
-  .signup-inner {
-    width: calc(100% - 40px);
-
-    padding-top: 72px;
-    padding-bottom: 80px;
-  }
+  /* =========================
+     Heading
+  ========================= */
 
   .signup-heading {
-    margin-bottom: 64px;
+    margin-bottom: 52px;
   }
 
+  .signup-heading h1 {
+    font-size: 19px;
+  }
+
+
+  /* =========================
+     Sections
+  ========================= */
+
+  .signup-section + .signup-section {
+    margin-top: 48px;
+  }
+
+
+  /* =========================
+     Form
+  ========================= */
+
   .form-row {
-    grid-template-columns: 1fr;
-    row-gap: 10px;
+    grid-template-columns:
+      150px minmax(0, 1fr);
+
+    column-gap: 28px;
+  }
+
+
+  /* =========================
+     Submit
+  ========================= */
+
+  .signup-submit {
+    margin-top: 56px;
+  }
+}
+
+
+/* ==================================================
+   MOBILE
+   0px ~ 767px
+================================================== */
+
+@media screen and (max-width: 767px) {
+
+  /* =========================
+     Page
+     Shop / Editorial 동일 24px
+  ========================= */
+
+  .signup-inner {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding:100px 24px 72px;
+  }
+
+
+  /* =========================
+     Heading
+  ========================= */
+
+  .signup-heading {
+    margin-bottom: 44px;
+  }
+
+  .signup-heading h1 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .signup-heading p {
+    margin-top: 7px;
+
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+
+  /* =========================
+     Section
+  ========================= */
+
+  .signup-section + .signup-section {
+    margin-top: 44px;
+  }
+
+  .signup-section__title {
+    margin-bottom: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+
+  /* =========================
+     Form Row
+  ========================= */
+
+  .form-row {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    row-gap: 7px;
+
+    align-items: stretch;
   }
 
   .form-row + .form-row {
-    margin-top: 20px;
+    margin-top: 18px;
+  }
+
+  .form-row__label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+
+  /* =========================
+     Input / Select
+  ========================= */
+
+  .form-row input[type="text"],
+  .form-row input[type="password"],
+  .form-row input[type="email"],
+  .form-row input[type="tel"],
+  .form-row select {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 12px;
+
+    /*
+     * iOS Safari 입력 시
+     * 자동 확대 방지
+     */
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .form-row input::placeholder {
+    font-size: 12px;
+  }
+
+
+  /* =========================
+     Address
+  ========================= */
+
+  .address-search {
+    grid-template-columns:
+      minmax(0, 1fr) 96px;
+
+    gap: 8px;
+  }
+
+  .address-search__button {
+    height: 46px;
+
+    padding: 0 8px;
+
+    font-size: 11px;
+  }
+
+
+  /* =========================
+     Gender
+  ========================= */
+
+  .gender-options {
+    min-height: 44px;
+
+    gap: 22px;
+  }
+
+  .gender-options label {
+    gap: 7px;
+
+    font-size: 11px;
+  }
+
+  .gender-options input[type="radio"] {
+    width: 16px;
+    height: 16px;
+  }
+
+
+  /* =========================
+     Birthday
+  ========================= */
+
+  .birth-selects {
+    gap: 8px;
+  }
+
+
+  /* =========================
+     Agreement
+  ========================= */
+
+  .agreement-row {
+    min-height: 36px;
+
+    gap: 12px;
+  }
+
+  .agreement-check {
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .agreement-check__box {
+    width: 18px;
+    height: 18px;
+
+    margin-top: 1px;
+  }
+
+  .agreement-check__text {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .agreement-row--strong
+  .agreement-check__text {
+    font-weight: 500;
+  }
+
+  .agreement-view {
+    margin-left: 8px;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+  }
+
+
+  /* =========================
+     Submit
+  ========================= */
+
+  .signup-submit {
+    height: 44px;
+
+    margin-top: 44px;
+
+    padding: 0 14px;
+
+    font-size: 11px;
+    font-weight: 500;
+  }
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+   420px 이하
+================================================== */
+
+@media screen and (max-width: 420px) {
+
+  /*
+   * Shop / Editorial처럼
+   * 좌우 여백 24px 유지
+   */
+
+  .signup-inner {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .signup-heading {
+    margin-bottom: 40px;
+  }
+
+  .signup-section + .signup-section {
+    margin-top: 40px;
   }
 
   .address-search {
-    grid-template-columns: 1fr 110px;
+    grid-template-columns:
+      minmax(0, 1fr) 90px;
   }
 
-  .signup-submit {
-    margin-top: 72px;
+  .agreement-row {
+    align-items: flex-start;
   }
 }

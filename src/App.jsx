@@ -5,7 +5,7 @@ import Header from './components/common/Header'
 import Footer from './components/common/Footer'
 
 import Home from './pages/Home/Home'
-import Signup from './pages/SignUp/SignUp'
+import Signup from './pages/Signup/Signup'
 import Shop from './pages/Shop/Shop'
 import ProductDetail from './pages/Shop/ProductDetail'
 import Editorial from './pages/Editorial/Editorial'

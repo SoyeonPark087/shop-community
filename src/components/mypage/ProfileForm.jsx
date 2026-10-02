@@ -1,75 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-/**
- * ==================================================
- * mooday My Page - Profile v0.4 / Phase 4-A
- * ==================================================
- *
- * Phase 1
- * --------------------------------------------------
- * - 이름 / 이메일 / 휴대폰 번호 필수 검사
- * - 이메일 형식 검사
- * - 한국 휴대폰 번호 형식 검사
- * - Blur 시 개별 검증
- * - 검증된 필드는 입력 중 실시간 재검증
- * - Submit 시 전체 검증
- * - Error UI / 접근성 처리
- *
- * Phase 2
- * --------------------------------------------------
- * - Profile 수정 여부 감지
- * - 이름 / 이메일 / 휴대폰 번호 변경 감지
- * - 이벤트 / 마케팅 체크박스 변경 감지
- * - 변경사항이 없으면 수정하기 Disabled
- * - 하나라도 변경되면 수정하기 Active
- *
- * Phase 3
- * --------------------------------------------------
- * - 기존 초기화 방식 제거
- * - 현재 입력값을 "저장된 기준값"으로 갱신
- * - 저장 후 입력값 유지
- * - 저장 후 isDirty 자동 false
- * - 수정하기 다시 Disabled
- * - 저장 완료 Toast 표시
- * - Toast 약 3초 후 자동 종료
- *
- * Phase 4-A 추가
- * --------------------------------------------------
- * - 저장되지 않은 변경사항이 있을 때
- *   브라우저 수준 이탈 경고
- *
- * 적용 대상 예:
- * - 새로고침
- * - 탭 닫기
- * - 브라우저 창 닫기
- * - 주소창을 통한 다른 페이지 이동
- *
- * 중요
- * --------------------------------------------------
- * 이번 Phase 4-A는 브라우저 beforeunload만 담당합니다.
- *
- * Header / React Router 내부 링크 이동을
- * 커스텀 팝업으로 막는 Phase 4-B는
- * 현재 구현 범위에서 제외합니다.
- *
- * 또한 현재 저장은 React 내부 시연용 상태입니다.
- *
- * 실제 API / 서버 / localStorage 저장은 하지 않습니다.
- * 새로고침하면 현재 저장 내용은 사라집니다.
- */
 
-
-/* ==================================================
-   1. INITIAL STATE
-================================================== */
-
-/**
- * Profile 최초 기준값
- *
- * 현재 실제 회원 데이터가 없으므로
- * 이름 / 이메일 / 휴대폰 번호는
- * 모두 빈 상태로 시작합니다.
- */
 const INITIAL_PROFILE = {
   name: '',
   email: '',
@@ -77,19 +8,11 @@ const INITIAL_PROFILE = {
 }
 
 
-/**
- * 체크박스 최초 기준값
- */
 const INITIAL_EVENT_CONSENT = true
 const INITIAL_MARKETING_CONSENT = false
 
 
-/**
- * 최초 저장 기준 상태
- *
- * Phase 3부터
- * 현재 화면값을 "마지막 저장값"과 비교합니다.
- */
+
 const INITIAL_SAVED_STATE = {
   name: INITIAL_PROFILE.name,
   email: INITIAL_PROFILE.email,
@@ -100,9 +23,7 @@ const INITIAL_SAVED_STATE = {
 }
 
 
-/**
- * 필드별 오류 상태
- */
+
 const EMPTY_ERRORS = {
   name: '',
   email: '',
@@ -110,12 +31,7 @@ const EMPTY_ERRORS = {
 }
 
 
-/**
- * 필드별 검증 경험 여부
- *
- * 최초 진입 시 빈칸 전체가
- * 바로 Error 상태가 되는 것을 방지합니다.
- */
+
 const EMPTY_TOUCHED = {
   name: false,
   email: false,
@@ -123,29 +39,11 @@ const EMPTY_TOUCHED = {
 }
 
 
-/**
- * UI 시연용 고정 아이디
- *
- * 실제 로그인 사용자 정보는 아닙니다.
- *
- * 추후 전체 통합 단계에서 여유가 생기면
- * localStorage 기반 회원정보 연동으로
- * 교체할 수 있습니다.
- */
+
 const DEMO_USER_ID = 'mooday_user01'
 
 
-/* ==================================================
-   2. VALIDATION FUNCTIONS
-================================================== */
 
-/**
- * 이름 검사
- *
- * 규칙:
- * - 필수 입력
- * - 앞뒤 공백 제거 후 값 존재
- */
 function validateName(value) {
   if (!value.trim()) {
     return '이름을 입력해주세요.'
@@ -179,15 +77,6 @@ function validateEmail(value) {
 }
 
 
-/**
- * 휴대폰 번호 검사
- *
- * 허용:
- * - 01012345678
- * - 010-1234-5678
- *
- * 자동 포맷팅은 현재 하지 않습니다.
- */
 function validatePhone(value) {
   const trimmedValue = value.trim()
 
@@ -205,10 +94,7 @@ function validatePhone(value) {
 }
 
 
-/**
- * 필드 이름에 따라
- * 알맞은 Validator를 실행합니다.
- */
+
 function validateField(name, value) {
   switch (name) {
     case 'name':
@@ -249,56 +135,25 @@ export default function ProfileForm() {
   )
 
 
-  /**
-   * 마지막으로 저장된 기준값
-   *
-   * 현재 화면값과 이 값을 비교해
-   * isDirty를 계산합니다.
-   */
+
   const [savedState, setSavedState] = useState(
     INITIAL_SAVED_STATE
   )
 
 
-  /**
-   * Validation 상태
-   */
   const [errors, setErrors] = useState(EMPTY_ERRORS)
 
   const [touched, setTouched] = useState(EMPTY_TOUCHED)
 
 
-  /**
-   * 저장 완료 Toast
-   */
+
   const [showToast, setShowToast] = useState(false)
 
 
-  /**
-   * Toast 종료 Timer 보관
-   */
+
   const toastTimerRef = useRef(null)
 
 
-  /* ==================================================
-     4. DIRTY STATE
-  ================================================== */
-
-  /**
-   * 현재 화면값과 마지막 저장값 비교
-   *
-   * 하나라도 다르면:
-   * isDirty = true
-   *
-   * 모두 같으면:
-   * isDirty = false
-   *
-   * 이 값은 현재 세 가지 역할을 합니다.
-   *
-   * 1. 수정하기 버튼 활성 여부
-   * 2. 미저장 변경 존재 여부
-   * 3. Phase 4-A 브라우저 이탈 경고 여부
-   */
   const isDirty =
     profile.name !== savedState.name ||
     profile.email !== savedState.email ||
@@ -307,70 +162,24 @@ export default function ProfileForm() {
     marketingConsent !== savedState.marketingConsent
 
 
-  /* ==================================================
-     5. BEFOREUNLOAD GUARD
-     Phase 4-A
-  ================================================== */
-
-  /**
-   * 저장되지 않은 변경사항이 있을 때만
-   * beforeunload 이벤트를 등록합니다.
-   *
-   * isDirty = false
-   * → 경고 없음
-   *
-   * isDirty = true
-   * → 브라우저 이탈 시 기본 경고
-   *
-   * 주의:
-   * 최신 브라우저에서는 보안 / UX 정책상
-   * 개발자가 원하는 커스텀 문구를
-   * 직접 표시할 수 없습니다.
-   *
-   * 따라서 브라우저가 제공하는
-   * 기본 경고 문구가 표시됩니다.
-   */
   useEffect(() => {
-    /**
-     * 변경사항이 없다면
-     * 이벤트를 등록할 필요가 없습니다.
-     */
+
     if (!isDirty) {
       return
     }
 
-    /**
-     * 브라우저 이탈 직전에 실행되는 Handler
-     */
     function handleBeforeUnload(event) {
-      /**
-       * 브라우저에게
-       * "사용자 확인이 필요한 이탈"임을 알립니다.
-       */
+
       event.preventDefault()
 
-      /**
-       * 일부 브라우저 호환성을 위한 처리입니다.
-       *
-       * 실제 표시 문구는 브라우저가 결정합니다.
-       */
       event.returnValue = ''
     }
 
-    /**
-     * isDirty가 true인 동안
-     * beforeunload 이벤트 등록
-     */
     window.addEventListener(
       'beforeunload',
       handleBeforeUnload
     )
 
-    /**
-     * isDirty가 false가 되거나
-     * 컴포넌트가 사라질 때
-     * 반드시 이벤트를 제거합니다.
-     */
     return () => {
       window.removeEventListener(
         'beforeunload',
@@ -380,14 +189,6 @@ export default function ProfileForm() {
   }, [isDirty])
 
 
-  /* ==================================================
-     6. TOAST TIMER CLEANUP
-  ================================================== */
-
-  /**
-   * 컴포넌트가 사라질 때
-   * 남아 있는 Toast Timer를 정리합니다.
-   */
   useEffect(() => {
     return () => {
       if (toastTimerRef.current) {

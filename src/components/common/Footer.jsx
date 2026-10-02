@@ -13,7 +13,8 @@ const footerLinks = [
 function Footer() {
   return (
     <footer className="footer">
-      <div className="inner footer__top">
+      <div className="footer__inner">
+        <div className="footer__top">
         <p className="footer__copyright">
           © Copyright ©2026 mooday All rights reserved.
         </p>
@@ -48,6 +49,7 @@ function Footer() {
           </div>
         </div>
       </div>
+    </div>
     </footer>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Footer from "../../components/common/Footer";
-import "./SignUp.css";
+import { useNavigate } from "react-router-dom";
+
+import "./Signup.css";
 
 const basicFields = [
   {
@@ -157,6 +158,8 @@ function AgreementRow({
 
 
 export default function Signup() {
+  const navigate = useNavigate();
+
   const [agreements, setAgreements] = useState({
     terms: false,
     privacy: false,
@@ -184,9 +187,6 @@ export default function Signup() {
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
 
   return (
     <div className="signup-page">
@@ -196,7 +196,6 @@ export default function Signup() {
 
           <form
             className="signup-form"
-            onSubmit={handleSubmit}
           >
             <FormSection title="BASIC INFORMATION">
               {basicFields.map((field) => (
@@ -403,11 +402,13 @@ export default function Signup() {
             </FormSection>
 
             <button
-              type="submit"
+              type="button"
               className="signup-submit"
+              onClick={() => navigate("/mypage")}
             >
               Create Account
             </button>
+
           </form>
         </div>
       </main>
