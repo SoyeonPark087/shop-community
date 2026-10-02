@@ -1,8 +1,8 @@
 import {
   editorials,
   featuredEditorial,
-} from '../../data/editorials'
-import './editorial.css'
+} from '../../data/Editorial'
+import './Editorial.css'
 
 function Editorial() {
   return (

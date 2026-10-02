@@ -1,31 +1,20 @@
 import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components//common/Header'
+import Footer from './components/common/Footer'
 
-import Home from './pages/Home'
-import Signup from './pages/Signup'
+import Home from './pages//Home/Home'
+import Signup from './pages/Signup/Signup'
 import Shop from './pages/Shop/Shop'
 import ProductDetail from './pages/Shop/ProductDetail'
 import Editorial from './pages/Editorial/Editorial'
 import EditorialDetail from './pages/Editorial/EditorialDetail'
-import Community from './pages/Community'
 
 function App() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Soft Cotton Shirt_Pink',
-      nameKo: '소프트 코튼 셔츠_핑크',
-      option: 'S',
-      price: 93000,
-      quantity: 1,
-      image: '/images/shop/cart-shirt-pink.png',
-    },
-  ])
+  const [cartItems, setCartItems] = useState([]);
 
   const [cartOpen, setCartOpen] = useState(false)
 
@@ -34,19 +23,21 @@ function App() {
       const existing = prev.find(
         (item) =>
           item.id === product.id &&
-          item.option === product.option
-      )
+          item.option === product.option &&
+          item.color === product.color
+      );
 
       if (existing) {
         return prev.map((item) =>
           item.id === product.id &&
-          item.option === product.option
+          item.option === product.option &&
+          item.color === product.color
             ? {
                 ...item,
                 quantity: item.quantity + 1,
               }
             : item
-        )
+        );
       }
 
       return [
@@ -55,11 +46,11 @@ function App() {
           ...product,
           quantity: 1,
         },
-      ]
-    })
+      ];
+    });
 
-    setCartOpen(true)
-  }
+    setCartOpen(true);
+  };
 
   return (
     <>
@@ -100,10 +91,7 @@ function App() {
       element={<EditorialDetail />}
     />
 
-    <Route
-      path="/community"
-      element={<Community />}
-    />
+
   </Routes>
 </div>
 

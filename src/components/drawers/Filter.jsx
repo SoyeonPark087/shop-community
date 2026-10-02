@@ -1,80 +1,157 @@
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
+
 import Drawer from "./Drawer";
+
 import "./Filter.css";
 
-const COLORS = [
-  { id: "white", color: "#F7F7F4", label: "White" },
-  { id: "beige", color: "#D8CFC1", label: "Beige" },
-  { id: "pink", color: "#D7A7A7", label: "Pink" },
-  { id: "purple", color: "#BBA8C9", label: "Purple" },
-  { id: "green", color: "#8E9A84", label: "Green" },
-  { id: "brown", color: "#7E5944", label: "Brown" },
-  { id: "gray", color: "#8C8C8A", label: "Gray" },
-  { id: "charcoal", color: "#565656", label: "Charcoal" },
-  { id: "navy", color: "#414968", label: "Navy" },
-  { id: "black", color: "#242424", label: "Black" },
+
+const SIZES = [
+  "S",
+  "M",
+  "L",
+  "FREE",
 ];
 
-const SIZES = ["S", "M", "L", "FREE"];
+const MAX_PRICE = 150000;
 
-const MAX_PRICE = 300000;
 
 export default function Filter({
   open,
   onClose,
   onApply,
+  colors = [],
+  appliedFilters,
 }) {
-  const [selectedColors, setSelectedColors] =
-    useState([]);
 
-  const [selectedSizes, setSelectedSizes] =
-    useState([]);
+  const [
+    selectedColors,
+    setSelectedColors,
+  ] = useState([]);
 
-  const [minPrice, setMinPrice] =
-    useState(0);
+  const [
+    selectedSizes,
+    setSelectedSizes,
+  ] = useState([]);
 
-  const [maxPrice, setMaxPrice] =
-    useState(MAX_PRICE);
+  const [
+    minPrice,
+    setMinPrice,
+  ] = useState(0);
 
-  const toggleColor = (id) => {
+  const [
+    maxPrice,
+    setMaxPrice,
+  ] = useState(MAX_PRICE);
+
+
+  /* ========================================
+     현재 적용된 필터와 Drawer 상태 동기화
+  ======================================== */
+
+  useEffect(() => {
+    if (!open) return;
+
+    setSelectedColors(
+      appliedFilters?.colors || []
+    );
+
+    setSelectedSizes(
+      appliedFilters?.sizes || []
+    );
+
+    setMinPrice(
+      appliedFilters?.minPrice ?? 0
+    );
+
+    setMaxPrice(
+      appliedFilters?.maxPrice ??
+        MAX_PRICE
+    );
+
+  }, [
+    open,
+    appliedFilters,
+  ]);
+
+
+  /* ========================================
+     Color
+  ======================================== */
+
+  const toggleColor = (name) => {
     setSelectedColors((prev) =>
-      prev.includes(id)
+      prev.includes(name)
         ? prev.filter(
-            (colorId) => colorId !== id
+            (colorName) =>
+              colorName !== name
           )
-        : [...prev, id]
+        : [
+            ...prev,
+            name,
+          ]
     );
   };
+
+
+  /* ========================================
+     Size
+  ======================================== */
 
   const toggleSize = (size) => {
     setSelectedSizes((prev) =>
       prev.includes(size)
         ? prev.filter(
-            (item) => item !== size
+            (item) =>
+              item !== size
           )
-        : [...prev, size]
+        : [
+            ...prev,
+            size,
+          ]
     );
   };
 
-  const handleMinPrice = (event) => {
-    const value = Number(
-      event.target.value
-    );
 
-    setMinPrice(
-      Math.min(value, maxPrice - 10000)
-    );
-  };
+  /* ========================================
+     Price
+  ======================================== */
 
-  const handleMaxPrice = (event) => {
-    const value = Number(
-      event.target.value
-    );
+  const handleMinPrice =
+    (event) => {
+      const value = Number(
+        event.target.value
+      );
 
-    setMaxPrice(
-      Math.max(value, minPrice + 10000)
-    );
-  };
+      setMinPrice(
+        Math.min(
+          value,
+          maxPrice - 10000
+        )
+      );
+    };
+
+
+  const handleMaxPrice =
+    (event) => {
+      const value = Number(
+        event.target.value
+      );
+
+      setMaxPrice(
+        Math.max(
+          value,
+          minPrice + 10000
+        )
+      );
+    };
+
+
+  /* ========================================
+     Reset
+  ======================================== */
 
   const handleReset = () => {
     setSelectedColors([]);
@@ -83,7 +160,13 @@ export default function Filter({
     setMaxPrice(MAX_PRICE);
   };
 
+
+  /* ========================================
+     Apply
+  ======================================== */
+
   const handleApply = () => {
+
     const filterValues = {
       colors: selectedColors,
       sizes: selectedSizes,
@@ -91,12 +174,15 @@ export default function Filter({
       maxPrice,
     };
 
-    if (onApply) {
-      onApply(filterValues);
-    }
+
+    onApply?.(
+      filterValues
+    );
 
     onClose();
   };
+
+console.log("Filter colors:", colors);
 
   return (
     <Drawer
@@ -106,102 +192,166 @@ export default function Filter({
       width={320}
       className="filter-drawer"
     >
+
       <div className="filter-content">
+
         <div className="filter-content__main">
 
-          {/* Color */}
+
+          {/* =========================
+              Color
+          ========================= */}
+
           <section className="filter-section">
+
             <h3>Color</h3>
 
-            <div className="filter-colors">
-              {COLORS.map((item) => {
-                const selected =
-                  selectedColors.includes(
-                    item.id
-                  );
 
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`filter-color ${
-                      selected
-                        ? "filter-color--selected"
-                        : ""
-                    }`}
-                    onClick={() =>
-                      toggleColor(item.id)
-                    }
-                    aria-label={item.label}
-                    aria-pressed={selected}
-                  >
-                    <span
-                      style={{
-                        backgroundColor:
-                          item.color,
-                      }}
-                    />
-                  </button>
-                );
-              })}
+            <div className="filter-colors">
+
+              {colors.map(
+                (color) => {
+
+                  const selected =
+                    selectedColors.includes(
+                      color.name
+                    );
+
+
+                  return (
+                    <button
+                      key={
+                        color.name
+                      }
+                      type="button"
+                      className={`filter-color ${
+                        selected
+                          ? "filter-color--selected"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        toggleColor(
+                          color.name
+                        )
+                      }
+                      aria-label={
+                        color.name
+                      }
+                      aria-pressed={
+                        selected
+                      }
+                      title={
+                        color.name
+                      }
+                    >
+
+                      <span
+                        style={{
+                          backgroundColor:
+                            color.hex,
+                        }}
+                      />
+
+                    </button>
+                  );
+                }
+              )}
+
             </div>
+
           </section>
 
-          {/* Size */}
+
+          {/* =========================
+              Size
+          ========================= */}
+
           <section className="filter-section">
+
             <h3>Size</h3>
 
+
             <div className="filter-sizes">
-              {SIZES.map((size) => (
-                <label
-                  key={size}
-                  className="filter-size"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedSizes.includes(
-                      size
-                    )}
-                    onChange={() =>
-                      toggleSize(size)
-                    }
-                  />
 
-                  <span className="filter-size__checkbox" />
+              {SIZES.map(
+                (size) => (
 
-                  <span>
-                    {size}
-                  </span>
-                </label>
-              ))}
+                  <label
+                    key={size}
+                    className="filter-size"
+                  >
+
+                    <input
+                      type="checkbox"
+                      checked={
+                        selectedSizes.includes(
+                          size
+                        )
+                      }
+                      onChange={() =>
+                        toggleSize(
+                          size
+                        )
+                      }
+                    />
+
+                    <span className="filter-size__checkbox" />
+
+                    <span>
+                      {size}
+                    </span>
+
+                  </label>
+
+                )
+              )}
+
             </div>
+
           </section>
 
-          {/* Price */}
-          <section className="filter-section filter-section--price">
+
+          {/* =========================
+              Price
+          ========================= */}
+
+          <section
+            className="
+              filter-section
+              filter-section--price
+            "
+          >
+
             <h3>Price</h3>
 
+
             <div className="filter-price">
+
               <div className="filter-price__slider">
+
                 <div className="filter-price__track" />
+
 
                 <div
                   className="filter-price__active"
                   style={{
                     left: `${
-                      (minPrice /
-                        MAX_PRICE) *
-                      100
+                      (
+                        minPrice /
+                        MAX_PRICE
+                      ) * 100
                     }%`,
 
                     right: `${
                       100 -
-                      (maxPrice /
-                        MAX_PRICE) *
-                        100
+                      (
+                        maxPrice /
+                        MAX_PRICE
+                      ) * 100
                     }%`,
                   }}
                 />
+
 
                 <input
                   type="range"
@@ -212,8 +362,8 @@ export default function Filter({
                   onChange={
                     handleMinPrice
                   }
-                  aria-label="최소 가격"
                 />
+
 
                 <input
                   type="range"
@@ -224,46 +374,69 @@ export default function Filter({
                   onChange={
                     handleMaxPrice
                   }
-                  aria-label="최대 가격"
                 />
+
               </div>
 
+
               <div className="filter-price__labels">
+
                 <span>
                   ₩{" "}
                   {minPrice.toLocaleString()}
                 </span>
 
+
                 <span>
                   ₩{" "}
                   {maxPrice.toLocaleString()}
-                  {maxPrice === MAX_PRICE
+
+                  {maxPrice ===
+                  MAX_PRICE
                     ? "+"
                     : ""}
                 </span>
+
               </div>
+
             </div>
+
           </section>
+
         </div>
 
+
+        {/* =========================
+            Actions
+        ========================= */}
+
         <div className="filter-actions">
+
           <button
             type="button"
             className="filter-actions__reset"
-            onClick={handleReset}
+            onClick={
+              handleReset
+            }
           >
             Reset
           </button>
 
+
           <button
             type="button"
             className="filter-actions__apply"
-            onClick={handleApply}
+            onClick={
+              handleApply
+            }
           >
             Apply
           </button>
+
         </div>
+
       </div>
+
     </Drawer>
   );
 }

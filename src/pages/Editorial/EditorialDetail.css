@@ -25,16 +25,12 @@ body,
   width: 100%;
   max-width: none;
   min-height: 100vh;
+
   margin: 0;
-  padding: 98px 64px 140px;
-  background-color: #ffffff;
-  color: #1d1d1b;
-  font-family:
-    Pretendard,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  padding: 116px 64px 140px;
+
+  color: #282828;
+  background-color: #fafaf8;
 }
 
 
@@ -73,7 +69,7 @@ body,
   gap: 65px;
   width: 100%;
   margin: 0;
-  background-color: #ffffff;
+background-color: transparent;
 }
 
 
@@ -86,7 +82,7 @@ body,
   width: 100%;
   min-width: 0;
   padding-top: 14px;
-  background-color: #ffffff;
+background-color: transparent;
 }
 
 .editorial-detail__label {
@@ -102,7 +98,7 @@ body,
   max-width: 360px;
   margin: 0 0 16px;
   color: #1d1d1b;
-  font-size: clamp(34px, 3.5vw, 52px);
+  font-size: clamp(32px, 3vw, 46px);
   font-weight: 400;
   line-height: 1.18;
   letter-spacing: -2px;
@@ -144,10 +140,10 @@ body,
 
 .editorial-detail__body {
   width: 100%;
-  max-width: 760px;
+  max-width: 900px;
   min-width: 0;
   margin-left: auto;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .editorial-detail__body img {
@@ -167,11 +163,11 @@ body,
 }
 
 .editorial-detail__body p {
-  margin: 0 0 52px;
-  color: #444444;
-  font-size: 14px;
+  margin: 0 0 48px;
+  color: #55514b;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.85;
+  line-height: 1.8;
   word-break: keep-all;
 }
 
@@ -182,16 +178,16 @@ body,
 
 .editorial-detail__shop {
   width: 100%;
-  margin-top: 80px;
-  background-color: #ffffff;
+  margin-top: 110px;
+  background-color: transparent;
 }
 
 .editorial-detail__shop h2,
 .editorial-detail__related h2 {
   margin: 0 0 22px;
   color: #1d1d1b;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -200,7 +196,7 @@ body,
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .editorial-detail__product {
@@ -226,17 +222,14 @@ body,
   transition: transform 0.35s ease;
 }
 
-.editorial-detail__product:hover img {
-  transform: scale(1.02);
-}
 
 .editorial-detail__product strong {
   display: block;
   margin-bottom: 5px;
   overflow: hidden;
   color: #1d1d1b;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 400;
   line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -245,8 +238,8 @@ body,
 .editorial-detail__product > span {
   display: block;
   color: #1d1d1b;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -257,8 +250,8 @@ body,
 
 .editorial-detail__related {
   width: 100%;
-  margin-top: 75px;
-  background-color: #ffffff;
+  margin-top: 80px;
+background-color: transparent;
 }
 
 .editorial-detail__section-heading {
@@ -281,7 +274,7 @@ body,
 .editorial-detail__related-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
   width: 100%;
 }
 
@@ -296,9 +289,9 @@ body,
 
 .editorial-detail__related-image {
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   overflow: hidden;
-  aspect-ratio: 1.6 / 1;
+  aspect-ratio: 2 / 1;
   background-color: #f1f0ed;
 }
 
@@ -321,8 +314,8 @@ body,
   margin-bottom: 5px;
   overflow: hidden;
   color: #1d1d1b;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -480,8 +473,14 @@ body,
 
   .editorial-detail__shop h2,
   .editorial-detail__related h2 {
-    margin-bottom: 18px;
-    font-size: 21px;
+    margin: 0 0 20px;
+
+    color: #282828;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
   }
 
   .editorial-detail__products {

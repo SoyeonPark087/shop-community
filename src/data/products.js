@@ -20,13 +20,12 @@ export const products = [
     featured: 9,
 
     colors: [
-      { name: 'Charcoal', hex: '#4a4a48' },
-      { name: 'Ivory', hex: '#e9e5db' },
-      { name: 'Light Gray', hex: '#c8c8c5' },
+      { name: 'Gray', hex: '#999A98' },
+      { name: 'Beige', hex: '#C8B9A5' },
       { name: 'Black', hex: '#242424' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M"],
 
     galleryImages: [
       '/images/shop/product01.png',
@@ -68,13 +67,12 @@ export const products = [
     featured: 8,
 
     colors: [
-      { name: 'Pink', hex: '#d6b5b0' },
-      { name: 'Ivory', hex: '#ece7dd' },
-      { name: 'Beige', hex: '#c8b9a5' },
-      { name: 'Light Blue', hex: '#abbcc6' },
+      { name: 'Pink', hex: '#C9A9AD' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Blue', hex: '#ABBCC6' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M",],
 
     galleryImages: [
       '/images/shop/product02.png',
@@ -113,13 +111,12 @@ export const products = [
     featured: 7,
 
     colors: [
-      { name: 'Sage Green', hex: '#9ca58d' },
-      { name: 'Ivory', hex: '#e9e4d8' },
-      { name: 'Beige', hex: '#c5b6a2' },
-      { name: 'Dusty Purple', hex: '#948796' },
+      { name: 'Green', hex: '#89947F' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Purple', hex: '#958797' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M", "L"],
 
     galleryImages: [
       '/images/shop/product03.png',
@@ -160,13 +157,12 @@ export const products = [
     featured: 6,
 
     colors: [
-      { name: 'Ivory', hex: '#e8e3d8' },
-      { name: 'Oatmeal', hex: '#c9bda9' },
-      { name: 'Gray', hex: '#999a98' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Gray', hex: '#999A98' },
       { name: 'Black', hex: '#242424' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["FREE"],
 
     galleryImages: [
       '/images/shop/product04.png',
@@ -207,13 +203,13 @@ export const products = [
     featured: 5,
 
     colors: [
-      { name: 'Navy', hex: '#252a35' },
-      { name: 'Khaki', hex: '#737361' },
-      { name: 'Beige', hex: '#b8aa96' },
-      { name: 'Black', hex: '#222222' },
+      { name: 'Navy', hex: '#303541' },
+      { name: 'Green', hex: '#89947F' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Black', hex: '#242424' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M"],
 
     galleryImages: [
       '/images/shop/product05.png',
@@ -254,13 +250,12 @@ export const products = [
     featured: 4,
 
     colors: [
-      { name: 'Ivory', hex: '#e6e0d5' },
-      { name: 'Oatmeal', hex: '#c8b9a4' },
-      { name: 'Light Gray', hex: '#c6c6c3' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Gray', hex: '#999A98' },
       { name: 'Navy', hex: '#303541' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["FREE"],
 
     galleryImages: [
       '/images/shop/product06.png',
@@ -301,13 +296,13 @@ export const products = [
     featured: 3,
 
     colors: [
-      { name: 'Cocoa', hex: '#806856' },
-      { name: 'Oatmeal', hex: '#c5b6a0' },
-      { name: 'Charcoal', hex: '#52504d' },
+      { name: 'Brown', hex: '#80695C' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Gray', hex: '#999A98' },
       { name: 'Black', hex: '#242424' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M", "L"],
 
     galleryImages: [
       '/images/shop/product07.png',
@@ -350,13 +345,13 @@ export const products = [
     featured: 2,
 
     colors: [
-      { name: 'Dusty Purple', hex: '#958797' },
-      { name: 'Ivory', hex: '#e8e1d7' },
-      { name: 'Pink', hex: '#c9a9ad' },
-      { name: 'Charcoal', hex: '#555251' },
+      { name: 'Purple', hex: '#958797' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Pink', hex: '#C9A9AD' },
+      { name: 'Gray', hex: '#999A98' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M"],
 
     galleryImages: [
       '/images/shop/product08.png',
@@ -395,13 +390,13 @@ export const products = [
     featured: 1,
 
     colors: [
-      { name: 'Sage Green', hex: '#89947f' },
-      { name: 'Ivory', hex: '#ebe6dc' },
-      { name: 'Brown', hex: '#80695c' },
+      { name: 'Green', hex: '#89947F' },
+      { name: 'Beige', hex: '#C8B9A5' },
+      { name: 'Brown', hex: '#80695C' },
       { name: 'Black', hex: '#242424' },
     ],
 
-    sizes: ['S', 'M', 'L'],
+    sizes: ["S", "M", "L"],
 
     galleryImages: [
       '/images/shop/product09.png',

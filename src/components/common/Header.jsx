@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import Search from "./drawers/Search";
-import Login from "./drawers/Account";
-import Cart from "./drawers/Cart";
-import Menu from "./drawers/MenuDrawer";
+import Search from "../drawers/Search";
+import Login from "../drawers/Account";
+import Cart from "../drawers/Cart";
+import Menu from "../drawers/MenuDrawer";
 
 import "./Header.css";
 
@@ -37,7 +37,7 @@ function Header({
             className="site-header__logo"
           >
             <img
-              src="public/images/common/logo.svg"
+              src="/images/common/Logo.svg"
               alt="로고"
             />
           </a>
@@ -87,7 +87,7 @@ function Header({
               >
                 <img
                   src="/icons/cart.svg"
-                  alt=""
+                  alt="장바구니"
                   className="site-header__icon-image"
                 />
               </button>
@@ -101,7 +101,7 @@ function Header({
               >
                 <img
                   src="/icons/account.svg"
-                  alt=""
+                  alt="계정"
                   className="site-header__icon-image"
                 />
               </button>
@@ -116,8 +116,8 @@ function Header({
               onClick={() => setActiveDrawer("menu")}
             >
               <img
-                src="icons/menu.svg"
-                alt=""
+                src="/icons/menu.svg"
+                alt="메뉴"
                 className="site-header__icon-image"
               />
             </button>

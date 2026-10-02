@@ -11,49 +11,34 @@ export default function Drawer({
 }) {
 
   useEffect(() => {
-    if (!open) return;
+  if (!open) return;
 
-    const previousOverflow =
-      document.body.style.overflow;
+  const previousOverflow =
+    document.body.style.overflow;
 
-    const previousPaddingRight =
-      document.body.style.paddingRight;
+  document.body.style.overflow = "hidden";
 
-    const scrollbarWidth =
-      window.innerWidth -
-      document.documentElement.clientWidth;
-
-    document.body.style.overflow = "hidden";
-
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight =
-        `${scrollbarWidth}px`;
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      onClose();
     }
+  };
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
+  window.addEventListener(
+    "keydown",
+    handleKeyDown
+  );
 
-    window.addEventListener(
+  return () => {
+    document.body.style.overflow =
+      previousOverflow;
+
+    window.removeEventListener(
       "keydown",
       handleKeyDown
     );
-
-    return () => {
-      document.body.style.overflow =
-        previousOverflow;
-
-      document.body.style.paddingRight =
-        previousPaddingRight;
-
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-    };
-  }, [open, onClose]);
+  };
+}, [open, onClose]);
 
   const drawerWidth =
     typeof width === "number"

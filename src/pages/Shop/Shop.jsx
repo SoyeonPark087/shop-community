@@ -1,110 +1,233 @@
-import { useMemo, useState } from 'react'
-import CategoryMenu from '../../components/shop/CategoryMenu'
-import ProductGrid from '../../components/shop/ProductGrid'
-import ProductSort from '../../components/shop/ProductSort'
-import { products, SHOP_CATEGORIES } from '../../data/products'
-import './shop.css'
+import { useMemo, useState } from "react";
+
+import CategoryMenu from "../../components/shop/CategoryMenu";
+import ProductGrid from "../../components/shop/ProductGrid";
+import ProductSort from "../../components/shop/ProductSort";
+
+import {
+  products,
+  SHOP_CATEGORIES,
+} from "../../data/products";
+
+import Filter from "../../components/drawers/Filter";
+
+import "./Shop.css";
+
 
 const sortProducts = (items, sortBy) =>
   [...items].sort((a, b) => {
-    if (sortBy === 'popular') {
-      return b.popularity - a.popularity
+    if (sortBy === "popular") {
+      return b.popularity - a.popularity;
     }
 
-    if (sortBy === 'price-low') {
-      return a.price - b.price
+    if (sortBy === "price-low") {
+      return a.price - b.price;
     }
 
-    if (sortBy === 'price-high') {
-      return b.price - a.price
+    if (sortBy === "price-high") {
+      return b.price - a.price;
     }
 
-    return a.id - b.id
-  })
+    return a.id - b.id;
+  });
+
+
+/* ========================================
+   상품 데이터에서 실제 컬러 목록 생성
+======================================== */
+
+const AVAILABLE_COLORS = Array.from(
+  new Map(
+    products
+      .flatMap((product) => product.colors || [])
+      .map((color) => [
+        color.name,
+        color,
+      ])
+  ).values()
+);
+
 
 export default function Shop() {
-  const [category, setCategory] = useState('all')
-  const [sortBy, setSortBy] = useState('featured')
+  const [category, setCategory] =
+    useState("all");
 
-  const visibleProducts = useMemo(() => {
-    const filteredProducts = products.filter(
-      (product) =>
-        category === 'all' ||
-        product.category === category
-    )
+  const [sortBy, setSortBy] =
+    useState("featured");
 
-    return sortProducts(filteredProducts, sortBy)
-  }, [category, sortBy])
+  const [filterOpen, setFilterOpen] =
+    useState(false);
+
+
+  /* 실제 적용된 필터 */
+  const [filters, setFilters] =
+    useState({
+      colors: [],
+      sizes: [],
+      minPrice: 0,
+      maxPrice: 150000,
+    });
+
+
+const visibleProducts = useMemo(() => {
+  const filteredProducts = products.filter((product) => {
+    const categoryMatch =
+      category === "all" ||
+      product.category === category;
+
+    const colorMatch =
+      filters.colors.length === 0 ||
+      product.colors?.some((color) =>
+        filters.colors.includes(color.name)
+      );
+
+    const sizeMatch =
+      filters.sizes.length === 0 ||
+      product.sizes?.some((size) =>
+        filters.sizes.includes(size)
+      );
+
+    const priceMatch =
+      product.price >= filters.minPrice &&
+      product.price <= filters.maxPrice;
+
+    return (
+      categoryMatch &&
+      colorMatch &&
+      sizeMatch &&
+      priceMatch
+    );
+  });
+
+  return sortProducts(
+    filteredProducts,
+    sortBy
+  );
+}, [
+  category,
+  sortBy,
+  filters,
+]);
+
+
+  const handleApplyFilter =
+    (filterValues) => {
+      setFilters(filterValues);
+    };
+
 
   return (
-    <main className="shop-page">
-      <div className="shop-inner">
-        <section
-          className="shop-controls"
-          aria-label="상품 탐색 도구"
-        >
-          <CategoryMenu
-            categories={SHOP_CATEGORIES}
-            selected={category}
-            onChange={setCategory}
-          />
+    <>
+      <main className="shop-page">
 
-          <div className="shop-actions">
-            <ProductSort
-              value={sortBy}
-              onChange={setSortBy}
+        <div className="shop-inner">
+
+          <section
+            className="shop-controls"
+            aria-label="상품 탐색 도구"
+          >
+
+            <CategoryMenu
+              categories={
+                SHOP_CATEGORIES
+              }
+              selected={category}
+              onChange={setCategory}
             />
 
-            {/* 디자인용 Filter 버튼: 클릭해도 아무것도 열리지 않음 */}
-            <button
-              className="shop-filter-button"
-              type="button"
-            >
-              <span>Filter</span>
-              <span aria-hidden="true">＋</span>
+
+            <div className="shop-actions">
+
+              <ProductSort
+                value={sortBy}
+                onChange={setSortBy}
+              />
+
+
+              <button
+                type="button"
+                className="shop-filter-button"
+                onClick={() =>
+                  setFilterOpen(true)
+                }
+              >
+                Filter
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <p className="shop-result-count">
+            {visibleProducts.length} items
+          </p>
+
+
+          <ProductGrid
+            products={visibleProducts}
+          />
+
+
+          <nav
+            className="shop-pagination"
+            aria-label="상품 페이지"
+          >
+            <button type="button">
+              FIRST
             </button>
-          </div>
-        </section>
 
-        <p className="shop-result-count">
-          {visibleProducts.length} items
-        </p>
+            <button
+              type="button"
+              aria-label="이전 페이지"
+            >
+              ‹
+            </button>
 
-        <ProductGrid products={visibleProducts} />
+            <button
+              className="is-current"
+              type="button"
+              aria-current="page"
+            >
+              1
+            </button>
 
-        <nav
-          className="shop-pagination"
-          aria-label="상품 페이지"
-        >
-          <button type="button">FIRST</button>
+            <button type="button">
+              2
+            </button>
 
-          <button
-            type="button"
-            aria-label="이전 페이지"
-          >
-            ‹
-          </button>
+            <button
+              type="button"
+              aria-label="다음 페이지"
+            >
+              ›
+            </button>
 
-          <button
-            className="is-current"
-            type="button"
-            aria-current="page"
-          >
-            1
-          </button>
+            <button type="button">
+              LAST
+            </button>
+          </nav>
 
-          <button type="button">2</button>
+        </div>
 
-          <button
-            type="button"
-            aria-label="다음 페이지"
-          >
-            ›
-          </button>
+      </main>
 
-          <button type="button">LAST</button>
-        </nav>
-      </div>
-    </main>
-  )
+
+      <Filter
+        open={filterOpen}
+        onClose={() =>
+          setFilterOpen(false)
+        }
+        onApply={
+          handleApplyFilter
+        }
+        colors={
+          AVAILABLE_COLORS
+        }
+        appliedFilters={
+          filters
+        }
+      />
+    </>
+  );
 }

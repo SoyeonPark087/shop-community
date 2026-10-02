@@ -38,7 +38,7 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 58px 64px 150px;
+  padding: 44px 64px 150px;
 }
 
 
@@ -69,7 +69,7 @@
   justify-content: space-between;
   gap: 32px;
   width: 100%;
-  margin-bottom: 42px;
+  margin-bottom: 32px;
 }
 
 
@@ -81,7 +81,7 @@
   display: flex;
   align-items: center;
   min-width: 0;
-  gap: clamp(28px, 3.4vw, 58px);
+  gap: clamp(24px, 2.2vw, 36px);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -112,9 +112,11 @@
   height: 1px;
   background-color: var(--shop-green);
   content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.2s ease;
+  display: none;
+}
+
+.shop-page .shop-category.is-active::after {
+  display: block;
 }
 
 .shop-page .shop-category:hover,
@@ -124,10 +126,6 @@
 
 .shop-page .shop-category.is-active {
   font-weight: 600;
-}
-
-.shop-page .shop-category.is-active::after {
-  transform: scaleX(1);
 }
 
 
@@ -143,56 +141,144 @@
   gap: 28px;
 }
 
+
+/* ========================================
+   SORT
+======================================== */
+
 .shop-page .shop-sort {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
-/* 브라우저 기본 화살표를 사용하는 Sort */
-.shop-page .shop-sort select {
-  min-width: 64px;
+.shop-page .shop-sort__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   height: 30px;
-  padding: 0 18px 0 0;
+  margin: 0;
+  padding: 0;
+
   border: 0;
   outline: 0;
-  background-color: transparent;
+
+  background: transparent;
   color: var(--shop-text);
+
   font-size: 12px;
   font-weight: 400;
   line-height: 1;
+
   cursor: pointer;
 }
 
-/* Filter는 버튼 모양만 유지 */
+.shop-page .shop-sort__trigger:hover,
+.shop-page .shop-sort__trigger:focus,
+.shop-page .shop-sort__trigger:active {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--shop-text);
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* Sort Dropdown */
+
+.shop-page .shop-sort__menu {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  z-index: 100;
+
+  width: 132px;
+
+  padding: 6px 0;
+
+  border: 1px solid var(--shop-divider);
+
+  background: #fafaf8;
+
+  box-shadow:
+    0 6px 18px
+    rgba(40, 40, 40, 0.06);
+}
+
+.shop-page .shop-sort__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 32px;
+
+  margin: 0;
+  padding: 0 12px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: var(--shop-text);
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.shop-page .shop-sort__option:hover {
+  background: rgba(40, 40, 40, 0.04);
+}
+
+.shop-page .shop-sort__option--selected {
+  color: var(--shop-green);
+}
+
+.shop-page .shop-sort__check {
+  margin-left: 12px;
+
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+
+/* ========================================
+   FILTER
+======================================== */
+
 .shop-page .shop-filter-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: auto;
+
   height: 30px;
+
+  margin: 0;
   padding: 0;
-  gap: 7px;
+
   border: 0;
   outline: 0;
-  background-color: transparent;
+
+  background: transparent;
   color: var(--shop-text);
+
   font-size: 12px;
   font-weight: 400;
   line-height: 1;
+
   white-space: nowrap;
+
   cursor: pointer;
-}
-
-.shop-page .shop-filter-button span {
-  margin: 0;
-}
-
-.shop-page .shop-filter-button span:last-child {
-  position: relative;
-  top: -1px;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1;
 }
 
 .shop-page .shop-filter-button:hover,
@@ -200,23 +286,13 @@
 .shop-page .shop-filter-button:active {
   border: 0;
   outline: 0;
-  background-color: transparent;
+
+  background: transparent;
   color: var(--shop-text);
+
   box-shadow: none;
   transform: none;
 }
-
-
-/* ========================================
-   검색창 및 필터 패널 숨김
-======================================== */
-
-.shop-page .shop-search,
-.shop-page .shop-filter-panel,
-.shop-page .shop-filter-wrap .shop-filter-panel {
-  display: none;
-}
-
 
 /* ========================================
    상품 개수
@@ -261,12 +337,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease;
+  transform: none;
+  transition: none;
 }
 
-.shop-page .product-card-link:hover .product-card-image {
-  transform: scale(1.01);
-}
 
 
 /* ========================================
@@ -315,7 +389,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 72px;
+  margin-top: 48px;
 }
 
 .shop-page .shop-pagination button {
@@ -347,7 +421,7 @@
   /* 태블릿도 좌우 64px */
   .shop-page .shop-inner {
     width: 100%;
-    padding: 46px 64px 120px;
+    padding: 44px 64px 120px;
   }
 
   .shop-page .shop-controls {
@@ -442,23 +516,6 @@
     justify-content: flex-end;
     width: 100%;
     gap: 24px;
-  }
-
-  .shop-page .shop-sort select {
-    min-width: 60px;
-    height: 28px;
-    padding: 0 17px 0 0;
-    font-size: 12px;
-  }
-
-  .shop-page .shop-filter-button {
-    height: 28px;
-    gap: 6px;
-    font-size: 12px;
-  }
-
-  .shop-page .shop-filter-button span:last-child {
-    font-size: 13px;
   }
 
   .shop-page .shop-result-count {

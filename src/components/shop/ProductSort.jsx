@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 const options = [
   ["featured", "추천순"],
   ["popular", "인기순"],
@@ -5,16 +7,100 @@ const options = [
   ["price-high", "높은 가격순"],
 ];
 
-export default function ProductSort({ value, onChange }) {
+export default function ProductSort({
+  value,
+  onChange,
+}) {
+  const [open, setOpen] = useState(false);
+  const sortRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sortRef.current &&
+        !sortRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, []);
+
+  const handleSelect = (optionValue) => {
+    onChange(optionValue);
+    setOpen(false);
+  };
+
   return (
-    <label className="shop-sort">
-      <span className="sr-only">상품 정렬</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
-        {options.map(([optionValue, label]) => (
-          <option key={optionValue} value={optionValue}>{label}</option>
-        ))}
-      </select>
-    </label>
+    <div
+      ref={sortRef}
+      className={`shop-sort ${
+        open ? "shop-sort--open" : ""
+      }`}
+    >
+      <button
+        type="button"
+        className="shop-sort__trigger"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+      >
+        Sort
+      </button>
+
+      {open && (
+        <div
+          className="shop-sort__menu"
+          role="listbox"
+          aria-label="상품 정렬"
+        >
+          {options.map(
+            ([optionValue, label]) => {
+              const selected =
+                value === optionValue;
+
+              return (
+                <button
+                  key={optionValue}
+                  type="button"
+                  className={`shop-sort__option ${
+                    selected
+                      ? "shop-sort__option--selected"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    handleSelect(optionValue)
+                  }
+                  role="option"
+                  aria-selected={selected}
+                >
+                  <span>{label}</span>
+
+                  {selected && (
+                    <span
+                      className="shop-sort__check"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                  )}
+                </button>
+              );
+            }
+          )}
+        </div>
+      )}
+    </div>
   );
 }
-

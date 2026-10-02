@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { products } from '../../data/products'
-import './product-detail.css'
+import { products } from '../../data/Products'
+import './ProductDetail.css'
 
 const recommendedProducts = [
   {
@@ -60,7 +60,7 @@ const communityLooks = [
   },
 ]
 
-function ProductDetail() {
+function ProductDetail({ onAddToCart }) {
   const productId = window.location.pathname
     .split('/')
     .filter(Boolean)
@@ -108,6 +108,14 @@ function ProductDetail() {
   const [reviewsOpen, setReviewsOpen] =
     useState(false)
 
+  const [openAccordion, setOpenAccordion] = useState(null);
+
+  const toggleAccordion = (name) => {
+    setOpenAccordion((prev) =>
+      prev === name ? null : name
+    );
+  };
+
   if (!product) {
     return (
       <main className="product-detail product-detail--empty">
@@ -128,6 +136,30 @@ function ProductDetail() {
   const selectedColor =
     productColors[selectedColorIndex] ||
     productColors[0]
+
+    const handleAddToCart = () => {
+  if (!selectedSize) {
+    alert('사이즈를 선택해주세요.');
+    return;
+  }
+
+  onAddToCart?.({
+    id: product.id,
+    name: product.name,
+    nameKo: product.nameKo || product.name,
+    price: product.price,
+
+    option: selectedSize,
+
+    color: selectedColor?.name || '',
+    colorHex: selectedColor?.hex || '',
+
+    image:
+      selectedImage ||
+      product.image ||
+      '',
+  });
+};
 
   return (
     <main className="product-detail">
@@ -273,35 +305,86 @@ function ProductDetail() {
           <button
             type="button"
             className="product-detail__cart"
+            onClick={handleAddToCart}
+
           >
             Add to Cart
           </button>
 
           {/* 상품 정보 메뉴 */}
           <div className="product-detail__accordions">
-            <button
-              type="button"
-              className="product-detail__accordion"
-            >
-              <span>Product Details</span>
-              <span aria-hidden="true">＋</span>
-            </button>
+            {/* Size & Fit */}
+            <div className="product-detail__accordion-item">
+              <button
+                type="button"
+                className="product-detail__accordion"
+                onClick={() => toggleAccordion("size")}
+                aria-expanded={openAccordion === "size"}
+              >
+                <span>Size & Fit</span>
+                <span>
+                  {openAccordion === "size" ? "−" : "+"}
+                </span>
+              </button>
 
-            <button
-              type="button"
-              className="product-detail__accordion"
-            >
-              <span>Size &amp; Fit</span>
-              <span aria-hidden="true">＋</span>
-            </button>
+              {openAccordion === "size" && (
+                <div className="product-detail__accordion-content">
+                  <p>정사이즈로 제작되었습니다.</p>
+                  <p>여유로운 실루엣입니다.</p>
+                  <p>상품별 사이즈 옵션을 확인해주세요.</p>
+                  <p>모델 170cm / 상의 S, 하의 26</p>
+                </div>
+              )}
+            </div>
 
-            <button
-              type="button"
-              className="product-detail__accordion"
-            >
-              <span>Shipping &amp; Returns</span>
-              <span aria-hidden="true">＋</span>
-            </button>
+
+            {/* Materials & Care */}
+            <div className="product-detail__accordion-item">
+              <button
+                type="button"
+                className="product-detail__accordion"
+                onClick={() => toggleAccordion("materials")}
+                aria-expanded={openAccordion === "materials"}
+              >
+                <span>Materials & Care</span>
+                <span>
+                  {openAccordion === "materials" ? "−" : "+"}
+                </span>
+              </button>
+
+              {openAccordion === "materials" && (
+                <div className="product-detail__accordion-content">
+                  <p>{product.material}</p>
+                  <p>찬물 단독 세탁을 권장합니다.</p>
+                  <p>표백제 및 건조기 사용을 피해주세요.</p>
+                  <p>낮은 온도에서 다림질해주세요.</p>
+                </div>
+              )}
+            </div>
+
+
+            {/* Shipping & Returns */}
+            <div className="product-detail__accordion-item">
+              <button
+                type="button"
+                className="product-detail__accordion"
+                onClick={() => toggleAccordion("shipping")}
+                aria-expanded={openAccordion === "shipping"}
+              >
+                <span>Shipping & Returns</span>
+                <span>
+                  {openAccordion === "shipping" ? "−" : "+"}
+                </span>
+              </button>
+
+              {openAccordion === "shipping" && (
+                <div className="product-detail__accordion-content">
+                  <p>주문 후 2–5 영업일 이내 출고됩니다.</p>
+                  <p>상품 수령 후 7일 이내 교환 및 반품이 가능합니다.</p>
+                </div>
+              )}
+            </div>
+
           </div>
 
           {/* 상품 설명 */}
@@ -311,9 +394,6 @@ function ProductDetail() {
             )}
 
             <ul>
-              <li>
-                {product.material || '100% Cotton'}
-              </li>
               <li>Relaxed Fit</li>
               <li>Prewashed</li>
             </ul>
@@ -436,7 +516,7 @@ function ProductDetail() {
             }
             aria-expanded={reviewsOpen}
           >
-            <span>Reviews (112)</span>
+            <span>Reviews (0)</span>
 
             <span aria-hidden="true">
               {reviewsOpen ? '−' : '＋'}
