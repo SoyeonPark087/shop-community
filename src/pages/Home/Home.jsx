@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 import "./Home.css";
 
 const newArrivals = [
@@ -110,9 +112,17 @@ function ArrowLink({ children, className = "" }) {
 }
 
 function Hero({
+  cartItems,
+  cartOpen,
+  setCartOpen,
 }) {
   return (
     <section id="top" className="hero">
+      <Header
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
       <img className="hero__image" src="/images/home/herobanner.png" alt="" />
       <div className="hero__overlay" />
 
@@ -247,14 +257,24 @@ function ShopByMood() {
   );
 }
 
-export default function Home() {
+export default function Home({
+  cartItems,
+  cartOpen,
+  setCartOpen,
+}) {
   return (
     <main className="mooday-home">
-      <Hero />
+      <Hero
+        cartItems={cartItems}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+      />
+
       <NewArrivals />
       <Editorial />
       <Community />
       <ShopByMood />
+      <Footer />
     </main>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Footer from "../../components/common/Footer";
-import "./Signup.css";
+import "./SignUp.css";
 
 const basicFields = [
   {

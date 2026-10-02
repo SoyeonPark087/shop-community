@@ -1,21 +1,26 @@
 import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Header from './components//common/Header'
+import Header from './components/common/Header'
 import Footer from './components/common/Footer'
 
-import Home from './pages//Home/Home'
-import Signup from './pages/Signup/Signup'
+import Home from './pages/Home/Home'
+import Signup from './pages/SignUp/SignUp'
 import Shop from './pages/Shop/Shop'
 import ProductDetail from './pages/Shop/ProductDetail'
 import Editorial from './pages/Editorial/Editorial'
 import EditorialDetail from './pages/Editorial/EditorialDetail'
 
+import Community from './pages/Community/Community'
+import CommunityDetail from './pages/Community/CommunityDetail'
+import CommunityWrite from './pages/Community/CommunityWrite'
+import MyPage from './pages/MyPage/MyPage'
+
 function App() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  const [cartItems, setCartItems] = useState([]);
 
+  const [cartItems, setCartItems] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
 
   const handleAddToCart = (product) => {
@@ -25,7 +30,7 @@ function App() {
           item.id === product.id &&
           item.option === product.option &&
           item.color === product.color
-      );
+      )
 
       if (existing) {
         return prev.map((item) =>
@@ -37,7 +42,7 @@ function App() {
                 quantity: item.quantity + 1,
               }
             : item
-        );
+        )
       }
 
       return [
@@ -46,11 +51,11 @@ function App() {
           ...product,
           quantity: 1,
         },
-      ];
-    });
+      ]
+    })
 
-    setCartOpen(true);
-  };
+    setCartOpen(true)
+  }
 
   return (
     <>
@@ -61,39 +66,68 @@ function App() {
       />
 
       <div
-  className={
-    isHomePage
-      ? 'app-page app-page--home'
-      : 'app-page app-page--sub'
-  }
->
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/signup" element={<Signup />} />
-    <Route path="/shop" element={<Shop />} />
+        className={
+          isHomePage
+            ? 'app-page app-page--home'
+            : 'app-page app-page--sub'
+        }
+      >
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-    <Route
-      path="/shop/:id"
-      element={
-        <ProductDetail
-          onAddToCart={handleAddToCart}
-        />
-      }
-    />
+          <Route
+            path="/signup"
+            element={<Signup />}
+          />
 
-    <Route
-      path="/editorial"
-      element={<Editorial />}
-    />
+          <Route
+            path="/shop"
+            element={<Shop />}
+          />
 
-    <Route
-      path="/editorial/:id"
-      element={<EditorialDetail />}
-    />
+          <Route
+            path="/shop/:id"
+            element={
+              <ProductDetail
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
 
+          <Route
+            path="/editorial"
+            element={<Editorial />}
+          />
 
-  </Routes>
-</div>
+          <Route
+            path="/editorial/:id"
+            element={<EditorialDetail />}
+          />
+
+          <Route
+            path="/community"
+            element={<Community />}
+          />
+
+          <Route
+            path="/community/write"
+            element={<CommunityWrite />}
+          />
+
+          <Route
+            path="/community/:postId"
+            element={<CommunityDetail />}
+          />
+
+          <Route
+            path="/mypage"
+            element={<MyPage />}
+          />
+        </Routes>
+      </div>
 
       <Footer />
     </>

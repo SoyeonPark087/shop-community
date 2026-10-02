@@ -1,0 +1,597 @@
+/* ==================================================
+   MOODAY MY PAGE - PROFILE
+   Final layout
+   - Navigation: Shop과 동일한 좌우 64px 축
+   - Profile form: Signup과 동일한 960px 중앙 폭
+   - Input / Label / CTA: Signup 규격 기반
+================================================== */
+
+.mooday-mypage,
+.mooday-mypage * {
+  box-sizing: border-box;
+}
+
+.mooday-mypage {
+  --mooday-profile-sage: #344f41;
+  --mooday-profile-sage-hover: #294a3a;
+  --mooday-profile-text: #282828;
+  --mooday-profile-muted: #77736d;
+  --mooday-profile-caption: #99958f;
+  --mooday-profile-border: #deddd9;
+  --mooday-profile-error: #b85c5c;
+  --mooday-profile-disabled: #c8cec9;
+
+  width: 100%;
+  min-width: 0;
+
+  background: #fafaf8;
+  color: var(--mooday-profile-text);
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* NAV: Shop과 동일한 좌우 64px */
+.mooday-mypage__nav-inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+  margin: 0 auto;
+}
+
+.mooday-mypage-nav {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+
+  padding-top: 116px;
+}
+
+.mooday-mypage-nav__scroll {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mooday-mypage-nav__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mooday-mypage-nav__scroll:focus-visible {
+  outline: 1px solid var(--mooday-profile-sage);
+  outline-offset: 4px;
+}
+
+.mooday-mypage-nav__list {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  gap: clamp(24px, 2.2vw, 36px);
+  margin: 0;
+  padding: 0 0 4px;
+  list-style: none;
+}
+
+.mooday-mypage-nav__item {
+  flex: 0 0 auto;
+}
+
+.mooday-mypage-nav__tab {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 28px;
+
+  padding: 7px 0;
+
+  white-space: nowrap;
+
+  color: var(--mooday-profile-text);
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mooday-mypage-nav__tab--active {
+  color: var(--mooday-profile-sage);
+  font-weight: 600;
+
+}
+
+.mooday-mypage-nav__tab--active::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 1px;
+
+  background:
+    var(--mooday-profile-sage);
+}
+
+
+.mooday-mypage-nav__tab--inactive {
+  color: var(--mooday-profile-text);
+  cursor: default;
+}
+
+/* CONTENT: Signup과 동일한 960px */
+.mooday-mypage__content-inner {
+  width: min(960px, calc(100% - 128px));
+  margin: 0 auto;
+}
+
+.mooday-mypage__content {
+  width: 100%;
+  padding: 56px 0 128px;
+}
+
+.mooday-profile-form {
+  width: 100%;
+  margin: 0;
+}
+
+.mooday-profile-form__title {
+  margin: 0 0 24px;
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.mooday-profile-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mooday-profile-form__field {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  column-gap: 32px;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-profile-form__field > label {
+  padding: 0;
+  color: var(--mooday-profile-text);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.mooday-profile-form__field input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--mooday-profile-border);
+  border-radius: 0;
+  outline: none;
+  background: #ffffff;
+  color: var(--mooday-profile-text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.mooday-profile-form__field input:focus-visible:not([readonly]) {
+  border-color: #77736c;
+}
+
+.mooday-profile-form__field input[readonly] {
+  cursor: default;
+}
+
+/* VALIDATION */
+.mooday-profile-form__field--error input:not([readonly]) {
+  border-color: var(--mooday-profile-error);
+}
+
+.mooday-profile-form__field--error input:focus-visible:not([readonly]) {
+  border-color: var(--mooday-profile-error);
+  box-shadow: 0 0 0 1px rgba(184, 92, 92, 0.18);
+}
+
+.mooday-profile-form__error-message {
+  margin: 0;
+  color: var(--mooday-profile-error);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ID READ ONLY */
+.mooday-profile-form__id-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: 7px;
+}
+
+.mooday-profile-form__id-control {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-profile-form__id-control input {
+  width: 100%;
+  padding-right: 46px;
+  border-color: #deddd9;
+  background: #f5f4f1;
+  color: #686863;
+  font-weight: 400;
+  cursor: default;
+}
+
+.mooday-profile-form__id-control input:focus-visible {
+  outline: 1px solid var(--mooday-profile-sage);
+  outline-offset: 1px;
+}
+
+.mooday-profile-form__lock-icon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: #96968f;
+  pointer-events: none;
+}
+
+.mooday-profile-form__id-note {
+  display: block;
+  color: var(--mooday-profile-caption);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+/* PASSWORD */
+.mooday-profile-form__password-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  min-width: 0;
+}
+
+.mooday-profile-form__password-row
+.mooday-profile-form__password-input {
+  flex: 1 1 auto;
+  width: 0;
+  border-color: #e3e3e0;
+  background: #f7f6f3;
+  cursor: default;
+}
+
+.mooday-profile-form__password-input::placeholder {
+  color: #686863;
+  opacity: 1;
+  letter-spacing: 0.08em;
+}
+
+.mooday-profile-form__password-input:focus-visible {
+  outline: 1px solid var(--mooday-profile-sage);
+  outline-offset: 1px;
+}
+
+.mooday-profile-form__password-button {
+  flex: 0 0 138px;
+  height: 50px;
+  padding: 0 12px;
+  border: 1px solid var(--mooday-profile-border);
+  border-radius: 0;
+  background: #ffffff;
+  color: var(--mooday-profile-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: default;
+}
+
+.mooday-profile-form__password-button:disabled {
+  opacity: 1;
+}
+
+/* CONSENT */
+.mooday-profile-form__consents {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.mooday-profile-form__consent {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: fit-content;
+  max-width: 100%;
+  color: #55514b;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.mooday-profile-form__consent input {
+  flex: 0 0 auto;
+  width: 21px;
+  height: 21px;
+  margin: 0;
+  accent-color: var(--mooday-profile-sage);
+  cursor: pointer;
+}
+
+.mooday-profile-form__consent input:focus-visible {
+  outline: 1px solid var(--mooday-profile-sage);
+  outline-offset: 2px;
+}
+
+/* SUBMIT */
+.mooday-profile-form__submit {
+  display: block;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 72px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 0;
+  background: var(--mooday-profile-sage);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.mooday-profile-form__submit:not(:disabled):hover {
+  background: var(--mooday-profile-sage-hover);
+}
+
+.mooday-profile-form__submit:not(:disabled):focus-visible {
+  outline: 1px solid var(--mooday-profile-sage);
+  outline-offset: 3px;
+}
+
+.mooday-profile-form__submit:disabled {
+  background: var(--mooday-profile-disabled);
+  color: #ffffff;
+  opacity: 1;
+  cursor: default;
+}
+
+/* TOAST */
+.mooday-profile-toast {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 2000;
+  min-width: 260px;
+  max-width: calc(100vw - 40px);
+  padding: 14px 18px;
+  border: 1px solid #d8ddd9;
+  background: #ffffff;
+  color: var(--mooday-profile-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: none;
+  animation: mooday-profile-toast-in 0.2s ease;
+}
+
+@keyframes mooday-profile-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ACCESSIBILITY */
+.mooday-profile-form__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .mooday-mypage__nav-inner,
+  .mooday-mypage__content-inner {
+    width: calc(100% - 80px);
+  }
+
+  .mooday-mypage-nav {
+    padding-top: 44px;
+  }
+
+  .mooday-mypage-nav__list {
+    gap: 30px;
+  }
+
+  .mooday-mypage__content {
+    padding: 56px 0 88px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .mooday-mypage__nav-inner,
+  .mooday-mypage__content-inner {
+    width: calc(100% - 40px);
+  }
+
+  .mooday-mypage-nav {
+    padding-top: 28px;
+  }
+
+  .mooday-mypage-nav__list {
+    gap: 24px;
+  }
+
+  .mooday-mypage-nav__tab {
+    font-size: 12px;
+  }
+
+  .mooday-mypage__content {
+    padding: 48px 0 80px;
+  }
+
+  .mooday-profile-form__title {
+    margin-bottom: 28px;
+    font-size: 15px;
+  }
+
+  .mooday-profile-form__fields {
+    gap: 20px;
+  }
+
+  .mooday-profile-form__field {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    align-items: stretch;
+  }
+
+  .mooday-profile-form__field > label {
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .mooday-profile-form__field input {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .mooday-profile-form__error-message {
+    font-size: 11px;
+  }
+
+  .mooday-profile-form__id-row {
+    gap: 7px;
+  }
+
+  .mooday-profile-form__id-control input {
+    width: 100%;
+    padding-right: 42px;
+  }
+
+  .mooday-profile-form__lock-icon {
+    right: 14px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .mooday-profile-form__id-note {
+    font-size: 11px;
+  }
+
+  .mooday-profile-form__password-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mooday-profile-form__password-row
+  .mooday-profile-form__password-input {
+    flex: none;
+    width: 100%;
+  }
+
+  .mooday-profile-form__password-button {
+    flex: none;
+    width: 100%;
+    height: 48px;
+  }
+
+  .mooday-profile-form__consents {
+    gap: 10px;
+    margin-top: 36px;
+  }
+
+  .mooday-profile-form__consent {
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .mooday-profile-form__consent input {
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
+  }
+
+  .mooday-profile-form__submit {
+    min-height: 56px;
+    margin-top: 48px;
+    font-size: 14px;
+  }
+
+  .mooday-profile-toast {
+    right: 20px;
+    left: 20px;
+    bottom: 20px;
+    min-width: 0;
+    max-width: none;
+    width: auto;
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 374px) {
+  .mooday-mypage-nav__list {
+    gap: 20px;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .mooday-mypage * {
+    scroll-behavior: auto;
+    transition-duration: 0s;
+  }
+
+  .mooday-profile-toast {
+    animation: none;
+  }
+}

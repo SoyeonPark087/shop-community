@@ -1,0 +1,1749 @@
+/* =====================================
+   COMMUNITY DETAIL
+===================================== */
+
+
+/* =====================================
+   ROOT
+===================================== */
+
+.mooday-detail {
+  --detail-divider: rgba(40, 40, 40, 0.12);
+  --detail-divider-soft: rgba(40, 40, 40, 0.08);
+
+  width: 100%;
+
+  padding: 116px 0 140px;
+
+  background: #fafaf8;
+  color: #282828;
+}
+
+.mooday-detail__inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================
+   HERO
+===================================== */
+
+.mooday-detail__hero {
+  display: grid;
+
+  grid-template-columns:
+    560px
+    minmax(0, 1fr);
+
+  column-gap: 48px;
+
+  align-items: start;
+}
+
+
+/* =====================================
+   RIGHT SIDE
+===================================== */
+
+.mooday-detail__side {
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 32px;
+}
+
+
+/* =====================================
+   IMAGE GALLERY
+===================================== */
+
+.mooday-detail-gallery {
+  width: 100%;
+  min-width: 0;
+  max-width: 560px;
+}
+
+.mooday-detail-gallery__main {
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  background: #f0f0ed;
+}
+
+.mooday-detail-gallery__main img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.mooday-detail-gallery__placeholder {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f0f0ed;
+  color: #96968f;
+
+  font-size: 12px;
+  font-weight: 400;
+}
+
+
+/* =====================================
+   GALLERY THUMBNAILS
+===================================== */
+
+.mooday-detail-gallery__navigation {
+  position: relative;
+
+  margin-top: 16px;
+}
+
+.mooday-detail-gallery__track {
+  display: flex;
+
+  width: 100%;
+
+  gap: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+}
+
+.mooday-detail-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+.mooday-detail-gallery__thumbnail {
+  display: block;
+
+  flex:
+    0 0
+    calc(
+      (
+        100%
+        - 30px
+      )
+      / 4
+    );
+
+  min-width: 0;
+
+  aspect-ratio: 4 / 5;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 1px solid transparent;
+
+  background: #f0f0ed;
+
+  cursor: pointer;
+
+  scroll-snap-align: start;
+}
+
+.mooday-detail-gallery__thumbnail img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.mooday-detail-gallery__thumbnail--selected {
+  border-color: rgba(40, 40, 40, 0.45);
+}
+
+.mooday-detail-gallery__thumbnail:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: -4px;
+}
+
+
+/* =====================================
+   GALLERY ARROWS
+===================================== */
+
+.mooday-detail-gallery__arrow {
+  position: absolute;
+
+  top: 50%;
+
+  display: flex;
+
+  width: 32px;
+  height: 32px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #deded8;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #282828;
+
+  font-size: 18px;
+  font-weight: 300;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  z-index: 2;
+}
+
+.mooday-detail-gallery__arrow--previous {
+  left: -16px;
+}
+
+.mooday-detail-gallery__arrow--next {
+  right: -16px;
+}
+
+.mooday-detail-gallery__arrow:disabled {
+  opacity: 0.35;
+
+  cursor: default;
+}
+
+/* =====================================
+   STYLED PRODUCTS
+===================================== */
+
+.mooday-detail-products {
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-detail-products__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.mooday-detail-products__heading h2 {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.mooday-detail-products__heading span {
+  flex-shrink: 0;
+
+  color: #96968f;
+
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.mooday-detail-product {
+display: flex;
+
+  width: 100%;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 0;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+/* 상품이 2개 이상일 때 상품 사이에만 내부선 */
+.mooday-detail-product
++ .mooday-detail-product {
+  margin-top: 14px;
+  padding-top: 14px;
+
+  border-top:
+    1px solid var(--detail-divider-soft);
+}
+
+.mooday-detail-product--linked:hover
+.mooday-detail-product__name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mooday-detail-product__image {
+  display: flex;
+
+  flex: 0 0 72px;
+
+  width: 72px;
+  height: 72px;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #f0f0ed;
+}
+
+.mooday-detail-product__image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.mooday-detail-product__image span {
+  color: #96968f;
+
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.mooday-detail-product__info {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.mooday-detail-product__brand {
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.mooday-detail-product__name {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.mooday-detail-product__price {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.mooday-detail-product__arrow {
+  flex: 0 0 auto;
+
+  margin-left: auto;
+
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* =====================================
+   COMMON SECTION TITLE
+===================================== */
+
+.mooday-detail-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin: 0 0 16px;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.mooday-detail-section-title span {
+  color: #96968f;
+
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/* =====================================
+   POST
+===================================== */
+
+.mooday-detail__post-section {
+  width: 100%;
+  padding: 0;
+
+}
+
+.mooday-detail-post {
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-detail-post__header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+}
+
+.mooday-detail-post__author {
+  display: flex;
+
+  min-width: 0;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* =====================================
+   AVATAR
+===================================== */
+
+.mooday-detail-avatar {
+  display: flex;
+
+  flex: 0 0 36px;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #d9e2da;
+  color: #466858;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mooday-detail-avatar--comment {
+  flex-basis: 32px;
+
+  width: 32px;
+  height: 32px;
+
+  font-size: 10px;
+}
+
+
+/* =====================================
+   POST AUTHOR
+===================================== */
+
+.mooday-detail-post__author-info {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.mooday-detail-post__author-info strong {
+  font-size: 10px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.mooday-detail-post__author-info span {
+  color: #96968f;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.mooday-detail-post__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mooday-detail-post__manage {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.mooday-detail-post__edit,
+.mooday-detail-post__delete {
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #77736d;
+
+  font-size: 9px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+.mooday-detail-post__edit:hover {
+  color: #344f41;
+}
+
+.mooday-detail-post__delete:hover {
+  color: #9a4f4f;
+}
+
+
+/* =====================================
+   POST ACTIONS
+===================================== */
+
+.mooday-detail-post__likes {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: #686863;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.mooday-detail-post__likes span {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+
+  transform: translateY(1px);
+}
+
+.mooday-detail-post__likes--active {
+  color: #344f41;
+}
+
+.mooday-detail-post__likes:hover {
+  color: #486858;
+}
+
+.mooday-detail-post__likes:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 4px;
+}
+
+
+/* =====================================
+   POST BODY
+===================================== */
+
+.mooday-detail-post__body {
+  max-width: 760px;
+  margin-top: 20px;
+}
+
+.mooday-detail-post__body p {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.7;
+
+  white-space: pre-line;
+}
+
+.mooday-detail-post__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   HASHTAGS
+===================================== */
+
+.mooday-detail__hashtags {
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+.mooday-detail__hashtags h2 {
+  margin: 0 0 12px;
+
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.mooday-detail__tag-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+.mooday-detail__tag {
+  display: inline-flex;
+
+  min-height: 24px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  border: 1px solid #deded8;
+  border-radius: 16px;
+
+  background: transparent;
+  color: #686863;
+
+  font-size: 9px;
+  font-weight: 400;
+}
+
+
+/* =====================================
+   COMMENTS
+===================================== */
+
+.mooday-detail__comments-section {
+  margin-top: 72px;
+
+  padding: 32px 0 56px;
+
+  border-top:
+    1px solid var(--detail-divider);
+}
+
+.mooday-detail-comments {
+  width: 100%;
+
+  margin: 0 auto;
+}
+
+.mooday-detail-comments__list {
+  width: 100%;
+}
+
+
+/* =====================================
+   COMMENT
+===================================== */
+
+.mooday-detail-comment {
+  position: relative;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 16px 0;
+
+  border-bottom:
+    1px solid var(--detail-divider-soft);
+}
+
+.mooday-detail-comment:first-child {
+  padding-top: 0;
+}
+
+.mooday-detail-comment:last-child {
+  border-bottom: 0;
+}
+
+.mooday-detail-comment__content {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.mooday-detail-comment__content strong {
+  font-size: 10px;
+  font-weight: 500;
+
+  overflow-wrap: anywhere;
+}
+
+.mooday-detail-comment__content p {
+  max-width: 900px;
+
+  margin: 0;
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.mooday-detail-comment__time {
+  color: #96968f;
+
+  font-size: 9px;
+}
+
+.mooday-detail-comment__more {
+  flex: 0 0 auto;
+
+  color: #686863;
+
+  font-size: 20px;
+}
+
+
+/* =====================================
+   COMMENT MENU
+===================================== */
+
+.mooday-detail-comment__menu-wrap {
+  position: relative;
+
+  flex: 0 0 auto;
+}
+
+.mooday-detail-comment__more--button {
+  display: inline-flex;
+
+  min-width: 28px;
+  min-height: 28px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.mooday-detail-comment__more--button:hover {
+  color: #486858;
+}
+
+.mooday-detail-comment__more--button:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 2px;
+}
+
+.mooday-detail-comment__more--button:disabled {
+  opacity: 0.35;
+
+  cursor: default;
+}
+
+.mooday-detail-comment__menu {
+  position: absolute;
+
+  top: 30px;
+  right: 0;
+
+  z-index: 5;
+
+  display: flex;
+
+  width: 88px;
+
+  flex-direction: column;
+
+  padding: 6px;
+
+  border: 1px solid #deded8;
+  border-radius: 4px;
+
+  background: #fff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(0, 0, 0, 0.08);
+}
+
+.mooday-detail-comment__menu button {
+  width: 100%;
+
+  padding: 8px 10px;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: transparent;
+  color: #282828;
+
+  font-size: 12px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.mooday-detail-comment__menu button:hover {
+  background: #f2f5f3;
+}
+
+.mooday-detail-comment__menu button:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: -2px;
+}
+
+.mooday-detail-comment__menu-delete {
+  color: #9a4f4f !important;
+}
+
+
+/* =====================================
+   COMMENT EDIT
+===================================== */
+
+.mooday-detail-comment__edit {
+  display: flex;
+
+  width: 100%;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 2px;
+}
+
+.mooday-detail-comment__edit input {
+  width: 100%;
+  min-width: 0;
+
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #deded8;
+  border-radius: 3px;
+
+  background: #fff;
+  color: #282828;
+
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mooday-detail-comment__edit input:focus-visible {
+  border-color: #344f41;
+
+  outline:
+    2px solid rgba(52, 79, 65, 0.18);
+
+  outline-offset: 1px;
+}
+
+.mooday-detail-comment__edit-actions,
+.mooday-detail-comment__delete-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+}
+
+.mooday-detail-comment__action-button {
+  min-width: 58px;
+  height: 34px;
+
+  padding: 0 12px;
+
+  border-radius: 3px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.mooday-detail-comment__action-button--secondary {
+  border: 1px solid #deded8;
+
+  background: #fff;
+  color: #686863;
+}
+
+.mooday-detail-comment__action-button--primary {
+  border: 1px solid #344f41;
+
+  background: #344f41;
+  color: #fff;
+}
+
+.mooday-detail-comment__action-button--danger {
+  border: 1px solid #9a4f4f;
+
+  background: #9a4f4f;
+  color: #fff;
+}
+
+.mooday-detail-comment__action-button:hover {
+  opacity: 0.9;
+}
+
+.mooday-detail-comment__action-button:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 2px;
+}
+
+.mooday-detail-comment__action-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   DELETE CONFIRM
+===================================== */
+
+.mooday-detail-comment__delete-confirm {
+  display: flex;
+
+  width: 100%;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 6px;
+
+  padding: 12px;
+
+  border: 1px solid #deded8;
+  border-radius: 4px;
+
+  background: #f8f4f0;
+}
+
+.mooday-detail-comment__delete-confirm p {
+  margin: 0;
+
+  color: #686863;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   COMMENT COMPOSER
+===================================== */
+
+.mooday-detail-comments__composer {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 32px;
+}
+
+.mooday-detail-comments__input-group {
+  display: flex;
+
+  flex: 1;
+  min-width: 0;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.mooday-detail-comments__input-group input {
+  flex: 1;
+  min-width: 0;
+
+  height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid #deded8;
+
+  background: #fff;
+  color: #282828;
+
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.mooday-detail-comments__input-group input:focus-visible {
+  border-color: #344f41;
+
+  outline:
+    2px solid rgba(52, 79, 65, 0.18);
+
+  outline-offset: 1px;
+}
+
+.mooday-detail-comments__input-group button {
+  flex: 0 0 76px;
+
+  height: 42px;
+
+  border: 0;
+
+  background: #344f41;
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mooday-detail-comments__input-group button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.mooday-detail-comments__input-group button:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 3px;
+}
+
+.mooday-detail-comments__input-group button:disabled {
+  opacity: 0.8;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   VISUALLY HIDDEN
+===================================== */
+
+.mooday-detail-visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+
+  border: 0;
+}
+
+
+/* =====================================
+   RELATED STYLES
+===================================== */
+
+.mooday-detail__related {
+  padding-top: 72px;
+}
+
+.mooday-detail__related-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+}
+
+.mooday-detail__related-heading h2 {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.mooday-detail__related-heading a {
+  flex-shrink: 0;
+
+  color: #686863;
+
+  font-size: 9px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.mooday-detail__related-heading a span {
+  margin-left: 8px;
+
+  font-size: 14px;
+}
+
+.mooday-detail__related-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  column-gap: 24px;
+  row-gap: 40px;
+}
+
+
+
+/* =====================================
+   EMPTY STATE
+===================================== */
+
+.mooday-detail__empty {
+  display: flex;
+
+  min-height: 420px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.mooday-detail__empty h1 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.mooday-detail__empty p {
+  margin: 12px 0 0;
+
+  color: #686863;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.mooday-detail__empty a {
+  margin-top: 22px;
+
+  color: #344f41;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+
+/* =====================================
+   TABLET WIDE
+   1024px ~ 1279px
+===================================== */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+
+  .mooday-detail {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  .mooday-detail__inner {
+    width: calc(100% - 80px);
+  }
+
+  .mooday-detail__hero {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    column-gap: 32px;
+  }
+
+  .mooday-detail-gallery {
+    max-width: none;
+  }
+
+  .mooday-detail__side {
+    gap: 40px;
+  }
+
+  .mooday-detail-product {
+    gap: 16px;
+
+    padding: 20px 0;
+  }
+
+  .mooday-detail-product__image {
+    flex-basis: 100px;
+
+    width: 100px;
+    height: 100px;
+  }
+
+  .mooday-detail__comments-section {
+    margin-top: 56px;
+
+    padding: 36px 0;
+  }
+
+  .mooday-detail-comments__input-group {
+    gap: 8px;
+  }
+
+  .mooday-detail-comments__input-group button {
+    flex-basis: 64px;
+  }
+
+  .mooday-detail__related {
+    padding-top: 60px;
+  }
+
+  .mooday-detail__related-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    column-gap: 20px;
+  }
+
+}
+
+
+/* =====================================
+   TABLET COMPACT
+   768px ~ 1023px
+===================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .mooday-detail {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+
+  .mooday-detail__inner {
+    width: calc(100% - 80px);
+  }
+
+  .mooday-detail__hero {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    row-gap: 40px;
+  }
+
+  .mooday-detail-gallery {
+    max-width: 560px;
+
+    margin: 0 auto;
+  }
+
+  .mooday-detail__side {
+    gap: 40px;
+  }
+
+  .mooday-detail-products {
+    width: 100%;
+  }
+
+  .mooday-detail-product {
+    gap: 20px;
+
+    padding: 20px 0;
+  }
+
+  .mooday-detail-product__image {
+    flex-basis: 110px;
+
+    width: 110px;
+    height: 110px;
+  }
+
+  .mooday-detail__post-section {
+    padding-top: 28px;
+  }
+
+  .mooday-detail-post__body {
+    margin-top: 32px;
+  }
+
+  .mooday-detail__hashtags {
+    margin-top: 32px;
+
+    padding-top: 24px;
+  }
+
+  .mooday-detail__comments-section {
+    margin-top: 48px;
+
+    padding: 32px 0;
+  }
+
+  .mooday-detail__related {
+    padding-top: 60px;
+  }
+
+  .mooday-detail__related-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 20px;
+  }
+
+}
+
+
+/* =====================================
+   MOBILE
+   767px 이하
+===================================== */
+
+@media (max-width: 767px) {
+
+  .mooday-detail {
+    padding: 32px 0 60px;
+  }
+
+  .mooday-detail__inner {
+    width: calc(100% - 40px);
+    max-width: 560px;
+  }
+
+  .mooday-detail__hero {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    row-gap: 36px;
+  }
+
+  .mooday-detail-gallery {
+    width: 100%;
+    max-width: none;
+  }
+
+  .mooday-detail__side {
+    gap: 36px;
+  }
+
+
+  /* GALLERY */
+
+  .mooday-detail-gallery__navigation {
+    margin-top: 12px;
+  }
+
+  .mooday-detail-gallery__track {
+    gap: 8px;
+  }
+
+  .mooday-detail-gallery__thumbnail {
+    flex-basis:
+      calc(
+        (
+          100%
+          - 24px
+        )
+        / 4
+      );
+  }
+
+  .mooday-detail-gallery__arrow {
+    width: 32px;
+    height: 32px;
+
+    font-size: 18px;
+  }
+
+  .mooday-detail-gallery__arrow--previous {
+    left: 0;
+  }
+
+  .mooday-detail-gallery__arrow--next {
+    right: 0;
+  }
+
+
+  /* PRODUCTS */
+
+  .mooday-detail-products__heading {
+    padding: 8px 0 16px;
+  }
+
+  .mooday-detail-products__heading h2 {
+    font-size: 18px;
+  }
+
+  .mooday-detail-product {
+    gap: 14px;
+
+    padding: 18px 0;
+  }
+
+  .mooday-detail-product__image {
+    flex-basis: 88px;
+
+    width: 88px;
+    height: 88px;
+  }
+
+  .mooday-detail-product__info {
+    gap: 5px;
+  }
+
+  .mooday-detail-product__brand {
+    font-size: 12px;
+  }
+
+  .mooday-detail-product__name {
+    font-size: 13px;
+  }
+
+  .mooday-detail-product__price {
+    font-size: 14px;
+  }
+
+  .mooday-detail-product__arrow {
+    font-size: 23px;
+  }
+
+
+  /* POST */
+
+  .mooday-detail__post-section {
+    padding-top: 28px;
+  }
+
+  .mooday-detail-section-title {
+    margin-bottom: 20px;
+
+    font-size: 18px;
+  }
+
+  .mooday-detail-post__header {
+    gap: 10px;
+  }
+
+  .mooday-detail-post__author {
+    gap: 10px;
+  }
+
+  .mooday-detail-avatar {
+    flex-basis: 40px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 14px;
+  }
+
+  .mooday-detail-avatar--comment {
+    flex-basis: 34px;
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 12px;
+  }
+
+  .mooday-detail-post__actions {
+    gap: 12px;
+  }
+
+  .mooday-detail-post__likes {
+    font-size: 12px;
+  }
+
+  .mooday-detail-post__likes span {
+    font-size: 21px;
+  }
+
+  .mooday-detail-post__body {
+    margin-top: 32px;
+  }
+
+  .mooday-detail-post__body p {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+
+  /* HASHTAGS */
+
+  .mooday-detail__hashtags {
+    margin-top: 32px;
+
+    padding-top: 24px;
+  }
+
+  .mooday-detail__hashtags h2 {
+    margin-bottom: 20px;
+
+    font-size: 18px;
+  }
+
+  .mooday-detail__tag {
+    min-height: 34px;
+
+    padding: 6px 12px;
+
+    font-size: 13px;
+  }
+
+
+  /* COMMENTS */
+
+  .mooday-detail__comments-section {
+    margin-top: 40px;
+
+    padding: 32px 0;
+  }
+
+  .mooday-detail-comment {
+    gap: 12px;
+
+    padding: 16px 0;
+  }
+
+  .mooday-detail-comment__content strong {
+    font-size: 14px;
+  }
+
+  .mooday-detail-comment__content p {
+    font-size: 14px;
+  }
+
+  .mooday-detail-comment__time {
+    font-size: 12px;
+  }
+
+  .mooday-detail-comment__menu {
+    top: 28px;
+
+    width: 82px;
+  }
+
+  .mooday-detail-comment__edit input {
+    height: 40px;
+
+    padding: 0 10px;
+
+    font-size: 16px;
+  }
+
+  .mooday-detail-comment__action-button {
+    min-width: 52px;
+
+    height: 32px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+  .mooday-detail-comment__delete-confirm {
+    padding: 10px;
+  }
+
+  .mooday-detail-comments__composer {
+    gap: 12px;
+
+    margin-top: 24px;
+  }
+
+  .mooday-detail-comments__input-group {
+    gap: 8px;
+  }
+
+  .mooday-detail-comments__input-group input {
+    height: 44px;
+
+    padding: 0 10px;
+
+    font-size: 16px;
+  }
+
+  .mooday-detail-comments__input-group button {
+    flex: 0 0 56px;
+
+    height: 44px;
+
+    font-size: 12px;
+  }
+
+
+  /* RELATED */
+
+  .mooday-detail__related {
+    padding-top: 60px;
+  }
+
+  .mooday-detail__related-heading {
+    gap: 12px;
+
+    margin-bottom: 24px;
+  }
+
+  .mooday-detail__related-heading h2 {
+    font-size: 20px;
+  }
+
+  .mooday-detail__related-heading a {
+    font-size: 12px;
+  }
+
+  .mooday-detail__related-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 12px;
+    row-gap: 20px;
+  }
+
+  .mooday-detail__related-grid
+  .mooday-community-card__body {
+    padding: 12px 8px 16px;
+  }
+
+  .mooday-detail__related-grid
+  .mooday-community-card__author {
+    overflow: hidden;
+
+    font-size: 14px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mooday-detail__related-grid
+  .mooday-community-card__items {
+    display: none;
+  }
+
+  .mooday-detail__related-grid
+  .mooday-community-card__tags {
+    margin: 8px 0;
+
+    font-size: 12px;
+  }
+
+  .mooday-detail__related-grid
+  .mooday-community-card__excerpt {
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    font-size: 14px;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+}
+
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 374px) {
+
+  .mooday-detail {
+    padding-top: 24px;
+  }
+
+  .mooday-detail-product {
+    gap: 10px;
+  }
+
+  .mooday-detail-product__image {
+    flex-basis: 72px;
+
+    width: 72px;
+    height: 72px;
+  }
+
+  .mooday-detail-product__arrow {
+    font-size: 20px;
+  }
+
+  .mooday-detail-comments__composer {
+    gap: 8px;
+  }
+
+  .mooday-detail-comments__input-group {
+    gap: 6px;
+  }
+
+  .mooday-detail-comments__input-group input {
+    padding: 0 8px;
+  }
+
+  .mooday-detail-comments__input-group button {
+    flex-basis: 48px;
+  }
+
+  .mooday-detail-comment__edit-actions,
+  .mooday-detail-comment__delete-actions {
+    gap: 6px;
+  }
+
+  .mooday-detail-comment__action-button {
+    min-width: 48px;
+
+    padding: 0 8px;
+  }
+
+}

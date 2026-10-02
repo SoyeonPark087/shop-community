@@ -10,7 +10,9 @@
   --warm: #f8f4f0;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

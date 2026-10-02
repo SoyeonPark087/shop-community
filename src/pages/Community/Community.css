@@ -1,0 +1,910 @@
+/* =====================================
+   00. COMMUNITY ROOT
+===================================== */
+
+.mooday-community {
+  width: 100%;
+
+  padding: 116px 0 120px;
+
+  background: #fafaf8;
+  color: #282828;
+}
+
+
+.mooday-community,
+.mooday-community * {
+  box-sizing: border-box;
+}
+
+
+/* =====================================
+   01. MAIN CONTAINER
+===================================== */
+
+.mooday-community__inner {
+  width: calc(100% - 128px);
+  max-width: 1792px;
+  margin: 0 auto;
+}
+
+
+/* =====================================
+   02. TOP NAVIGATION
+===================================== */
+
+.mooday-community__top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.mooday-community__tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* =====================================
+   Latest / Popular
+===================================== */
+
+.mooday-community__tabs {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.mooday-community__tab {
+  margin: 0;
+  padding: 4px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #77736d;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  cursor: pointer;
+}
+
+.mooday-community__tab--active {
+  position: relative;
+
+  color: #282828;
+  font-weight: 500;
+}
+
+
+.mooday-community__tab--active::after {
+  content: '';
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 1px;
+
+  background: #344f41;
+}
+
+
+.mooday-community__tab--pending {
+  color: #96968f;
+}
+
+
+.mooday-community__tab--pending:hover {
+  color: #486858;
+}
+
+
+.mooday-community__tab:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 5px;
+}
+
+
+/* =====================================
+   Write
+===================================== */
+
+.mooday-community__write {
+  flex: 0 0 auto;
+
+  padding-bottom: 2px;
+
+  border-bottom: 1px solid #282828;
+
+  color: #282828;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mooday-community__write:hover {
+  color: #344f41;
+  border-color: #344f41;
+}
+
+
+
+/* =====================================
+   03. TAG / FILTER TOOLS
+===================================== */
+
+.mooday-community__tools {
+  margin-bottom: 40px;
+}
+
+/* =====================================
+   MAIN TAG CHIPS
+===================================== */
+
+.mooday-community__chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+  min-width: 0;
+}
+
+
+.mooday-community__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 26px;
+  padding: 3px 12px;
+
+  border: 1px solid #deded8;
+  border-radius: 20px;
+
+  background: transparent;
+  color: #686863;
+
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mooday-community__chip:not(
+  .mooday-community__chip--selected
+):hover {
+  border-color: #486858;
+  color: #486858;
+}
+
+.mooday-community__chip:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 3px;
+}
+
+.mooday-community__chip--selected {
+  background: #344f41;
+  border-color: #344f41;
+
+  color: #ffffff;
+}
+
+
+/* =====================================
+   06. COMMUNITY GRID
+===================================== */
+
+.mooday-community-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  column-gap: 14px;
+  row-gap: 44px;
+}
+
+
+/* =====================================
+   07. COMMUNITY CARD
+===================================== */
+
+.mooday-community-card {
+  min-width: 0;
+
+  background: transparent;
+}
+
+
+.mooday-community-card__link {
+  display: block;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.mooday-community-card__link:focus-visible,
+.mooday-community__write:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 4px;
+}
+
+
+/* =====================================
+   08. COMMUNITY IMAGE
+===================================== */
+
+.mooday-community-card__image {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: #f0f0ed;
+}
+
+/* =====================================
+   09. CARD INFORMATION
+===================================== */
+
+.mooday-community-card__body {
+  min-height: 0;
+  padding: 10px 0 0;
+}
+
+
+/* =====================================
+   작성자 / 연동상품
+===================================== */
+
+.mooday-community-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  gap: 10px;
+}
+
+
+.mooday-community-card__author {
+  font-size: 11px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.mooday-community-card__items {
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 9px;
+  color: #77736d;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+
+.mooday-community-card__items span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 300;
+
+  margin-left: 4px;
+}
+
+
+/* =====================================
+   해시태그
+===================================== */
+
+.mooday-community-card__tags {
+  margin: 5px 0 6px;
+
+  color: #77736d;
+
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+
+/* =====================================
+   게시글 미리보기
+===================================== */
+
+.mooday-community-card__excerpt {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* =====================================
+   10. COMMUNITY EMPTY STATE
+===================================== */
+
+.mooday-community-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 430px;
+
+  padding: 80px 24px;
+
+  text-align: center;
+}
+
+
+.mooday-community-empty__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+
+.mooday-community-empty__description {
+  margin: 12px 0 0;
+
+  color: #96968f;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.mooday-community-empty__write {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: 24px;
+
+  color: #686863;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+
+.mooday-community-empty__write span {
+  margin-left: 8px;
+
+  font-weight: 400;
+}
+
+
+.mooday-community-empty__write:hover {
+  color: #486858;
+}
+
+
+.mooday-community-empty__write:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 5px;
+}
+
+
+.mooday-community-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 320px;
+
+  padding: 60px 24px;
+
+  text-align: center;
+}
+
+
+.mooday-community-no-results__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+
+.mooday-community-no-results__description {
+  margin: 12px 0 0;
+
+  color: #96968f;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.mooday-community-no-results__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 132px;
+  height: 40px;
+
+  margin-top: 24px;
+  padding: 0 20px;
+
+  border: 1px solid #deded8;
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  color: #686863;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.mooday-community-no-results__reset:hover {
+  border-color: #486858;
+  color: #486858;
+}
+
+
+.mooday-community-no-results__reset:focus-visible {
+  outline: 2px solid #344f41;
+  outline-offset: 4px;
+}
+
+.mooday-community__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  margin-top: 64px;
+}
+
+.mooday-community__pagination button {
+  min-width: 18px;
+
+  padding: 4px;
+
+  border: 0;
+
+  color: #77736d;
+  background: transparent;
+
+  font-size: 10px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+.mooday-community__pagination button:hover,
+.mooday-community__pagination .is-current {
+  font-weight: 500;
+  color: #282828;
+}
+
+.mooday-community__pagination button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+
+  /* =================================
+     Page Rhythm
+  ================================= */
+
+  .mooday-community {
+  width: 100%;
+
+  padding: 116px 0 120px;
+
+  background: #fafaf8;
+  color: #282828;
+}
+
+
+  /* =================================
+     Latest / Popular / Write
+  ================================= */
+
+  .mooday-community__top {
+    margin-bottom: 32px;
+  }
+
+
+  .mooday-community__tabs {
+    gap: 24px;
+  }
+
+
+  .mooday-community__tab {
+    font-size: 18px;
+  }
+
+
+  .mooday-community__write {
+    font-size: 14px;
+  }
+
+
+  /* =================================
+     Tag / Filter Tools
+  ================================= */
+
+  .mooday-community__tools {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+
+  .mooday-community__chips {
+    gap: 8px;
+  }
+
+
+  .mooday-community__chip {
+    min-height: 32px;
+    padding: 4px 15px;
+
+    font-size: 12px;
+  }
+
+
+  /* =================================
+     Tablet Grid 2열
+  ================================= */
+
+  .mooday-community-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 20px;
+    row-gap: 24px;
+  }
+
+
+  /* =================================
+     Card
+  ================================= */
+
+  .mooday-community-card__body {
+    min-height: 115px;
+
+    padding: 16px;
+  }
+
+
+  .mooday-community-card__author {
+    font-size: 14px;
+  }
+
+
+  .mooday-community-card__items {
+    font-size: 12px;
+  }
+
+
+  .mooday-community-card__tags {
+    font-size: 12px;
+  }
+
+
+  .mooday-community-card__excerpt {
+    font-size: 14px;
+  }
+
+
+  /* =================================
+     Empty
+  ================================= */
+
+  .mooday-community-empty {
+    min-height: 360px;
+
+    padding: 60px 20px;
+  }
+
+
+  .mooday-community-empty__title {
+    font-size: 20px;
+  }
+
+
+  .mooday-community-empty__description {
+    font-size: 14px;
+  }
+
+
+  .mooday-community-empty__write {
+    margin-top: 24px;
+
+    font-size: 16px;
+  }
+
+
+  /* =================================
+     No Results
+  ================================= */
+
+  .mooday-community-no-results {
+    min-height: 280px;
+
+    padding: 48px 20px;
+  }
+
+
+  .mooday-community-no-results__title {
+    font-size: 18px;
+  }
+}
+
+
+@media (max-width: 767px) {
+
+  /* Mobile 좌우 여백 20px */
+
+  .mooday-community__inner {
+    width: calc(100% - 40px);
+  }
+
+
+  /* =================================
+     Page Rhythm
+  ================================= */
+
+  .mooday-community {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+
+  /* =================================
+     Latest / Popular / Write
+  ================================= */
+
+  .mooday-community__top {
+    gap: 12px;
+
+    margin-bottom: 24px;
+  }
+
+
+  .mooday-community__tabs {
+    gap: 16px;
+
+    min-width: 0;
+  }
+
+
+  .mooday-community__tab {
+    font-size: 16px;
+  }
+
+
+  .mooday-community__tab--active::after {
+    bottom: -7px;
+  }
+
+
+  .mooday-community__write {
+    font-size: 14px;
+  }
+
+
+  /* =================================
+     Tag / Filter Tools
+  ================================= */
+
+  .mooday-community__tools {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+  }
+
+
+  .mooday-community__chips {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+
+  .mooday-community__chip {
+    min-height: 30px;
+
+    padding: 5px 12px;
+
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+
+
+  /* =================================
+     Mobile Grid 2열
+  ================================= */
+
+  .mooday-community-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 12px;
+    row-gap: 20px;
+  }
+
+
+  /* =================================
+     Card
+  ================================= */
+
+  .mooday-community-card__body {
+    min-height: 112px;
+
+    padding: 12px 8px 16px;
+  }
+
+
+.mooday-community-card__author {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+
+.mooday-community-card__items {
+  display: none;
+  font-size: 12px;
+}
+
+
+  .mooday-community-card__items span {
+    font-size: 18px;
+  }
+
+
+  .mooday-community-card__tags {
+    margin: 8px 0 8px;
+
+    font-size: 12px;
+  }
+
+
+  .mooday-community-card__excerpt {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+
+  /* =================================
+     Empty State
+  ================================= */
+
+  .mooday-community-empty {
+    min-height: 320px;
+
+    padding:
+      40px
+      12px
+      60px;
+  }
+
+
+  .mooday-community-empty__title {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+
+  .mooday-community-empty__description {
+    margin-top: 12px;
+
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+
+  .mooday-community-empty__write {
+    margin-top: 24px;
+
+    font-size: 14px;
+  }
+
+
+  .mooday-community-empty__write span {
+    margin-left: 6px;
+  }
+
+
+  /* =================================
+     Filter No Results
+  ================================= */
+
+  .mooday-community-no-results {
+    min-height: 240px;
+
+    padding:
+      40px
+      12px;
+  }
+
+
+  .mooday-community-no-results__title {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+
+
+  .mooday-community-no-results__description {
+    font-size: 13px;
+  }
+
+
+  .mooday-community-no-results__reset {
+    min-width: 124px;
+    height: 38px;
+
+    margin-top: 20px;
+
+    font-size: 12px;
+  }
+
+}
+
+

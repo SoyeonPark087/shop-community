@@ -352,7 +352,6 @@ console.log("Filter colors:", colors);
                   }}
                 />
 
-
                 <input
                   type="range"
                   min="0"
