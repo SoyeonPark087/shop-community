@@ -174,45 +174,13 @@
 
 
 /* ========================================
-   Tablet
+   Tablet & Mobile
 ======================================== */
 
 @media (max-width: 1024px) {
 
-  .site-header {
-    height: 76px;
-  }
-
-  .site-header__inner {
-    grid-template-columns: 1fr auto;
-  }
-
-  .site-header__nav--left {
-    display: none;
-  }
-
-  .site-header__logo {
-    order: -1;
-
-    width: 112px;
-  }
-
-  .site-header__nav--right {
-    gap: 22px;
-
-    font-size: 13px;
-  }
-}
-
-
-/* ========================================
-   Mobile
-======================================== */
-
-@media (max-width: 640px) {
-
   /*
-   * Mobile Header
+   * Tablet & Mobile Header
    *
    * | 16px | mooday        cart account menu | 16px |
    */

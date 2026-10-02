@@ -47,6 +47,8 @@ function Header({
 
             <button
               type="button"
+              aria-haspopup="dialog"
+              aria-expanded={activeDrawer === "search"}
               onClick={() =>
                 setActiveDrawer("search")
               }
@@ -129,10 +131,9 @@ function Header({
 
 
       {/* Search Drawer */}
-      <Search
-        open={activeDrawer === "search"}
-        onClose={closeDrawer}
-      />
+      {activeDrawer === "search" && (
+        <Search open onClose={closeDrawer} />
+      )}
 
 
       {/* Cart Drawer */}

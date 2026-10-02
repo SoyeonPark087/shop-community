@@ -15,6 +15,7 @@ import Community from './pages/Community/Community'
 import CommunityDetail from './pages/Community/CommunityDetail'
 import CommunityWrite from './pages/Community/CommunityWrite'
 import MyPage from './pages/MyPage/MyPage'
+import SearchResults from './pages/Search/SearchResults'
 
 function App() {
   const location = useLocation()
@@ -73,6 +74,7 @@ function App() {
         }
       >
         <Routes>
+          <Route path="/search" element={<SearchResults />} />
           <Route
             path="/"
             element={<Home />}

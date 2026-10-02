@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import useSiteSearch from "../../hooks/useSiteSearch.js";
+import { suggestedTags } from "../../utils/search.js";
 
 import "./Drawer.css";
 import "./MenuDrawer.css";
@@ -9,6 +11,7 @@ function MenuDrawer({
   onOpenAccount,
 }) {
   const [keyword, setKeyword] = useState("");
+  const search = useSiteSearch(onClose);
 
   /*
    * Drawer가 열려 있을 때
@@ -43,20 +46,7 @@ function MenuDrawer({
   const handleSearch = (event) => {
     event.preventDefault();
 
-    const value = keyword.trim();
-
-    if (!value) {
-      return;
-    }
-
-    /*
-     * 현재 프로젝트 검색 페이지 경로에 맞게 수정
-     *
-     * 예:
-     * /search?q=shirt
-     */
-    window.location.href =
-      `/search?q=${encodeURIComponent(value)}`;
+    search(keyword);
   };
 
 
@@ -68,6 +58,7 @@ function MenuDrawer({
           : "drawer-layer"
       }
       aria-hidden={!open}
+      inert={!open}
     >
       {/* Backdrop */}
       <button
@@ -125,11 +116,11 @@ function MenuDrawer({
         </form>
 
         <div className="menu-drawer__tags">
-            <button type="button">#homewear</button>
-            <button type="button">#layered</button>
-            <button type="button">#neutral</button>
-            <button type="button">#outside</button>
-            <button type="button">#simple</button>
+            {suggestedTags.map((tag) => (
+              <button type="button" key={tag} onClick={() => search(tag)}>
+                #{tag}
+              </button>
+            ))}
         </div>
 
         {/* Global Navigation */}

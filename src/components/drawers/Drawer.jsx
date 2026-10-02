@@ -51,6 +51,7 @@ export default function Drawer({
         open ? "drawer-layer--open" : ""
       }`}
       aria-hidden={!open}
+      inert={!open}
     >
       <button
         type="button"
