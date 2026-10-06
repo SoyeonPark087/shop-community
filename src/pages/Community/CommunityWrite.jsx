@@ -10,13 +10,13 @@ import {
 
 import {
   communityPosts,
-} from '../../data/community.js'
+} from '../../data/Community.js'
 
 import './CommunityWrite.css'
 
 import {
   products,
-} from '../../data/products.js'
+} from '../../data/Products.js'
 
 
 /* =====================================
