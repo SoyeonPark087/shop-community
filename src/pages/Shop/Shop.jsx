@@ -4,15 +4,11 @@ import CategoryMenu from "../../components/shop/CategoryMenu";
 import ProductGrid from "../../components/shop/ProductGrid";
 import ProductSort from "../../components/shop/ProductSort";
 
-import {
-  products,
-  SHOP_CATEGORIES,
-} from "../../data/Products";
+import { products, SHOP_CATEGORIES } from "../../data/Products";
 
 import Filter from "../../components/drawers/Filter";
 
 import "./Shop.css";
-
 
 const sortProducts = (items, sortBy) =>
   [...items].sort((a, b) => {
@@ -31,11 +27,6 @@ const sortProducts = (items, sortBy) =>
     return a.id - b.id;
   });
 
-
-/* ========================================
-   상품 데이터에서 실제 컬러 목록 생성
-======================================== */
-
 const AVAILABLE_COLORS = Array.from(
   new Map(
     products
@@ -47,19 +38,11 @@ const AVAILABLE_COLORS = Array.from(
   ).values()
 );
 
-
 export default function Shop() {
-  const [category, setCategory] =
-    useState("all");
+  const [category, setCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("featured");
+  const [filterOpen, setFilterOpen] = useState(false);
 
-  const [sortBy, setSortBy] =
-    useState("featured");
-
-  const [filterOpen, setFilterOpen] =
-    useState(false);
-
-
-  /* 실제 적용된 필터 */
   const [filters, setFilters] =
     useState({
       colors: [],
@@ -68,53 +51,33 @@ export default function Shop() {
       maxPrice: 150000,
     });
 
+  const visibleProducts = useMemo(() => {
+    const filteredProducts = products.filter((product) => {
+      const categoryMatch = category === "all" || product.category === category;
 
-const visibleProducts = useMemo(() => {
-  const filteredProducts = products.filter((product) => {
-    const categoryMatch =
-      category === "all" ||
-      product.category === category;
+      const colorMatch =
+        filters.colors.length === 0 ||
+        product.colors?.some((color) =>
+          filters.colors.includes(color.name)
+        );
 
-    const colorMatch =
-      filters.colors.length === 0 ||
-      product.colors?.some((color) =>
-        filters.colors.includes(color.name)
-      );
+      const sizeMatch =
+        filters.sizes.length === 0 ||
+        product.sizes?.some((size) =>
+          filters.sizes.includes(size)
+        );
 
-    const sizeMatch =
-      filters.sizes.length === 0 ||
-      product.sizes?.some((size) =>
-        filters.sizes.includes(size)
-      );
+      const priceMatch = product.price >= filters.minPrice && product.price <= filters.maxPrice;
 
-    const priceMatch =
-      product.price >= filters.minPrice &&
-      product.price <= filters.maxPrice;
+      return categoryMatch && colorMatch && sizeMatch && priceMatch;
+    });
 
-    return (
-      categoryMatch &&
-      colorMatch &&
-      sizeMatch &&
-      priceMatch
-    );
-  });
-
-  return sortProducts(
-    filteredProducts,
-    sortBy
-  );
-}, [
-  category,
-  sortBy,
-  filters,
-]);
-
-
-  const handleApplyFilter =
-    (filterValues) => {
-      setFilters(filterValues);
-    };
-
+    return sortProducts(filteredProducts, sortBy);
+  }, [
+    category,
+    sortBy,
+    filters,
+  ]);
 
   return (
     <>
@@ -122,35 +85,15 @@ const visibleProducts = useMemo(() => {
 
         <div className="shop-inner">
 
-          <section
-            className="shop-controls"
-            aria-label="상품 탐색 도구"
-          >
+          <section className="shop-controls" aria-label="상품 탐색 도구">
 
-            <CategoryMenu
-              categories={
-                SHOP_CATEGORIES
-              }
-              selected={category}
-              onChange={setCategory}
-            />
-
+            <CategoryMenu categories={SHOP_CATEGORIES} selected={category} onChange={setCategory} />
 
             <div className="shop-actions">
 
-              <ProductSort
-                value={sortBy}
-                onChange={setSortBy}
-              />
+              <ProductSort value={sortBy} onChange={setSortBy} />
 
-
-              <button
-                type="button"
-                className="shop-filter-button"
-                onClick={() =>
-                  setFilterOpen(true)
-                }
-              >
+              <button type="button" className="shop-filter-button" onClick={() => setFilterOpen(true)}>
                 Filter
               </button>
 
@@ -158,37 +101,22 @@ const visibleProducts = useMemo(() => {
 
           </section>
 
-
           <p className="shop-result-count">
             {visibleProducts.length} items
           </p>
 
+          <ProductGrid products={visibleProducts} />
 
-          <ProductGrid
-            products={visibleProducts}
-          />
-
-
-          <nav
-            className="shop-pagination"
-            aria-label="상품 페이지"
-          >
+          <nav className="shop-pagination" aria-label="상품 페이지">
             <button type="button">
               FIRST
             </button>
 
-            <button
-              type="button"
-              aria-label="이전 페이지"
-            >
+            <button type="button" aria-label="이전 페이지">
               ‹
             </button>
 
-            <button
-              className="is-current"
-              type="button"
-              aria-current="page"
-            >
+            <button className="is-current" type="button" aria-current="page">
               1
             </button>
 
@@ -196,10 +124,7 @@ const visibleProducts = useMemo(() => {
               2
             </button>
 
-            <button
-              type="button"
-              aria-label="다음 페이지"
-            >
+            <button type="button" aria-label="다음 페이지">
               ›
             </button>
 
@@ -212,22 +137,15 @@ const visibleProducts = useMemo(() => {
 
       </main>
 
-
-      <Filter
-        open={filterOpen}
-        onClose={() =>
-          setFilterOpen(false)
-        }
-        onApply={
-          handleApplyFilter
-        }
-        colors={
-          AVAILABLE_COLORS
-        }
-        appliedFilters={
-          filters
-        }
-      />
+      {filterOpen && (
+        <Filter
+          open
+          onClose={() => setFilterOpen(false)}
+          onApply={setFilters}
+          colors={AVAILABLE_COLORS}
+          appliedFilters={filters}
+        />
+      )}
     </>
   );
 }

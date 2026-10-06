@@ -1,6 +1,4 @@
-/* ========================================
-   전체 페이지 배경
-======================================== */
+/* 전체 페이지 배경 */
 
 html,
 body,
@@ -11,10 +9,7 @@ body,
   background-color: #fafaf8;
 }
 
-
-/* ========================================
-   EDITORIAL DETAIL 기본 설정
-======================================== */
+/* EDITORIAL DETAIL 기본 설정 */
 
 .editorial-detail,
 .editorial-detail * {
@@ -33,10 +28,7 @@ body,
   background-color: #fafaf8;
 }
 
-
-/* ========================================
-   에디토리얼 없음
-======================================== */
+/* 에디토리얼 없음 */
 
 .editorial-detail--empty {
   min-height: 500px;
@@ -55,10 +47,7 @@ body,
   text-decoration: underline;
 }
 
-
-/* ========================================
-   기사 상단
-======================================== */
+/* 기사 상단 */
 
 .editorial-detail__article {
   display: grid;
@@ -72,10 +61,7 @@ body,
 background-color: transparent;
 }
 
-
-/* ========================================
-   왼쪽 제목 영역
-======================================== */
+/* 왼쪽 제목 영역 */
 
 .editorial-detail__intro {
   position: static;
@@ -133,10 +119,7 @@ background-color: transparent;
   letter-spacing: 0.5px;
 }
 
-
-/* ========================================
-   오른쪽 본문 영역
-======================================== */
+/* 오른쪽 본문 영역 */
 
 .editorial-detail__body {
   width: 100%;
@@ -171,10 +154,7 @@ background-color: transparent;
   word-break: keep-all;
 }
 
-
-/* ========================================
-   SHOP THE STORY
-======================================== */
+/* SHOP THE STORY */
 
 .editorial-detail__shop {
   width: 100%;
@@ -222,7 +202,6 @@ background-color: transparent;
   transition: transform 0.35s ease;
 }
 
-
 .editorial-detail__product strong {
   display: block;
   margin-bottom: 5px;
@@ -243,10 +222,7 @@ background-color: transparent;
   line-height: 1.4;
 }
 
-
-/* ========================================
-   RELATED STORIES
-======================================== */
+/* RELATED STORIES */
 
 .editorial-detail__related {
   width: 100%;
@@ -332,10 +308,7 @@ background-color: transparent;
   white-space: nowrap;
 }
 
-
-/* ========================================
-   태블릿
-======================================== */
+/* 태블릿 */
 
 @media (max-width: 1023px) and (min-width: 768px) {
   .editorial-detail {
@@ -380,12 +353,6 @@ background-color: transparent;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-
-/* ========================================
-   모바일
-   전체 콘텐츠 좌우 여백 24px
-======================================== */
 
 @media (max-width: 767px) {
   .editorial-detail {
@@ -532,10 +499,7 @@ background-color: transparent;
   }
 }
 
-
-/* ========================================
-   작은 모바일
-======================================== */
+/* 작은 모바일 */
 
 @media (max-width: 420px) {
   /* 작은 화면에서도 좌우 24px 유지 */

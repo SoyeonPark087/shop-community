@@ -1,6 +1,4 @@
-/* ========================================
-   Header
-======================================== */
+/* Header */
 
 .site-header {
   position: absolute;
@@ -27,10 +25,7 @@
   margin: 0 auto;
 }
 
-
-/* ========================================
-   Navigation
-======================================== */
+/* Navigation */
 
 .site-header__nav {
   display: flex;
@@ -69,10 +64,7 @@
   cursor: pointer;
 }
 
-
-/* ========================================
-   Logo
-======================================== */
+/* Logo */
 
 .site-header__logo {
   display: block;
@@ -90,12 +82,6 @@
 
   object-fit: contain;
 }
-
-
-/* ========================================
-   Mobile Icon Buttons
-   Desktop에서는 사용하지 않음
-======================================== */
 
 .site-header__actions {
   display: none;
@@ -124,10 +110,7 @@
   display: none;
 }
 
-
-/* ========================================
-   Icon Image
-======================================== */
+/* Icon Image */
 
 .site-header__icon-image {
   display: block;
@@ -138,10 +121,7 @@
   object-fit: contain;
 }
 
-
-/* ========================================
-   Cart
-======================================== */
+/* Cart */
 
 .site-header__cart {
   position: relative;
@@ -172,27 +152,15 @@
   line-height: 1;
 }
 
-
-/* ========================================
-   Tablet & Mobile
-======================================== */
+/* Tablet & Mobile */
 
 @media (max-width: 1024px) {
-
-  /*
-   * Tablet & Mobile Header
-   *
-   * | 16px | mooday        cart account menu | 16px |
-   */
 
   .site-header {
     height: 56px;
   }
 
-
-  /* ========================================
-     Layout
-  ======================================== */
+  /* Layout */
 
   .site-header__inner {
     display: flex;
@@ -210,20 +178,14 @@
     box-sizing: border-box;
   }
 
-
-  /* ========================================
-     Desktop Navigation Hide
-  ======================================== */
+  /* Desktop Navigation Hide */
 
   .site-header__nav--left,
   .site-header__nav--right {
     display: none;
   }
 
-
-  /* ========================================
-     Logo
-  ======================================== */
+  /* Logo */
 
   .site-header__logo {
     display: flex;
@@ -248,10 +210,7 @@
     object-fit: contain;
   }
 
-
-  /* ========================================
-     Mobile Actions
-  ======================================== */
+  /* Mobile Actions */
 
   .site-header__actions {
     display: flex;
@@ -266,10 +225,7 @@
     padding: 0;
   }
 
-
-  /* ========================================
-     Icon Button
-  ======================================== */
+  /* Icon Button */
 
   .site-header__icon-button {
     display: inline-flex;
@@ -292,10 +248,7 @@
     cursor: pointer;
   }
 
-
-  /* ========================================
-     Icon Image
-  ======================================== */
+  /* Icon Image */
 
   .site-header__icon-image {
     display: block;
@@ -308,10 +261,7 @@
     flex-shrink: 0;
   }
 
-
-  /* ========================================
-     Cart Count
-  ======================================== */
+  /* Cart Count */
 
   .site-header__cart-count {
     top: 2px;

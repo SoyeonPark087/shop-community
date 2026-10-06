@@ -1,85 +1,19 @@
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useState } from "react";
 
 import Drawer from "./Drawer";
 
 import "./Filter.css";
 
-
-const SIZES = [
-  "S",
-  "M",
-  "L",
-  "FREE",
-];
+const SIZES = ["S", "M", "L", "FREE"];
 
 const MAX_PRICE = 150000;
 
+export default function Filter({ open, onClose, onApply, colors = [], appliedFilters }) {
 
-export default function Filter({
-  open,
-  onClose,
-  onApply,
-  colors = [],
-  appliedFilters,
-}) {
-
-  const [
-    selectedColors,
-    setSelectedColors,
-  ] = useState([]);
-
-  const [
-    selectedSizes,
-    setSelectedSizes,
-  ] = useState([]);
-
-  const [
-    minPrice,
-    setMinPrice,
-  ] = useState(0);
-
-  const [
-    maxPrice,
-    setMaxPrice,
-  ] = useState(MAX_PRICE);
-
-
-  /* ========================================
-     현재 적용된 필터와 Drawer 상태 동기화
-  ======================================== */
-
-  useEffect(() => {
-    if (!open) return;
-
-    setSelectedColors(
-      appliedFilters?.colors || []
-    );
-
-    setSelectedSizes(
-      appliedFilters?.sizes || []
-    );
-
-    setMinPrice(
-      appliedFilters?.minPrice ?? 0
-    );
-
-    setMaxPrice(
-      appliedFilters?.maxPrice ??
-        MAX_PRICE
-    );
-
-  }, [
-    open,
-    appliedFilters,
-  ]);
-
-
-  /* ========================================
-     Color
-  ======================================== */
+  const [selectedColors, setSelectedColors] = useState(appliedFilters?.colors ?? []);
+  const [selectedSizes, setSelectedSizes] = useState(appliedFilters?.sizes ?? []);
+  const [minPrice, setMinPrice] = useState(appliedFilters?.minPrice ?? 0);
+  const [maxPrice, setMaxPrice] = useState(appliedFilters?.maxPrice ?? MAX_PRICE);
 
   const toggleColor = (name) => {
     setSelectedColors((prev) =>
@@ -95,11 +29,6 @@ export default function Filter({
     );
   };
 
-
-  /* ========================================
-     Size
-  ======================================== */
-
   const toggleSize = (size) => {
     setSelectedSizes((prev) =>
       prev.includes(size)
@@ -114,44 +43,19 @@ export default function Filter({
     );
   };
 
-
-  /* ========================================
-     Price
-  ======================================== */
-
   const handleMinPrice =
     (event) => {
-      const value = Number(
-        event.target.value
-      );
+      const value = Number(event.target.value);
 
-      setMinPrice(
-        Math.min(
-          value,
-          maxPrice - 10000
-        )
-      );
+      setMinPrice(Math.min(value, maxPrice - 10000));
     };
-
 
   const handleMaxPrice =
     (event) => {
-      const value = Number(
-        event.target.value
-      );
+      const value = Number(event.target.value);
 
-      setMaxPrice(
-        Math.max(
-          value,
-          minPrice + 10000
-        )
-      );
+      setMaxPrice(Math.max(value, minPrice + 10000));
     };
-
-
-  /* ========================================
-     Reset
-  ======================================== */
 
   const handleReset = () => {
     setSelectedColors([]);
@@ -160,97 +64,49 @@ export default function Filter({
     setMaxPrice(MAX_PRICE);
   };
 
-
-  /* ========================================
-     Apply
-  ======================================== */
-
   const handleApply = () => {
 
-    const filterValues = {
-      colors: selectedColors,
-      sizes: selectedSizes,
-      minPrice,
-      maxPrice,
-    };
+    const filterValues = { colors: selectedColors, sizes: selectedSizes, minPrice, maxPrice };
 
-
-    onApply?.(
-      filterValues
-    );
+    onApply?.(filterValues);
 
     onClose();
   };
 
-console.log("Filter colors:", colors);
-
   return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      title="Filter"
-      width={320}
-      className="filter-drawer"
-    >
+    <Drawer open={open} onClose={onClose} title="Filter" width={320} className="filter-drawer">
 
       <div className="filter-content">
 
         <div className="filter-content__main">
 
-
-          {/* =========================
-              Color
-          ========================= */}
-
           <section className="filter-section">
 
             <h3>Color</h3>
-
 
             <div className="filter-colors">
 
               {colors.map(
                 (color) => {
 
-                  const selected =
-                    selectedColors.includes(
-                      color.name
-                    );
-
+                  const selected = selectedColors.includes(color.name);
 
                   return (
                     <button
-                      key={
-                        color.name
-                      }
+                      key={color.name}
                       type="button"
                       className={`filter-color ${
                         selected
                           ? "filter-color--selected"
                           : ""
                       }`}
-                      onClick={() =>
-                        toggleColor(
-                          color.name
-                        )
-                      }
-                      aria-label={
-                        color.name
-                      }
-                      aria-pressed={
-                        selected
-                      }
-                      title={
-                        color.name
-                      }
+                      onClick={() => toggleColor(color.name)}
+                      aria-label={color.name}
+                      aria-pressed={selected}
+                      title={color.name}
                     >
 
-                      <span
-                        style={{
-                          backgroundColor:
-                            color.hex,
-                        }}
-                      />
+                      <span style={{ backgroundColor: color.hex }} />
 
                     </button>
                   );
@@ -261,39 +117,18 @@ console.log("Filter colors:", colors);
 
           </section>
 
-
-          {/* =========================
-              Size
-          ========================= */}
-
           <section className="filter-section">
 
             <h3>Size</h3>
-
 
             <div className="filter-sizes">
 
               {SIZES.map(
                 (size) => (
 
-                  <label
-                    key={size}
-                    className="filter-size"
-                  >
+                  <label key={size} className="filter-size">
 
-                    <input
-                      type="checkbox"
-                      checked={
-                        selectedSizes.includes(
-                          size
-                        )
-                      }
-                      onChange={() =>
-                        toggleSize(
-                          size
-                        )
-                      }
-                    />
+                    <input type="checkbox" checked={selectedSizes.includes(size)} onChange={() => toggleSize(size)} />
 
                     <span className="filter-size__checkbox" />
 
@@ -310,11 +145,6 @@ console.log("Filter colors:", colors);
 
           </section>
 
-
-          {/* =========================
-              Price
-          ========================= */}
-
           <section
             className="
               filter-section
@@ -324,13 +154,11 @@ console.log("Filter colors:", colors);
 
             <h3>Price</h3>
 
-
             <div className="filter-price">
 
               <div className="filter-price__slider">
 
                 <div className="filter-price__track" />
-
 
                 <div
                   className="filter-price__active"
@@ -358,11 +186,8 @@ console.log("Filter colors:", colors);
                   max={MAX_PRICE}
                   step="10000"
                   value={minPrice}
-                  onChange={
-                    handleMinPrice
-                  }
+                  onChange={handleMinPrice}
                 />
-
 
                 <input
                   type="range"
@@ -370,13 +195,10 @@ console.log("Filter colors:", colors);
                   max={MAX_PRICE}
                   step="10000"
                   value={maxPrice}
-                  onChange={
-                    handleMaxPrice
-                  }
+                  onChange={handleMaxPrice}
                 />
 
               </div>
-
 
               <div className="filter-price__labels">
 
@@ -385,15 +207,11 @@ console.log("Filter colors:", colors);
                   {minPrice.toLocaleString()}
                 </span>
 
-
                 <span>
                   ₩{" "}
                   {maxPrice.toLocaleString()}
 
-                  {maxPrice ===
-                  MAX_PRICE
-                    ? "+"
-                    : ""}
+                  {maxPrice === MAX_PRICE ? "+" : ""}
                 </span>
 
               </div>
@@ -404,31 +222,13 @@ console.log("Filter colors:", colors);
 
         </div>
 
-
-        {/* =========================
-            Actions
-        ========================= */}
-
         <div className="filter-actions">
 
-          <button
-            type="button"
-            className="filter-actions__reset"
-            onClick={
-              handleReset
-            }
-          >
+          <button type="button" className="filter-actions__reset" onClick={handleReset}>
             Reset
           </button>
 
-
-          <button
-            type="button"
-            className="filter-actions__apply"
-            onClick={
-              handleApply
-            }
-          >
+          <button type="button" className="filter-actions__apply" onClick={handleApply}>
             Apply
           </button>
 

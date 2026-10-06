@@ -1,11 +1,6 @@
-/* =====================================
-   COMMUNITY DETAIL
-===================================== */
+/* COMMUNITY DETAIL */
 
-
-/* =====================================
-   ROOT
-===================================== */
+/* ROOT */
 
 .mooday-detail {
   --detail-divider: rgba(40, 40, 40, 0.12);
@@ -26,10 +21,7 @@
   margin: 0 auto;
 }
 
-
-/* =====================================
-   HERO
-===================================== */
+/* HERO */
 
 .mooday-detail__hero {
   display: grid;
@@ -43,10 +35,7 @@
   align-items: start;
 }
 
-
-/* =====================================
-   RIGHT SIDE
-===================================== */
+/* RIGHT SIDE */
 
 .mooday-detail__side {
   display: flex;
@@ -59,10 +48,7 @@
   gap: 32px;
 }
 
-
-/* =====================================
-   IMAGE GALLERY
-===================================== */
+/* IMAGE GALLERY */
 
 .mooday-detail-gallery {
   width: 100%;
@@ -105,10 +91,7 @@
   font-weight: 400;
 }
 
-
-/* =====================================
-   GALLERY THUMBNAILS
-===================================== */
+/* GALLERY THUMBNAILS */
 
 .mooday-detail-gallery__navigation {
   position: relative;
@@ -184,10 +167,7 @@
   outline-offset: -4px;
 }
 
-
-/* =====================================
-   GALLERY ARROWS
-===================================== */
+/* GALLERY ARROWS */
 
 .mooday-detail-gallery__arrow {
   position: absolute;
@@ -234,9 +214,7 @@
   cursor: default;
 }
 
-/* =====================================
-   STYLED PRODUCTS
-===================================== */
+/* STYLED PRODUCTS */
 
 .mooday-detail-products {
   width: 100%;
@@ -285,8 +263,6 @@ display: flex;
   color: inherit;
   text-decoration: none;
 }
-
-
 
 /* 상품이 2개 이상일 때 상품 사이에만 내부선 */
 .mooday-detail-product
@@ -374,9 +350,7 @@ display: flex;
   font-weight: 300;
 }
 
-/* =====================================
-   COMMON SECTION TITLE
-===================================== */
+/* COMMON SECTION TITLE */
 
 .mooday-detail-section-title {
   display: flex;
@@ -398,9 +372,7 @@ display: flex;
   font-weight: 400;
 }
 
-/* =====================================
-   POST
-===================================== */
+/* POST */
 
 .mooday-detail__post-section {
   width: 100%;
@@ -432,10 +404,7 @@ display: flex;
   gap: 12px;
 }
 
-
-/* =====================================
-   AVATAR
-===================================== */
+/* AVATAR */
 
 .mooday-detail-avatar {
   display: flex;
@@ -468,10 +437,7 @@ display: flex;
   font-size: 10px;
 }
 
-
-/* =====================================
-   POST AUTHOR
-===================================== */
+/* POST AUTHOR */
 
 .mooday-detail-post__author-info {
   display: flex;
@@ -508,7 +474,6 @@ display: flex;
   gap: 8px;
 }
 
-
 .mooday-detail-post__edit,
 .mooday-detail-post__delete {
   padding: 0;
@@ -532,10 +497,7 @@ display: flex;
   color: #9a4f4f;
 }
 
-
-/* =====================================
-   POST ACTIONS
-===================================== */
+/* POST ACTIONS */
 
 .mooday-detail-post__likes {
   display: inline-flex;
@@ -585,10 +547,7 @@ display: flex;
   outline-offset: 4px;
 }
 
-
-/* =====================================
-   POST BODY
-===================================== */
+/* POST BODY */
 
 .mooday-detail-post__body {
   max-width: 760px;
@@ -609,9 +568,7 @@ display: flex;
   margin-bottom: 0;
 }
 
-/* =====================================
-   HASHTAGS
-===================================== */
+/* HASHTAGS */
 
 .mooday-detail__hashtags {
   margin-top: 20px;
@@ -653,10 +610,7 @@ display: flex;
   font-weight: 400;
 }
 
-
-/* =====================================
-   COMMENTS
-===================================== */
+/* COMMENTS */
 
 .mooday-detail__comments-section {
   margin-top: 72px;
@@ -677,10 +631,7 @@ display: flex;
   width: 100%;
 }
 
-
-/* =====================================
-   COMMENT
-===================================== */
+/* COMMENT */
 
 .mooday-detail-comment {
   position: relative;
@@ -746,10 +697,7 @@ display: flex;
   font-size: 20px;
 }
 
-
-/* =====================================
-   COMMENT MENU
-===================================== */
+/* COMMENT MENU */
 
 .mooday-detail-comment__menu-wrap {
   position: relative;
@@ -847,10 +795,7 @@ display: flex;
   color: #9a4f4f !important;
 }
 
-
-/* =====================================
-   COMMENT EDIT
-===================================== */
+/* COMMENT EDIT */
 
 .mooday-detail-comment__edit {
   display: flex;
@@ -950,10 +895,7 @@ display: flex;
   cursor: not-allowed;
 }
 
-
-/* =====================================
-   DELETE CONFIRM
-===================================== */
+/* DELETE CONFIRM */
 
 .mooday-detail-comment__delete-confirm {
   display: flex;
@@ -982,10 +924,7 @@ display: flex;
   font-size: 12px;
 }
 
-
-/* =====================================
-   COMMENT COMPOSER
-===================================== */
+/* COMMENT COMPOSER */
 
 .mooday-detail-comments__composer {
   display: flex;
@@ -1063,10 +1002,7 @@ display: flex;
   cursor: not-allowed;
 }
 
-
-/* =====================================
-   VISUALLY HIDDEN
-===================================== */
+/* VISUALLY HIDDEN */
 
 .mooday-detail-visually-hidden {
   position: absolute;
@@ -1086,10 +1022,7 @@ display: flex;
   border: 0;
 }
 
-
-/* =====================================
-   RELATED STYLES
-===================================== */
+/* RELATED STYLES */
 
 .mooday-detail__related {
   padding-top: 72px;
@@ -1139,11 +1072,7 @@ display: flex;
   row-gap: 40px;
 }
 
-
-
-/* =====================================
-   EMPTY STATE
-===================================== */
+/* EMPTY STATE */
 
 .mooday-detail__empty {
   display: flex;
@@ -1185,17 +1114,9 @@ display: flex;
   text-decoration: none;
 }
 
-
-/* =====================================
-   TABLET WIDE
-   1024px ~ 1279px
-===================================== */
-
 @media screen and (min-width: 1024px) and (max-width: 1279px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .mooday-detail {
     padding: 88px 0 96px;
@@ -1208,10 +1129,7 @@ display: flex;
     margin: 0 auto;
   }
 
-
-  /* =========================
-     Hero
-  ========================= */
+  /* Hero */
 
   .mooday-detail__hero {
     grid-template-columns:
@@ -1232,10 +1150,7 @@ display: flex;
     gap: 32px;
   }
 
-
-  /* =========================
-     Styled Products
-  ========================= */
+  /* Styled Products */
 
   .mooday-detail-products__heading {
     margin-bottom: 14px;
@@ -1281,10 +1196,7 @@ display: flex;
     font-size: 10px;
   }
 
-
-  /* =========================
-     Post
-  ========================= */
+  /* Post */
 
   .mooday-detail__post-section {
     padding-top: 0;
@@ -1299,20 +1211,14 @@ display: flex;
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Hashtags
-  ========================= */
+  /* Hashtags */
 
   .mooday-detail__hashtags {
     margin-top: 22px;
     padding-top: 0;
   }
 
-
-  /* =========================
-     Comments
-  ========================= */
+  /* Comments */
 
   .mooday-detail__comments-section {
     margin-top: 52px;
@@ -1328,10 +1234,7 @@ display: flex;
     flex-basis: 68px;
   }
 
-
-  /* =========================
-     Related
-  ========================= */
+  /* Related */
 
   .mooday-detail__related {
     padding-top: 56px;
@@ -1346,18 +1249,9 @@ display: flex;
   }
 }
 
-
-
-/* =====================================
-   TABLET COMPACT
-   768px ~ 1023px
-===================================== */
-
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .mooday-detail {
     padding: 80px 0 88px;
@@ -1370,10 +1264,7 @@ display: flex;
     margin: 0 auto;
   }
 
-
-  /* =========================
-     Hero
-  ========================= */
+  /* Hero */
 
   .mooday-detail__hero {
     grid-template-columns:
@@ -1393,10 +1284,7 @@ display: flex;
     gap: 32px;
   }
 
-
-  /* =========================
-     Products
-  ========================= */
+  /* Products */
 
   .mooday-detail-products__heading {
     margin-bottom: 14px;
@@ -1433,10 +1321,7 @@ display: flex;
     font-size: 10px;
   }
 
-
-  /* =========================
-     Post
-  ========================= */
+  /* Post */
 
   .mooday-detail__post-section {
     padding-top: 0;
@@ -1454,20 +1339,14 @@ display: flex;
     word-break: keep-all;
   }
 
-
-  /* =========================
-     Hashtags
-  ========================= */
+  /* Hashtags */
 
   .mooday-detail__hashtags {
     margin-top: 24px;
     padding-top: 0;
   }
 
-
-  /* =========================
-     Comments
-  ========================= */
+  /* Comments */
 
   .mooday-detail__comments-section {
     margin-top: 48px;
@@ -1475,10 +1354,7 @@ display: flex;
     padding: 30px 0 44px;
   }
 
-
-  /* =========================
-     Related
-  ========================= */
+  /* Related */
 
   .mooday-detail__related {
     padding-top: 56px;
@@ -1493,19 +1369,7 @@ display: flex;
   }
 }
 
-
-
-/* =====================================
-   MOBILE
-   767px 이하
-===================================== */
-
 @media screen and (max-width: 767px) {
-
-  /* =========================
-     Page
-     공통 모바일 좌우 여백 24px
-  ========================= */
 
   .mooday-detail {
     width: 100%;
@@ -1520,10 +1384,7 @@ display: flex;
     margin: 0 auto;
   }
 
-
-  /* =========================
-     Hero
-  ========================= */
+  /* Hero */
 
   .mooday-detail__hero {
     grid-template-columns:
@@ -1541,10 +1402,7 @@ display: flex;
     gap: 36px;
   }
 
-
-  /* =========================
-     Gallery
-  ========================= */
+  /* Gallery */
 
   .mooday-detail-gallery__navigation {
     margin-top: 10px;
@@ -1580,10 +1438,7 @@ display: flex;
     right: 0;
   }
 
-
-  /* =========================
-     Styled Products
-  ========================= */
+  /* Styled Products */
 
   .mooday-detail-products__heading {
     padding: 0;
@@ -1608,9 +1463,7 @@ display: flex;
     padding: 0;
   }
 
-  /*
-   * 두 번째 상품부터만 분리선과 간격
-   */
+  /* * 두 번째 상품부터만 분리선과 간격 */
   .mooday-detail-product
   + .mooday-detail-product {
     margin-top: 12px;
@@ -1652,10 +1505,7 @@ display: flex;
     font-size: 18px;
   }
 
-
-  /* =========================
-     Common Section Title
-  ========================= */
+  /* Common Section Title */
 
   .mooday-detail-section-title {
     gap: 6px;
@@ -1672,10 +1522,7 @@ display: flex;
     font-weight: 400;
   }
 
-
-  /* =========================
-     Post
-  ========================= */
+  /* Post */
 
   .mooday-detail__post-section {
     padding-top: 0;
@@ -1740,10 +1587,7 @@ display: flex;
     font-size: 13px;
   }
 
-
-  /* =========================
-     Post Body
-  ========================= */
+  /* Post Body */
 
   .mooday-detail-post__body {
     width: 100%;
@@ -1763,10 +1607,7 @@ display: flex;
     word-break: keep-all;
   }
 
-
-  /* =========================
-     Hashtags
-  ========================= */
+  /* Hashtags */
 
   .mooday-detail__hashtags {
     margin-top: 22px;
@@ -1794,10 +1635,7 @@ display: flex;
     font-weight: 400;
   }
 
-
-  /* =========================
-     Comments
-  ========================= */
+  /* Comments */
 
   .mooday-detail__comments-section {
     margin-top: 52px;
@@ -1862,15 +1700,7 @@ display: flex;
     font-size: 11px;
   }
 
-
-  /* =========================
-     Comment Edit
-  ========================= */
-
-  /*
-   * 모바일 input은 16px 유지.
-   * iOS Safari 자동 확대 방지 목적.
-   */
+  /* Comment Edit */
   .mooday-detail-comment__edit input {
     height: 40px;
 
@@ -1896,10 +1726,7 @@ display: flex;
     font-size: 11px;
   }
 
-
-  /* =========================
-     Comment Composer
-  ========================= */
+  /* Comment Composer */
 
   .mooday-detail-comments__composer {
     gap: 10px;
@@ -1912,11 +1739,6 @@ display: flex;
 
     gap: 7px;
   }
-
-  /*
-   * 여기도 16px 유지:
-   * 모바일 Safari 입력창 자동 확대 방지.
-   */
   .mooday-detail-comments__input-group input {
     min-width: 0;
     height: 42px;
@@ -1935,10 +1757,7 @@ display: flex;
     font-weight: 500;
   }
 
-
-  /* =========================
-     Related Styles
-  ========================= */
+  /* Related Styles */
 
   .mooday-detail__related {
     padding-top: 64px;
@@ -1977,10 +1796,7 @@ display: flex;
     row-gap: 28px;
   }
 
-
-  /* =========================
-     Related Community Card
-  ========================= */
+  /* Related Community Card */
 
   .mooday-detail__related-grid
   .mooday-community-card {
@@ -2042,10 +1858,7 @@ display: flex;
     word-break: keep-all;
   }
 
-
-  /* =========================
-     Empty State
-  ========================= */
+  /* Empty State */
 
   .mooday-detail__empty {
     min-height: 320px;
@@ -2072,13 +1885,6 @@ display: flex;
     font-weight: 500;
   }
 }
-
-
-
-/* =====================================
-   SMALL MOBILE
-   374px 이하
-===================================== */
 
 @media screen and (max-width: 374px) {
 

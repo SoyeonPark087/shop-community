@@ -15,4 +15,3 @@ export default function CategoryMenu({ categories, selected, onChange }) {
     </nav>
   );
 }
-

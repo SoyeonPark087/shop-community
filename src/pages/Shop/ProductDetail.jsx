@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { products } from '../../data/Products'
 import './ProductDetail.css'
 
@@ -7,28 +8,28 @@ const recommendedProducts = [
     id: 1,
     name: 'Ribbed Tank Top',
     price: 49000,
-    image: '/images/shop/Like01.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Like01.png`,
     colors: ['#2f3130', '#ded8cd', '#8e8f88'],
   },
   {
     id: 2,
     name: 'Wide Nylon Pants',
     price: 89000,
-    image: '/images/shop/Like02.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Like02.png`,
     colors: ['#111111', '#ddd9cf', '#73746e'],
   },
   {
     id: 3,
     name: 'Back Tie Long Sleeve',
     price: 56000,
-    image: '/images/shop/Like03.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Like03.png`,
     colors: ['#50514d', '#dedbd2', '#2b2b2b'],
   },
   {
     id: 4,
     name: 'Relaxed Knit Tee',
     price: 62000,
-    image: '/images/shop/Like04.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Like04.png`,
     colors: ['#e4e0d8', '#a3a19b', '#2e302e'],
   },
 ]
@@ -38,37 +39,32 @@ const communityLooks = [
     id: 1,
     user: '@mood__i',
     description: 'A slow morning, a better day.',
-    image: '/images/shop/Community_Looks01.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Community_Looks01.png`,
   },
   {
     id: 2,
     user: '@mood__i',
     description: 'Comfortable pieces for everyday.',
-    image: '/images/shop/Community_Looks02.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Community_Looks02.png`,
   },
   {
     id: 3,
     user: '@mood__i',
     description: 'A softer mood for the day.',
-    image: '/images/shop/Community_Looks03.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Community_Looks03.png`,
   },
   {
     id: 4,
     user: '@mood__i',
     description: 'Simple moments, better mood.',
-    image: '/images/shop/Community_Looks04.png',
+    image: `${import.meta.env.BASE_URL}images/shop/Community_Looks04.png`,
   },
 ]
 
 function ProductDetail({ onAddToCart }) {
-  const productId = window.location.pathname
-    .split('/')
-    .filter(Boolean)
-    .pop()
+  const { id: productId } = useParams()
 
-  const product = products.find(
-    (item) => String(item.id) === String(productId)
-  )
+  const product = products.find(item => String(item.id) === String(productId))
 
   const galleryImages =
     product?.galleryImages?.length > 0
@@ -77,10 +73,6 @@ function ProductDetail({ onAddToCart }) {
         ? [product.image]
         : []
 
-  /*
-    products.js에 colors 배열이 있으면 해당 데이터를 사용하고,
-    아직 colors가 없는 상품은 기존 color와 colorHex를 사용합니다.
-  */
   const productColors =
     product?.colors?.length > 0
       ? product.colors
@@ -91,29 +83,16 @@ function ProductDetail({ onAddToCart }) {
           },
         ]
 
-  const productSizes =
-    product?.sizes?.length > 0
-      ? product.sizes
-      : ['S', 'M', 'L']
+  const productSizes = product?.sizes?.length > 0 ? product.sizes : ['S', 'M', 'L']
 
-  const [selectedImageIndex, setSelectedImageIndex] =
-    useState(0)
-
-  const [selectedColorIndex, setSelectedColorIndex] =
-    useState(0)
-
-  const [selectedSize, setSelectedSize] =
-    useState('')
-
-  const [reviewsOpen, setReviewsOpen] =
-    useState(false)
-
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0)
+  const [selectedSize, setSelectedSize] = useState('')
+  const [reviewsOpen, setReviewsOpen] = useState(false)
   const [openAccordion, setOpenAccordion] = useState(null);
 
   const toggleAccordion = (name) => {
-    setOpenAccordion((prev) =>
-      prev === name ? null : name
-    );
+    setOpenAccordion(prev => prev === name ? null : name);
   };
 
   if (!product) {
@@ -121,21 +100,16 @@ function ProductDetail({ onAddToCart }) {
       <main className="product-detail product-detail--empty">
         <h1>상품을 찾을 수 없습니다.</h1>
 
-        <a href="/shop">
+        <a href="#/shop">
           Shop으로 돌아가기
         </a>
       </main>
     )
   }
 
-  const selectedImage =
-    galleryImages[selectedImageIndex] ||
-    galleryImages[0] ||
-    ''
+  const selectedImage = galleryImages[selectedImageIndex] || galleryImages[0] || ''
 
-  const selectedColor =
-    productColors[selectedColorIndex] ||
-    productColors[0]
+  const selectedColor = productColors[selectedColorIndex] || productColors[0]
 
     const handleAddToCart = () => {
   if (!selectedSize) {
@@ -154,8 +128,7 @@ function ProductDetail({ onAddToCart }) {
     color: selectedColor?.name || '',
     colorHex: selectedColor?.hex || '',
 
-    image:
-      selectedImage ||
+    image: selectedImage ||
       product.image ||
       '',
   });
@@ -163,18 +136,17 @@ function ProductDetail({ onAddToCart }) {
 
   return (
     <main className="product-detail">
-      {/* 현재 페이지 경로 */}
+
       <nav className="product-detail__breadcrumb">
-        <a href="/shop">Shop</a>
+        <a href="#/shop">Shop</a>
         <span>/</span>
         <span>{product.category}</span>
         <span>/</span>
         <span>{product.name}</span>
       </nav>
 
-      {/* 상품 상단 및 상세 이미지 */}
       <section className="product-detail__main">
-        {/* 메인 이미지와 서브 이미지 */}
+
         <div className="product-detail__gallery">
           {selectedImage && (
             <div className="product-detail__main-image">
@@ -196,15 +168,11 @@ function ProductDetail({ onAddToCart }) {
                       ? 'product-detail__thumbnail product-detail__thumbnail--active'
                       : 'product-detail__thumbnail'
                   }
-                  onClick={() =>
-                    setSelectedImageIndex(index)
-                  }
+                  onClick={() => setSelectedImageIndex(index)}
                   aria-label={`${product.name} 이미지 ${
                     index + 1
                   } 보기`}
-                  aria-pressed={
-                    selectedImageIndex === index
-                  }
+                  aria-pressed={selectedImageIndex === index}
                 >
                   <img
                     src={image}
@@ -218,7 +186,6 @@ function ProductDetail({ onAddToCart }) {
           )}
         </div>
 
-        {/* 상품 정보 */}
         <div className="product-detail__information">
           <h1>{product.name}</h1>
 
@@ -226,17 +193,13 @@ function ProductDetail({ onAddToCart }) {
             ₩ {Number(product.price).toLocaleString()}
           </p>
 
-          {/* 컬러 선택 */}
           <div className="product-detail__colors">
             <div className="product-detail__color-heading">
               <p>Color</p>
               <span>{selectedColor?.name}</span>
             </div>
 
-            <div
-              className="product-detail__color-options"
-              aria-label="상품 컬러"
-            >
+            <div className="product-detail__color-options" aria-label="상품 컬러">
               {productColors.map((color, index) => (
                 <button
                   type="button"
@@ -246,34 +209,21 @@ function ProductDetail({ onAddToCart }) {
                       ? 'product-detail__color-button product-detail__color-button--active'
                       : 'product-detail__color-button'
                   }
-                  onClick={() =>
-                    setSelectedColorIndex(index)
-                  }
+                  onClick={() => setSelectedColorIndex(index)}
                   aria-label={`${color.name} 컬러 선택`}
-                  aria-pressed={
-                    selectedColorIndex === index
-                  }
+                  aria-pressed={selectedColorIndex === index}
                 >
-                  <span
-                    className="product-detail__color-swatch"
-                    style={{
-                      backgroundColor: color.hex,
-                    }}
-                  />
+                  <span className="product-detail__color-swatch" style={{ backgroundColor: color.hex }} />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* 사이즈 선택 */}
           <div className="product-detail__option">
             <div className="product-detail__size-heading">
               <p>Size</p>
 
-              <button
-                type="button"
-                className="product-detail__size-guide"
-              >
+              <button type="button" className="product-detail__size-guide">
                 Size Guide
               </button>
             </div>
@@ -283,17 +233,9 @@ function ProductDetail({ onAddToCart }) {
                 <button
                   type="button"
                   key={size}
-                  className={
-                    selectedSize === size
-                      ? 'is-selected'
-                      : ''
-                  }
-                  onClick={() =>
-                    setSelectedSize(size)
-                  }
-                  aria-pressed={
-                    selectedSize === size
-                  }
+                  className={selectedSize === size ? 'is-selected' : ''}
+                  onClick={() => setSelectedSize(size)}
+                  aria-pressed={selectedSize === size}
                 >
                   {size}
                 </button>
@@ -301,19 +243,12 @@ function ProductDetail({ onAddToCart }) {
             </div>
           </div>
 
-          {/* 장바구니 */}
-          <button
-            type="button"
-            className="product-detail__cart"
-            onClick={handleAddToCart}
-
-          >
+          <button type="button" className="product-detail__cart" onClick={handleAddToCart}>
             Add to Cart
           </button>
 
-          {/* 상품 정보 메뉴 */}
           <div className="product-detail__accordions">
-            {/* Size & Fit */}
+
             <div className="product-detail__accordion-item">
               <button
                 type="button"
@@ -337,8 +272,6 @@ function ProductDetail({ onAddToCart }) {
               )}
             </div>
 
-
-            {/* Materials & Care */}
             <div className="product-detail__accordion-item">
               <button
                 type="button"
@@ -362,8 +295,6 @@ function ProductDetail({ onAddToCart }) {
               )}
             </div>
 
-
-            {/* Shipping & Returns */}
             <div className="product-detail__accordion-item">
               <button
                 type="button"
@@ -387,11 +318,8 @@ function ProductDetail({ onAddToCart }) {
 
           </div>
 
-          {/* 상품 설명 */}
           <div className="product-detail__description">
-            {product.description && (
-              <p>{product.description}</p>
-            )}
+            {product.description && <p>{product.description}</p>}
 
             <ul>
               <li>Relaxed Fit</li>
@@ -400,7 +328,6 @@ function ProductDetail({ onAddToCart }) {
           </div>
         </div>
 
-        {/* 상세 이미지 */}
         {product.detailImages?.length > 0 && (
           <div className="product-detail__contents">
             {product.detailImages.map(
@@ -418,14 +345,12 @@ function ProductDetail({ onAddToCart }) {
         )}
       </section>
 
-      {/* 상세페이지 하단 콘텐츠 */}
       <div className="product-detail__bottom">
-        {/* 추천 상품 */}
+
         <section className="product-detail__recommend">
           <div className="product-detail__section-heading">
             <h2>You May Also Like</h2>
 
-            {/* 링크가 아닌 일반 텍스트 */}
             <span className="product-detail__view-all">
               View All
               <span aria-hidden="true">→</span>
@@ -434,17 +359,11 @@ function ProductDetail({ onAddToCart }) {
 
           <div className="product-detail__recommend-grid">
             {recommendedProducts.map((item) => (
-              <article
-                className="product-detail__recommend-card"
-                key={item.id}
-              >
-                {/* 링크가 아닌 일반 콘텐츠 */}
+              <article className="product-detail__recommend-card" key={item.id}>
+
                 <div className="product-detail__recommend-content">
                   <div className="product-detail__recommend-image">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                    />
+                    <img src={item.image} alt={item.name} />
                   </div>
 
                   <div className="product-detail__recommend-info">
@@ -461,9 +380,7 @@ function ProductDetail({ onAddToCart }) {
                       {item.colors.map((color, index) => (
                         <span
                           key={`${color}-${index}`}
-                          style={{
-                            backgroundColor: color,
-                          }}
+                          style={{ backgroundColor: color }}
                         />
                       ))}
                     </div>
@@ -474,12 +391,10 @@ function ProductDetail({ onAddToCart }) {
           </div>
         </section>
 
-        {/* 커뮤니티 스타일 */}
         <section className="product-detail__community">
           <div className="product-detail__section-heading">
             <h2>Community Looks</h2>
 
-            {/* 링크가 아닌 일반 텍스트 */}
             <span className="product-detail__view-all">
               View All
               <span aria-hidden="true">→</span>
@@ -488,10 +403,7 @@ function ProductDetail({ onAddToCart }) {
 
           <div className="product-detail__community-grid">
             {communityLooks.map((look) => (
-              <article
-                className="product-detail__community-card"
-                key={look.id}
-              >
+              <article className="product-detail__community-card" key={look.id}>
                 <div className="product-detail__community-image">
                   <img
                     src={look.image}
@@ -506,14 +418,11 @@ function ProductDetail({ onAddToCart }) {
           </div>
         </section>
 
-        {/* 리뷰 */}
         <section className="product-detail__reviews">
           <button
             type="button"
             className="product-detail__reviews-button"
-            onClick={() =>
-              setReviewsOpen((current) => !current)
-            }
+            onClick={() => setReviewsOpen(current => !current)}
             aria-expanded={reviewsOpen}
           >
             <span>Reviews (0)</span>

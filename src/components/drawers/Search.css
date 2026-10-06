@@ -175,9 +175,7 @@ input::-webkit-search-cancel-button {
   overflow-wrap: anywhere;
 }
 
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 640px) {
   .search-content__input-wrap {

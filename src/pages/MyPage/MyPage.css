@@ -1,29 +1,4 @@
-/* ==================================================
-   MOODAY MY PAGE - PROFILE
-   Unified UI
-
-   Desktop
-   - Page axis: 64px
-   - Form max-width: 960px
-
-   Tablet
-   - Page axis: 40px
-
-   Mobile
-   - Page axis: 24px
-
-   Form UI
-   - Section title: 14px
-   - Label: 12px
-   - Input: 46px
-   - Secondary button: 46px
-   - Primary CTA: 46px
-================================================== */
-
-
-/* ==================================================
-   ROOT
-================================================== */
+/* ROOT */
 
 .mooday-mypage,
 .mooday-mypage * {
@@ -51,12 +26,6 @@
   font-family: inherit;
   line-height: 1.5;
 }
-
-
-/* ==================================================
-   NAVIGATION
-   Desktop: Shop과 동일한 좌우 64px
-================================================== */
 
 .mooday-mypage__nav-inner {
   width: calc(100% - 128px);
@@ -139,10 +108,7 @@
   cursor: default;
 }
 
-
-/* ==================================================
-   CONTENT
-================================================== */
+/* CONTENT */
 
 .mooday-mypage__content-inner {
   width: min(
@@ -159,10 +125,7 @@
   padding: 48px 0 120px;
 }
 
-
-/* ==================================================
-   PROFILE FORM
-================================================== */
+/* PROFILE FORM */
 
 .mooday-profile-form {
   width: 100%;
@@ -170,10 +133,7 @@
   margin: 0;
 }
 
-
-/* ==================================================
-   FORM TITLE
-================================================== */
+/* FORM TITLE */
 
 .mooday-profile-form__title {
   margin: 0 0 22px;
@@ -187,10 +147,7 @@
   letter-spacing: -0.02em;
 }
 
-
-/* ==================================================
-   FIELDS
-================================================== */
+/* FIELDS */
 
 .mooday-profile-form__fields {
   display: flex;
@@ -225,10 +182,7 @@
   letter-spacing: -0.015em;
 }
 
-
-/* ==================================================
-   INPUT
-================================================== */
+/* INPUT */
 
 .mooday-profile-form__field input {
   display: block;
@@ -273,10 +227,7 @@
   cursor: default;
 }
 
-
-/* ==================================================
-   VALIDATION
-================================================== */
+/* VALIDATION */
 
 .mooday-profile-form__field--error
 input:not([readonly]) {
@@ -301,10 +252,7 @@ input:focus-visible:not([readonly]) {
   line-height: 1.5;
 }
 
-
-/* ==================================================
-   ID READ ONLY
-================================================== */
+/* ID READ ONLY */
 
 .mooday-profile-form__id-row {
   display: flex;
@@ -371,10 +319,7 @@ input:focus-visible:not([readonly]) {
   white-space: normal;
 }
 
-
-/* ==================================================
-   PASSWORD
-================================================== */
+/* PASSWORD */
 
 .mooday-profile-form__password-row {
   display: flex;
@@ -436,10 +381,7 @@ input:focus-visible:not([readonly]) {
   opacity: 1;
 }
 
-
-/* ==================================================
-   CONSENT
-================================================== */
+/* CONSENT */
 
 .mooday-profile-form__consents {
   display: flex;
@@ -486,10 +428,7 @@ input:focus-visible:not([readonly]) {
   outline-offset: 2px;
 }
 
-
-/* ==================================================
-   SUBMIT
-================================================== */
+/* SUBMIT */
 
 .mooday-profile-form__submit {
   display: flex;
@@ -538,10 +477,7 @@ input:focus-visible:not([readonly]) {
   cursor: default;
 }
 
-
-/* ==================================================
-   TOAST
-================================================== */
+/* TOAST */
 
 .mooday-profile-toast {
   position: fixed;
@@ -592,10 +528,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
-
-/* ==================================================
-   ACCESSIBILITY
-================================================== */
+/* ACCESSIBILITY */
 
 .mooday-profile-form__visually-hidden {
   position: absolute;
@@ -616,17 +549,9 @@ input:focus-visible:not([readonly]) {
   border: 0;
 }
 
-
-/* ==================================================
-   TABLET
-   768px ~ 1024px
-================================================== */
-
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
-  /* =========================
-     Page Axis
-  ========================= */
+  /* Page Axis */
 
   .mooday-mypage__nav-inner,
   .mooday-mypage__content-inner {
@@ -634,10 +559,7 @@ input:focus-visible:not([readonly]) {
     max-width: none;
   }
 
-
-  /* =========================
-     Navigation
-  ========================= */
+  /* Navigation */
 
   .mooday-mypage-nav {
     padding-top: 116px;
@@ -647,20 +569,14 @@ input:focus-visible:not([readonly]) {
     gap: 28px;
   }
 
-
-  /* =========================
-     Content
-  ========================= */
+  /* Content */
 
   .mooday-mypage__content {
     padding:
       48px 0 96px;
   }
 
-
-  /* =========================
-     Form
-  ========================= */
+  /* Form */
 
   .mooday-profile-form__field {
     grid-template-columns:
@@ -678,18 +594,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
-
-/* ==================================================
-   MOBILE
-   0px ~ 767px
-================================================== */
-
 @media screen and (max-width: 767px) {
-
-  /* =========================
-     Page Axis
-     Shop / Editorial 동일 24px
-  ========================= */
 
   .mooday-mypage__nav-inner,
   .mooday-mypage__content-inner {
@@ -702,10 +607,7 @@ input:focus-visible:not([readonly]) {
     padding-left: 24px;
   }
 
-
-  /* =========================
-     Navigation
-  ========================= */
+  /* Navigation */
 
   .mooday-mypage-nav {
     width: 100%;
@@ -745,10 +647,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 500;
   }
 
-
-  /* =========================
-     Content
-  ========================= */
+  /* Content */
 
   .mooday-mypage__content {
     width: 100%;
@@ -757,10 +656,7 @@ input:focus-visible:not([readonly]) {
       40px 0 72px;
   }
 
-
-  /* =========================
-     Title
-  ========================= */
+  /* Title */
 
   .mooday-profile-form__title {
     margin-bottom: 20px;
@@ -770,10 +666,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.3;
   }
 
-
-  /* =========================
-     Fields
-  ========================= */
+  /* Fields */
 
   .mooday-profile-form__fields {
     gap: 18px;
@@ -794,10 +687,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.4;
   }
 
-
-  /* =========================
-     Input
-  ========================= */
+  /* Input */
 
   .mooday-profile-form__field input {
     width: 100%;
@@ -805,19 +695,9 @@ input:focus-visible:not([readonly]) {
 
     padding:
       0 12px;
-
-    /*
-     * iOS Safari에서 editable input
-     * focus 시 화면 자동 확대 방지
-     */
     font-size: 16px;
     font-weight: 400;
   }
-
-  /*
-   * readonly 필드는 키보드가 열리지 않으므로
-   * 사이트 UI 크기에 맞춰 다시 축소
-   */
   .mooday-profile-form__field
   input[readonly] {
     font-size: 12px;
@@ -828,10 +708,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.5;
   }
 
-
-  /* =========================
-     ID Read Only
-  ========================= */
+  /* ID Read Only */
 
   .mooday-profile-form__id-row {
     gap: 6px;
@@ -855,10 +732,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.5;
   }
 
-
-  /* =========================
-     Password
-  ========================= */
+  /* Password */
 
   .mooday-profile-form__password-row {
     flex-direction: column;
@@ -887,10 +761,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 400;
   }
 
-
-  /* =========================
-     Consent
-  ========================= */
+  /* Consent */
 
   .mooday-profile-form__consents {
     gap: 9px;
@@ -917,10 +788,7 @@ input:focus-visible:not([readonly]) {
     margin-top: 1px;
   }
 
-
-  /* =========================
-     Submit
-  ========================= */
+  /* Submit */
 
   .mooday-profile-form__submit {
     height: 44px;
@@ -933,10 +801,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 500;
   }
 
-
-  /* =========================
-     Toast
-  ========================= */
+  /* Toast */
 
   .mooday-profile-toast {
     right: 24px;
@@ -954,18 +819,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
-
-/* ==================================================
-   SMALL MOBILE
-   420px 이하
-================================================== */
-
 @media screen and (max-width: 420px) {
-
-  /*
-   * Shop / Editorial과 동일하게
-   * 좌우 24px은 유지
-   */
 
   .mooday-mypage-nav__list {
     gap: 10px 16px;
@@ -976,10 +830,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
-
-/* ==================================================
-   REDUCED MOTION
-================================================== */
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
 

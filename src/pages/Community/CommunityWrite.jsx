@@ -1,27 +1,12 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import {
-  useNavigate,
-} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import {
-  communityPosts,
-} from '../../data/Community.js'
+import { communityPosts } from '../../data/Community.js'
 
 import './CommunityWrite.css'
 
-import {
-  products,
-} from '../../data/Products.js'
-
-
-/* =====================================
-   00. CONSTANTS
-===================================== */
+import { products } from '../../data/Products.js'
 
 const MAX_IMAGE_COUNT = 10
 
@@ -31,29 +16,9 @@ const MAX_TAG_COUNT = 10
 
 const MAX_PRODUCT_COUNT = 5
 
+const recommendedTags = [...new Set(communityPosts.flatMap(post => post.tags))]
 
-
-/* =====================================
-   02. RECOMMENDED TAGS
-===================================== */
-
-const recommendedTags = [
-  ...new Set(
-    communityPosts.flatMap(
-      (post) => post.tags
-    )
-  ),
-]
-
-
-/* =====================================
-   03. IMAGE PLACEHOLDER
-===================================== */
-
-function WriteImagePlaceholder({
-  className = '',
-  children,
-}) {
+function WriteImagePlaceholder({ className = '', children }) {
   return (
     <div
       className={`mooday-write-image-placeholder ${className}`}
@@ -62,11 +27,6 @@ function WriteImagePlaceholder({
     </div>
   )
 }
-
-
-/* =====================================
-   04. LEFT GALLERY
-===================================== */
 
 function WriteGallery({
   images,
@@ -78,16 +38,7 @@ function WriteGallery({
   onFilesSelected,
   onRemoveImage,
 }) {
-  const fileInputRef =
-    useRef(null)
-
-
-  /*
-    현재 메인 Preview.
-
-    activePreviewId를 찾을 수 없다면
-    첫 번째 이미지를 fallback으로 사용.
-  */
+  const fileInputRef = useRef(null)
 
   const activeImage =
     images.find(
@@ -97,14 +48,7 @@ function WriteGallery({
     images[0] ||
     null
 
-
-  /*
-    첫 번째 이미지가 항상 대표 이미지.
-  */
-
-  const representativeImage =
-    images[0] || null
-
+  const representativeImage = images[0] || null
 
   const isRepresentativePreview =
     activeImage &&
@@ -112,65 +56,28 @@ function WriteGallery({
     activeImage.id ===
       representativeImage.id
 
+  const isImageLimitReached = images.length >= MAX_IMAGE_COUNT
 
-  const isImageLimitReached =
-    images.length >=
-    MAX_IMAGE_COUNT
-
-
-  const hasScrollableThumbnails =
-    images.length >
-    VISIBLE_THUMBNAIL_COUNT
-
-
-  /* =====================================
-     FILE SELECT
-  ===================================== */
+  const hasScrollableThumbnails = images.length > VISIBLE_THUMBNAIL_COUNT
 
   const handleAddButtonClick = () => {
-    fileInputRef.current?.click()
+    fileInputRef.current?.click();
   }
 
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files || [])
 
-  const handleFileChange = (
-    event
-  ) => {
-    const selectedFiles =
-      Array.from(
-        event.target.files || []
-      )
-
-
-    if (
-      selectedFiles.length === 0
-    ) {
+    if (selectedFiles.length === 0) {
       return
     }
 
-
-    onFilesSelected(
-      selectedFiles
-    )
-
-
-    /*
-      동일 파일 재선택 허용.
-    */
+    onFilesSelected(selectedFiles)
 
     event.target.value = ''
   }
 
-
   return (
-    <section
-      ref={galleryRef}
-      className="mooday-write-gallery"
-      aria-label="게시글 이미지"
-    >
-
-      {/* =================================
-          MAIN IMAGE
-      ================================= */}
+    <section ref={galleryRef} className="mooday-write-gallery" aria-label="게시글 이미지">
 
       <div
         className={
@@ -187,12 +94,9 @@ function WriteGallery({
           <>
             <img
               className="mooday-write-gallery__main-image"
-              src={
-                activeImage.previewUrl
-              }
+              src={activeImage.previewUrl}
               alt={`${activeImage.name} 미리보기`}
             />
-
 
             {isRepresentativePreview && (
               <span className="mooday-write-gallery__representative">
@@ -201,16 +105,11 @@ function WriteGallery({
             )}
           </>
         ) : (
-          <WriteImagePlaceholder
-            className="mooday-write-gallery__main-placeholder"
-          >
+          <WriteImagePlaceholder className="mooday-write-gallery__main-placeholder">
 
             <div className="mooday-write-gallery__empty-content">
 
-              <span
-                className="mooday-write-gallery__empty-icon"
-                aria-hidden="true"
-              >
+              <span className="mooday-write-gallery__empty-icon" aria-hidden="true">
                 +
               </span>
 
@@ -229,11 +128,6 @@ function WriteGallery({
 
       </div>
 
-
-      {/* =================================
-          THUMBNAILS + ADD
-      ================================= */}
-
       <div className="mooday-write-gallery__bottom">
 
         <div
@@ -250,18 +144,10 @@ function WriteGallery({
 
           {images.map(
             (image, index) => {
-              const isActive =
-                image.id ===
-                activeImage?.id
-
+              const isActive = image.id === activeImage?.id
 
               return (
-                <div
-                  key={image.id}
-                  className="mooday-write-gallery__thumbnail-item"
-                >
-
-                  {/* PREVIEW */}
+                <div key={image.id} className="mooday-write-gallery__thumbnail-item">
 
                   <button
                     type="button"
@@ -279,37 +165,23 @@ function WriteGallery({
                       )
                     }
                     onClick={() => {
-                      onPreviewChange(
-                        image.id
-                      )
+                      onPreviewChange(image.id)
                     }}
                     aria-label={
                       index === 0
                         ? `대표 이미지 ${index + 1} 미리보기`
                         : `이미지 ${index + 1} 미리보기`
                     }
-                    aria-pressed={
-                      isActive
-                    }
+                    aria-pressed={isActive}
                   >
-                    <img
-                      src={
-                        image.previewUrl
-                      }
-                      alt=""
-                    />
+                    <img src={image.previewUrl} alt="" />
                   </button>
-
-
-                  {/* DELETE */}
 
                   <button
                     type="button"
                     className="mooday-write-gallery__thumbnail-delete"
                     onClick={() => {
-                      onRemoveImage(
-                        image.id
-                      )
+                      onRemoveImage(image.id)
                     }}
                     aria-label={`${index + 1}번째 이미지 삭제`}
                     title="이미지 삭제"
@@ -324,41 +196,26 @@ function WriteGallery({
 
         </div>
 
-
-        {/* HIDDEN FILE INPUT */}
-
         <input
-          ref={
-            fileInputRef
-          }
+          ref={fileInputRef}
           className="mooday-write-gallery__file-input"
           type="file"
           accept="image/*"
           multiple
-          onChange={
-            handleFileChange
-          }
+          onChange={handleFileChange}
           tabIndex={-1}
           aria-hidden="true"
         />
-
-
-        {/* ADD BUTTON */}
 
         {!isImageLimitReached && (
           <button
             type="button"
             className="mooday-write-gallery__add"
-            onClick={
-              handleAddButtonClick
-            }
+            onClick={handleAddButtonClick}
             aria-label="이미지 파일 추가"
           >
 
-            <span
-              className="mooday-write-gallery__add-icon"
-              aria-hidden="true"
-            >
+            <span className="mooday-write-gallery__add-icon" aria-hidden="true">
               +
             </span>
 
@@ -370,11 +227,6 @@ function WriteGallery({
         )}
 
       </div>
-
-
-      {/* =================================
-          IMAGE OPERATION NOTICE
-      ================================= */}
 
       {imageNotice ? (
         <p
@@ -402,11 +254,6 @@ function WriteGallery({
         )
       )}
 
-
-      {/* =================================
-          VALIDATION ERROR
-      ================================= */}
-
       {validationError && (
         <p
           className="mooday-write-validation__message mooday-write-validation__message--gallery"
@@ -420,26 +267,10 @@ function WriteGallery({
   )
 }
 
+function WriteProductImage({ image, name }) {
+  const [imageError, setImageError] = useState(false)
 
-/* =====================================
-   05. PRODUCT IMAGE
-===================================== */
-
-function WriteProductImage({
-  image,
-  name,
-}) {
-  const [
-    imageError,
-    setImageError,
-  ] = useState(false)
-
-
-  const hasImage =
-    typeof image === 'string' &&
-    image.trim() !== '' &&
-    !imageError
-
+  const hasImage = typeof image === 'string' && image.trim() !== '' && !imageError
 
   return (
     <div className="mooday-write-product-image">
@@ -468,16 +299,7 @@ function WriteProductImage({
   )
 }
 
-
-/* =====================================
-   06. PRODUCT SEARCH RESULT
-===================================== */
-
-function WriteProductResult({
-  product,
-  isSelected,
-  onAdd,
-}) {
+function WriteProductResult({ product, isSelected, onAdd }) {
   return (
     <div
       className={
@@ -490,11 +312,7 @@ function WriteProductResult({
       }
     >
 
-      <WriteProductImage
-        image={product.image}
-        name={product.name}
-      />
-
+      <WriteProductImage image={product.image} name={product.name} />
 
       <div className="mooday-write-product-result__info">
         <strong>
@@ -505,7 +323,6 @@ function WriteProductResult({
           ₩{product.price.toLocaleString()}
         </span>
       </div>
-
 
       <button
         type="button"
@@ -520,46 +337,26 @@ function WriteProductResult({
         onClick={() => {
           onAdd(product)
         }}
-        disabled={
-          isSelected
-        }
+        disabled={isSelected}
         aria-label={
           isSelected
             ? `${product.name} 선택됨`
             : `${product.name} 선택`
         }
-        title={
-          isSelected
-            ? '선택된 상품'
-            : '상품 추가'
-        }
+        title={isSelected ? '선택된 상품' : '상품 추가'}
       >
-        {isSelected
-          ? '✓'
-          : '+'}
+        {isSelected ? '✓' : '+'}
       </button>
 
     </div>
   )
 }
 
-
-/* =====================================
-   07. SELECTED PRODUCT
-===================================== */
-
-function WriteSelectedProduct({
-  product,
-  onRemove,
-}) {
+function WriteSelectedProduct({ product, onRemove }) {
   return (
     <div className="mooday-write-selected-product">
 
-      <WriteProductImage
-        image={product.image}
-        name={product.name}
-      />
-
+      <WriteProductImage image={product.image} name={product.name} />
 
       <div className="mooday-write-selected-product__info">
         <strong>
@@ -571,14 +368,11 @@ function WriteSelectedProduct({
         </span>
       </div>
 
-
       <button
         type="button"
         className="mooday-write-selected-product__remove"
         onClick={() => {
-          onRemove(
-            product.id
-          )
+          onRemove(product.id)
         }}
         aria-label={`${product.name} 선택 해제`}
         title="선택 상품 제거"
@@ -590,160 +384,28 @@ function WriteSelectedProduct({
   )
 }
 
-
-/* =====================================
-   08. COMMUNITY WRITE PAGE
-===================================== */
-
 export default function CommunityWrite() {
 
-  /*
-    React Router의 기존 프로젝트 구조를
-    그대로 사용합니다.
+  const navigate = useNavigate()
 
-    App / Router 파일 자체는 수정하지 않습니다.
-  */
+  const [content, setContent] = useState('')
+  const [tagInput, setTagInput] = useState('')
+  const [productQuery, setProductQuery] = useState('')
 
-  const navigate =
-    useNavigate()
+  const gallerySectionRef = useRef(null)
 
+  const contentTextareaRef = useRef(null)
 
-  /* =====================================
-     BASIC INPUT STATE
-  ===================================== */
-
-  const [
-    content,
-    setContent,
-  ] = useState('')
-
-  const [
-    tagInput,
-    setTagInput,
-  ] = useState('')
-
-  const [
-    productQuery,
-    setProductQuery,
-  ] = useState('')
-
-
-  /* =====================================
-     ERROR TARGET REFS
-  ===================================== */
-
-  const gallerySectionRef =
-    useRef(null)
-
-  const contentTextareaRef =
-    useRef(null)
-
-
-  /* =====================================
-     IMAGE STATE
-  ===================================== */
-
-  const [
-    images,
-    setImages,
-  ] = useState([])
-
-  const [
-    activePreviewId,
-    setActivePreviewId,
-  ] = useState(null)
-
-  const [
-    imageNotice,
-    setImageNotice,
-  ] = useState('')
-
-
-  /* =====================================
-     TAG STATE
-  ===================================== */
-
-  const [
-    tags,
-    setTags,
-  ] = useState([])
-
-  const [
-    inputTagNotice,
-    setInputTagNotice,
-  ] = useState('')
-
-  const [
-    recommendedTagNotice,
-    setRecommendedTagNotice,
-  ] = useState('')
-
-
-  /* =====================================
-     PRODUCT STATE
-  ===================================== */
-
-  const [
-    selectedProducts,
-    setSelectedProducts,
-  ] = useState([])
-
-  const [
-    productNotice,
-    setProductNotice,
-  ] = useState('')
-
-
-  /* =====================================
-     VALIDATION STATE
-  ===================================== */
-
-  const [
-    validationErrors,
-    setValidationErrors,
-  ] = useState({
-    images: '',
-    content: '',
-  })
-
-
-  /* =====================================
-     GROUP 6 — LAST SUBMISSION
-  ===================================== */
-
-  /*
-    실제 DB 저장 state가 아닙니다.
-
-    현재 세션에서 가장 최근에 생성한
-    submission 객체를 개발 / QA 목적으로
-    확인할 수 있도록 보관합니다.
-
-    Main / Detail과 공유하지 않습니다.
-  */
-
-  const [
-    lastSubmission,
-    setLastSubmission,
-  ] = useState(null)
-
-
-  /* =====================================
-     GROUP 6 — DIRTY STATE
-  ===================================== */
-
-  /*
-    실제 게시 데이터에 포함되는 값 중
-    하나라도 존재하면 작성 중 상태로 판단.
-
-    의도적으로 제외:
-    - tagInput
-    - productQuery
-
-    이유:
-    단순 검색어나 아직 등록하지 않은
-    임시 입력만으로 이탈 경고를 띄우는 것은
-    과도하기 때문입니다.
-  */
+  const [images, setImages] = useState([])
+  const [activePreviewId, setActivePreviewId] = useState(null)
+  const [imageNotice, setImageNotice] = useState('')
+  const [tags, setTags] = useState([])
+  const [inputTagNotice, setInputTagNotice] = useState('')
+  const [recommendedTagNotice, setRecommendedTagNotice] = useState('')
+  const [selectedProducts, setSelectedProducts] = useState([])
+  const [productNotice, setProductNotice] = useState('')
+  const [validationErrors, setValidationErrors] = useState({ images: '', content: '' })
+  const [lastSubmission, setLastSubmission] = useState(null)
 
   const isDirty =
     images.length > 0 ||
@@ -751,16 +413,7 @@ export default function CommunityWrite() {
     tags.length > 0 ||
     selectedProducts.length > 0
 
-
-  /* =====================================
-     PRODUCT FILTER
-  ===================================== */
-
-  const normalizedProductQuery =
-    productQuery
-      .trim()
-      .toLowerCase()
-
+  const normalizedProductQuery = productQuery.trim().toLowerCase()
 
   const filteredProducts =
     normalizedProductQuery
@@ -772,113 +425,47 @@ export default function CommunityWrite() {
         )
       : []
 
-
-  /* =====================================
-     STEP 4 — CLEAR PRODUCT SEARCH
-  ===================================== */
-
   const clearProductSearch = () => {
-    setProductQuery('')
-    setProductNotice('')
+    setProductQuery('');
+    setProductNotice('');
   }
 
-
-  /* =====================================
-     PREVIEW URL REGISTRY
-  ===================================== */
-
-  const previewUrlsRef =
-    useRef(new Set())
-
+  const previewUrlsRef = useRef(new Set())
 
   useEffect(() => {
-    const previewUrls =
-      previewUrlsRef.current
+    const previewUrls = previewUrlsRef.current
 
-
+    // 파일 미리보기 URL은 화면을 떠날 때 해제합니다.
     return () => {
-      previewUrls.forEach(
-        (previewUrl) => {
-          URL.revokeObjectURL(
-            previewUrl
-          )
-        }
-      )
+      previewUrls.forEach((previewUrl) => {
+        URL.revokeObjectURL(previewUrl);
+      })
 
       previewUrls.clear()
     }
   }, [])
-
-
-  /* =====================================
-     GROUP 6 — BEFORE UNLOAD GUARD
-  ===================================== */
-
-  /*
-    작성 중인 데이터가 있을 경우:
-
-    - 브라우저 새로고침
-    - 탭 닫기
-    - 창 닫기
-
-    같은 "문서 이탈" 상황에서
-    브라우저 기본 경고를 표시합니다.
-
-    중요:
-    최신 브라우저는 보안 / UX 정책 때문에
-    개발자가 임의의 경고 문구를 지정할 수 없습니다.
-  */
 
   useEffect(() => {
     if (!isDirty) {
       return undefined
     }
 
-
-    const handleBeforeUnload = (
-      event
-    ) => {
-      event.preventDefault()
-
-      /*
-        일부 브라우저 호환을 위해
-        빈 문자열을 설정합니다.
-      */
-
-      event.returnValue = ''
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
     }
 
-
-    window.addEventListener(
-      'beforeunload',
-      handleBeforeUnload
-    )
-
+    window.addEventListener('beforeunload', handleBeforeUnload)
 
     return () => {
-      window.removeEventListener(
-        'beforeunload',
-        handleBeforeUnload
-      )
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     }
   }, [isDirty])
 
+  const handleFilesSelected = (selectedFiles) => {
+    const remainingSlots = MAX_IMAGE_COUNT - images.length
 
-  /* =====================================
-     IMAGE FILE SELECTION
-  ===================================== */
-
-  const handleFilesSelected = (
-    selectedFiles
-  ) => {
-    const remainingSlots =
-      MAX_IMAGE_COUNT -
-      images.length
-
-
-    if (
-      remainingSlots <= 0
-    ) {
+    if (remainingSlots <= 0) {
       setImageNotice(
         `이미지는 최대 ${MAX_IMAGE_COUNT}장까지 추가할 수 있습니다.`
       )
@@ -886,25 +473,15 @@ export default function CommunityWrite() {
       return
     }
 
+    const acceptedFiles = selectedFiles.slice(0, remainingSlots)
 
-    const acceptedFiles =
-      selectedFiles.slice(
-        0,
-        remainingSlots
-      )
-
-
-    if (
-      selectedFiles.length >
-      remainingSlots
-    ) {
+    if (selectedFiles.length > remainingSlots) {
       setImageNotice(
         `이미지는 최대 ${MAX_IMAGE_COUNT}장까지 등록할 수 있어 ${acceptedFiles.length}장만 추가되었습니다.`
       )
     } else {
       setImageNotice('')
     }
-
 
     const newImages =
       acceptedFiles.map(
@@ -920,7 +497,6 @@ export default function CommunityWrite() {
               .slice(2),
           ].join('-')
 
-
           const imageId =
             (
               typeof crypto !==
@@ -931,335 +507,106 @@ export default function CommunityWrite() {
               ? `write-image-${crypto.randomUUID()}`
               : fallbackId
 
+          const previewUrl = URL.createObjectURL(file)
 
-          /*
-            브라우저 로컬 Preview URL.
+          previewUrlsRef.current.add(previewUrl)
 
-            서버 URL이 아닙니다.
-          */
-
-          const previewUrl =
-            URL.createObjectURL(
-              file
-            )
-
-
-          previewUrlsRef.current.add(
-            previewUrl
-          )
-
-
-          return {
-            id: imageId,
-            file,
-            name: file.name,
-            previewUrl,
-          }
+          return { id: imageId, file, name: file.name, previewUrl }
         }
       )
 
-
-    if (
-      newImages.length === 0
-    ) {
+    if (newImages.length === 0) {
       return
     }
 
-
-    setImages(
-      (currentImages) => [
-        ...currentImages,
-        ...newImages,
-      ]
-    )
-
+    setImages(currentImages => [...currentImages, ...newImages])
 
     if (!activePreviewId) {
-      setActivePreviewId(
-        newImages[0].id
-      )
+      setActivePreviewId(newImages[0].id)
     }
 
-
-    /*
-      기존 이미지 필수 오류가 있다면
-      이미지 추가 즉시 제거.
-    */
-
-    if (
-      validationErrors.images
-    ) {
-      setValidationErrors(
-        (currentErrors) => ({
-          ...currentErrors,
-          images: '',
-        })
-      )
+    if (validationErrors.images) {
+      setValidationErrors(currentErrors => ({ ...currentErrors, images: '' }))
     }
   }
 
-
-  /* =====================================
-     IMAGE DELETE
-  ===================================== */
-
-  const handleRemoveImage = (
-    imageId
-  ) => {
-    const imageToRemove =
-      images.find(
-        (image) =>
-          image.id === imageId
-      )
-
+  const handleRemoveImage = (imageId) => {
+    const imageToRemove = images.find(image => image.id === imageId)
 
     if (!imageToRemove) {
       return
     }
 
+    const remainingImages = images.filter(image => image.id !== imageId)
 
-    const remainingImages =
-      images.filter(
-        (image) =>
-          image.id !== imageId
-      )
+    URL.revokeObjectURL(imageToRemove.previewUrl)
 
+    previewUrlsRef.current.delete(imageToRemove.previewUrl)
 
-    URL.revokeObjectURL(
-      imageToRemove.previewUrl
-    )
-
-    previewUrlsRef.current.delete(
-      imageToRemove.previewUrl
-    )
-
-
-    setImages(
-      remainingImages
-    )
-
+    setImages(remainingImages)
 
     setActivePreviewId(
       (currentPreviewId) => {
-        if (
-          remainingImages.length === 0
-        ) {
+        if (remainingImages.length === 0) {
           return null
         }
 
+        const previewStillExists = remainingImages.some(image => image.id === currentPreviewId)
 
-        const previewStillExists =
-          remainingImages.some(
-            (image) =>
-              image.id ===
-              currentPreviewId
-          )
-
-
-        if (
-          currentPreviewId ===
-            imageId ||
-          !previewStillExists
-        ) {
+        if (currentPreviewId === imageId || !previewStillExists) {
           return remainingImages[0].id
         }
-
 
         return currentPreviewId
       }
     )
 
-
     setImageNotice('')
   }
 
+  const addTag = (rawTag, { source = 'input', clearInputOnSuccess = false } = {}) => {
+    const isInput = source === 'input'
+    const setNotice = isInput ? setInputTagNotice : setRecommendedTagNotice
+    const clearOtherNotice = isInput ? setRecommendedTagNotice : setInputTagNotice
+    clearOtherNotice('')
 
-  /* =====================================
-     TAG NORMALIZATION
-  ===================================== */
-
-  const normalizeTag = (
-    rawTag
-  ) => {
-    return rawTag
-      .trim()
-      .replace(/^#+/, '')
-      .trim()
-  }
-
-
-  /* =====================================
-     ADD TAG
-  ===================================== */
-
-  const addTag = (
-    rawTag,
-    options = {}
-  ) => {
-    const {
-      source = 'input',
-      clearInputOnSuccess = false,
-    } = options
-
-
-    if (
-      source === 'input'
-    ) {
-      setRecommendedTagNotice('')
-    } else {
-      setInputTagNotice('')
-    }
-
-
-    const normalizedTag =
-      normalizeTag(
-        rawTag
-      )
-
-
+    const normalizedTag = rawTag.trim().replace(/^#+/, '').trim()
     if (!normalizedTag) {
-      if (
-        source === 'input'
-      ) {
-        setInputTagNotice(
-          '태그를 입력해 주세요.'
-        )
-      }
-
+      if (isInput) setNotice('태그를 입력해 주세요.')
       return false
     }
-
-
-    const normalizedLower =
-      normalizedTag.toLowerCase()
-
-
-    const isDuplicate =
-      tags.some(
-        (tag) =>
-          tag.toLowerCase() ===
-          normalizedLower
-      )
-
-
-    if (isDuplicate) {
-      if (
-        source === 'input'
-      ) {
-        setInputTagNotice(
-          '이미 추가된 태그입니다.'
-        )
-      } else {
-        setRecommendedTagNotice('')
-      }
-
+    if (tags.some(tag => tag.toLowerCase() === normalizedTag.toLowerCase())) {
+      setNotice(isInput ? '이미 추가된 태그입니다.' : '')
       return false
     }
-
-
-    if (
-      tags.length >=
-      MAX_TAG_COUNT
-    ) {
-      if (
-        source === 'input'
-      ) {
-        setInputTagNotice(
-          `해시태그는 최대 ${MAX_TAG_COUNT}개까지 추가할 수 있습니다.`
-        )
-      } else {
-        setRecommendedTagNotice(
-          `해시태그는 최대 ${MAX_TAG_COUNT}개까지 추가할 수 있습니다.`
-        )
-      }
-
+    if (tags.length >= MAX_TAG_COUNT) {
+      setNotice(`해시태그는 최대 ${MAX_TAG_COUNT}개까지 추가할 수 있습니다.`)
       return false
     }
-
-
-    setTags(
-      (currentTags) => [
-        ...currentTags,
-        normalizedTag,
-      ]
-    )
-
-
-    if (
-      source === 'input'
-    ) {
-      setInputTagNotice('')
-    } else {
-      setRecommendedTagNotice('')
-    }
-
-
-    if (
-      clearInputOnSuccess
-    ) {
-      setTagInput('')
-    }
-
-
+    setTags((currentTags) => [...currentTags, normalizedTag])
+    setNotice('')
+    if (clearInputOnSuccess) setTagInput('')
     return true
   }
 
-
-  /* =====================================
-     REMOVE TAG
-  ===================================== */
-
-  const removeTag = (
-    tagToRemove
-  ) => {
-    setTags(
-      (currentTags) =>
-        currentTags.filter(
-          (tag) =>
-            tag !== tagToRemove
-        )
-    )
+  const removeTag = (tagToRemove) => {
+    setTags(currentTags => currentTags.filter(tag => tag !== tagToRemove))
 
     setInputTagNotice('')
     setRecommendedTagNotice('')
   }
 
-
-  /* =====================================
-     TAG ENTER
-  ===================================== */
-
-  const handleTagKeyDown = (
-    event
-  ) => {
-    if (
-      event.key !== 'Enter'
-    ) {
+  const handleTagKeyDown = (event) => {
+    if (event.key !== 'Enter') {
       return
     }
 
-
     event.preventDefault()
 
-
-    addTag(
-      tagInput,
-      {
-        source: 'input',
-        clearInputOnSuccess:
-          true,
-      }
-    )
+    addTag(tagInput, { source: 'input', clearInputOnSuccess: true })
   }
 
-
-  /* =====================================
-     ADD PRODUCT
-  ===================================== */
-
-  const addProduct = (
-    product
-  ) => {
+  const addProduct = (product) => {
     const isAlreadySelected =
       selectedProducts.some(
         (selectedProduct) =>
@@ -1267,18 +614,11 @@ export default function CommunityWrite() {
           product.id
       )
 
-
-    if (
-      isAlreadySelected
-    ) {
+    if (isAlreadySelected) {
       return
     }
 
-
-    if (
-      selectedProducts.length >=
-      MAX_PRODUCT_COUNT
-    ) {
+    if (selectedProducts.length >= MAX_PRODUCT_COUNT) {
       setProductNotice(
         `관련 상품은 최대 ${MAX_PRODUCT_COUNT}개까지 선택할 수 있습니다.`
       )
@@ -1286,26 +626,12 @@ export default function CommunityWrite() {
       return
     }
 
-
-    setSelectedProducts(
-      (currentProducts) => [
-        ...currentProducts,
-        product,
-      ]
-    )
-
+    setSelectedProducts(currentProducts => [...currentProducts, product])
 
     setProductNotice('')
   }
 
-
-  /* =====================================
-     REMOVE PRODUCT
-  ===================================== */
-
-  const removeProduct = (
-    productId
-  ) => {
+  const removeProduct = (productId) => {
     setSelectedProducts(
       (currentProducts) =>
         currentProducts.filter(
@@ -1315,134 +641,53 @@ export default function CommunityWrite() {
         )
     )
 
-
     setProductNotice('')
   }
 
+  const handleContentChange = (event) => {
+    const nextContent = event.target.value
 
-  /* =====================================
-     CONTENT CHANGE
-  ===================================== */
+    setContent(nextContent)
 
-  const handleContentChange = (
-    event
-  ) => {
-    const nextContent =
-      event.target.value
-
-
-    setContent(
-      nextContent
-    )
-
-
-    /*
-      실제 내용 입력 시
-      기존 Validation 오류 제거.
-    */
-
-    if (
-      validationErrors.content &&
-      nextContent.trim().length > 0
-    ) {
-      setValidationErrors(
-        (currentErrors) => ({
-          ...currentErrors,
-          content: '',
-        })
-      )
+    if (validationErrors.content && nextContent.trim().length > 0) {
+      setValidationErrors(currentErrors => ({ ...currentErrors, content: '' }))
     }
   }
-
-
-  /* =====================================
-     VALIDATE POST
-  ===================================== */
 
   const validatePost = () => {
-    const nextErrors = {
-      images: '',
-      content: '',
+    const nextErrors = { images: '', content: '' }
+
+    if (images.length === 0) {
+      nextErrors.images = '이미지를 1장 이상 추가해 주세요.'
     }
 
-
-    if (
-      images.length === 0
-    ) {
-      nextErrors.images =
-        '이미지를 1장 이상 추가해 주세요.'
+    if (content.trim().length === 0) {
+      nextErrors.content = '내용을 입력해 주세요.'
     }
 
+    setValidationErrors(nextErrors)
 
-    if (
-      content.trim().length === 0
-    ) {
-      nextErrors.content =
-        '내용을 입력해 주세요.'
-    }
+    const hasError = Boolean(nextErrors.images || nextErrors.content)
 
-
-    setValidationErrors(
-      nextErrors
-    )
-
-
-    const hasError =
-      Boolean(
-        nextErrors.images ||
-        nextErrors.content
-      )
-
-
-    return {
-      isValid:
-        !hasError,
-
-      errors:
-        nextErrors,
-    }
+    return { isValid: !hasError, errors: nextErrors }
   }
 
-
-  /* =====================================
-     MOVE TO FIRST ERROR
-  ===================================== */
-
-  const moveToFirstError = (
-    errors
-  ) => {
+  const moveToFirstError = (errors) => {
     requestAnimationFrame(
       () => {
-        /* IMAGE FIRST */
 
-        if (
-          errors.images
-        ) {
-          gallerySectionRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-          })
+        if (errors.images) {
+          gallerySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
           return
         }
 
-
-        /* CONTENT SECOND */
-
-        if (
-          errors.content
-        ) {
-          contentTextareaRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-          })
-
+        if (errors.content) {
+          contentTextareaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
           requestAnimationFrame(
             () => {
-              contentTextareaRef.current?.focus({
-                preventScroll: true,
-              })
+              contentTextareaRef.current?.focus({ preventScroll: true })
             }
           )
         }
@@ -1450,335 +695,97 @@ export default function CommunityWrite() {
     )
   }
 
-
-  /* =====================================
-     GROUP 6 — POST ID
-  ===================================== */
-
-  /*
-    현재는 서버에서 발급하는 ID가 없으므로
-    프론트엔드 시연용 ID를 생성합니다.
-
-    crypto.randomUUID 지원 환경:
-    community-post-xxxxxxxx...
-
-    미지원 환경:
-    timestamp 기반 fallback
-  */
-
   const createPostId = () => {
-    if (
-      typeof crypto !==
-        'undefined' &&
-      typeof crypto.randomUUID ===
-        'function'
-    ) {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
       return `community-post-${crypto.randomUUID()}`
     }
 
-
-    return [
-      'community-post',
-      Date.now(),
-      Math.random()
-        .toString(36)
-        .slice(2),
-    ].join('-')
+    return ['community-post', Date.now(), Math.random().toString(36).slice(2)].join('-')
   }
-
-
-  /* =====================================
-     GROUP 6 — BUILD SUBMISSION
-  ===================================== */
-
-  /*
-    지금까지 작성한 데이터를
-    하나의 게시글 객체로 통합합니다.
-
-    중요:
-    image.previewUrl은 blob: URL이며
-    브라우저 현재 세션의 Preview용입니다.
-
-    따라서 이 객체는 현재 프론트엔드
-    시연 / 데이터 계약 확인용이며,
-    영구 저장 데이터로 취급하면 안 됩니다.
-  */
 
   const buildSubmission = () => {
-    const postId =
-      createPostId()
-
+    const postId = createPostId()
 
     return {
-      /*
-        게시글 고유 ID
-      */
 
-      id:
-        postId,
+      id: postId,
 
+      schemaVersion: 'community-write-v0.2',
 
-      /*
-        현재 Schema 버전.
+      content: content.trim(),
 
-        이후 Main / Detail과 실제 공유 구조를
-        만들 때 구조 변경 추적에 유용합니다.
-      */
-
-      schemaVersion:
-        'community-write-v0.2',
-
-
-      /*
-        작성 본문.
-
-        앞뒤 공백은 제거하고 저장합니다.
-      */
-
-      content:
-        content.trim(),
-
-
-      /*
-        첫 이미지 = 대표 이미지.
-
-        이미지 배열 순서 자체도 유지합니다.
-      */
-
-      images:
-        images.map(
+      images: images.map(
           (image, index) => ({
-            id:
-              image.id,
+            id: image.id,
 
-            name:
-              image.name,
+            name: image.name,
 
-            previewUrl:
-              image.previewUrl,
+            previewUrl: image.previewUrl,
 
-            isRepresentative:
-              index === 0,
+            isRepresentative: index === 0,
 
-            order:
-              index,
+            order: index,
           })
         ),
 
+      tags: [...tags],
 
-      /*
-        태그는 내부 저장 형태 그대로.
-
-        # 문자는 렌더링 시 붙이는 구조입니다.
-      */
-
-      tags:
-        [...tags],
-
-
-      /*
-        선택한 상품은 이후 Detail의
-        Styled Products 등에 연결하기 쉽도록
-        필요한 정보만 복사합니다.
-      */
-
-      products:
-        selectedProducts.map(
+      products: selectedProducts.map(
           (product) => ({
-            id:
-              product.id,
+            id: product.id,
 
-            name:
-              product.name,
+            name: product.name,
 
-            price:
-              product.price,
+            price: product.price,
 
-            image:
-              product.image,
+            image: product.image,
           })
         ),
 
-
-      /*
-        현재 프론트엔드에서 생성한 시각.
-
-        서버 시간이 아니므로
-        최종 백엔드 도입 시 대체 대상입니다.
-      */
-
-      createdAt:
-        new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     }
   }
-
-
-  /* =====================================
-     GROUP 6 — SUBMIT
-  ===================================== */
 
   const handleSubmit = () => {
-    /*
-      1. GROUP 5 Validation
-    */
 
-    const {
-      isValid,
-      errors,
-    } = validatePost()
-
+    const { isValid, errors } = validatePost()
 
     if (!isValid) {
-      moveToFirstError(
-        errors
-      )
+      moveToFirstError(errors)
 
       return
     }
 
+    // 서버 저장은 연결되지 않았으며 작성 데이터만 미리 확인합니다.
+    setLastSubmission(buildSubmission())
 
-    /*
-      2. GROUP 6 submission 객체 생성
-    */
-
-    const submissionData =
-      buildSubmission()
-
-
-    /*
-      실제 DB 저장이 아닙니다.
-
-      QA에서 데이터 구조를 확인하기 위해
-      state와 console에만 남깁니다.
-    */
-
-    setLastSubmission(
-      submissionData
-    )
-
-
-    console.log(
-      '[CommunityWrite] Submission created:',
-      submissionData
-    )
-
-
-    /*
-      여기서 /community로 이동하지 않습니다.
-
-      이유:
-      아직 Main / Detail에 새 게시글을
-      실제 반영하는 공유 저장소가 없기 때문입니다.
-
-      서버 저장 성공처럼 보이는 Toast도
-      아직 표시하지 않습니다.
-    */
   }
-
-
-  /* =====================================
-     GROUP 6 — CANCEL
-  ===================================== */
 
   const handleCancel = () => {
-    /*
-      작성한 실제 데이터가 없다면
-      별도 경고 없이 Main으로 이동.
-    */
-
-    if (!isDirty) {
-      navigate(
-        '/community'
-      )
-
-      return
+    if (!isDirty || window.confirm('작성 중인 내용이 있습니다.\n페이지를 나가면 작성 내용이 사라집니다.\n\n나가시겠습니까?')) {
+      navigate('/community')
     }
-
-
-    /*
-      현재 GROUP 6에서는
-      신규 Modal 컴포넌트를 추가하지 않고
-      브라우저 confirm을 사용합니다.
-
-      한 달 팀 프로젝트 범위에서
-      가장 안전하고 구현 비용이 낮습니다.
-    */
-
-    const shouldLeave =
-      window.confirm(
-        '작성 중인 내용이 있습니다.\n페이지를 나가면 작성 내용이 사라집니다.\n\n나가시겠습니까?'
-      )
-
-
-    if (!shouldLeave) {
-      return
-    }
-
-
-    navigate(
-      '/community'
-    )
   }
 
-
   return (
-    <main
-      className="mooday-write"
-      id="community-write"
-    >
+    <main className="mooday-write" id="community-write">
 
       <div className="mooday-write__inner">
 
-
-        {/* =================================
-            MAIN LAYOUT
-        ================================= */}
-
         <div className="mooday-write__layout">
 
-
-          {/* =================================
-              LEFT — GALLERY
-          ================================= */}
-
           <WriteGallery
-            images={
-              images
-            }
-            activePreviewId={
-              activePreviewId
-            }
-            imageNotice={
-              imageNotice
-            }
-            validationError={
-              validationErrors.images
-            }
-            galleryRef={
-              gallerySectionRef
-            }
-            onPreviewChange={
-              setActivePreviewId
-            }
-            onFilesSelected={
-              handleFilesSelected
-            }
-            onRemoveImage={
-              handleRemoveImage
-            }
+            images={images}
+            activePreviewId={activePreviewId}
+            imageNotice={imageNotice}
+            validationError={validationErrors.images}
+            galleryRef={gallerySectionRef}
+            onPreviewChange={setActivePreviewId}
+            onFilesSelected={handleFilesSelected}
+            onRemoveImage={handleRemoveImage}
           />
 
-
-          {/* =================================
-              RIGHT — FORM
-          ================================= */}
-
           <div className="mooday-write-form">
-
-
-            {/* =================================
-                CONTENT
-            ================================= */}
 
             <section className="mooday-write-form__section">
 
@@ -1788,15 +795,11 @@ export default function CommunityWrite() {
 
                   내용
 
-                  <span
-                    className="mooday-write-form__required"
-                    aria-label="필수"
-                  >
+                  <span className="mooday-write-form__required" aria-label="필수">
                     *
                   </span>
 
                 </label>
-
 
                 <span className="mooday-write-form__counter">
                   {content.length}/2000
@@ -1804,11 +807,8 @@ export default function CommunityWrite() {
 
               </div>
 
-
               <textarea
-                ref={
-                  contentTextareaRef
-                }
+                ref={contentTextareaRef}
                 id="mooday-write-content"
                 className={
                   'mooday-write-form__textarea' +
@@ -1819,20 +819,10 @@ export default function CommunityWrite() {
                   )
                 }
                 placeholder="오늘 입은 옷이나 좋아하는 스타일을 자유롭게 남겨주세요."
-                value={
-                  content
-                }
-                maxLength={
-                  2000
-                }
-                onChange={
-                  handleContentChange
-                }
-                aria-invalid={
-                  Boolean(
-                    validationErrors.content
-                  )
-                }
+                value={content}
+                maxLength={2000}
+                onChange={handleContentChange}
+                aria-invalid={Boolean(validationErrors.content)}
                 aria-describedby={
                   validationErrors.content
                     ? 'mooday-write-content-error'
@@ -1840,23 +830,13 @@ export default function CommunityWrite() {
                 }
               />
 
-
               {validationErrors.content && (
-                <p
-                  id="mooday-write-content-error"
-                  className="mooday-write-validation__message"
-                  role="alert"
-                >
+                <p id="mooday-write-content-error" className="mooday-write-validation__message" role="alert">
                   {validationErrors.content}
                 </p>
               )}
 
             </section>
-
-
-            {/* =================================
-                HASHTAGS
-            ================================= */}
 
             <section className="mooday-write-form__section">
 
@@ -1866,38 +846,27 @@ export default function CommunityWrite() {
                   해시태그
                 </label>
 
-
                 <span className="mooday-write-form__counter">
                   {tagInput.length}/30
                 </span>
 
               </div>
 
-
               <input
                 id="mooday-write-tag"
                 className="mooday-write-form__input"
                 type="text"
                 placeholder="#을 입력하고 엔터를 눌러 추가해주세요."
-                value={
-                  tagInput
-                }
-                maxLength={
-                  30
-                }
+                value={tagInput}
+                maxLength={30}
                 onChange={(event) => {
-                  setTagInput(
-                    event.target.value
-                  )
+                  setTagInput(event.target.value)
 
                   setInputTagNotice('')
                   setRecommendedTagNotice('')
                 }}
-                onKeyDown={
-                  handleTagKeyDown
-                }
+                onKeyDown={handleTagKeyDown}
               />
-
 
               {inputTagNotice && (
                 <p
@@ -1912,7 +881,6 @@ export default function CommunityWrite() {
                 </p>
               )}
 
-
               {tags.length > 0 && (
                 <>
                   <div className="mooday-write-form__subheading">
@@ -1926,10 +894,7 @@ export default function CommunityWrite() {
 
                   <div className="mooday-write-tags__selected">
                     {tags.map((tag) => (
-                      <div
-                        key={tag}
-                        className="mooday-write-tags__selected-chip"
-                      >
+                      <div key={tag} className="mooday-write-tags__selected-chip">
                         <span>#{tag}</span>
 
                         <button
@@ -1949,8 +914,6 @@ export default function CommunityWrite() {
                 </>
               )}
 
-              {/* RECOMMENDED TAGS */}
-
               <div
                 className="
                   mooday-write-form__subheading
@@ -1959,7 +922,6 @@ export default function CommunityWrite() {
               >
                 <h3>추천 태그</h3>
               </div>
-
 
               <div className="mooday-write-tags__recommended">
 
@@ -1974,12 +936,9 @@ export default function CommunityWrite() {
                           tag.toLowerCase()
                       )
 
-
                     return (
                       <button
-                        key={
-                          tag
-                        }
+                        key={tag}
                         type="button"
                         className={
                           'mooday-write-tags__chip' +
@@ -1990,17 +949,9 @@ export default function CommunityWrite() {
                           )
                         }
                         onClick={() => {
-                          addTag(
-                            tag,
-                            {
-                              source:
-                                'recommended',
-                            }
-                          )
+                          addTag(tag, { source: 'recommended' })
                         }}
-                        aria-pressed={
-                          isSelected
-                        }
+                        aria-pressed={isSelected}
                       >
                         #{tag}
                       </button>
@@ -2009,7 +960,6 @@ export default function CommunityWrite() {
                 )}
 
               </div>
-
 
               {recommendedTagNotice && (
                 <p
@@ -2026,10 +976,6 @@ export default function CommunityWrite() {
 
             </section>
 
-            {/* =================================
-                PRODUCTS
-            ================================= */}
-
             <section
               className="
                 mooday-write-form__section
@@ -2045,9 +991,6 @@ export default function CommunityWrite() {
                   </span>
                 </label>
               </div>
-
-
-              {/* SEARCH */}
 
               <div className="mooday-write-product-search">
                 <input
@@ -2074,9 +1017,6 @@ export default function CommunityWrite() {
                 )}
               </div>
 
-
-              {/* RESULTS */}
-
               {normalizedProductQuery && (
                 filteredProducts.length > 0 ? (
                   <div className="mooday-write-products__results">
@@ -2088,38 +1028,22 @@ export default function CommunityWrite() {
                         )
 
                       return (
-                        <WriteProductResult
-                          key={product.id}
-                          product={product}
-                          isSelected={isSelected}
-                          onAdd={addProduct}
-                        />
+                        <WriteProductResult key={product.id} product={product} isSelected={isSelected} onAdd={addProduct} />
                       )
                     })}
                   </div>
                 ) : (
-                  <div
-                    className="mooday-write-products__empty-result"
-                    role="status"
-                  >
+                  <div className="mooday-write-products__empty-result" role="status">
                     검색 결과가 없습니다.
                   </div>
                 )
               )}
 
-
               {productNotice && (
-                <p
-                  className="mooday-write-products__notice"
-                  role="status"
-                  aria-live="polite"
-                >
+                <p className="mooday-write-products__notice" role="status" aria-live="polite">
                   {productNotice}
                 </p>
               )}
-
-
-              {/* SELECTED PRODUCTS */}
 
               {selectedProducts.length > 0 && (
                 <>
@@ -2140,11 +1064,7 @@ export default function CommunityWrite() {
 
                   <div className="mooday-write-products__selected">
                     {selectedProducts.map((product) => (
-                      <WriteSelectedProduct
-                        key={product.id}
-                        product={product}
-                        onRemove={removeProduct}
-                      />
+                      <WriteSelectedProduct key={product.id} product={product} onRemove={removeProduct} />
                     ))}
                   </div>
                 </>
@@ -2156,19 +1076,7 @@ export default function CommunityWrite() {
 
             </div>
 
-        {/* =================================
-            GROUP 6 — ACTION BUTTONS
-        ================================= */}
-
         <div className="mooday-write__actions">
-
-          {/*
-            기존 <a href="/community"> 취소 링크를
-            button으로 변경했습니다.
-
-            이유:
-            navigate 전에 이탈 경고를 실행해야 하기 때문입니다.
-          */}
 
           <button
             type="button"
@@ -2176,13 +1084,10 @@ export default function CommunityWrite() {
               mooday-write__button
               mooday-write__button--cancel
             "
-            onClick={
-              handleCancel
-            }
+            onClick={handleCancel}
           >
             취소
           </button>
-
 
           <button
             type="button"
@@ -2190,48 +1095,15 @@ export default function CommunityWrite() {
               mooday-write__button
               mooday-write__button--submit
             "
-            onClick={
-              handleSubmit
-            }
+            onClick={handleSubmit}
           >
             게시하기
           </button>
 
         </div>
 
-
-        {/* =================================
-            GROUP 6 — DEBUG NOTE
-
-            화면에는 표시하지 않습니다.
-
-            lastSubmission은 향후
-            Main / Detail 연동 전
-            개발 과정에서 확인하기 위한 state입니다.
-
-            필요 시 React DevTools 또는
-            console에서 구조를 확인합니다.
-        ================================= */}
-
-        {/* =================================
-            GROUP 6 — DEMO SUBMIT NOTICE
-
-            실제 서버 / DB 저장은 하지 않습니다.
-
-            Validation을 통과하고
-            submission 객체 생성까지 완료되면
-            사용자에게 현재 데모 동작 상태를 안내합니다.
-
-            Main / Detail에는 게시글이 추가되지 않으며
-            작성 중인 입력값도 그대로 유지합니다.
-        ================================= */}
-
         {lastSubmission && (
-          <p
-            className="mooday-write__submit-notice"
-            role="status"
-            aria-live="polite"
-          >
+          <p className="mooday-write__submit-notice" role="status" aria-live="polite">
             게시글 데이터가 준비되었습니다.
             현재는 데모 모드이며 실제 게시글로 저장되지는 않습니다.
           </p>

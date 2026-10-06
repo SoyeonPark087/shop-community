@@ -26,18 +26,16 @@ function App() {
 
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
-      const existing = prev.find(
+      const existingIndex = prev.findIndex(
         (item) =>
           item.id === product.id &&
           item.option === product.option &&
           item.color === product.color
       )
 
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id &&
-          item.option === product.option &&
-          item.color === product.color
+      if (existingIndex !== -1) {
+        return prev.map((item, index) =>
+          index === existingIndex
             ? {
                 ...item,
                 quantity: item.quantity + 1,
@@ -46,13 +44,7 @@ function App() {
         )
       }
 
-      return [
-        ...prev,
-        {
-          ...product,
-          quantity: 1,
-        },
-      ]
+      return [...prev, { ...product, quantity: 1 }]
     })
 
     setCartOpen(true)
@@ -62,71 +54,41 @@ function App() {
     <>
       <Header
         cartItems={cartItems}
+        setCartItems={setCartItems}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
       />
 
-      <div
-        className={
-          isHomePage
-            ? 'app-page app-page--home'
-            : 'app-page app-page--sub'
-        }
-      >
+      <div className={isHomePage ? 'app-page app-page--home' : 'app-page app-page--sub'}>
         <Routes>
           <Route path="/search" element={<SearchResults />} />
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
 
-          <Route
-            path="/signup"
-            element={<Signup />}
-          />
+          <Route path="/signup" element={<Signup />} />
 
-          <Route
-            path="/shop"
-            element={<Shop />}
-          />
+          <Route path="/shop" element={<Shop />} />
 
+          <Route path="/shop/:id" element={<ProductDetail onAddToCart={handleAddToCart} />} />
+
+          <Route path="/editorial" element={<Editorial />} />
+
+          <Route path="/editorial/:id" element={<EditorialDetail />} />
+
+          <Route path="/community" element={<Community />} />
+
+          <Route path="/community/write" element={<CommunityWrite />} />
+
+          <Route path="/community/:postId" element={<CommunityDetail />} />
+
+          <Route path="/mypage" element={<MyPage />} />
           <Route
-            path="/shop/:id"
+            path="*"
             element={
-              <ProductDetail
-                onAddToCart={handleAddToCart}
-              />
+              <main>
+                <h1>페이지를 찾을 수 없습니다.</h1>
+                <a href="#/">홈으로 돌아가기</a>
+              </main>
             }
-          />
-
-          <Route
-            path="/editorial"
-            element={<Editorial />}
-          />
-
-          <Route
-            path="/editorial/:id"
-            element={<EditorialDetail />}
-          />
-
-          <Route
-            path="/community"
-            element={<Community />}
-          />
-
-          <Route
-            path="/community/write"
-            element={<CommunityWrite />}
-          />
-
-          <Route
-            path="/community/:postId"
-            element={<CommunityDetail />}
-          />
-
-          <Route
-            path="/mypage"
-            element={<MyPage />}
           />
         </Routes>
       </div>

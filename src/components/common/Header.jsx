@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Search from "../drawers/Search";
 import Login from "../drawers/Account";
@@ -7,109 +8,80 @@ import Menu from "../drawers/MenuDrawer";
 
 import "./Header.css";
 
-function Header({
-  cartItems,
-  cartOpen,
-  setCartOpen,
-}) {
-  const [activeDrawer, setActiveDrawer] =
-    useState(null);
+function Header({ cartItems, setCartItems, cartOpen, setCartOpen }) {
+  const [activeDrawer, setActiveDrawer] = useState(null);
 
   const closeDrawer = () => {
     setActiveDrawer(null);
   };
+
+  const baseUrl = import.meta.env.BASE_URL;
 
   return (
     <>
       <header className="site-header">
         <div className="site-header__inner">
 
-          {/* Desktop GNB */}
           <nav className="site-header__nav site-header__nav--left">
-            <a href="/shop">Shop</a>
-            <a href="/editorial">Editorial</a>
-            <a href="/community">Community</a>
+            <Link to="/shop">Shop</Link>
+            <Link to="/editorial">Editorial</Link>
+            <Link to="/community">Community</Link>
           </nav>
 
-          {/* Logo */}
-          <a
-            href="/"
-            className="site-header__logo"
-          >
+          <Link to="/" className="site-header__logo">
             <img
-              src="/icons/Logo.svg"
+              src={`${baseUrl}icons/Logo.svg`}
               alt="로고"
             />
-          </a>
+          </Link>
 
-          {/* Desktop right menu */}
           <nav className="site-header__nav site-header__nav--right">
-
             <button
               type="button"
               aria-haspopup="dialog"
               aria-expanded={activeDrawer === "search"}
-              onClick={() =>
-                setActiveDrawer("search")
-              }
+              onClick={() => setActiveDrawer("search")}
             >
               Search
             </button>
 
-            <button
-              type="button"
-              onClick={() =>
-                setCartOpen(true)
-              }
-            >
+            <button type="button" onClick={() => setCartOpen(true)}>
               Cart
             </button>
 
-            <button
-              type="button"
-              onClick={() =>
-                setActiveDrawer("login")
-              }
-            >
+            <button type="button" onClick={() => setActiveDrawer("login")}>
               Account
             </button>
-
           </nav>
 
-
-          {/* Mobile actions */}
           <div className="site-header__actions">
 
-              {/* Cart icon */}
-              <button
-                type="button"
-                className="site-header__icon-button site-header__cart"
-                aria-label="Cart"
-                onClick={() => setCartOpen(true)}
-              >
-                <img
-                  src="/icons/cart.svg"
-                  alt="장바구니"
-                  className="site-header__icon-image"
-                />
-              </button>
+            <button
+              type="button"
+              className="site-header__icon-button site-header__cart"
+              aria-label="Cart"
+              onClick={() => setCartOpen(true)}
+            >
+              <img
+                src={`${baseUrl}icons/cart.svg`}
+                alt="장바구니"
+                className="site-header__icon-image"
+              />
+            </button>
 
-              {/* Account */}
-              <button
-                type="button"
-                className="site-header__icon-button"
-                aria-label="Account"
-                onClick={() => setActiveDrawer("login")}
-              >
-                <img
-                  src="/icons/account.svg"
-                  alt="계정"
-                  className="site-header__icon-image"
-                />
-              </button>
+            <button
+              type="button"
+              className="site-header__icon-button"
+              aria-label="Account"
+              onClick={() => setActiveDrawer("login")}
+            >
+              <img
+                src={`${baseUrl}icons/account.svg`}
+                alt="계정"
+                className="site-header__icon-image"
+              />
+            </button>
 
-
-            {/* Hamburger */}
             <button
               type="button"
               className="site-header__icon-button"
@@ -118,45 +90,30 @@ function Header({
               onClick={() => setActiveDrawer("menu")}
             >
               <img
-                src="/icons/menu.svg"
+                src={`${baseUrl}icons/menu.svg`}
                 alt="메뉴"
                 className="site-header__icon-image"
               />
             </button>
-
           </div>
 
         </div>
       </header>
 
-
-      {/* Search Drawer */}
       {activeDrawer === "search" && (
         <Search open onClose={closeDrawer} />
       )}
 
-
-      {/* Cart Drawer */}
       <Cart
         open={cartOpen}
         onClose={() => setCartOpen(false)}
         items={cartItems}
+        onItemsChange={setCartItems}
       />
 
+      <Login open={activeDrawer === "login"} onClose={closeDrawer} />
 
-      {/* Account Drawer */}
-      <Login
-        open={activeDrawer === "login"}
-        onClose={closeDrawer}
-      />
-
-
-      {/* Menu Drawer */}
-      <Menu
-        open={activeDrawer === "menu"}
-        onClose={closeDrawer}
-      />
-
+      <Menu open={activeDrawer === "menu"} onClose={closeDrawer} />
     </>
   );
 }

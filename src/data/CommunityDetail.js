@@ -1,6 +1,6 @@
 function createGallery(number) {
   const id = String(number).padStart(2, '0')
-  const base = '/images/community/'
+  const base = `${import.meta.env.BASE_URL}images/community/`
 
   return [
     `${base}community${id}.jpg`,
@@ -9,8 +9,6 @@ function createGallery(number) {
     `${base}community${id}_sub03.jpg`,
   ]
 }
-
-
 
 const bodyByPost = {
   'post-01': [
@@ -67,7 +65,6 @@ const bodyByPost = {
     '크림 팬츠처럼 힘을 뺀 하의랑 같이 입으니까 상의 포인트도 너무 세게 느껴지지 않아서 좋았어요.',
   ],
 }
-
 
 const commentsByPost = {
   'post-01': [
@@ -287,7 +284,6 @@ const commentsByPost = {
   ],
 }
 
-
 const hashtagsByPost = {
   'post-01': [
     'ootd',
@@ -361,7 +357,6 @@ const hashtagsByPost = {
   ],
 }
 
-
 const timeByPost = {
   'post-01': {
     postedMinutesAgo: 38,
@@ -409,8 +404,6 @@ const timeByPost = {
   },
 }
 
-
-
 const productIdsByPost = {
   'post-01': [1, 9],
   'post-02': [6],
@@ -423,7 +416,6 @@ const productIdsByPost = {
   'post-09': [9],
 }
 
-
 const commentCountByPost = {
   'post-01': 6,
   'post-02': 8,
@@ -435,7 +427,6 @@ const commentCountByPost = {
   'post-08': 18,
   'post-09': 16,
 }
-
 
 function createDetail(number) {
   const id =
@@ -450,18 +441,15 @@ function createDetail(number) {
 
     time: timeData.displayTime,
 
-    postedMinutesAgo:
-      timeData.postedMinutesAgo,
+    postedMinutesAgo: timeData.postedMinutesAgo,
 
-    commentCount:
-      commentCountByPost[id],
+    commentCount: commentCountByPost[id],
 
     body: [
       ...bodyByPost[id],
     ],
 
-    comments:
-      commentsByPost[id].map(
+    comments: commentsByPost[id].map(
         (comment) => ({
           ...comment,
         })
@@ -471,10 +459,8 @@ function createDetail(number) {
       ...hashtagsByPost[id],
     ],
 
-    productIds:
-      productIdsByPost[id],
+    productIds: productIdsByPost[id],
 }}
-
 
 export const communityDetailData = {
   'post-01': createDetail(1),

@@ -1,16 +1,11 @@
-/* ========================================
-   Menu Drawer
-======================================== */
+/* Menu Drawer */
 
 .menu-drawer {
   display: flex;
   flex-direction: column;
 }
 
-
-/* ========================================
-   Top / Close
-======================================== */
+/* Top / Close */
 
 .menu-drawer__top {
   display: flex;
@@ -20,10 +15,7 @@
   width: 100%;
 }
 
-
-/* ========================================
-   Search
-======================================== */
+/* Search */
 
 .menu-drawer__search {
   width: 100%;
@@ -114,12 +106,6 @@
   transform: rotate(45deg);
 }
 
-
-/* ========================================
-   Search Tags
-   기존 Search Drawer 톤과 통일
-======================================== */
-
 .menu-drawer__tags {
   display: flex;
   flex-wrap: wrap;
@@ -146,10 +132,7 @@
   cursor: pointer;
 }
 
-
-/* ========================================
-   Global Navigation
-======================================== */
+/* Global Navigation */
 
 .menu-drawer__gnb {
   display: flex;
@@ -176,10 +159,7 @@
   letter-spacing: -0.02em;
 }
 
-
-/* ========================================
-   Divider
-======================================== */
+/* Divider */
 
 .menu-drawer__divider {
   width: 100%;
@@ -189,10 +169,7 @@
   background: rgba(40, 40, 40, 0.14);
 }
 
-
-/* ========================================
-   Utility Navigation
-======================================== */
+/* Utility Navigation */
 
 .menu-drawer__utility {
   display: flex;
@@ -220,10 +197,7 @@
   cursor: pointer;
 }
 
-
-/* ========================================
-   Bottom
-======================================== */
+/* Bottom */
 
 .menu-drawer__bottom {
   margin-top: auto;
@@ -239,10 +213,7 @@
   line-height: 1;
 }
 
-
-/* ========================================
-   Hover
-======================================== */
+/* Hover */
 
 @media (hover: hover) {
   .menu-drawer__tags button:hover {
@@ -261,21 +232,9 @@
   }
 }
 
-
-/* ========================================
-   Mobile
-======================================== */
+/* Mobile */
 
 @media (max-width: 640px) {
-
-  /*
-   * Drawer 크기는 Drawer.css의
-   *
-   * width: 92vw;
-   * max-width: 420px;
-   *
-   * 값을 그대로 사용
-   */
 
   .menu-drawer__search {
     margin-top: 28px;
@@ -301,7 +260,6 @@
     height: 14px;
   }
 
-
   /* GNB */
 
   .menu-drawer__gnb {
@@ -322,7 +280,6 @@
       0;
   }
 
-
   /* Utility */
 
   .menu-drawer__utility {
@@ -333,7 +290,6 @@
   .menu-drawer__utility button {
     font-size: 12px;
   }
-
 
   /* Bottom */
 

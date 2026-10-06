@@ -1,6 +1,4 @@
-/* ========================================
-   PRODUCT DETAIL 기본 설정
-======================================== */
+/* PRODUCT DETAIL 기본 설정 */
 
 .product-detail {
   --detail-green: #344f41;
@@ -31,10 +29,7 @@
   font-family: inherit;
 }
 
-
-/* ========================================
-   상품 없음
-======================================== */
+/* 상품 없음 */
 
 .product-detail--empty {
   min-height: 600px;
@@ -54,10 +49,7 @@
   text-decoration: underline;
 }
 
-
-/* ========================================
-   BREADCRUMB
-======================================== */
+/* BREADCRUMB */
 
 .product-detail__breadcrumb {
   display: flex;
@@ -85,10 +77,7 @@
   white-space: nowrap;
 }
 
-
-/* ========================================
-   PC 상품 상세 레이아웃
-======================================== */
+/* PC 상품 상세 레이아웃 */
 
 .product-detail__main {
   display: grid;
@@ -103,10 +92,7 @@
   margin: 0;
 }
 
-
-/* ========================================
-   이미지 갤러리
-======================================== */
+/* 이미지 갤러리 */
 
 .product-detail__gallery {
   display: grid;
@@ -119,10 +105,7 @@
   min-width: 0;
 }
 
-
-/* ========================================
-   PC 세로 서브 이미지
-======================================== */
+/* PC 세로 서브 이미지 */
 
 .product-detail__thumbnails {
   display: flex;
@@ -167,10 +150,7 @@
   outline-offset: -1px;
 }
 
-
-/* ========================================
-   메인 이미지
-======================================== */
+/* 메인 이미지 */
 
 .product-detail__main-image {
   grid-column: 2;
@@ -196,9 +176,7 @@
   object-position: center;
 }
 
-/* ========================================
-   상품 정보
-======================================== */
+/* 상품 정보 */
 
 .product-detail__information {
   position: sticky;
@@ -239,9 +217,7 @@
   line-height: 1.4;
 }
 
-/* ========================================
-   COLOR
-======================================== */
+/* COLOR */
 
 .product-detail__colors {
   display: grid;
@@ -335,10 +311,7 @@
   box-shadow: none;
 }
 
-
-/* ========================================
-   SIZE
-======================================== */
+/* SIZE */
 
 .product-detail__option {
   display: grid;
@@ -421,9 +394,7 @@
   background: var(--detail-green);
 }
 
-/* ========================================
-   ADD TO CART
-======================================== */
+/* ADD TO CART */
 
 .product-detail__cart {
   display: flex;
@@ -452,9 +423,7 @@
 .product-detail__cart:hover {
   background: #2b4337;
 }
-/* ========================================
-   상품 정보 아코디언
-======================================== */
+/* 상품 정보 아코디언 */
 
 .product-detail__accordions {
   width: 100%;
@@ -544,10 +513,7 @@
   line-height: 1.5;
 }
 
-
-/* ========================================
-   상세 이미지
-======================================== */
+/* 상세 이미지 */
 
 .product-detail__contents {
   display: flex;
@@ -573,10 +539,7 @@
   background-color: var(--detail-image-bg);
 }
 
-
-/* ========================================
-   상세페이지 하단
-======================================== */
+/* 상세페이지 하단 */
 
 .product-detail__bottom {
   width: 100%;
@@ -617,10 +580,7 @@
   cursor: default;
 }
 
-
-/* ========================================
-   YOU MAY ALSO LIKE
-======================================== */
+/* YOU MAY ALSO LIKE */
 
 .product-detail__recommend-grid {
   display: grid;
@@ -696,10 +656,7 @@
   border-radius: 50%;
 }
 
-
-/* ========================================
-   COMMUNITY LOOKS
-======================================== */
+/* COMMUNITY LOOKS */
 
 .product-detail__community {
   margin-top: 75px;
@@ -756,10 +713,7 @@
   white-space: nowrap;
 }
 
-
-/* ========================================
-   REVIEWS
-======================================== */
+/* REVIEWS */
 
 .product-detail__reviews {
   margin-top: 64px;
@@ -800,26 +754,15 @@
   line-height: 1.6;
 }
 
-
-/* ========================================
-   TABLET
-   768px ~ 1100px
-======================================== */
-
 @media screen and (min-width: 768px) and (max-width: 1100px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .product-detail {
     padding: 88px 40px 96px;
   }
 
-
-  /* =========================
-     Breadcrumb
-  ========================= */
+  /* Breadcrumb */
 
   .product-detail__breadcrumb {
     margin-bottom: 24px;
@@ -827,10 +770,7 @@
     font-size: 10px;
   }
 
-
-  /* =========================
-     Main Layout
-  ========================= */
+  /* Main Layout */
 
   .product-detail__main {
     grid-template-columns:
@@ -840,10 +780,7 @@
     column-gap: 32px;
   }
 
-
-  /* =========================
-     Gallery
-  ========================= */
+  /* Gallery */
 
   .product-detail__gallery {
     grid-template-columns:
@@ -871,10 +808,7 @@
     margin-left: 66px;
   }
 
-
-  /* =========================
-     Information
-  ========================= */
+  /* Information */
 
   .product-detail__information {
     top: 92px;
@@ -898,10 +832,7 @@
     line-height: 1.4;
   }
 
-
-  /* =========================
-     Color
-  ========================= */
+  /* Color */
 
   .product-detail__colors {
     grid-template-columns:
@@ -939,10 +870,7 @@
     height: 16px;
   }
 
-
-  /* =========================
-     Size
-  ========================= */
+  /* Size */
 
   .product-detail__option {
     grid-template-columns:
@@ -971,10 +899,7 @@
     font-size: 10px;
   }
 
-
-  /* =========================
-     Add To Cart
-  ========================= */
+  /* Add To Cart */
 
   .product-detail__cart {
     height: 44px;
@@ -985,10 +910,7 @@
     font-weight: 500;
   }
 
-
-  /* =========================
-     Accordion
-  ========================= */
+  /* Accordion */
 
   .product-detail__accordions {
     margin-top: 32px;
@@ -1008,10 +930,7 @@
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Description
-  ========================= */
+  /* Description */
 
   .product-detail__description {
     margin-top: 30px;
@@ -1023,10 +942,7 @@
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Bottom
-  ========================= */
+  /* Bottom */
 
   .product-detail__bottom {
     width: 100%;
@@ -1047,10 +963,7 @@
     font-size: 10px;
   }
 
-
-  /* =========================
-     Recommend / Community
-  ========================= */
+  /* Recommend / Community */
 
   .product-detail__recommend-grid,
   .product-detail__community-grid {
@@ -1086,10 +999,7 @@
     font-size: 10px;
   }
 
-
-  /* =========================
-     Reviews
-  ========================= */
+  /* Reviews */
 
   .product-detail__reviews {
     margin-top: 60px;
@@ -1100,19 +1010,9 @@
   }
 }
 
-
-
-/* ========================================
-   MOBILE
-   0px ~ 767px
-   전체 좌우 여백 24px
-======================================== */
-
 @media screen and (max-width: 767px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .product-detail {
     width: 100%;
@@ -1122,10 +1022,7 @@
     padding: 100px 24px 72px;
   }
 
-
-  /* =========================
-     Breadcrumb
-  ========================= */
+  /* Breadcrumb */
 
   .product-detail__breadcrumb {
     gap: 7px;
@@ -1148,10 +1045,7 @@
     white-space: nowrap;
   }
 
-
-  /* =========================
-     Main
-  ========================= */
+  /* Main */
 
   .product-detail__main {
     display: flex;
@@ -1166,10 +1060,7 @@
     margin: 0;
   }
 
-
-  /* =========================
-     Gallery
-  ========================= */
+  /* Gallery */
 
   .product-detail__gallery {
     display: flex;
@@ -1204,10 +1095,7 @@
     object-fit: cover;
   }
 
-
-  /* =========================
-     Thumbnails
-  ========================= */
+  /* Thumbnails */
 
   .product-detail__thumbnails {
     display: flex;
@@ -1240,10 +1128,7 @@
     height: 48px;
   }
 
-
-  /* =========================
-     Product Information
-  ========================= */
+  /* Product Information */
 
   .product-detail__information {
     position: static;
@@ -1262,7 +1147,6 @@
     background-color: #fafaf8;
   }
 
-
   /* 상품명 = 가장 강한 정보 */
   .product-detail__information h1 {
     width: 100%;
@@ -1277,7 +1161,6 @@
     word-break: keep-all;
   }
 
-
   /* 가격 = 상품명 다음 위계 */
   .product-detail__price {
     width: 100%;
@@ -1289,10 +1172,7 @@
     line-height: 1.4;
   }
 
-
-  /* =========================
-     Color
-  ========================= */
+  /* Color */
 
   .product-detail__colors {
     grid-template-columns:
@@ -1339,10 +1219,7 @@
     height: 15px;
   }
 
-
-  /* =========================
-     Size
-  ========================= */
+  /* Size */
 
   .product-detail__option {
     grid-template-columns:
@@ -1384,10 +1261,7 @@
     white-space: nowrap;
   }
 
-
-  /* =========================
-     Add To Cart
-  ========================= */
+  /* Add To Cart */
 
   .product-detail__cart {
     width: 100%;
@@ -1399,10 +1273,7 @@
     font-weight: 500;
   }
 
-
-  /* =========================
-     Accordion
-  ========================= */
+  /* Accordion */
 
   .product-detail__accordions {
     width: 100%;
@@ -1430,10 +1301,7 @@
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Description
-  ========================= */
+  /* Description */
 
   .product-detail__description {
     width: 100%;
@@ -1457,10 +1325,7 @@
     line-height: 1.65;
   }
 
-
-  /* =========================
-     Detail Contents
-  ========================= */
+  /* Detail Contents */
 
   .product-detail__contents {
     order: 3;
@@ -1482,10 +1347,7 @@
     margin: 0;
   }
 
-
-  /* =========================
-     Bottom Sections
-  ========================= */
+  /* Bottom Sections */
 
   .product-detail__bottom {
     width: 100%;
@@ -1499,9 +1361,7 @@
     margin-bottom: 14px;
   }
 
-  /*
-   * 메인 상품명 16px보다 확실히 낮게 설정
-   */
+  /* * 메인 상품명 16px보다 확실히 낮게 설정 */
   .product-detail__section-heading h2 {
     font-size: 14px;
     font-weight: 500;
@@ -1512,10 +1372,7 @@
     font-size: 9px;
   }
 
-
-  /* =========================
-     Recommendation
-  ========================= */
+  /* Recommendation */
 
   .product-detail__recommend-grid,
   .product-detail__community-grid {
@@ -1553,10 +1410,7 @@
     margin-top: 6px;
   }
 
-
-  /* =========================
-     Community Looks
-  ========================= */
+  /* Community Looks */
 
   .product-detail__community {
     margin-top: 56px;
@@ -1579,10 +1433,7 @@
     line-height: 1.5;
   }
 
-
-  /* =========================
-     Reviews
-  ========================= */
+  /* Reviews */
 
   .product-detail__reviews {
     margin-top: 52px;

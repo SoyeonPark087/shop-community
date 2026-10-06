@@ -20,12 +20,9 @@ function Footer() {
         </p>
 
         <div className="footer__right">
-          <nav
-            className="footer__links"
-            aria-label="Footer links"
-          >
+          <nav className="footer__links" aria-label="Footer links">
             {footerLinks.map((link) => (
-              <a key={link} href="#">
+              <a key={link} href="#" onClick={(event) => event.preventDefault()}>
                 {link}
               </a>
             ))}

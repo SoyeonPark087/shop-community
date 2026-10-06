@@ -1,6 +1,4 @@
-/* =========================
-   Empty
-========================= */
+/* Empty */
 
 .cart-content__empty p {
   margin: 0;
@@ -14,10 +12,7 @@
   letter-spacing: -0.015em;
 }
 
-
-/* =========================
-   Select All
-========================= */
+/* Select All */
 
 .cart-select-all {
   display: flex;
@@ -105,10 +100,7 @@
   cursor: default;
 }
 
-
-/* =========================
-   Cart Item
-========================= */
+/* Cart Item */
 
 .cart-items {
   width: 100%;
@@ -182,10 +174,7 @@
   font-size: 12px;
 }
 
-
-/* =========================
-   Quantity
-========================= */
+/* Quantity */
 
 .cart-quantity {
   width: 120px;
@@ -226,10 +215,7 @@
   font-size: 12px;
 }
 
-
-/* =========================
-   Remove / Price
-========================= */
+/* Remove / Price */
 
 .cart-item__remove {
   position: absolute;
@@ -261,10 +247,7 @@
   font-weight: 600;
 }
 
-
-/* =========================
-   Summary
-========================= */
+/* Summary */
 
 .cart-summary {
   padding:
@@ -292,10 +275,7 @@
   font-weight: 500;
 }
 
-
-/* =========================
-   Total
-========================= */
+/* Total */
 
 .cart-total {
   display: flex;
@@ -312,10 +292,7 @@
   font-size: 14px;
 }
 
-
-/* =========================
-   Actions
-========================= */
+/* Actions */
 
 .cart-actions {
   display: flex;
@@ -365,9 +342,7 @@
   cursor: default;
 }
 
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 640px) {
   .cart-select-all {
@@ -397,7 +372,6 @@
   .cart-remove-selected {
     font-size: 11px;
   }
-
 
   /* 상품 */
 
@@ -446,7 +420,6 @@
     font-size: 11px;
   }
 
-
   /* 수량 */
 
   .cart-quantity {
@@ -461,7 +434,6 @@
     font-size: 11px;
   }
 
-
   /* 삭제 */
 
   .cart-item__remove {
@@ -470,10 +442,6 @@
 
     font-size: 18px;
   }
-
-
-  /* 가격을 PC처럼 absolute로 두지 않고
-     모바일에서는 상품 정보 아래로 이동 */
 
   .cart-item__price {
     position: static;
@@ -486,7 +454,6 @@
 
     font-size: 13px;
   }
-
 
   /* Summary */
 
@@ -502,7 +469,6 @@
     margin-top: 12px;
   }
 
-
   /* Total */
 
   .cart-total {
@@ -515,7 +481,6 @@
   .cart-total strong:last-child {
     font-size: 14px;
   }
-
 
   /* Buttons */
 

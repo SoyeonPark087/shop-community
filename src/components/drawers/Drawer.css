@@ -14,9 +14,7 @@
   pointer-events: auto;
 }
 
-/* =========================
-   Backdrop
-========================= */
+/* Backdrop */
 
 .drawer-backdrop {
   position: absolute;
@@ -39,8 +37,7 @@
   cursor: default;
 
   transition: opacity 0.3s ease;
-  
-  
+
 }
 
 .drawer-layer--open
@@ -48,9 +45,7 @@
   opacity: 1;
 }
 
-/* =========================
-   Drawer
-========================= */
+/* Drawer */
 
 .drawer,
 .drawer *,
@@ -91,9 +86,7 @@
   transform: translateX(0);
 }
 
-/* =========================
-   Header
-========================= */
+/* Header */
 
 .drawer__header {
   display: flex;
@@ -112,17 +105,13 @@
   letter-spacing: 0.3em;
 }
 
-/* =========================
-   Body
-========================= */
+/* Body */
 
 .drawer__body {
   margin-top: 56px;
 }
 
-/* =========================
-   Close
-========================= */
+/* Close */
 
 .drawer__close {
   position: relative;
@@ -168,10 +157,7 @@
   transform: rotate(-45deg);
 }
 
-
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 640px) {
   .drawer {
@@ -203,5 +189,3 @@
     width: 18px;
   }
 }
-
-

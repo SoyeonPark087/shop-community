@@ -1,6 +1,4 @@
-/* =========================
-   Inputs
-========================= */
+/* Inputs */
 
 .login-content__fields {
   display: flex;
@@ -36,10 +34,7 @@
   border-bottom-color: #51514d;
 }
 
-
-/* =========================
-   Login Button
-========================= */
+/* Login Button */
 
 .login-content__submit {
   width: 100%;
@@ -67,10 +62,7 @@
   background: #294a3a;
 }
 
-
-/* =========================
-   Find / Create Account
-========================= */
+/* Find / Create Account */
 
 .login-content__links {
   display: flex;
@@ -106,10 +98,7 @@
   cursor: pointer;
 }
 
-
-/* =========================
-   Divider
-========================= */
+/* Divider */
 
 .login-content__divider {
   width: 100%;
@@ -120,10 +109,7 @@
   background: rgba(40, 40, 40, 0.16);
 }
 
-
-/* =========================
-   Social Login
-========================= */
+/* Social Login */
 
 .login-content__social {
   display: flex;
@@ -177,10 +163,7 @@
   line-height: 1;
 }
 
-
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 640px) {
   .login-content__fields input {

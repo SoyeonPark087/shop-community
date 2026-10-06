@@ -1,125 +1,64 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import Drawer from "./Drawer";
 import "./Cart.css";
 
-const formatPrice = (price) =>
-  `₩ ${new Intl.NumberFormat("ko-KR").format(price)}`;
+const won = new Intl.NumberFormat("ko-KR");
+const formatPrice = (price) => `₩ ${won.format(price)}`;
+const itemKey = (item) => JSON.stringify([item.id, item.option, item.color]);
 
-export default function Cart({
-  open,
-  onClose,
-  items = [],
-}) {
-  const [cartItems, setCartItems] = useState(items);
-  const [selectedIds, setSelectedIds] = useState([]);
-
-  useEffect(() => {
-    setCartItems(items);
-    setSelectedIds(items.map((item) => item.id));
-  }, [items]);
-
-  const isEmpty = cartItems.length === 0;
-
-  const allChecked =
-    cartItems.length > 0 &&
-    selectedIds.length === cartItems.length;
-
-  const productTotal = useMemo(() => {
-    return cartItems.reduce(
-      (sum, item) =>
-        sum + item.price * item.quantity,
-      0
-    );
-  }, [cartItems]);
-
+export default function Cart({ open, onClose, items = [], onItemsChange }) {
+  const [unselectedKeys, setUnselectedKeys] = useState([]);
+  const selectedKeys = items.map(itemKey).filter((key) => !unselectedKeys.includes(key));
+  const isEmpty = items.length === 0;
+  const allChecked = !isEmpty && selectedKeys.length === items.length;
+  const productTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const shippingFee = 0;
-
-  const totalPrice =
-    productTotal + shippingFee;
+  const totalPrice = productTotal + shippingFee;
 
   const handleToggleAll = () => {
-    if (allChecked) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(
-        cartItems.map((item) => item.id)
-      );
-    }
+    setUnselectedKeys(allChecked ? items.map(itemKey) : []);
   };
 
-  const handleToggleItem = (id) => {
-    setSelectedIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((itemId) => itemId !== id)
-        : [...prev, id]
+  const handleToggleItem = (key) => {
+    setUnselectedKeys((prev) =>
+      prev.includes(key) ? prev.filter((value) => value !== key) : [...prev, key]
     );
   };
 
-  const handleQuantity = (
-    id,
-    amount
-  ) => {
-    setCartItems((prev) =>
-      prev.map((item) => {
-        if (item.id !== id) return item;
-
-        return {
-          ...item,
-          quantity: Math.max(
-            1,
-            item.quantity + amount
-          ),
-        };
-      })
-    );
+  const handleQuantity = (key, amount) => {
+    onItemsChange((prev) => prev.map((item) =>
+      itemKey(item) === key
+        ? { ...item, quantity: Math.max(1, item.quantity + amount) }
+        : item
+    ));
   };
 
-  const handleRemoveItem = (id) => {
-    setCartItems((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
-
-    setSelectedIds((prev) =>
-      prev.filter((itemId) => itemId !== id)
-    );
+  const handleRemoveItem = (key) => {
+    onItemsChange((prev) => prev.filter((item) => itemKey(item) !== key));
+    setUnselectedKeys((prev) => prev.filter((value) => value !== key));
   };
 
   const handleRemoveSelected = () => {
-    setCartItems((prev) =>
-      prev.filter(
-        (item) =>
-          !selectedIds.includes(item.id)
-      )
-    );
-
-    setSelectedIds([]);
+    onItemsChange((prev) => prev.filter((item) => !selectedKeys.includes(itemKey(item))));
   };
 
   return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      title="Cart"
-    >
+    <Drawer open={open} onClose={onClose} title="Cart">
       {isEmpty ? (
         <div className="cart-content__empty">
           <p>Your bag is empty.</p>
         </div>
       ) : (
         <div className="cart-content">
-          {/* 전체 선택 */}
+
           <div className="cart-select-all">
             <label className="cart-check">
-              <input
-                type="checkbox"
-                checked={allChecked}
-                onChange={handleToggleAll}
-              />
+              <input type="checkbox" checked={allChecked} onChange={handleToggleAll} />
 
               <span className="cart-check__box" />
 
               <span>
-                All ({cartItems.length})
+                All ({items.length})
               </span>
             </label>
 
@@ -127,40 +66,26 @@ export default function Cart({
               type="button"
               className="cart-remove-selected"
               onClick={handleRemoveSelected}
-              disabled={
-                selectedIds.length === 0
-              }
+              disabled={selectedKeys.length === 0}
             >
               Remove Selected
             </button>
           </div>
 
-          {/* 상품 목록 */}
           <div className="cart-items">
-            {cartItems.map((item) => (
-              <article
-                className="cart-item"
-                key={item.id}
-              >
+            {items.map((item) => (
+              <article className="cart-item" key={itemKey(item)}>
                 <label className="cart-check cart-item__check">
                   <input
                     type="checkbox"
-                    checked={selectedIds.includes(
-                      item.id
-                    )}
-                    onChange={() =>
-                      handleToggleItem(item.id)
-                    }
+                    checked={selectedKeys.includes(itemKey(item))}
+                    onChange={() => handleToggleItem(itemKey(item))}
                   />
 
                   <span className="cart-check__box" />
                 </label>
 
-                <img
-                  className="cart-item__image"
-                  src={item.image}
-                  alt={item.name}
-                />
+                <img className="cart-item__image" src={item.image} alt={item.name} />
 
                 <div className="cart-item__info">
                   <h3>{item.name}</h3>
@@ -176,15 +101,7 @@ export default function Cart({
                   </p>
 
                   <div className="cart-quantity">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleQuantity(
-                          item.id,
-                          -1
-                        )
-                      }
-                    >
+                    <button type="button" onClick={() => handleQuantity(itemKey(item), -1)}>
                       −
                     </button>
 
@@ -192,15 +109,7 @@ export default function Cart({
                       {item.quantity}
                     </span>
 
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleQuantity(
-                          item.id,
-                          1
-                        )
-                      }
-                    >
+                    <button type="button" onClick={() => handleQuantity(itemKey(item), 1)}>
                       +
                     </button>
                   </div>
@@ -209,25 +118,19 @@ export default function Cart({
                 <button
                   type="button"
                   className="cart-item__remove"
-                  onClick={() =>
-                    handleRemoveItem(item.id)
-                  }
+                  onClick={() => handleRemoveItem(itemKey(item))}
                   aria-label={`${item.name} 삭제`}
                 >
                   ×
                 </button>
 
                 <strong className="cart-item__price">
-                  {formatPrice(
-                    item.price *
-                      item.quantity
-                  )}
+                  {formatPrice(item.price * item.quantity)}
                 </strong>
               </article>
             ))}
           </div>
 
-          {/* 금액 */}
           <div className="cart-summary">
             <div>
               <span>상품금액</span>
@@ -252,30 +155,16 @@ export default function Cart({
             </strong>
           </div>
 
-          {/* 하단 버튼 */}
           <div className="cart-actions">
-            <button
-              type="button"
-              className="cart-actions__all"
-            >
+            <button type="button" className="cart-actions__all">
               Checkout All
             </button>
 
-            <button
-              type="button"
-              className="cart-actions__selected"
-              disabled={
-                selectedIds.length === 0
-              }
-            >
+            <button type="button" className="cart-actions__selected" disabled={selectedKeys.length === 0}>
               Checkout Selected
             </button>
 
-            <button
-              type="button"
-              className="cart-actions__continue"
-              onClick={onClose}
-            >
+            <button type="button" className="cart-actions__continue" onClick={onClose}>
               Continue Shopping
             </button>
           </div>

@@ -1,135 +1,36 @@
-import {
-  useState,
-} from 'react'
+import { useState } from 'react'
 
+export default function DetailPost({ post, detail }) {
 
-export default function DetailPost({
-  post,
-  detail,
-}) {
+  const authorInitial = post.author.charAt(0).toUpperCase()
 
-
-  /* =================================
-     AUTHOR
-  ================================= */
-
-  const authorInitial =
-    post.author.charAt(0).toUpperCase()
-
-
-  /* =================================
-     LIKE STATE
-  ================================= */
-
-  const [
-    isLiked,
-    setIsLiked,
-  ] = useState(false)
-
-  const [
-    likeCount,
-    setLikeCount,
-  ] = useState(
-    Number.isFinite(post.likes)
-      ? post.likes
-      : 0
-  )
-
-
-  /* =================================
-     LIKE TOGGLE
-  ================================= */
+  const [isLiked, setIsLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(Number.isFinite(post.likes) ? post.likes : 0)
 
   function handleLikeToggle() {
-    if (isLiked) {
-      setLikeCount(
-        (currentCount) =>
-          Math.max(
-            0,
-            currentCount - 1
-          )
-      )
-
-      setIsLiked(false)
-
-      return
-    }
-
-    setLikeCount(
-      (currentCount) =>
-        currentCount + 1
-    )
-
-    setIsLiked(true)
+    setLikeCount((count) => isLiked ? Math.max(0, count - 1) : count + 1)
+    setIsLiked((liked) => !liked)
   }
-
-
-  /* =================================
-     EDIT
-  ================================= */
-
-  function handleEdit() {
-    console.log(
-      '게시글 수정:',
-      post.id
-    )
-  }
-
-
-  /* =================================
-     DELETE
-  ================================= */
 
   function handleDelete() {
-    const shouldDelete =
-      window.confirm(
-        '이 게시글을 삭제하시겠습니까?'
-      )
-
-    if (!shouldDelete) {
-      return
-    }
-
-    console.log(
-      '게시글 삭제:',
-      post.id
-    )
+    // 서버 삭제는 연결되지 않았으며 확인창만 표시합니다.
+    window.confirm('이 게시글을 삭제하시겠습니까?')
   }
-
-
-  /* =================================
-     RENDER
-  ================================= */
 
   return (
     <article className="mooday-detail-post">
-
-
-      {/* SECTION TITLE */}
 
       <h2 className="mooday-detail-section-title">
         POST
       </h2>
 
-
-      {/* =================================
-          HEADER
-      ================================= */}
-
       <div className="mooday-detail-post__header">
-
-
-        {/* AUTHOR */}
 
         <div className="mooday-detail-post__author">
 
-          <div
-            className="mooday-detail-avatar"
-            aria-hidden="true"
-          >
+          <div className="mooday-detail-avatar" aria-hidden="true">
             {authorInitial}
           </div>
-
 
           <div className="mooday-detail-post__author-info">
 
@@ -145,13 +46,7 @@ export default function DetailPost({
 
         </div>
 
-
-        {/* ACTIONS */}
-
         <div className="mooday-detail-post__actions">
-
-
-          {/* LIKE */}
 
           <button
             type="button"
@@ -177,37 +72,17 @@ export default function DetailPost({
 
           </button>
 
-
-          {/* EDIT */}
-
-          <button
-            type="button"
-            className="mooday-detail-post__edit"
-            onClick={handleEdit}
-          >
+          <button type="button" className="mooday-detail-post__edit">
             수정
           </button>
 
-
-          {/* DELETE */}
-
-          <button
-            type="button"
-            className="mooday-detail-post__delete"
-            onClick={handleDelete}
-          >
+          <button type="button" className="mooday-detail-post__delete" onClick={handleDelete}>
             삭제
           </button>
-
 
         </div>
 
       </div>
-
-
-      {/* =================================
-          POST CONTENT
-      ================================= */}
 
       <div className="mooday-detail-post__body">
 
@@ -222,7 +97,6 @@ export default function DetailPost({
         )}
 
       </div>
-
 
     </article>
   )

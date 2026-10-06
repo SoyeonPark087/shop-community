@@ -1,20 +1,12 @@
 import { useEffect } from "react";
 import "./Drawer.css";
 
-export default function Drawer({
-  open,
-  onClose,
-  title,
-  children,
-  width = 520,
-  className = "",
-}) {
+export default function Drawer({ open, onClose, title, children, width = 520, className = "" }) {
 
   useEffect(() => {
   if (!open) return;
 
-  const previousOverflow =
-    document.body.style.overflow;
+  const previousOverflow = document.body.style.overflow;
 
   document.body.style.overflow = "hidden";
 
@@ -24,19 +16,12 @@ export default function Drawer({
     }
   };
 
-  window.addEventListener(
-    "keydown",
-    handleKeyDown
-  );
+  window.addEventListener("keydown", handleKeyDown);
 
   return () => {
-    document.body.style.overflow =
-      previousOverflow;
+    document.body.style.overflow = previousOverflow;
 
-    window.removeEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.removeEventListener("keydown", handleKeyDown);
   };
 }, [open, onClose]);
 
@@ -63,9 +48,7 @@ export default function Drawer({
 
       <aside
         className={`drawer ${className}`}
-        style={{
-          "--drawer-width": drawerWidth,
-        }}
+        style={{ "--drawer-width": drawerWidth }}
         role="dialog"
         aria-modal="true"
         aria-label={title}
@@ -73,16 +56,8 @@ export default function Drawer({
         <div className="drawer__header">
           <h2>{title}</h2>
 
-          <button
-            type="button"
-            className="drawer__close"
-            onClick={onClose}
-            aria-label="닫기"
-          >
-            <span
-              className="drawer__close-icon"
-              aria-hidden="true"
-            />
+          <button type="button" className="drawer__close" onClick={onClose} aria-label="닫기">
+            <span className="drawer__close-icon" aria-hidden="true" />
           </button>
         </div>
 

@@ -1,6 +1,4 @@
-/* =========================
-   Layout
-========================= */
+/* Layout */
 
 .filter-content {
   min-height:
@@ -20,10 +18,7 @@
   width: 100%;
 }
 
-
-/* =========================
-   Section
-========================= */
+/* Section */
 
 .filter-section {
   padding-bottom: 32px;
@@ -50,10 +45,7 @@
   line-height: 1.2;
 }
 
-
-/* =========================
-   Color
-========================= */
+/* Color */
 
 .filter-colors {
   display: grid;
@@ -105,10 +97,7 @@
   border-radius: 50%;
 }
 
-
-/* =========================
-   Size
-========================= */
+/* Size */
 
 .filter-sizes {
   display: flex;
@@ -181,10 +170,7 @@
   transform: rotate(45deg);
 }
 
-
-/* =========================
-   Price
-========================= */
+/* Price */
 
 .filter-section--price {
   padding-bottom: 0;
@@ -306,10 +292,7 @@ input::-moz-range-thumb {
   font-weight: 400;
 }
 
-
-/* =========================
-   Actions
-========================= */
+/* Actions */
 
 .filter-actions {
   display: flex;
@@ -358,10 +341,7 @@ input::-moz-range-thumb {
   background: #294a3a;
 }
 
-
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 600px) {
   .filter-content {

@@ -2,10 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Drawer from "./Drawer";
 import "./Account.css";
 
-export default function Login({
-  open,
-  onClose,
-}) {
+export default function Login({ open, onClose }) {
   const navigate = useNavigate();
 
   const handleCreateAccount = () => {
@@ -18,33 +15,15 @@ export default function Login({
   };
 
   return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      title="Account"
-    >
-      <form
-        className="login-content"
-        onSubmit={handleSubmit}
-      >
+    <Drawer open={open} onClose={onClose} title="Account">
+      <form className="login-content" onSubmit={handleSubmit}>
         <div className="login-content__fields">
-          <input
-            type="text"
-            placeholder="Account ID"
-            autoComplete="username"
-          />
+          <input type="text" placeholder="Account ID" autoComplete="username" />
 
-          <input
-            type="password"
-            placeholder="Password"
-            autoComplete="current-password"
-          />
+          <input type="password" placeholder="Password" autoComplete="current-password" />
         </div>
 
-        <button
-          type="submit"
-          className="login-content__submit"
-        >
+        <button type="submit" className="login-content__submit">
           Log in
         </button>
 
@@ -59,10 +38,7 @@ export default function Login({
             </button>
           </div>
 
-          <button
-            type="button"
-            onClick={handleCreateAccount}
-          >
+          <button type="button" onClick={handleCreateAccount}>
             Create Account
           </button>
         </div>
@@ -70,10 +46,7 @@ export default function Login({
         <div className="login-content__divider" />
 
         <div className="login-content__social">
-          <button
-            type="button"
-            className="login-social"
-          >
+          <button type="button" className="login-social">
             <img
               className="login-social__logo"
               src={`${import.meta.env.BASE_URL}icons/kakao-talk.svg`}
@@ -84,18 +57,12 @@ export default function Login({
               Kakao
             </span>
 
-            <span
-              className="login-social__arrow"
-              aria-hidden="true"
-            >
+            <span className="login-social__arrow" aria-hidden="true">
               →
             </span>
           </button>
 
-          <button
-            type="button"
-            className="login-social"
-          >
+          <button type="button" className="login-social">
             <img
               className="login-social__logo"
               src={`${import.meta.env.BASE_URL}icons/naver.svg`}
@@ -106,10 +73,7 @@ export default function Login({
               Naver
             </span>
 
-            <span
-              className="login-social__arrow"
-              aria-hidden="true"
-            >
+            <span className="login-social__arrow" aria-hidden="true">
               →
             </span>
           </button>

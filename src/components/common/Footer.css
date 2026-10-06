@@ -70,10 +70,7 @@
   margin-top: 4px;
 }
 
-
-/* =========================
-   Mobile Footer
-========================= */
+/* Mobile Footer */
 
 @media screen and (max-width: 767px) {
 
@@ -142,4 +139,3 @@
     margin-top: 4px;
   }
 }
-

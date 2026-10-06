@@ -5,9 +5,7 @@ import { communityPosts, communityMainTags } from '../data/Community.js'
 const HISTORY_KEY = 'mooday.recentSearches'
 const HISTORY_LIMIT = 8
 
-export const suggestedTags = communityMainTags
-  .filter((tag) => tag !== 'All')
-  .slice(0, 5)
+export const suggestedTags = communityMainTags.filter(tag => tag !== 'All').slice(0, 5)
 
 export function cleanSearchQuery(value) {
   return value.normalize('NFKC').replace(/#/g, '').trim().replace(/\s+/g, ' ')
@@ -35,7 +33,7 @@ export function saveRecentSearch(query) {
   try {
     localStorage.setItem(HISTORY_KEY, JSON.stringify([value, ...recent].slice(0, HISTORY_LIMIT)))
   } catch {
-    // Search remains available when browser storage is unavailable.
+    // 저장소 접근이 제한되어도 검색은 계속 사용할 수 있습니다.
   }
 }
 
@@ -43,7 +41,7 @@ export function clearRecentSearches() {
   try {
     localStorage.removeItem(HISTORY_KEY)
   } catch {
-    // Storage can be disabled by browser settings.
+    // 저장소 접근이 제한되면 기록 삭제를 건너뜁니다.
   }
 }
 
