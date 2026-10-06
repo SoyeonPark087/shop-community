@@ -5,7 +5,7 @@ import CommunityCard from '../../components/community/CommunityCard.jsx'
 import {
   communityMainTags,
   communityPosts,
-} from '../../data/community.js'
+} from '../../data/Community.js'
 
 import './Community.css'
 
