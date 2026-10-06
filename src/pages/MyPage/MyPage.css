@@ -108,6 +108,7 @@
   cursor: default;
 }
 
+
 /* CONTENT */
 
 .mooday-mypage__content-inner {
@@ -125,6 +126,7 @@
   padding: 48px 0 120px;
 }
 
+
 /* PROFILE FORM */
 
 .mooday-profile-form {
@@ -132,6 +134,7 @@
 
   margin: 0;
 }
+
 
 /* FORM TITLE */
 
@@ -146,6 +149,7 @@
 
   letter-spacing: -0.02em;
 }
+
 
 /* FIELDS */
 
@@ -181,6 +185,7 @@
 
   letter-spacing: -0.015em;
 }
+
 
 /* INPUT */
 
@@ -227,6 +232,7 @@
   cursor: default;
 }
 
+
 /* VALIDATION */
 
 .mooday-profile-form__field--error
@@ -251,6 +257,7 @@ input:focus-visible:not([readonly]) {
   font-weight: 400;
   line-height: 1.5;
 }
+
 
 /* ID READ ONLY */
 
@@ -319,6 +326,7 @@ input:focus-visible:not([readonly]) {
   white-space: normal;
 }
 
+
 /* PASSWORD */
 
 .mooday-profile-form__password-row {
@@ -381,6 +389,7 @@ input:focus-visible:not([readonly]) {
   opacity: 1;
 }
 
+
 /* CONSENT */
 
 .mooday-profile-form__consents {
@@ -427,6 +436,7 @@ input:focus-visible:not([readonly]) {
   outline: 1px solid var(--mooday-profile-sage);
   outline-offset: 2px;
 }
+
 
 /* SUBMIT */
 
@@ -476,6 +486,7 @@ input:focus-visible:not([readonly]) {
 
   cursor: default;
 }
+
 
 /* TOAST */
 
@@ -528,6 +539,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
 /* ACCESSIBILITY */
 
 .mooday-profile-form__visually-hidden {
@@ -548,6 +560,9 @@ input:focus-visible:not([readonly]) {
 
   border: 0;
 }
+
+
+/* TABLET */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
@@ -594,6 +609,9 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
+/* MOBILE */
+
 @media screen and (max-width: 767px) {
 
   .mooday-mypage__nav-inner,
@@ -607,29 +625,100 @@ input:focus-visible:not([readonly]) {
     padding-left: 24px;
   }
 
-  /* Navigation */
+
+  /* ==================================================
+     Mobile Navigation
+     --------------------------------------------------
+     이번 피드백 수정 대상
+
+     기존:
+     - flex-wrap: wrap
+     - width: 100%
+     - 2줄 배치
+
+     변경:
+     - 한 줄 nowrap
+     - Navigation 자체만 horizontal scroll
+     - 페이지 전체 horizontal overflow 방지
+  ================================================== */
 
   .mooday-mypage-nav {
     width: 100%;
 
     padding-top: 100px;
+
+    /*
+      Navigation 영역 내부에서만
+      좌우 Scroll이 발생하도록 합니다.
+    */
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    /*
+      iOS / Mobile 환경에서
+      자연스러운 Touch Scroll을 지원합니다.
+    */
+    -webkit-overflow-scrolling: touch;
+
+    /*
+      Scroll 기능은 유지하되
+      Scrollbar는 화면에서 숨깁니다.
+    */
+    scrollbar-width: none;
+  }
+
+  /*
+    Chrome / Safari 계열 Scrollbar 숨김
+  */
+  .mooday-mypage-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .mooday-mypage-nav__list {
     display: flex;
-    flex-wrap: wrap;
+
+    /*
+      핵심 수정:
+      기존 wrap을 제거하고
+      모든 메뉴를 반드시 한 줄로 유지합니다.
+    */
+    flex-wrap: nowrap;
+
     align-items: center;
 
-    width: 100%;
-    min-width: 0;
+    /*
+      메뉴 전체 길이만큼 List가 확장됩니다.
 
-    gap: 12px 20px;
+      Navigation보다 길어진 부분은
+      부모 .mooday-mypage-nav 안에서만
+      horizontal scroll됩니다.
+    */
+    width: max-content;
+    min-width: max-content;
+
+    /*
+      기존 2줄 구조:
+      gap: 12px 20px;
+
+      한 줄 구조에서는 row-gap이 필요하지 않으므로
+      가로 간격 20px만 유지합니다.
+    */
+    gap: 20px;
 
     margin: 0;
     padding: 0;
 
     list-style: none;
   }
+
+  /*
+    기본 Desktop 규칙에서도
+    flex: 0 0 auto가 적용되어 있지만,
+    Mobile 한 줄 Navigation 의도를
+    명확하게 유지하기 위해 그대로 활용합니다.
+
+    별도 override는 필요하지 않습니다.
+  */
 
   .mooday-mypage-nav__tab {
     min-height: 0;
@@ -641,11 +730,22 @@ input:focus-visible:not([readonly]) {
     line-height: 1.4;
 
     letter-spacing: -0.02em;
+
+    /*
+      메뉴 텍스트 자체가
+      PROFILE / MY POST 등에서
+      두 줄로 깨지는 것을 방지합니다.
+
+      기본 규칙에도 존재하지만
+      한 줄 Scroll Navigation의 핵심 조건입니다.
+    */
+    white-space: nowrap;
   }
 
   .mooday-mypage-nav__tab--active {
     font-weight: 500;
   }
+
 
   /* Content */
 
@@ -656,6 +756,7 @@ input:focus-visible:not([readonly]) {
       40px 0 72px;
   }
 
+
   /* Title */
 
   .mooday-profile-form__title {
@@ -665,6 +766,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 600;
     line-height: 1.3;
   }
+
 
   /* Fields */
 
@@ -687,6 +789,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.4;
   }
 
+
   /* Input */
 
   .mooday-profile-form__field input {
@@ -695,9 +798,11 @@ input:focus-visible:not([readonly]) {
 
     padding:
       0 12px;
+
     font-size: 16px;
     font-weight: 400;
   }
+
   .mooday-profile-form__field
   input[readonly] {
     font-size: 12px;
@@ -707,6 +812,7 @@ input:focus-visible:not([readonly]) {
     font-size: 10px;
     line-height: 1.5;
   }
+
 
   /* ID Read Only */
 
@@ -731,6 +837,7 @@ input:focus-visible:not([readonly]) {
     font-size: 10px;
     line-height: 1.5;
   }
+
 
   /* Password */
 
@@ -761,6 +868,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 400;
   }
 
+
   /* Consent */
 
   .mooday-profile-form__consents {
@@ -788,6 +896,7 @@ input:focus-visible:not([readonly]) {
     margin-top: 1px;
   }
 
+
   /* Submit */
 
   .mooday-profile-form__submit {
@@ -800,6 +909,7 @@ input:focus-visible:not([readonly]) {
     font-size: 11px;
     font-weight: 500;
   }
+
 
   /* Toast */
 
@@ -819,16 +929,28 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
+/* SMALL MOBILE */
+
 @media screen and (max-width: 420px) {
 
-  .mooday-mypage-nav__list {
+  /*
+    기존:
     gap: 10px 16px;
+
+    두 줄 Wrap을 전제로 한 row/column gap이었기 때문에,
+    Horizontal Scroll 구조에서는
+    가로 간격 16px만 사용합니다.
+  */
+  .mooday-mypage-nav__list {
+    gap: 16px;
   }
 
   .mooday-mypage-nav__tab {
     font-size: 11px;
   }
 }
+
 
 /* REDUCED MOTION */
 
