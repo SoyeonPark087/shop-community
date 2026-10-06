@@ -11,8 +11,8 @@ import './Community.css'
 
 
 const SORT_MODE = {
-  latest: 'latest',
-  popular: 'popular',
+  LATEST: 'LATEST',
+  POPULAR: 'POPULAR',
 }
 
 const POSTS_PER_PAGE = 9
@@ -24,7 +24,7 @@ function getSortedPosts(posts, sortMode) {
   const copiedPosts = [...posts]
 
 
-  if (sortMode === SORT_MODE.popular) {
+  if (sortMode === SORT_MODE.POPULAR) {
 
     return copiedPosts.sort(
       (a, b) =>
@@ -47,7 +47,7 @@ export default function Community() {
 
 
   const [sortMode, setSortMode] = useState(
-    SORT_MODE.latest
+    SORT_MODE.LATEST
   )
 
   const [selectedTag, setSelectedTag] = useState('All')
@@ -99,12 +99,12 @@ export default function Community() {
 
 
   function handleLatestSort() {
-    setSortMode(SORT_MODE.latest)
+    setSortMode(SORT_MODE.LATEST)
     setCurrentPage(1)
   }
 
   function handlePopularSort() {
-    setSortMode(SORT_MODE.popular)
+    setSortMode(SORT_MODE.POPULAR)
     setCurrentPage(1)
   }
   
@@ -131,17 +131,17 @@ export default function Community() {
               type="button"
               className={
                 `mooday-community__tab ${
-                  sortMode === SORT_MODE.latest
+                  sortMode === SORT_MODE.LATEST
                     ? 'mooday-community__tab--active'
                     : 'mooday-community__tab--pending'
                 }`
               }
               onClick={handleLatestSort}
               aria-pressed={
-                sortMode === SORT_MODE.latest
+                sortMode === SORT_MODE.LATEST
               }
             >
-              Latest
+              LATEST
             </button>
 
 
@@ -149,17 +149,17 @@ export default function Community() {
               type="button"
               className={
                 `mooday-community__tab ${
-                  sortMode === SORT_MODE.popular
+                  sortMode === SORT_MODE.POPULAR
                     ? 'mooday-community__tab--active'
                     : 'mooday-community__tab--pending'
                 }`
               }
               onClick={handlePopularSort}
               aria-pressed={
-                sortMode === SORT_MODE.popular
+                sortMode === SORT_MODE.POPULAR
               }
             >
-              Popular
+              POPULAR
             </button>
 
           </div>
