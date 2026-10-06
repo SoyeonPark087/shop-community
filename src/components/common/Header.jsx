@@ -37,7 +37,7 @@ function Header({
             className="site-header__logo"
           >
             <img
-              src="/images/common/Logo.svg"
+              src="/icons/Logo.svg"
               alt="로고"
             />
           </a>

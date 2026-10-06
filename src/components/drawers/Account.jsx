@@ -76,7 +76,7 @@ export default function Login({
           >
             <img
               className="login-social__logo"
-              src="/icons/kakao-talk.svg"
+              src={`${import.meta.env.BASE_URL}icons/kakao-talk.svg`}
               alt=""
             />
 
@@ -98,7 +98,7 @@ export default function Login({
           >
             <img
               className="login-social__logo"
-              src="/icons/naver.svg"
+              src={`${import.meta.env.BASE_URL}icons/naver.svg`}
               alt=""
             />
 
