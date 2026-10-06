@@ -11,11 +11,11 @@ import DetailComments from '../../components/community/DetailComments.jsx'
 
 import {
   communityPosts,
-} from '../../data/community.js'
+} from '../../data/Community.js'
 
 import {
   communityDetailData,
-} from '../../data/communityDetail.js'
+} from '../../data/CommunityDetail.js'
 
 import './Community.css'
 import './CommunityDetail.css'
