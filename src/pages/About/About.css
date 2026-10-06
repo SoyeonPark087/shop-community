@@ -1,0 +1,622 @@
+/* =========================================================
+   MOODAY ABOUT
+========================================================= */
+
+.mooday-about,
+.mooday-about * {
+  box-sizing: border-box;
+}
+
+.mooday-about {
+  width: 100%;
+  min-width: 0;
+
+  background: #fafaf8;
+  color: #282828;
+
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PAGE INNER
+========================================================= */
+
+.mooday-about__inner {
+  width: min(
+    960px,
+    calc(100% - 128px)
+  );
+
+  margin: 0 auto;
+
+  padding-top: 120px;
+  padding-bottom: 112px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.mooday-about__header {
+  width: 100%;
+
+  padding-bottom: 104px;
+}
+
+.mooday-about__eyebrow {
+  margin: 0 0 24px;
+
+  color: #344f41;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.08em;
+}
+
+.mooday-about__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: clamp(34px, 3.6vw, 54px);
+  font-weight: 500;
+  line-height: 1.08;
+
+  letter-spacing: -0.045em;
+}
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.mooday-about__section {
+  display: grid;
+
+  grid-template-columns:
+    150px minmax(0, 1fr);
+
+  column-gap: 36px;
+
+  width: 100%;
+
+  padding: 88px 0;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-about__section-label {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding-top: 4px;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+
+  white-space: nowrap;
+}
+
+.mooday-about__section-label span:first-child {
+  color: #344f41;
+}
+
+.mooday-about__section-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-about__section-content > h2 {
+  margin: 0 0 40px;
+
+  color: #282828;
+
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.35;
+
+  letter-spacing: -0.035em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   TEXT CONTENT
+========================================================= */
+
+.mooday-about__text {
+  width: 100%;
+  max-width: 590px;
+}
+
+.mooday-about__text p {
+  margin: 0;
+
+  color: #55514b;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.85;
+
+  letter-spacing: -0.012em;
+
+  word-break: keep-all;
+}
+
+.mooday-about__text p + p {
+  margin-top: 20px;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.mooday-about__philosophy-list {
+  width: 100%;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-about__philosophy-item {
+  display: grid;
+
+  grid-template-columns:
+    52px minmax(0, 1fr);
+
+  column-gap: 24px;
+
+  width: 100%;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid #deddd9;
+}
+
+.mooday-about__philosophy-number {
+  padding-top: 3px;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mooday-about__philosophy-item h3 {
+  margin: 0 0 10px;
+
+  color: #282828;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: -0.02em;
+}
+
+.mooday-about__philosophy-item p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   EXPERIENCE / SERVICE
+========================================================= */
+
+.mooday-about__service-list {
+  width: 100%;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-about__service-item {
+  width: 100%;
+
+  padding: 28px 0;
+
+  border-bottom: 1px solid #deddd9;
+}
+
+.mooday-about__service-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 14px;
+}
+
+.mooday-about__service-heading span:first-child {
+  color: #282828;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.03em;
+}
+
+.mooday-about__service-heading span:last-child {
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mooday-about__service-item p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.mooday-about__closing {
+  width: 100%;
+
+  padding-top: 88px;
+
+  text-align: center;
+}
+
+.mooday-about__closing-label {
+  margin: 0 0 28px;
+
+  color: #344f41;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.1em;
+}
+
+.mooday-about__closing-message {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.55;
+
+  letter-spacing: -0.035em;
+
+  word-break: keep-all;
+}
+
+.mooday-about__closing-description {
+  max-width: 400px;
+
+  margin: 24px auto 0;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.8;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+.mooday-about__closing-en {
+  margin: 40px 0 0;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  letter-spacing: 0.1em;
+}
+
+
+/* =========================================================
+   TABLET
+   768px - 1024px
+========================================================= */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .mooday-about__inner {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    padding-top: 104px;
+    padding-bottom: 112px;
+  }
+
+
+  /* INTRO */
+
+  .mooday-about__header {
+    padding-bottom: 88px;
+  }
+
+  .mooday-about__eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .mooday-about__title {
+    font-size: clamp(38px, 5.5vw, 52px);
+  }
+
+
+
+  /* SECTION */
+
+  .mooday-about__section {
+    grid-template-columns:
+      120px minmax(0, 1fr);
+
+    column-gap: 32px;
+
+    padding: 72px 0;
+  }
+
+  .mooday-about__section-content > h2 {
+    margin-bottom: 36px;
+
+    font-size: 24px;
+  }
+
+
+  /* CLOSING */
+
+  .mooday-about__closing {
+    padding-top: 96px;
+  }
+
+  .mooday-about__closing-message {
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   <= 767px
+========================================================= */
+
+@media screen and (max-width: 767px) {
+
+  .mooday-about__inner {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding:
+      100px 24px
+      80px;
+  }
+
+
+  /* INTRO */
+
+  .mooday-about__header {
+    padding-bottom: 72px;
+  }
+
+  .mooday-about__eyebrow {
+    margin-bottom: 20px;
+
+    font-size: 9px;
+  }
+
+  .mooday-about__title {
+    font-size: clamp(34px, 10vw, 46px);
+    line-height: 1.1;
+  }
+
+
+  /* SECTION */
+
+  .mooday-about__section {
+    display: block;
+
+    padding: 64px 0;
+  }
+
+  .mooday-about__section-label {
+    gap: 10px;
+
+    margin-bottom: 28px;
+    padding-top: 0;
+
+    font-size: 9px;
+  }
+
+  .mooday-about__section-content > h2 {
+    margin-bottom: 32px;
+
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+
+  /* TEXT */
+
+  .mooday-about__text {
+    max-width: none;
+  }
+
+  .mooday-about__text p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .mooday-about__text p + p {
+    margin-top: 18px;
+  }
+
+
+  /* PHILOSOPHY */
+
+  .mooday-about__philosophy-item {
+    grid-template-columns:
+      38px minmax(0, 1fr);
+
+    column-gap: 16px;
+
+    padding: 24px 0;
+  }
+
+  .mooday-about__philosophy-number {
+    font-size: 9px;
+  }
+
+  .mooday-about__philosophy-item h3 {
+    margin-bottom: 8px;
+
+    font-size: 13px;
+  }
+
+  .mooday-about__philosophy-item p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+
+  /* SERVICE */
+
+  .mooday-about__service-item {
+    padding: 24px 0;
+  }
+
+  .mooday-about__service-heading {
+    margin-bottom: 12px;
+  }
+
+  .mooday-about__service-heading span:first-child {
+    font-size: 11px;
+  }
+
+  .mooday-about__service-heading span:last-child {
+    font-size: 9px;
+  }
+
+  .mooday-about__service-item p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+
+  /* CLOSING */
+
+  .mooday-about__closing {
+    padding-top: 80px;
+  }
+
+  .mooday-about__closing-label {
+    margin-bottom: 24px;
+
+    font-size: 9px;
+  }
+
+  .mooday-about__closing-message {
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  .mooday-about__closing-description {
+    max-width: 320px;
+
+    margin-top: 20px;
+
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .mooday-about__closing-en {
+    margin-top: 32px;
+
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media screen and (max-width: 420px) {
+
+  .mooday-about__title {
+    font-size: 34px;
+  }
+
+  .mooday-about__section {
+    padding: 56px 0;
+  }
+
+  .mooday-about__section-content > h2 {
+    font-size: 21px;
+  }
+
+  .mooday-about__closing {
+    padding-top: 72px;
+  }
+
+  .mooday-about__closing-message {
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mooday-about *,
+  .mooday-about *::before,
+  .mooday-about *::after {
+    scroll-behavior: auto;
+    transition-duration: 0s;
+  }
+}

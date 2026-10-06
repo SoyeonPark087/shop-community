@@ -1,0 +1,890 @@
+/* =========================================================
+   MOODAY CUSTOMER SERVICE
+========================================================= */
+
+.mooday-customer-service,
+.mooday-customer-service * {
+  box-sizing: border-box;
+}
+
+.mooday-customer-service {
+  width: 100%;
+  min-width: 0;
+
+  background: #fafaf8;
+  color: #282828;
+
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PAGE INNER
+========================================================= */
+
+.mooday-customer-service__inner {
+  width: min(
+    960px,
+    calc(100% - 128px)
+  );
+
+  margin: 0 auto;
+
+  padding-top: 120px;
+  padding-bottom: 140px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.mooday-customer-service__header {
+  width: 100%;
+
+  padding-bottom: 96px;
+}
+
+.mooday-customer-service__eyebrow {
+  margin: 0 0 20px;
+
+  color: #344f41;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.08em;
+}
+
+.mooday-customer-service__title {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.15;
+
+  letter-spacing: -0.04em;
+}
+
+.mooday-customer-service__description {
+  margin: 24px 0 0;
+
+  color: #77736d;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.mooday-customer-service__section {
+  display: grid;
+
+  grid-template-columns:
+    170px minmax(0, 1fr);
+
+  column-gap: 48px;
+
+  width: 100%;
+
+  padding: 80px 0;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-customer-service__section-label {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding-top: 4px;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+
+  white-space: nowrap;
+}
+
+.mooday-customer-service__section-label span:first-child {
+  color: #344f41;
+}
+
+.mooday-customer-service__section-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.mooday-customer-service__section-content > h2 {
+  margin: 0 0 36px;
+
+  color: #282828;
+
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+
+  letter-spacing: -0.03em;
+
+  word-break: keep-all;
+}
+
+
+/* =========================================================
+   CUSTOMER CARE
+========================================================= */
+
+.mooday-customer-service__care {
+  width: 100%;
+  max-width: 590px;
+}
+
+.mooday-customer-service__care p {
+  margin: 0;
+
+  color: #55514b;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.8;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__care p + p {
+  margin-top: 16px;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.mooday-customer-service__faq-list {
+  width: 100%;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-customer-service__faq-item {
+  width: 100%;
+
+  border-bottom: 1px solid #deddd9;
+}
+
+.mooday-customer-service__faq-button {
+  display: grid;
+
+  grid-template-columns:
+    96px minmax(0, 1fr) 24px;
+
+  align-items: center;
+
+  column-gap: 18px;
+
+  width: 100%;
+
+  min-height: 64px;
+
+  margin: 0;
+  padding: 18px 0;
+
+  border: 0;
+
+  background: transparent;
+  color: #282828;
+
+  font-family: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.mooday-customer-service__faq-button:hover {
+  color: #344f41;
+}
+
+.mooday-customer-service__faq-button:focus-visible {
+  outline: 1px solid #344f41;
+  outline-offset: 3px;
+}
+
+.mooday-customer-service__faq-category {
+  color: #99958f;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  letter-spacing: 0.05em;
+}
+
+.mooday-customer-service__faq-question {
+  color: inherit;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  letter-spacing: -0.015em;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__faq-icon {
+  justify-self: end;
+
+  color: #77736d;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mooday-customer-service__faq-answer {
+  width: 100%;
+
+  padding:
+    0 42px 22px
+    114px;
+}
+
+.mooday-customer-service__faq-answer p {
+  max-width: 520px;
+
+  margin: 0;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__faq-item--open
+.mooday-customer-service__faq-question {
+  color: #344f41;
+}
+
+.mooday-customer-service__faq-item--open
+.mooday-customer-service__faq-icon {
+  color: #344f41;
+}
+
+/* =========================================================
+   1:1 INQUIRY
+========================================================= */
+
+.mooday-customer-service__inquiry-description {
+  max-width: 520px;
+
+  margin: 0 0 32px;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__inquiry-form {
+  width: 100%;
+}
+
+.mooday-customer-service__inquiry-field {
+  display: grid;
+
+  grid-template-columns:
+    120px minmax(0, 1fr);
+
+  align-items: center;
+
+  column-gap: 24px;
+
+  width: 100%;
+}
+
+.mooday-customer-service__inquiry-field
++ .mooday-customer-service__inquiry-field {
+  margin-top: 14px;
+}
+
+.mooday-customer-service__inquiry-field label {
+  color: #282828;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.mooday-customer-service__inquiry-field input,
+.mooday-customer-service__inquiry-field select,
+.mooday-customer-service__inquiry-field textarea {
+  width: 100%;
+
+  border: 1px solid #deddd9;
+  border-radius: 0;
+
+  outline: none;
+
+  background: #ffffff;
+  color: #282828;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.mooday-customer-service__inquiry-field input,
+.mooday-customer-service__inquiry-field select {
+  height: 46px;
+
+  padding: 0 14px;
+}
+
+.mooday-customer-service__inquiry-field textarea {
+  min-height: 140px;
+
+  padding: 14px;
+
+  resize: vertical;
+
+  line-height: 1.65;
+}
+
+.mooday-customer-service__inquiry-field input::placeholder,
+.mooday-customer-service__inquiry-field textarea::placeholder {
+  color: #aaa7a1;
+}
+
+.mooday-customer-service__inquiry-field input:focus,
+.mooday-customer-service__inquiry-field select:focus,
+.mooday-customer-service__inquiry-field textarea:focus {
+  border-color: #77736c;
+}
+
+.mooday-customer-service__inquiry-field--textarea {
+  align-items: start;
+}
+
+.mooday-customer-service__inquiry-field--textarea label {
+  padding-top: 14px;
+}
+
+.mooday-customer-service__inquiry-note {
+  margin-top: 24px;
+  padding-left: 144px;
+}
+
+.mooday-customer-service__inquiry-note p {
+  margin: 0;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.65;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__inquiry-note p + p {
+  margin-top: 4px;
+}
+
+.mooday-customer-service__inquiry-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(100% - 144px);
+  height: 46px;
+
+  margin:
+    28px 0 0
+    144px;
+
+  padding: 0 16px;
+
+  border: 0;
+  border-radius: 0;
+
+  background: #344f41;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.mooday-customer-service__inquiry-submit:hover {
+  background: #294a3a;
+}
+
+.mooday-customer-service__inquiry-submit:focus-visible {
+  outline: 1px solid #344f41;
+  outline-offset: 3px;
+}
+
+.mooday-customer-service__inquiry-success {
+  margin:
+    14px 0 0
+    144px;
+
+  color: #344f41;
+
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.mooday-customer-service__contact-description {
+  max-width: 520px;
+
+  margin: 0 0 28px;
+
+  color: #77736d;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  word-break: keep-all;
+}
+
+.mooday-customer-service__contact {
+  width: 100%;
+
+  border-top: 1px solid #deddd9;
+}
+
+.mooday-customer-service__contact-row {
+  display: grid;
+
+  grid-template-columns:
+    120px minmax(0, 1fr);
+
+  align-items: start;
+
+  column-gap: 24px;
+
+  width: 100%;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid #deddd9;
+}
+
+.mooday-customer-service__contact-row > span {
+  padding-top: 1px;
+
+  color: #99958f;
+
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  letter-spacing: 0.05em;
+}
+
+.mooday-customer-service__contact-row a,
+.mooday-customer-service__contact-row p {
+  margin: 0;
+
+  color: #282828;
+
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.7;
+
+  letter-spacing: -0.01em;
+}
+
+.mooday-customer-service__contact-row a {
+  width: fit-content;
+
+  text-decoration: none;
+}
+
+.mooday-customer-service__contact-row a:hover {
+  color: #344f41;
+}
+
+.mooday-customer-service__contact-row a:focus-visible {
+  outline: 1px solid #344f41;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   TABLET
+   768px - 1024px
+========================================================= */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .mooday-customer-service__inner {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    padding-top: 104px;
+    padding-bottom: 112px;
+  }
+
+
+  /* HEADER */
+
+  .mooday-customer-service__header {
+    padding-bottom: 84px;
+  }
+
+  .mooday-customer-service__title {
+    font-size: 34px;
+  }
+
+
+  /* SECTION */
+
+  .mooday-customer-service__section {
+    grid-template-columns:
+      140px minmax(0, 1fr);
+
+    column-gap: 36px;
+
+    padding: 72px 0;
+  }
+
+  .mooday-customer-service__section-content > h2 {
+    margin-bottom: 32px;
+
+    font-size: 21px;
+  }
+
+
+  /* FAQ */
+
+  .mooday-customer-service__faq-button {
+    grid-template-columns:
+      86px minmax(0, 1fr) 24px;
+  }
+
+  .mooday-customer-service__faq-answer {
+    padding-left: 104px;
+  }
+
+
+}
+
+
+/* =========================================================
+   MOBILE
+   <= 767px
+========================================================= */
+
+@media screen and (max-width: 767px) {
+
+  .mooday-customer-service__inner {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding:
+      100px 24px
+      80px;
+  }
+
+
+  /* HEADER */
+
+  .mooday-customer-service__header {
+    padding-bottom: 64px;
+  }
+
+  .mooday-customer-service__eyebrow {
+    margin-bottom: 18px;
+
+    font-size: 9px;
+  }
+
+  .mooday-customer-service__title {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .mooday-customer-service__description {
+    margin-top: 20px;
+
+    font-size: 11px;
+  }
+
+
+  /* SECTION */
+
+  .mooday-customer-service__section {
+    display: block;
+
+    padding: 56px 0;
+  }
+
+  .mooday-customer-service__section-label {
+    gap: 10px;
+
+    margin-bottom: 26px;
+    padding-top: 0;
+
+    font-size: 9px;
+  }
+
+  .mooday-customer-service__section-content > h2 {
+    margin-bottom: 28px;
+
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+
+  /* CUSTOMER CARE */
+
+  .mooday-customer-service__care {
+    max-width: none;
+  }
+
+  .mooday-customer-service__care p {
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .mooday-customer-service__care p + p {
+    margin-top: 14px;
+  }
+
+
+  /* FAQ */
+
+  .mooday-customer-service__faq-button {
+    grid-template-columns:
+      1fr 20px;
+
+    row-gap: 6px;
+    column-gap: 12px;
+
+    min-height: 0;
+
+    padding: 18px 0;
+  }
+
+  .mooday-customer-service__faq-category {
+    grid-column: 1;
+    grid-row: 1;
+
+    font-size: 8px;
+  }
+
+  .mooday-customer-service__faq-question {
+    grid-column: 1;
+    grid-row: 2;
+
+    padding-right: 8px;
+
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .mooday-customer-service__faq-icon {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+    align-self: center;
+
+    font-size: 13px;
+  }
+
+  .mooday-customer-service__faq-answer {
+    padding:
+      0 32px 20px
+      0;
+  }
+
+  .mooday-customer-service__faq-answer p {
+    max-width: none;
+
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+/* 1:1 INQUIRY */
+
+.mooday-customer-service__inquiry-description {
+  margin-bottom: 26px;
+
+  font-size: 10px;
+}
+
+.mooday-customer-service__inquiry-field {
+  grid-template-columns:
+    minmax(0, 1fr);
+
+  row-gap: 7px;
+
+  align-items: stretch;
+}
+
+.mooday-customer-service__inquiry-field
++ .mooday-customer-service__inquiry-field {
+  margin-top: 18px;
+}
+
+.mooday-customer-service__inquiry-field label {
+  font-size: 11px;
+}
+
+.mooday-customer-service__inquiry-field input,
+.mooday-customer-service__inquiry-field select {
+  height: 46px;
+
+  font-size: 16px;
+}
+
+.mooday-customer-service__inquiry-field textarea {
+  min-height: 140px;
+
+  font-size: 16px;
+}
+
+.mooday-customer-service__inquiry-field--textarea label {
+  padding-top: 0;
+}
+
+.mooday-customer-service__inquiry-note {
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.mooday-customer-service__inquiry-note p {
+  font-size: 9px;
+}
+
+.mooday-customer-service__inquiry-submit {
+  width: 100%;
+  height: 44px;
+
+  margin:
+    32px 0 0;
+
+  font-size: 11px;
+}
+
+.mooday-customer-service__inquiry-success {
+  margin:
+    12px 0 0;
+
+  font-size: 10px;
+}
+
+  /* CONTACT */
+
+  .mooday-customer-service__contact-description {
+    margin-bottom: 24px;
+
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .mooday-customer-service__contact-row {
+    grid-template-columns:
+      82px minmax(0, 1fr);
+
+    column-gap: 18px;
+
+    padding: 18px 0;
+  }
+
+  .mooday-customer-service__contact-row > span {
+    font-size: 8px;
+  }
+
+  .mooday-customer-service__contact-row a,
+  .mooday-customer-service__contact-row p {
+    font-size: 10px;
+    line-height: 1.65;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media screen and (max-width: 420px) {
+
+  .mooday-customer-service__title {
+    font-size: 30px;
+  }
+
+  .mooday-customer-service__section {
+    padding: 52px 0;
+  }
+
+  .mooday-customer-service__section-content > h2 {
+    font-size: 19px;
+  }
+
+  .mooday-customer-service__contact-row {
+    grid-template-columns:
+      72px minmax(0, 1fr);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mooday-customer-service *,
+  .mooday-customer-service *::before,
+  .mooday-customer-service *::after {
+    scroll-behavior: auto;
+    transition-duration: 0s;
+  }
+}

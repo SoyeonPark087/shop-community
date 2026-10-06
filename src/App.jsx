@@ -17,6 +17,10 @@ import CommunityWrite from './pages/Community/CommunityWrite'
 import MyPage from './pages/MyPage/MyPage'
 import SearchResults from './pages/Search/SearchResults'
 
+import About from './pages/About/About'
+import CustomerService from './pages/CustomerService/CustomerService'
+
+
 function App() {
   const location = useLocation()
   const isHomePage = location.pathname === '/'
@@ -81,6 +85,11 @@ function App() {
           <Route path="/community/:postId" element={<CommunityDetail />} />
 
           <Route path="/mypage" element={<MyPage />} />
+          
+          <Route path="/about" element={<About />} />
+          
+          <Route path="/customer-service" element={<CustomerService />} />
+
           <Route
             path="*"
             element={
