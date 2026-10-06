@@ -7,7 +7,7 @@ import ProductSort from "../../components/shop/ProductSort";
 import {
   products,
   SHOP_CATEGORIES,
-} from "../../data/products";
+} from "../../data/Products";
 
 import Filter from "../../components/drawers/Filter";
 

@@ -1,6 +1,6 @@
-import { products } from '../data/products.js'
+import { products } from '../data/Products.js'
 import { editorials } from '../data/Editorial.js'
-import { communityPosts, communityMainTags } from '../data/community.js'
+import { communityPosts, communityMainTags } from '../data/Community.js'
 
 const HISTORY_KEY = 'mooday.recentSearches'
 const HISTORY_LIMIT = 8
