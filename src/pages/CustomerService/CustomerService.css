@@ -780,13 +780,13 @@
 .mooday-customer-service__inquiry-field select {
   height: 46px;
 
-  font-size: 16px;
+  font-size: 11px;
 }
 
 .mooday-customer-service__inquiry-field textarea {
   min-height: 140px;
 
-  font-size: 16px;
+  font-size: 11px;
 }
 
 .mooday-customer-service__inquiry-field--textarea label {
