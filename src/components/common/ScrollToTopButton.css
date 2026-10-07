@@ -1,0 +1,137 @@
+.scroll-to-top {
+  position: fixed;
+
+  right: 32px;
+  bottom: 32px;
+
+  z-index: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid #9a9a94;
+  border-radius: 50%;
+
+  color: #282828;
+  background: #fafaf8;
+
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  cursor: pointer;
+}
+
+
+.scroll-to-top--visible {
+  opacity: 1;
+
+  transform: translateY(0);
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* ==================================================
+   ICON
+================================================== */
+
+.scroll-to-top__icon {
+  display: block;
+
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+
+  transform: translateY(-1px);
+}
+
+
+/* ==================================================
+   HOVER
+================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .scroll-to-top:hover {
+    background: #f0f0ec;
+    border-color: #6f6f6a;
+  }
+}
+
+
+/* ==================================================
+   TABLET
+   ≤ 1024px
+================================================== */
+
+@media (max-width: 1024px) {
+
+  .scroll-to-top {
+    right: 24px;
+    bottom: 24px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .scroll-to-top__icon {
+    font-size: 16px;
+  }
+}
+
+
+/* ==================================================
+   MOBILE
+   ≤ 767px
+================================================== */
+
+@media (max-width: 767px) {
+
+  .scroll-to-top {
+    right: 16px;
+
+    bottom: calc(
+      20px + env(safe-area-inset-bottom)
+    );
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-to-top__icon {
+    font-size: 16px;
+  }
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .scroll-to-top {
+    transition: none;
+  }
+}

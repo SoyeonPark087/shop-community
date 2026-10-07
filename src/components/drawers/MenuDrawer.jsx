@@ -5,7 +5,7 @@ import { suggestedTags } from "../../utils/search.js";
 import "./Drawer.css";
 import "./MenuDrawer.css";
 
-function MenuDrawer({ open, onClose, onOpenAccount }) {
+function MenuDrawer({ open, onClose }) {
   const [keyword, setKeyword] = useState("");
   const search = useSiteSearch(onClose);
 
@@ -90,18 +90,9 @@ function MenuDrawer({ open, onClose, onOpenAccount }) {
         <div className="menu-drawer__divider" />
 
         <nav className="menu-drawer__utility" aria-label="Account navigation">
-          <button
-            type="button"
-            onClick={() => {
-              onClose();
-
-              if (onOpenAccount) {
-                onOpenAccount();
-              }
-            }}
-          >
+          <a href="#/mypage" onClick={onClose}>
             Account
-          </button>
+          </a>
 
           <a href="#/mypage" onClick={onClose}>
             Orders

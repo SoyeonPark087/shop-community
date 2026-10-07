@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
+import ScrollToTopButton from './components/common/ScrollToTopButton'
 
 import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
@@ -27,6 +28,7 @@ function App() {
 
   const [cartItems, setCartItems] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
+
 
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
@@ -54,6 +56,7 @@ function App() {
     setCartOpen(true)
   }
 
+
   return (
     <>
       <Header
@@ -63,26 +66,85 @@ function App() {
         setCartOpen={setCartOpen}
       />
 
-      <div className={isHomePage ? 'app-page app-page--home' : 'app-page app-page--sub'}>
+
+      <div
+        className={
+          isHomePage
+            ? 'app-page app-page--home'
+            : 'app-page app-page--sub'
+        }
+      >
         <Routes>
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/" element={<Home />} />
 
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/search"
+            element={<SearchResults />}
+          />
 
-          <Route path="/shop" element={<Shop />} />
 
-          <Route path="/shop/:id" element={<ProductDetail onAddToCart={handleAddToCart} />} />
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-          <Route path="/editorial" element={<Editorial />} />
 
-          <Route path="/editorial/:id" element={<EditorialDetail />} />
+          <Route
+            path="/signup"
+            element={<Signup />}
+          />
 
-          <Route path="/community" element={<Community />} />
 
-          <Route path="/community/write" element={<CommunityWrite />} />
+          <Route
+            path="/shop"
+            element={<Shop />}
+          />
 
-          <Route path="/community/:postId" element={<CommunityDetail />} />
+
+          <Route
+            path="/shop/:id"
+            element={
+              <ProductDetail
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
+
+
+          <Route
+            path="/editorial"
+            element={<Editorial />}
+          />
+
+
+          <Route
+            path="/editorial/:id"
+            element={<EditorialDetail />}
+          />
+
+
+          <Route
+            path="/community"
+            element={<Community />}
+          />
+
+
+          <Route
+            path="/community/write"
+            element={<CommunityWrite />}
+          />
+
+
+          <Route
+            path="/community/:postId"
+            element={<CommunityDetail />}
+          />
+
+
+          <Route
+            path="/mypage"
+            element={<MyPage />}
+          />
+
 
           <Route path="/mypage" element={<MyPage />} />
           
@@ -95,16 +157,25 @@ function App() {
             element={
               <main>
                 <h1>페이지를 찾을 수 없습니다.</h1>
-                <a href="#/">홈으로 돌아가기</a>
+                <a href="#/">
+                  홈으로 돌아가기
+                </a>
               </main>
             }
           />
+
         </Routes>
       </div>
+
+
+      {/* 모든 페이지 공통 Scroll To Top 버튼 */}
+      <ScrollToTopButton />
+
 
       <Footer />
     </>
   )
 }
+
 
 export default App

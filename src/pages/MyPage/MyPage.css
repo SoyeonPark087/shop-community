@@ -108,6 +108,7 @@
   cursor: default;
 }
 
+
 /* CONTENT */
 
 .mooday-mypage__content-inner {
@@ -125,6 +126,7 @@
   padding: 48px 0 120px;
 }
 
+
 /* PROFILE FORM */
 
 .mooday-profile-form {
@@ -132,6 +134,7 @@
 
   margin: 0;
 }
+
 
 /* FORM TITLE */
 
@@ -146,6 +149,7 @@
 
   letter-spacing: -0.02em;
 }
+
 
 /* FIELDS */
 
@@ -181,6 +185,7 @@
 
   letter-spacing: -0.015em;
 }
+
 
 /* INPUT */
 
@@ -227,6 +232,7 @@
   cursor: default;
 }
 
+
 /* VALIDATION */
 
 .mooday-profile-form__field--error
@@ -251,6 +257,7 @@ input:focus-visible:not([readonly]) {
   font-weight: 400;
   line-height: 1.5;
 }
+
 
 /* ID READ ONLY */
 
@@ -319,6 +326,7 @@ input:focus-visible:not([readonly]) {
   white-space: normal;
 }
 
+
 /* PASSWORD */
 
 .mooday-profile-form__password-row {
@@ -381,6 +389,7 @@ input:focus-visible:not([readonly]) {
   opacity: 1;
 }
 
+
 /* CONSENT */
 
 .mooday-profile-form__consents {
@@ -427,6 +436,7 @@ input:focus-visible:not([readonly]) {
   outline: 1px solid var(--mooday-profile-sage);
   outline-offset: 2px;
 }
+
 
 /* SUBMIT */
 
@@ -476,6 +486,7 @@ input:focus-visible:not([readonly]) {
 
   cursor: default;
 }
+
 
 /* TOAST */
 
@@ -528,6 +539,7 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
 /* ACCESSIBILITY */
 
 .mooday-profile-form__visually-hidden {
@@ -548,6 +560,9 @@ input:focus-visible:not([readonly]) {
 
   border: 0;
 }
+
+
+/* TABLET */
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
@@ -594,6 +609,9 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
+/* MOBILE */
+
 @media screen and (max-width: 767px) {
 
   .mooday-mypage__nav-inner,
@@ -607,30 +625,40 @@ input:focus-visible:not([readonly]) {
     padding-left: 24px;
   }
 
-  /* Navigation */
-
   .mooday-mypage-nav {
     width: 100%;
 
     padding-top: 100px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+  }
+
+  .mooday-mypage-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .mooday-mypage-nav__list {
     display: flex;
-    flex-wrap: wrap;
+
+    flex-wrap: nowrap;
+
     align-items: center;
 
-    width: 100%;
-    min-width: 0;
+    width: max-content;
+    min-width: max-content;
 
-    gap: 12px 20px;
+    gap: 20px;
 
     margin: 0;
     padding: 0;
 
     list-style: none;
   }
-
   .mooday-mypage-nav__tab {
     min-height: 0;
 
@@ -641,11 +669,14 @@ input:focus-visible:not([readonly]) {
     line-height: 1.4;
 
     letter-spacing: -0.02em;
+
+    white-space: nowrap;
   }
 
   .mooday-mypage-nav__tab--active {
     font-weight: 500;
   }
+
 
   /* Content */
 
@@ -656,6 +687,7 @@ input:focus-visible:not([readonly]) {
       40px 0 72px;
   }
 
+
   /* Title */
 
   .mooday-profile-form__title {
@@ -665,6 +697,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 600;
     line-height: 1.3;
   }
+
 
   /* Fields */
 
@@ -687,6 +720,7 @@ input:focus-visible:not([readonly]) {
     line-height: 1.4;
   }
 
+
   /* Input */
 
   .mooday-profile-form__field input {
@@ -695,9 +729,11 @@ input:focus-visible:not([readonly]) {
 
     padding:
       0 12px;
+
     font-size: 16px;
     font-weight: 400;
   }
+
   .mooday-profile-form__field
   input[readonly] {
     font-size: 12px;
@@ -707,6 +743,7 @@ input:focus-visible:not([readonly]) {
     font-size: 10px;
     line-height: 1.5;
   }
+
 
   /* ID Read Only */
 
@@ -731,6 +768,7 @@ input:focus-visible:not([readonly]) {
     font-size: 10px;
     line-height: 1.5;
   }
+
 
   /* Password */
 
@@ -761,6 +799,7 @@ input:focus-visible:not([readonly]) {
     font-weight: 400;
   }
 
+
   /* Consent */
 
   .mooday-profile-form__consents {
@@ -788,6 +827,7 @@ input:focus-visible:not([readonly]) {
     margin-top: 1px;
   }
 
+
   /* Submit */
 
   .mooday-profile-form__submit {
@@ -800,6 +840,7 @@ input:focus-visible:not([readonly]) {
     font-size: 11px;
     font-weight: 500;
   }
+
 
   /* Toast */
 
@@ -819,16 +860,21 @@ input:focus-visible:not([readonly]) {
   }
 }
 
+
+/* SMALL MOBILE */
+
 @media screen and (max-width: 420px) {
 
+
   .mooday-mypage-nav__list {
-    gap: 10px 16px;
+    gap: 16px;
   }
 
   .mooday-mypage-nav__tab {
     font-size: 11px;
   }
 }
+
 
 /* REDUCED MOTION */
 
