@@ -42,7 +42,7 @@
 
 .drawer-layer--open
 .drawer-backdrop {
-  opacity: 1;
+  opacity: 2;
 }
 
 /* Drawer */
@@ -70,11 +70,6 @@
   color: #282828;
   background: #fafaf8;
 
-  font-family:
-    "Segoe UI",
-    "Pretendard",
-    sans-serif;
-
   transform: translateX(100%);
 
   transition:
@@ -84,6 +79,17 @@
 
 .drawer-layer--open .drawer {
   transform: translateX(0);
+}
+
+/* Animate drawers that mount directly in the open state. */
+@starting-style {
+  .drawer-layer--open .drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-layer--open .drawer-backdrop {
+    opacity: 0;
+  }
 }
 
 /* Header */

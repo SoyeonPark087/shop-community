@@ -99,7 +99,7 @@
   background-color: transparent;
   color: var(--shop-text);
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   white-space: nowrap;
@@ -171,7 +171,7 @@
   background-color: transparent;
   color: var(--shop-text);
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
 
@@ -269,7 +269,7 @@
   background-color: transparent;
   color: var(--shop-text);
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
   white-space: nowrap;
@@ -478,7 +478,7 @@
 
   .shop-page .shop-category {
     padding: 4px 0;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .shop-page .shop-category.is-active {
@@ -497,7 +497,7 @@
   .shop-page .shop-sort__trigger,
   .shop-page .shop-filter-button {
     height: 28px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .shop-page .shop-sort__menu {
@@ -587,7 +587,7 @@
 
     padding: 5px 0;
 
-    font-size: 14px;
+    font-size: 12px;
     white-space: nowrap;
   }
 

@@ -44,7 +44,7 @@
 .mooday-community__tabs {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: clamp(24px, 2.2vw, 36px);
 }
 
 .mooday-community__tab {

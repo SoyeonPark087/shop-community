@@ -49,9 +49,9 @@ function Editorial() {
                   Unwind in natural tones.
                 </small>
 
-                <a className="editorial-hero__shop-link" href="#/shop">
+                <span className="editorial-hero__shop-link">
                   Shop&nbsp;&nbsp;→
-                </a>
+                </span>
               </div>
             </div>
           </div>

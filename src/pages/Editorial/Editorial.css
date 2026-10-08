@@ -220,13 +220,9 @@
   line-height: 1.4;
   text-decoration: none;
   pointer-events: auto;
-  cursor: pointer;
+  cursor: default;
 }
 
-.editorial-hero__shop-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 
 /* 오른쪽 소개 영역 */
 

@@ -20,8 +20,8 @@ export default function Search({ open, onClose }) {
   useEffect(() => {
     if (!open) return
     const trigger = document.activeElement
-    inputRef.current?.focus()
-    return () => trigger?.focus()
+    inputRef.current?.focus({ preventScroll: true })
+    return () => trigger?.focus({ preventScroll: true })
   }, [open])
 
   return (

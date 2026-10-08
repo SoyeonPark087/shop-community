@@ -185,13 +185,13 @@ function Community() {
         <div className="community-grid">
           {communityLooks.map((look) => (
             <article className="community-card" key={look.id}>
-              <a className="community-card__image" href={`#/community/post-${String(look.id).padStart(2, "0")}`}>
+              <div className="community-card__image">
                 <img src={look.image} alt="" />
-              </a>
+              </div>
               <div className="community-card__meta">
                 <div className="community-card__row">
                   <strong>{look.user}</strong>
-                  <a href={`#/community/post-${String(look.id).padStart(2, "0")}`}>{look.count} <span aria-hidden="true">›</span></a>
+                  <span className="community-card__count">{look.count} <span aria-hidden="true">›</span></span>
                 </div>
                 <p className="community-card__tags">{look.tags}</p>
                 <p className="community-card__text">{look.text}</p>

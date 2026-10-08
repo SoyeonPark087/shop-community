@@ -121,7 +121,7 @@
 
 .hero__copy p {
   margin: 24px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: -0.02em;
   line-height: 1.6;
 }
@@ -290,7 +290,7 @@
 }
 
 .community-card__row strong,
-.community-card__row a {
+.community-card__count {
   font-size: 14px;
   line-height: 1.2;
 }
@@ -299,7 +299,7 @@
   font-weight: 650;
 }
 
-.community-card__row a {
+.community-card__count {
   color: #a2a2a2;
 }
 
@@ -682,7 +682,7 @@
     overflow-wrap: break-word;
   }
 
-  .community-card__row a {
+  .community-card__count {
     flex-shrink: 0;
 
     font-size: 14px;
@@ -1025,7 +1025,7 @@
     line-height: 1.3;
   }
 
-  .community-card__row a {
+  .community-card__count {
     color: #a2a2a2;
 
     font-size: 14px;

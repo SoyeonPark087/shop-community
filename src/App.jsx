@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
 import ScrollToTopButton from './components/common/ScrollToTopButton'
+import ScrollToTop from './components/common/ScrollToTop'
 
 import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Header
         cartItems={cartItems}
         setCartItems={setCartItems}
