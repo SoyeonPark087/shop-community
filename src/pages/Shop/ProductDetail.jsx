@@ -184,21 +184,7 @@ function ProductDetail({ onAddToCart }) {
               ))}
             </div>
           )}
-          {product.detailImages?.length > 0 && (
-            <div className="product-detail__contents">
-              {product.detailImages.map(
-                (image, index) => (
-                  <img
-                    key={`${image}-${index}`}
-                    src={image}
-                    alt={`${product.name} 상세 이미지 ${
-                      index + 1
-                    }`}
-                  />
-                )
-              )}
-            </div>
-          )}
+
         </div>
 
         <div className="product-detail__information">
@@ -342,6 +328,21 @@ function ProductDetail({ onAddToCart }) {
             </ul>
           </div>
         </div>
+        {product.detailImages?.length > 0 && (
+          <div className="product-detail__contents">
+            {product.detailImages.map(
+              (image, index) => (
+                <img
+                  key={`${image}-${index}`}
+                  src={image}
+                  alt={`${product.name} 상세 이미지 ${
+                    index + 1
+                  }`}
+                />
+              )
+            )}
+          </div>
+        )}
       </section>
 
       <div className="product-detail__bottom">

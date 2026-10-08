@@ -183,7 +183,7 @@
   top: 104px;
 
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 1 / span 2;
   align-self: start;
 
   width: 100%;
@@ -518,13 +518,13 @@
 
 .product-detail__contents {
   display: flex;
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2;
   flex-direction: column;
   gap: 0;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 82px;
   line-height: 0;
 }
 
@@ -807,6 +807,7 @@
     width: 100%;
 
     margin-left: 0;
+    padding-left: 66px;
   }
 
   /* Information */
@@ -1101,7 +1102,7 @@
   .product-detail__thumbnails {
     display: flex;
 
-    order: 3;
+    order: 2;
 
     flex-direction: row;
 
@@ -1329,7 +1330,7 @@
   /* Detail Contents */
 
   .product-detail__contents {
-    order: 2;
+    order: 3;
 
     align-self: stretch;
 
