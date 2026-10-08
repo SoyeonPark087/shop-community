@@ -97,7 +97,7 @@ export default function Cart({ open, onClose, items = [], onItemsChange }) {
                   )}
 
                   <p className="cart-item__option">
-                    Option {item.option}
+                    Option {[item.color, item.option === "FREE" ? "Free" : item.option].filter(Boolean).join(", ")}
                   </p>
 
                   <div className="cart-quantity">
