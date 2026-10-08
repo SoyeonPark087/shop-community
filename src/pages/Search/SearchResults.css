@@ -6,7 +6,7 @@
 }
 
 .search-page__summary {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.7;
   margin: 0 0 24px;
@@ -35,7 +35,7 @@
 .search-page__card p {
   margin: 6px 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
 }
 

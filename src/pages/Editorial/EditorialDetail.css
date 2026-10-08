@@ -74,7 +74,7 @@ background-color: transparent;
 .editorial-detail__label {
   margin: 0 0 65px;
   color: #555555;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 5px;
@@ -84,7 +84,7 @@ background-color: transparent;
   max-width: 360px;
   margin: 0 0 16px;
   color: #1d1d1b;
-  font-size: clamp(32px, 3vw, 46px);
+  font-size: var(--hero-title-font-size);
   font-weight: 400;
   line-height: 1.18;
   letter-spacing: -2px;
@@ -94,7 +94,7 @@ background-color: transparent;
 .editorial-detail__subtitle {
   margin: 0;
   color: #777777;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.7;
   word-break: keep-all;
@@ -148,7 +148,7 @@ background-color: transparent;
 .editorial-detail__body p {
   margin: 0 0 48px;
   color: #55514b;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.8;
   word-break: keep-all;
@@ -207,7 +207,7 @@ background-color: transparent;
   margin-bottom: 5px;
   overflow: hidden;
   color: #1d1d1b;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   text-overflow: ellipsis;
@@ -217,7 +217,7 @@ background-color: transparent;
 .editorial-detail__product > span {
   display: block;
   color: #1d1d1b;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -290,7 +290,7 @@ background-color: transparent;
   margin-bottom: 5px;
   overflow: hidden;
   color: #1d1d1b;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
   text-overflow: ellipsis;
@@ -301,7 +301,7 @@ background-color: transparent;
   display: block;
   overflow: hidden;
   color: #666666;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   text-overflow: ellipsis;
@@ -332,7 +332,7 @@ background-color: transparent;
 
   .editorial-detail__intro h1 {
     max-width: 600px;
-    font-size: 44px;
+    font-size: var(--hero-title-font-size);
   }
 
   .editorial-detail__line {
@@ -381,20 +381,20 @@ background-color: transparent;
 
   .editorial-detail__label {
     margin-bottom: 25px;
-    font-size: 9px;
+    font-size: 14px;
     letter-spacing: 4px;
   }
 
   .editorial-detail__intro h1 {
     max-width: none;
     margin-bottom: 13px;
-    font-size: 34px;
+    font-size: var(--hero-title-font-size);
     line-height: 1.25;
     letter-spacing: -1.2px;
   }
 
   .editorial-detail__subtitle {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
   }
 
@@ -405,7 +405,7 @@ background-color: transparent;
   .editorial-detail__meta {
     flex-wrap: wrap;
     gap: 8px 18px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* 모바일 본문 */
@@ -428,7 +428,7 @@ background-color: transparent;
 
   .editorial-detail__body p {
     margin-bottom: 40px;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.8;
   }
 
@@ -463,11 +463,11 @@ background-color: transparent;
 
   .editorial-detail__product strong {
     margin-bottom: 4px;
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .editorial-detail__product > span {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   /* Related Stories */
@@ -491,11 +491,11 @@ background-color: transparent;
   }
 
   .editorial-detail__related-card strong {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .editorial-detail__related-card > span {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
 
@@ -509,16 +509,16 @@ background-color: transparent;
   }
 
   .editorial-detail__intro h1 {
-    font-size: 31px;
+    font-size: var(--hero-title-font-size);
   }
 
   .editorial-detail__body p {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .editorial-detail__shop h2,
   .editorial-detail__related h2 {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 .editorial-detail__product,

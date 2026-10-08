@@ -24,7 +24,7 @@ function Header({ cartItems, setCartItems, cartOpen, setCartOpen }) {
 
           <nav className="site-header__nav site-header__nav--left">
             <Link to="/shop">Shop</Link>
-            <Link to="/editorial">Editorial</Link>
+            <Link to="/editorial">Editorials</Link>
             <Link to="/community">Community</Link>
           </nav>
 

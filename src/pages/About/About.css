@@ -52,7 +52,7 @@
   color: #344f41;
 
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
 
   letter-spacing: 0.08em;
@@ -63,7 +63,7 @@
 
   color: #282828;
 
-  font-size: clamp(34px, 3.6vw, 54px);
+  font-size: var(--hero-title-font-size);
   font-weight: 500;
   line-height: 1.08;
 
@@ -99,7 +99,7 @@
 
   color: #99958f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1.4;
 
@@ -122,7 +122,7 @@
 
   color: #282828;
 
-  font-size: 26px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.35;
 
@@ -190,7 +190,7 @@
 
   color: #99958f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -201,7 +201,7 @@
   color: #282828;
 
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
 
   letter-spacing: -0.02em;
@@ -214,7 +214,7 @@
 
   color: #77736d;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.75;
 
@@ -255,8 +255,8 @@
 .mooday-about__service-heading span:first-child {
   color: #282828;
 
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.4;
 
   letter-spacing: 0.03em;
@@ -265,7 +265,7 @@
 .mooday-about__service-heading span:last-child {
   color: #99958f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -277,7 +277,7 @@
 
   color: #77736d;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.75;
 
@@ -305,7 +305,7 @@
   color: #344f41;
 
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
 
   letter-spacing: 0.1em;
@@ -316,7 +316,7 @@
 
   color: #282828;
 
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.55;
 
@@ -332,7 +332,7 @@
 
   color: #77736d;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.8;
 
@@ -346,7 +346,7 @@
 
   color: #99958f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1.4;
 
@@ -381,7 +381,7 @@
   }
 
   .mooday-about__title {
-    font-size: clamp(38px, 5.5vw, 52px);
+    font-size: var(--hero-title-font-size);
   }
 
 
@@ -400,7 +400,7 @@
   .mooday-about__section-content > h2 {
     margin-bottom: 36px;
 
-    font-size: 24px;
+    font-size: 14px;
   }
 
 
@@ -411,7 +411,7 @@
   }
 
   .mooday-about__closing-message {
-    font-size: 22px;
+    font-size: 14px;
   }
 }
 
@@ -444,11 +444,11 @@
   .mooday-about__eyebrow {
     margin-bottom: 20px;
 
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-about__title {
-    font-size: clamp(34px, 10vw, 46px);
+    font-size: var(--hero-title-font-size);
     line-height: 1.1;
   }
 
@@ -467,13 +467,13 @@
     margin-bottom: 28px;
     padding-top: 0;
 
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-about__section-content > h2 {
     margin-bottom: 32px;
 
-    font-size: 22px;
+    font-size: 14px;
     line-height: 1.4;
   }
 
@@ -506,17 +506,17 @@
   }
 
   .mooday-about__philosophy-number {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-about__philosophy-item h3 {
     margin-bottom: 8px;
 
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .mooday-about__philosophy-item p {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.7;
   }
 
@@ -532,15 +532,15 @@
   }
 
   .mooday-about__service-heading span:first-child {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .mooday-about__service-heading span:last-child {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-about__service-item p {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.7;
   }
 
@@ -554,11 +554,11 @@
   .mooday-about__closing-label {
     margin-bottom: 24px;
 
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-about__closing-message {
-    font-size: 19px;
+    font-size: 14px;
     line-height: 1.6;
   }
 
@@ -567,14 +567,14 @@
 
     margin-top: 20px;
 
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.75;
   }
 
   .mooday-about__closing-en {
     margin-top: 32px;
 
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
@@ -586,7 +586,7 @@
 @media screen and (max-width: 420px) {
 
   .mooday-about__title {
-    font-size: 34px;
+    font-size: var(--hero-title-font-size);
   }
 
   .mooday-about__section {
@@ -594,7 +594,7 @@
   }
 
   .mooday-about__section-content > h2 {
-    font-size: 21px;
+    font-size: 14px;
   }
 
   .mooday-about__closing {
@@ -602,7 +602,7 @@
   }
 
   .mooday-about__closing-message {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 

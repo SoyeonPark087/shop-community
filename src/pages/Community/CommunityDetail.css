@@ -245,7 +245,7 @@
 
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -308,7 +308,7 @@ display: flex;
 .mooday-detail-product__image span {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -324,7 +324,7 @@ display: flex;
 }
 
 .mooday-detail-product__brand {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -368,7 +368,7 @@ display: flex;
 .mooday-detail-section-title span {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -424,7 +424,7 @@ display: flex;
   background: #d9e2da;
   color: #466858;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -457,7 +457,7 @@ display: flex;
 
 .mooday-detail-post__author-info span {
   color: #96968f;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -557,7 +557,7 @@ display: flex;
 .mooday-detail-post__body p {
   margin: 0 0 12px;
 
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.7;
 
@@ -606,7 +606,7 @@ display: flex;
   background: transparent;
   color: #686863;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -679,14 +679,14 @@ display: flex;
 
   margin: 0;
 
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
 .mooday-detail-comment__time {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .mooday-detail-comment__more {
@@ -823,7 +823,7 @@ display: flex;
   background: #fff;
   color: #282828;
 
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -960,7 +960,7 @@ display: flex;
   background: #fff;
   color: #282828;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -983,7 +983,7 @@ display: flex;
   background: #344f41;
   color: #fff;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -1051,7 +1051,7 @@ display: flex;
 
   color: #686863;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
   text-decoration: none;
 }
@@ -1059,7 +1059,7 @@ display: flex;
 .mooday-detail__related-heading a span {
   margin-left: 8px;
 
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .mooday-detail__related-grid {
@@ -1108,7 +1108,7 @@ display: flex;
 
   color: #344f41;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 
   text-decoration: none;
@@ -1162,7 +1162,7 @@ display: flex;
   }
 
   .mooday-detail-products__heading span {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-product {
@@ -1185,7 +1185,7 @@ display: flex;
   }
 
   .mooday-detail-product__brand {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-product__name {
@@ -1207,7 +1207,7 @@ display: flex;
   }
 
   .mooday-detail-post__body p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
   }
 
@@ -1310,7 +1310,7 @@ display: flex;
   }
 
   .mooday-detail-product__brand {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-product__name {
@@ -1332,7 +1332,7 @@ display: flex;
   }
 
   .mooday-detail-post__body p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
 
     overflow-wrap: break-word;
@@ -1453,7 +1453,7 @@ display: flex;
   }
 
   .mooday-detail-products__heading span {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 400;
   }
 
@@ -1484,7 +1484,7 @@ display: flex;
   }
 
   .mooday-detail-product__brand {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
   }
 
@@ -1518,7 +1518,7 @@ display: flex;
   }
 
   .mooday-detail-section-title span {
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 400;
   }
 
@@ -1559,7 +1559,7 @@ display: flex;
   }
 
   .mooday-detail-post__author-info span {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-post__actions {
@@ -1584,7 +1584,7 @@ display: flex;
   }
 
   .mooday-detail-post__likes span {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* Post Body */
@@ -1599,7 +1599,7 @@ display: flex;
   .mooday-detail-post__body p {
     margin-bottom: 10px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.7;
 
@@ -1631,7 +1631,7 @@ display: flex;
 
     padding: 0 10px;
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 400;
   }
 
@@ -1655,7 +1655,7 @@ display: flex;
     width: 30px;
     height: 30px;
 
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-comment__content {
@@ -1674,7 +1674,7 @@ display: flex;
   .mooday-detail-comment__content p {
     max-width: 100%;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
     line-height: 1.6;
 
@@ -1683,7 +1683,7 @@ display: flex;
   }
 
   .mooday-detail-comment__time {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-detail-comment__more {
@@ -1697,7 +1697,7 @@ display: flex;
   }
 
   .mooday-detail-comment__menu button {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* Comment Edit */
@@ -1706,7 +1706,7 @@ display: flex;
 
     padding: 0 10px;
 
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .mooday-detail-comment__action-button {
@@ -1715,7 +1715,7 @@ display: flex;
 
     padding: 0 10px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .mooday-detail-comment__delete-confirm {
@@ -1723,7 +1723,7 @@ display: flex;
   }
 
   .mooday-detail-comment__delete-confirm p {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* Comment Composer */
@@ -1745,7 +1745,7 @@ display: flex;
 
     padding: 0 10px;
 
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .mooday-detail-comments__input-group button {
@@ -1753,7 +1753,7 @@ display: flex;
 
     height: 42px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
@@ -1778,14 +1778,14 @@ display: flex;
   .mooday-detail__related-heading a {
     flex-shrink: 0;
 
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 400;
   }
 
   .mooday-detail__related-heading a span {
     margin-left: 6px;
 
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .mooday-detail__related-grid {
@@ -1815,7 +1815,7 @@ display: flex;
   .mooday-community-card__author {
     min-width: 0;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
 
     white-space: normal;
@@ -1874,14 +1874,14 @@ display: flex;
   .mooday-detail__empty p {
     margin-top: 10px;
 
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.6;
   }
 
   .mooday-detail__empty a {
     margin-top: 18px;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
   }
 }
@@ -1914,7 +1914,7 @@ display: flex;
   .mooday-detail-comments__input-group input {
     padding: 0 8px;
 
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .mooday-detail-comments__input-group button {

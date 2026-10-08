@@ -1,11 +1,15 @@
 import { products } from '../data/Products.js'
 import { editorials } from '../data/Editorial.js'
-import { communityPosts, communityMainTags } from '../data/Community.js'
+import { communityPosts } from '../data/Community.js'
 
 const HISTORY_KEY = 'mooday.recentSearches'
 const HISTORY_LIMIT = 8
 
-export const suggestedTags = communityMainTags.filter(tag => tag !== 'All').slice(0, 5)
+const productTagKeywords = ['가디건', '롱슬리브', '후드', '셔츠', '니트']
+
+export const suggestedTags = productTagKeywords.filter(
+  (tag) => products.some((product) => product.name.includes(tag))
+)
 
 export function cleanSearchQuery(value) {
   return value.normalize('NFKC').replace(/#/g, '').trim().replace(/\s+/g, ' ')

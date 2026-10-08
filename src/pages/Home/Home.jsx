@@ -1,33 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { products } from "../../data/Products.js";
 
-const newArrivals = [
-  {
-    id: 1,
-    name: "Ribbed Tank Top",
-    price: "₩ 49,000",
-    image: `${import.meta.env.BASE_URL}images/home/new1.png`,
-  },
-  {
-    id: 2,
-    name: "Wide Nylon Pants",
-    price: "₩ 89,000",
-    image: `${import.meta.env.BASE_URL}images/home/new2.png`,
-  },
-  {
-    id: 3,
-    name: "Back Tie Long Sleeve",
-    price: "₩ 56,000",
-    image: `${import.meta.env.BASE_URL}images/home/new3.png`,
-  },
-  {
-    id: 4,
-    name: "Relaxed Knit Tee",
-    price: "₩ 62,000",
-    image: `${import.meta.env.BASE_URL}images/home/new4.png`,
-  },
-];
+const newArrivals = products.slice(0, 4);
 
 const editorialCards = [
   {
@@ -163,7 +139,7 @@ function NewArrivals() {
               </a>
               <div className="product-card__body">
                 <h3>{product.name}</h3>
-                <p>{product.price}</p>
+                <p>₩ {product.price.toLocaleString("ko-KR")}</p>
               </div>
             </article>
           ))}

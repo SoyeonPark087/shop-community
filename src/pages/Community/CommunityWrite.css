@@ -1,6 +1,7 @@
 /* ROOT */
 
 .mooday-write {
+  font-size: 12px;
   width: 100%;
   padding: 116px 0 140px;
 
@@ -93,7 +94,7 @@
   background: rgba(50, 50, 50, 0.55);
   color: #fff;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
 
   z-index: 2;
@@ -135,7 +136,7 @@
 
   color: #686863;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -143,7 +144,7 @@
 .mooday-write-gallery__empty-content > span:last-child {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -271,7 +272,7 @@
   background: rgba(40, 40, 40, 0.68);
   color: #fff;
 
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
 
   cursor: pointer;
@@ -324,7 +325,7 @@
   background: #fff;
   color: #686863;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
 
   cursor: pointer;
@@ -362,7 +363,7 @@
 
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1;
 }
@@ -371,7 +372,7 @@
 .mooday-write-validation__message {
   margin: 8px 0 0;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -417,7 +418,7 @@
 .mooday-write-form__heading label {
   color: #282828;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -435,14 +436,14 @@
 
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
 .mooday-write-form__counter {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -463,7 +464,7 @@
   background: #fff;
   color: #282828;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.7;
 
@@ -477,7 +478,7 @@
 .mooday-write-form__textarea::placeholder {
   color: #96968f;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -503,7 +504,7 @@
   background: #fff;
   color: #282828;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -514,7 +515,7 @@
 .mooday-write-form__input::placeholder {
   color: #96968f;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -527,7 +528,7 @@
 
   color: #b35b4f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -551,7 +552,7 @@
 
   color: #282828;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -561,14 +562,14 @@
 
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
 .mooday-write-form__subheading > span {
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -615,7 +616,7 @@
   background: #f4f7f5;
   color: #405a4d;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
 
   white-space: nowrap;
@@ -638,7 +639,7 @@
   background: transparent;
   color: #65746b;
 
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
 
   cursor: pointer;
@@ -676,7 +677,7 @@
   background: transparent;
   color: #686863;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 
   white-space: nowrap;
@@ -733,14 +734,14 @@
   background: transparent;
   color: #282828;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
 .mooday-write-product-search input::placeholder {
   color: #96968f;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -765,7 +766,7 @@
   background: transparent;
   color: #77736d;
 
-  font-size: 14px;
+  font-size: 12px;
 
   cursor: pointer;
 }
@@ -851,7 +852,7 @@
 .mooday-write-product-image__placeholder {
   color: #96968f;
 
-  font-size: 7px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -871,7 +872,7 @@
 
   color: #282828;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 
@@ -882,7 +883,7 @@
 .mooday-write-product-result__info > span {
   color: #77736d;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -902,7 +903,7 @@
   background: transparent;
   color: #282828;
 
-  font-size: 17px;
+  font-size: 12px;
   font-weight: 300;
 
   cursor: pointer;
@@ -929,7 +930,7 @@
 
   color: #96968f;
 
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
 }
 
@@ -984,7 +985,7 @@
 
   color: #282828;
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
 
   text-overflow: ellipsis;
@@ -994,7 +995,7 @@
 .mooday-write-selected-product__info > span {
   color: #77736d;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -1276,7 +1277,7 @@
 
     padding: 5px 9px;
 
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-write-gallery__empty-content {
@@ -1286,12 +1287,12 @@
   }
 
   .mooday-write-gallery__empty-content p {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
   }
 
   .mooday-write-gallery__empty-content > span:last-child {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   /* Gallery Thumbnails */
@@ -1329,7 +1330,7 @@
 
     padding: 6px 2px;
 
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .mooday-write-gallery__add-icon {
@@ -1359,7 +1360,7 @@
   }
 
   .mooday-write-form__heading label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
@@ -1369,7 +1370,7 @@
 
   .mooday-write-form__optional,
   .mooday-write-form__counter {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   /* Textarea */
@@ -1381,7 +1382,7 @@
     padding: 12px;
 
     /* * 모바일 Safari 자동 확대 방지 */
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.6;
 
     scroll-margin-top: 84px;
@@ -1400,7 +1401,7 @@
     padding: 0 12px;
 
     /* * 모바일 Safari 자동 확대 방지 */
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .mooday-write-form__input::placeholder {
@@ -1417,13 +1418,13 @@
   }
 
   .mooday-write-form__subheading h3 {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .mooday-write-form__subheading h3 span,
   .mooday-write-form__subheading > span {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mooday-write-form__subheading--recommended {
@@ -1448,7 +1449,7 @@
 
     padding: 4px 7px 4px 10px;
 
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1;
   }
 
@@ -1456,7 +1457,7 @@
     width: 16px;
     height: 16px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .mooday-write-tags__recommended {
@@ -1485,7 +1486,7 @@
     min-width: 0;
 
     /* * 모바일 Safari 자동 확대 방지 */
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .mooday-write-product-search input::placeholder {
@@ -1498,7 +1499,7 @@
     width: 26px;
     height: 26px;
 
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* Product Results */
@@ -1525,12 +1526,12 @@
   }
 
   .mooday-write-product-result__info strong {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .mooday-write-product-result__info > span {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .mooday-write-product-result__add {
@@ -1539,7 +1540,7 @@
     width: 28px;
     height: 28px;
 
-    font-size: 17px;
+    font-size: 12px;
   }
 
   /* Selected Products */
@@ -1566,11 +1567,11 @@
   }
 
   .mooday-write-selected-product__info strong {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .mooday-write-selected-product__info > span {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   /* Validation / Notice */
@@ -1579,7 +1580,7 @@
   .mooday-write-tags__notice,
   .mooday-write-products__notice,
   .mooday-write-validation__message {
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.5;
   }
 
@@ -1601,7 +1602,7 @@
 
     padding: 0 14px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 

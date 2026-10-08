@@ -153,7 +153,7 @@
 
   color: #111;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -243,7 +243,7 @@
 
   color: #111;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -289,7 +289,7 @@
 }
 
 .cart-total strong:last-child {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* Actions */
@@ -352,7 +352,7 @@
   .cart-check {
     gap: 9px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .cart-check__box {
@@ -370,7 +370,7 @@
   }
 
   .cart-remove-selected {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* 상품 */
@@ -402,7 +402,7 @@
   }
 
   .cart-item__info h3 {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.35;
 
     word-break: break-word;
@@ -411,13 +411,13 @@
   .cart-item__name-ko {
     margin-top: 10px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .cart-item__option {
     margin-top: 10px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* 수량 */
@@ -431,7 +431,7 @@
 
   .cart-quantity button,
   .cart-quantity span {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   /* 삭제 */
@@ -452,7 +452,7 @@
 
     margin-top: 4px;
 
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* Summary */
@@ -462,7 +462,7 @@
   }
 
   .cart-summary > div {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .cart-summary > div + div {
@@ -479,7 +479,7 @@
   }
 
   .cart-total strong:last-child {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* Buttons */

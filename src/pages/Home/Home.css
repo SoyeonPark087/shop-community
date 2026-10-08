@@ -17,7 +17,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   white-space: nowrap;
 }
@@ -61,7 +61,7 @@
 }
 
 .section-heading .arrow-link {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* Hero */
@@ -113,7 +113,7 @@
 
 .hero__copy h1 {
   margin: 0;
-  font-size: clamp(44px, 2.7vw, 54px);
+  font-size: var(--hero-title-font-size);
   line-height: 1.12;
   letter-spacing: -0.05em;
   font-weight: 450;
@@ -121,14 +121,14 @@
 
 .hero__copy p {
   margin: 24px 0 0;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: -0.02em;
   line-height: 1.6;
 }
 
 .hero__cta {
   margin-top: 55px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 550;
 }
 
@@ -222,9 +222,9 @@
 .home-editorial-card__eyebrow {
   display: block;
   margin-bottom: 16px;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.42em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .home-editorial-card__content h2 {
@@ -291,7 +291,7 @@
 
 .community-card__row strong,
 .community-card__row a {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2;
 }
 
@@ -306,13 +306,13 @@
 .community-card__tags {
   margin: 15px 0 0;
   color: #8a8a8a;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.35;
 }
 
 .community-card__text {
   margin: 16px 0 0;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.45;
   font-weight: 500;
 }
@@ -384,7 +384,7 @@
 
 .mood-card__content h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 600;
@@ -392,13 +392,13 @@
 
 .mood-card__content p {
   margin: 10px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
 }
 
 .mood-card__content .arrow-link {
   margin-top: 42px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 550;
 }
 
@@ -455,7 +455,7 @@
   .hero__copy h1 {
     margin: 0;
 
-    font-size: clamp(36px, 5vw, 44px);
+    font-size: var(--hero-title-font-size);
     font-weight: 450;
     line-height: 1.12;
 
@@ -507,7 +507,7 @@
   .section-heading .arrow-link {
     flex-shrink: 0;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .arrow-link {
@@ -560,7 +560,7 @@
   .product-card__body p {
     max-width: 100%;
 
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.45;
 
     overflow-wrap: break-word;
@@ -573,7 +573,7 @@
   .product-card__body p {
     margin-top: 4px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
   }
 
@@ -604,8 +604,8 @@
   .home-editorial-card__eyebrow {
     margin-bottom: 12px;
 
-    font-size: 10px;
-    font-weight: 550;
+    font-size: 14px;
+    font-weight: 500;
     line-height: 1.2;
 
     letter-spacing: 0.28em;
@@ -629,7 +629,7 @@
 
     margin: 12px 0 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.55;
 
@@ -642,7 +642,7 @@
   .home-editorial-card__content .arrow-link {
     margin-top: 22px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .community-grid {
@@ -675,7 +675,7 @@
   .community-card__row strong {
     min-width: 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 1.3;
 
@@ -685,14 +685,14 @@
   .community-card__row a {
     flex-shrink: 0;
 
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.3;
   }
 
   .community-card__tags {
     margin-top: 12px;
 
-    font-size: 10px;
+    font-size: 14px;
     line-height: 1.4;
 
     overflow-wrap: break-word;
@@ -701,7 +701,7 @@
   .community-card__text {
     margin-top: 12px;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
 
@@ -753,7 +753,7 @@
     max-width: 100%;
     margin: 0;
 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 550;
     line-height: 1.2;
 
@@ -768,7 +768,7 @@
 
     margin: 8px 0 0;
 
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.45;
 
     overflow-wrap: break-word;
@@ -778,7 +778,7 @@
   .shop-by-mood .mood-card__content .arrow-link {
     margin-top: 28px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 }
@@ -827,7 +827,7 @@
   .hero__copy h1 {
     margin: 0;
 
-    font-size: 32px;
+    font-size: var(--hero-title-font-size);
     font-weight: 400;
     line-height: 1.15;
 
@@ -837,7 +837,7 @@
   .hero__copy p {
     margin: 12px 0 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.55;
 
@@ -847,7 +847,7 @@
   .hero__cta {
     margin-top: 20px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1.2;
   }
@@ -869,14 +869,14 @@
   }
 
   .section-heading .arrow-link {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
   }
 
   .arrow-link {
     gap: 8px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1;
   }
@@ -918,7 +918,7 @@
   .product-card__body h3 {
     margin: 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
 
@@ -930,7 +930,7 @@
 
     color: #222;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.4;
 
@@ -963,7 +963,7 @@
   .home-editorial-card__eyebrow {
     margin-bottom: 10px;
 
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.2;
 
@@ -983,7 +983,7 @@
   .home-editorial-card__content p {
     margin: 10px 0 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
 
@@ -993,7 +993,7 @@
   .home-editorial-card__content .arrow-link {
     margin-top: 18px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
@@ -1020,7 +1020,7 @@
   }
 
   .community-card__row strong {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.3;
   }
@@ -1028,7 +1028,7 @@
   .community-card__row a {
     color: #a2a2a2;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.3;
   }
@@ -1038,7 +1038,7 @@
 
     color: #8a8a8a;
 
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.4;
   }
@@ -1046,7 +1046,7 @@
   .community-card__text {
     margin-top: 8px;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.45;
 
@@ -1125,7 +1125,7 @@
   .mood-card__content h3 {
     margin: 0;
 
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.2;
 
@@ -1137,7 +1137,7 @@
   .mood-card__content p {
     margin: 8px 0 0;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.45;
   }
@@ -1147,7 +1147,7 @@
   .mood-card__content .arrow-link {
     margin-top: 18px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
@@ -1170,7 +1170,7 @@
   .mood-card__content h3 {
     margin: 0;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.25;
 

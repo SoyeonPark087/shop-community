@@ -1,6 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css");
 
 :root {
+  --hero-title-font-size: clamp(44px, 2.7vw, 54px);
   --page-padding: 64px;
   --inner-max: 1792px;
   --text: #282828;
@@ -53,4 +54,17 @@ a {
 img {
   display: block;
   width: 100%;
+}
+
+/* Shared main-title scale for Home, About, and Editorial detail. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  :root {
+    --hero-title-font-size: clamp(36px, 5vw, 44px);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --hero-title-font-size: 32px;
+  }
 }
