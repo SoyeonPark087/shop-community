@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { editorials } from '../../data/Editorial'
+import { products } from '../../data/Products'
 import './EditorialDetail.css'
 
 function EditorialDetail() {
@@ -21,7 +22,9 @@ function EditorialDetail() {
 
   const detailImages = editorial.detailImages || []
   const paragraphs = editorial.paragraphs || []
-  const shopProducts = editorial.shopProducts || []
+  const shopProducts = (editorial.productIds || [])
+    .map(productId => products.find(product => product.id === productId))
+    .filter(Boolean)
   const relatedStories = editorial.relatedStories || []
 
   return (
@@ -117,7 +120,12 @@ function EditorialDetail() {
 
           <div className="editorial-detail__products">
             {shopProducts.map((product) => (
-              <article className="editorial-detail__product" key={product.id}>
+              <Link
+                className="editorial-detail__product"
+                key={product.id}
+                to={`/shop/${product.id}`}
+                aria-label={`${product.name} 상세 보기`}
+              >
                 <div className="editorial-detail__product-image">
                   <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
                 </div>
@@ -125,9 +133,9 @@ function EditorialDetail() {
                 <strong>{product.name}</strong>
 
                 <span>
-                  ₩ {Number(product.price).toLocaleString()}
+                  ₩ {Number(product.price).toLocaleString('ko-KR')}
                 </span>
-              </article>
+              </Link>
             ))}
           </div>
         </section>

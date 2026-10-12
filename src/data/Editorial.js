@@ -27,20 +27,7 @@ export const editorials = [
       `이번 가을에는 핑크를 조금 느슨하게 입어보기로 한다. 부드러운 코튼 셔츠에 브라운 팬츠를 더하고, 색을 많이 사용하기보다는 서로 다른 온도의 색 두세 가지만 남긴 뒤 편안한 옷차림으로 천천히 걷고, 커피 한 잔을 마시며 조금 일찍 찾아온 저녁을 바라보는 것. 우리가 생각하는 가을의 옷은 그런 평범한 순간과 잘 어울리는 모습일지 모른다.`,
     ],
 
-    shopProducts: [
-      {
-        id: 2,
-        name: '소프트 코튼 셔츠',
-        price: 93000,
-        image: `${import.meta.env.BASE_URL}images/editorial/product11.png`,
-      },
-      {
-        id: 10,
-        name: '릴랙스드 니트 티',
-        price: 62000,
-        image: `${import.meta.env.BASE_URL}images/editorial/product10.png`,
-      },
-    ],
+    productIds: [2, 6],
 
     relatedStories: [
       {

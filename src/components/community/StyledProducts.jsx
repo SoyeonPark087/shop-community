@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function ProductImage({ src, alt }) {
 
@@ -43,8 +44,6 @@ function formatPrice(price) {
 
 function ProductCard({ product }) {
 
-  const hasUrl = typeof product.url === 'string' && product.url.trim() !== ''
-
   const content = (
 
     <>
@@ -85,12 +84,11 @@ function ProductCard({ product }) {
 
   )
 
-  if (hasUrl) {
-
     return (
 
-      <a
-        href={product.url}
+      <Link
+        to={`/shop/${product.id}`}
+        aria-label={`${product.name} 상세 보기`}
         className="
           mooday-detail-product
           mooday-detail-product--linked
@@ -99,21 +97,9 @@ function ProductCard({ product }) {
 
         {content}
 
-      </a>
+      </Link>
 
     )
-
-  }
-
-  return (
-
-    <div className="mooday-detail-product">
-
-      {content}
-
-    </div>
-
-  )
 
 }
 
