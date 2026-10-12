@@ -29,6 +29,7 @@ function App() {
 
   const [cartItems, setCartItems] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
+  const [activeDrawer, setActiveDrawer] = useState(null)
 
 
   const handleAddToCart = (product) => {
@@ -66,6 +67,8 @@ function App() {
         setCartItems={setCartItems}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
+        activeDrawer={activeDrawer}
+        setActiveDrawer={setActiveDrawer}
       />
 
 
@@ -106,7 +109,9 @@ function App() {
             path="/shop/:id"
             element={
               <ProductDetail
+                key={location.pathname}
                 onAddToCart={handleAddToCart}
+                onOpenAccount={() => setActiveDrawer('login')}
               />
             }
           />

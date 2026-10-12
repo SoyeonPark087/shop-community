@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Search from "../drawers/Search";
@@ -8,8 +7,7 @@ import Menu from "../drawers/MenuDrawer";
 
 import "./Header.css";
 
-function Header({ cartItems, setCartItems, cartOpen, setCartOpen }) {
-  const [activeDrawer, setActiveDrawer] = useState(null);
+function Header({ cartItems, setCartItems, cartOpen, setCartOpen, activeDrawer, setActiveDrawer }) {
 
   const closeDrawer = () => {
     setActiveDrawer(null);

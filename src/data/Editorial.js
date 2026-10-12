@@ -34,7 +34,7 @@ export const editorials = [
         id: 2,
         title: '부드러운 것들의 힘',
         description: '일상을 더 따뜻하게 만드는 소재에 대하여.',
-        image: `${import.meta.env.BASE_URL}images/editorial/editorial-related01.png`,
+        image: `${import.meta.env.BASE_URL}images/editorial/editorial04.png`,
       },
       {
         id: 3,

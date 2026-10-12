@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../../data/Products'
 import './ProductDetail.css'
@@ -61,7 +61,7 @@ const communityLooks = [
   },
 ]
 
-function ProductDetail({ onAddToCart }) {
+function ProductDetail({ onAddToCart, onOpenAccount }) {
   const { id: productId } = useParams()
 
   const product = products.find(item => String(item.id) === String(productId))
@@ -86,6 +86,8 @@ function ProductDetail({ onAddToCart }) {
   const productSizes = product?.sizes?.length > 0 ? product.sizes : ['S', 'M', 'L']
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const imageRefs = useRef([])
+  const imageScrollRef = useRef(null)
   const [selectedColorIndex, setSelectedColorIndex] = useState(0)
   const [selectedSize, setSelectedSize] = useState('')
   const [reviewsOpen, setReviewsOpen] = useState(false)
@@ -110,6 +112,17 @@ function ProductDetail({ onAddToCart }) {
   const selectedImage = galleryImages[selectedImageIndex] || galleryImages[0] || ''
 
   const selectedColor = productColors[selectedColorIndex] || productColors[0]
+
+  const handleThumbnailClick = (index) => {
+    setSelectedImageIndex(index)
+    const container = imageScrollRef.current
+    const target = imageRefs.current[index]
+    if (!container || !target) return
+    container.scrollTo({
+      top: target.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    })
+  }
 
     const handleAddToCart = () => {
   if (!selectedSize) {
@@ -148,14 +161,27 @@ function ProductDetail({ onAddToCart }) {
       <section className="product-detail__main">
 
         <div className="product-detail__gallery">
-          {selectedImage && (
-            <div className="product-detail__main-image">
-              <img
-                src={selectedImage}
-                alt={`${product.name} 선택 이미지`}
-              />
-            </div>
-          )}
+          <div className="product-detail__image-viewport">
+          <div className="product-detail__image-scroll" ref={imageScrollRef} tabIndex={0} aria-label="상품 이미지 갤러리">
+            {galleryImages.map((image, index) => (
+              <div className="product-detail__main-image" key={`${image}-${index}`} ref={element => { imageRefs.current[index] = element }}>
+                <img src={image} alt={`${product.name} 상품 이미지 ${index + 1}`} />
+              </div>
+            ))}
+            {product.detailImages?.length > 0 && (
+              <div className="product-detail__contents">
+                {product.detailImages.map((image, index) => (
+                  <img key={`${image}-${index}`} src={image} alt={`${product.name} 상세 이미지 ${index + 1}`} />
+                ))}
+              </div>
+            )}
+          </div>
+            <button type="button" className="product-detail__wishlist" onClick={onOpenAccount} aria-label="상품 찜하기 — 로그인" aria-haspopup="dialog">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" />
+              </svg>
+            </button>
+          </div>
 
           {galleryImages.length > 1 && (
             <div className="product-detail__thumbnails">
@@ -168,7 +194,7 @@ function ProductDetail({ onAddToCart }) {
                       ? 'product-detail__thumbnail product-detail__thumbnail--active'
                       : 'product-detail__thumbnail'
                   }
-                  onClick={() => setSelectedImageIndex(index)}
+                  onClick={() => handleThumbnailClick(index)}
                   aria-label={`${product.name} 이미지 ${
                     index + 1
                   } 보기`}
@@ -328,21 +354,6 @@ function ProductDetail({ onAddToCart }) {
             </ul>
           </div>
         </div>
-        {product.detailImages?.length > 0 && (
-          <div className="product-detail__contents">
-            {product.detailImages.map(
-              (image, index) => (
-                <img
-                  key={`${image}-${index}`}
-                  src={image}
-                  alt={`${product.name} 상세 이미지 ${
-                    index + 1
-                  }`}
-                />
-              )
-            )}
-          </div>
-        )}
       </section>
 
       <div className="product-detail__bottom">
