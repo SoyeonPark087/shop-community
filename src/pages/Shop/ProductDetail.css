@@ -1,6 +1,4 @@
-/* ========================================
-   PRODUCT DETAIL 기본 설정
-======================================== */
+/* PRODUCT DETAIL 기본 설정 */
 
 .product-detail {
   --detail-green: #344f41;
@@ -31,10 +29,7 @@
   font-family: inherit;
 }
 
-
-/* ========================================
-   상품 없음
-======================================== */
+/* 상품 없음 */
 
 .product-detail--empty {
   min-height: 600px;
@@ -50,14 +45,11 @@
 
 .product-detail--empty a {
   color: var(--detail-green);
-  font-size: 13px;
+  font-size: 12px;
   text-decoration: underline;
 }
 
-
-/* ========================================
-   BREADCRUMB
-======================================== */
+/* BREADCRUMB */
 
 .product-detail__breadcrumb {
   display: flex;
@@ -67,7 +59,7 @@
   margin: 0 0 30px;
   overflow: hidden;
   color: #777777;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -85,28 +77,23 @@
   white-space: nowrap;
 }
 
-
-/* ========================================
-   PC 상품 상세 레이아웃
-======================================== */
+/* PC 상품 상세 레이아웃 */
 
 .product-detail__main {
+  --gallery-section-gap: 56px;
   display: grid;
 
   grid-template-columns:
     minmax(0, 1.25fr)
     minmax(420px, 0.95fr);
 
-  column-gap: 56px;
+  column-gap: var(--gallery-section-gap);
 
   width: 100%;
   margin: 0;
 }
 
-
-/* ========================================
-   이미지 갤러리
-======================================== */
+/* 이미지 갤러리 */
 
 .product-detail__gallery {
   display: grid;
@@ -114,22 +101,19 @@
   grid-row: 1;
   grid-template-columns: 68px minmax(0, 1fr);
   align-items: start;
-  column-gap: 14px;
+  column-gap: var(--gallery-section-gap);
   width: 100%;
   min-width: 0;
 }
 
-
-/* ========================================
-   PC 세로 서브 이미지
-======================================== */
+/* PC 세로 서브 이미지 */
 
 .product-detail__thumbnails {
   display: flex;
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 1 / span 2;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   width: 68px;
   margin: 0;
   padding: 0;
@@ -167,12 +151,67 @@
   outline-offset: -1px;
 }
 
+/* 메인 이미지 */
 
-/* ========================================
-   메인 이미지
-======================================== */
+.product-detail__image-viewport {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.product-detail__image-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  max-height: calc(100dvh - 180px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.product-detail__image-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.product-detail__wishlist {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--detail-text);
+  background: rgba(250, 250, 248, 0.9);
+  cursor: pointer;
+}
+
+.product-detail__wishlist svg {
+  width: 18px;
+  height: 18px;
+}
+
+.product-detail__wishlist:hover {
+  color: var(--detail-green);
+  background: #fff;
+}
+
+.product-detail__wishlist:focus-visible,
+.product-detail__thumbnail:focus-visible,
+.product-detail__image-scroll:focus-visible {
+  outline: 2px solid var(--detail-green);
+  outline-offset: -2px;
+}
 
 .product-detail__main-image {
+  position: relative;
+  flex: 0 0 auto;
   grid-column: 2;
   grid-row: 1;
   width: 100%;
@@ -196,9 +235,7 @@
   object-position: center;
 }
 
-/* ========================================
-   상품 정보
-======================================== */
+/* 상품 정보 */
 
 .product-detail__information {
   position: sticky;
@@ -206,6 +243,7 @@
 
   grid-column: 2;
   grid-row: 1 / span 2;
+  align-self: start;
 
   width: 100%;
   min-width: 0;
@@ -221,7 +259,7 @@
 
   color: var(--detail-text);
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.02em;
@@ -234,14 +272,12 @@
 
   color: var(--detail-text);
 
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
 }
 
-/* ========================================
-   COLOR
-======================================== */
+/* COLOR */
 
 .product-detail__colors {
   display: grid;
@@ -335,10 +371,7 @@
   box-shadow: none;
 }
 
-
-/* ========================================
-   SIZE
-======================================== */
+/* SIZE */
 
 .product-detail__option {
   display: grid;
@@ -359,7 +392,7 @@
   margin: 0;
   color: var(--detail-text);
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -380,7 +413,7 @@
   color: var(--detail-muted);
   background: transparent;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
 
@@ -421,9 +454,7 @@
   background: var(--detail-green);
 }
 
-/* ========================================
-   ADD TO CART
-======================================== */
+/* ADD TO CART */
 
 .product-detail__cart {
   display: flex;
@@ -452,9 +483,7 @@
 .product-detail__cart:hover {
   background: #2b4337;
 }
-/* ========================================
-   상품 정보 아코디언
-======================================== */
+/* 상품 정보 아코디언 */
 
 .product-detail__accordions {
   width: 100%;
@@ -480,7 +509,7 @@
   color: var(--detail-text);
   background: transparent;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
 
   text-align: left;
@@ -495,7 +524,7 @@
 
   color: var(--detail-muted);
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.7;
 }
@@ -511,7 +540,7 @@
 .product-detail__accordion span:last-child {
   color: var(--detail-text);
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
 }
 
@@ -527,7 +556,7 @@
 
   color: #55514b;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.75;
 
@@ -539,15 +568,12 @@
 
   color: #77736d;
 
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
 }
 
-
-/* ========================================
-   상세 이미지
-======================================== */
+/* 상세 이미지 */
 
 .product-detail__contents {
   display: flex;
@@ -555,8 +581,9 @@
   grid-row: 2;
   flex-direction: column;
   gap: 0;
-  width: calc(100% - 82px);
-  margin: 0 0 0 82px;
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 0;
   line-height: 0;
 }
@@ -573,10 +600,7 @@
   background-color: var(--detail-image-bg);
 }
 
-
-/* ========================================
-   상세페이지 하단
-======================================== */
+/* 상세페이지 하단 */
 
 .product-detail__bottom {
   width: 100%;
@@ -611,16 +635,13 @@
   align-items: center;
   gap: 6px;
   color: #77736d;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   cursor: default;
 }
 
-
-/* ========================================
-   YOU MAY ALSO LIKE
-======================================== */
+/* YOU MAY ALSO LIKE */
 
 .product-detail__recommend-grid {
   display: grid;
@@ -666,7 +687,7 @@
   margin: 0 0 5px;
   overflow: hidden;
   color: var(--detail-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   text-overflow: ellipsis;
@@ -676,7 +697,7 @@
 .product-detail__recommend-info p {
   margin: 0;
   color: var(--detail-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -696,10 +717,7 @@
   border-radius: 50%;
 }
 
-
-/* ========================================
-   COMMUNITY LOOKS
-======================================== */
+/* COMMUNITY LOOKS */
 
 .product-detail__community {
   margin-top: 75px;
@@ -740,7 +758,7 @@
   display: block;
   margin-bottom: 5px;
   color: var(--detail-text);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -749,17 +767,14 @@
   margin: 0;
   overflow: hidden;
   color: #77736d;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-
-/* ========================================
-   REVIEWS
-======================================== */
+/* REVIEWS */
 
 .product-detail__reviews {
   margin-top: 64px;
@@ -783,7 +798,7 @@
 }
 
 .product-detail__reviews-button span:last-child {
-  font-size: 17px;
+  font-size: 12px;
   font-weight: 300;
 }
 
@@ -795,67 +810,51 @@
 .product-detail__reviews-content p {
   margin: 0;
   color: #777777;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.6;
 }
 
-
-/* ========================================
-   TABLET
-   768px ~ 1100px
-======================================== */
-
 @media screen and (min-width: 768px) and (max-width: 1100px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .product-detail {
     padding: 88px 40px 96px;
   }
 
-
-  /* =========================
-     Breadcrumb
-  ========================= */
+  /* Breadcrumb */
 
   .product-detail__breadcrumb {
     margin-bottom: 24px;
 
-    font-size: 10px;
+    font-size: 12px;
   }
 
-
-  /* =========================
-     Main Layout
-  ========================= */
+  /* Main Layout */
 
   .product-detail__main {
+    --gallery-section-gap: 32px;
     grid-template-columns:
       minmax(0, 1.1fr)
       minmax(300px, 0.9fr);
 
-    column-gap: 32px;
+    column-gap: var(--gallery-section-gap);
   }
 
-
-  /* =========================
-     Gallery
-  ========================= */
+  /* Gallery */
 
   .product-detail__gallery {
     grid-template-columns:
       56px minmax(0, 1fr);
 
-    column-gap: 10px;
+    column-gap: var(--gallery-section-gap);
   }
 
   .product-detail__thumbnails {
     width: 56px;
 
-    gap: 7px;
+    gap: 10px;
   }
 
   .product-detail__thumbnail {
@@ -866,15 +865,13 @@
   }
 
   .product-detail__contents {
-    width: calc(100% - 66px);
+    width: 100%;
 
-    margin-left: 66px;
+    margin-left: 0;
+    padding-left: 0;
   }
 
-
-  /* =========================
-     Information
-  ========================= */
+  /* Information */
 
   .product-detail__information {
     top: 92px;
@@ -885,7 +882,7 @@
   .product-detail__information h1 {
     margin-bottom: 7px;
 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.35;
   }
@@ -893,15 +890,12 @@
   .product-detail__price {
     margin-bottom: 22px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
   }
 
-
-  /* =========================
-     Color
-  ========================= */
+  /* Color */
 
   .product-detail__colors {
     grid-template-columns:
@@ -911,14 +905,14 @@
   }
 
   .product-detail__color-heading p {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .product-detail__color-heading span {
     margin-top: 2px;
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 400;
   }
 
@@ -939,10 +933,7 @@
     height: 16px;
   }
 
-
-  /* =========================
-     Size
-  ========================= */
+  /* Size */
 
   .product-detail__option {
     grid-template-columns:
@@ -968,27 +959,21 @@
   }
 
   .product-detail__size-guide {
-    font-size: 10px;
+    font-size: 12px;
   }
 
-
-  /* =========================
-     Add To Cart
-  ========================= */
+  /* Add To Cart */
 
   .product-detail__cart {
     height: 44px;
 
     margin-top: 16px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
-
-  /* =========================
-     Accordion
-  ========================= */
+  /* Accordion */
 
   .product-detail__accordions {
     margin-top: 32px;
@@ -997,21 +982,18 @@
   .product-detail__accordion {
     min-height: 44px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .product-detail__accordion-content {
     padding: 13px 0 17px;
 
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Description
-  ========================= */
+  /* Description */
 
   .product-detail__description {
     margin-top: 30px;
@@ -1019,14 +1001,11 @@
 
   .product-detail__description p,
   .product-detail__description li {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Bottom
-  ========================= */
+  /* Bottom */
 
   .product-detail__bottom {
     width: 100%;
@@ -1039,18 +1018,15 @@
   }
 
   .product-detail__section-heading h2 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
   }
 
   .product-detail__view-all {
-    font-size: 10px;
+    font-size: 12px;
   }
 
-
-  /* =========================
-     Recommend / Community
-  ========================= */
+  /* Recommend / Community */
 
   .product-detail__recommend-grid,
   .product-detail__community-grid {
@@ -1067,11 +1043,11 @@
   }
 
   .product-detail__recommend-info h3 {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .product-detail__recommend-info p {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .product-detail__community {
@@ -1079,17 +1055,14 @@
   }
 
   .product-detail__community-card strong {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .product-detail__community-card p {
-    font-size: 10px;
+    font-size: 12px;
   }
 
-
-  /* =========================
-     Reviews
-  ========================= */
+  /* Reviews */
 
   .product-detail__reviews {
     margin-top: 60px;
@@ -1100,19 +1073,9 @@
   }
 }
 
-
-
-/* ========================================
-   MOBILE
-   0px ~ 767px
-   전체 좌우 여백 24px
-======================================== */
-
 @media screen and (max-width: 767px) {
 
-  /* =========================
-     Page
-  ========================= */
+  /* Page */
 
   .product-detail {
     width: 100%;
@@ -1122,10 +1085,7 @@
     padding: 100px 24px 72px;
   }
 
-
-  /* =========================
-     Breadcrumb
-  ========================= */
+  /* Breadcrumb */
 
   .product-detail__breadcrumb {
     gap: 7px;
@@ -1135,7 +1095,7 @@
     margin: 0 0 18px;
     padding-top: 0px;
 
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.4;
   }
 
@@ -1148,10 +1108,7 @@
     white-space: nowrap;
   }
 
-
-  /* =========================
-     Main
-  ========================= */
+  /* Main */
 
   .product-detail__main {
     display: flex;
@@ -1166,10 +1123,7 @@
     margin: 0;
   }
 
-
-  /* =========================
-     Gallery
-  ========================= */
+  /* Gallery */
 
   .product-detail__gallery {
     display: flex;
@@ -1183,6 +1137,15 @@
 
     margin: 0;
     padding: 0;
+  }
+
+  .product-detail__image-viewport {
+    order: 1;
+    width: 100%;
+  }
+
+  .product-detail__image-scroll {
+    max-height: 65dvh;
   }
 
   .product-detail__main-image {
@@ -1204,10 +1167,7 @@
     object-fit: cover;
   }
 
-
-  /* =========================
-     Thumbnails
-  ========================= */
+  /* Thumbnails */
 
   .product-detail__thumbnails {
     display: flex;
@@ -1218,10 +1178,10 @@
 
     width: 100%;
 
-    gap: 7px;
+    gap: 10px;
 
     margin: 0;
-    padding: 7px 0 0;
+    padding: 10px 0 0;
 
     overflow-x: auto;
     overflow-y: hidden;
@@ -1240,10 +1200,7 @@
     height: 48px;
   }
 
-
-  /* =========================
-     Product Information
-  ========================= */
+  /* Product Information */
 
   .product-detail__information {
     position: static;
@@ -1262,7 +1219,6 @@
     background-color: #fafaf8;
   }
 
-
   /* 상품명 = 가장 강한 정보 */
   .product-detail__information h1 {
     width: 100%;
@@ -1277,22 +1233,18 @@
     word-break: keep-all;
   }
 
-
   /* 가격 = 상품명 다음 위계 */
   .product-detail__price {
     width: 100%;
 
     margin: 0 0 24px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
   }
 
-
-  /* =========================
-     Color
-  ========================= */
+  /* Color */
 
   .product-detail__colors {
     grid-template-columns:
@@ -1307,7 +1259,7 @@
   }
 
   .product-detail__color-heading p {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
   }
@@ -1315,7 +1267,7 @@
   .product-detail__color-heading span {
     margin-top: 2px;
 
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 400;
     line-height: 1.4;
   }
@@ -1339,10 +1291,7 @@
     height: 15px;
   }
 
-
-  /* =========================
-     Size
-  ========================= */
+  /* Size */
 
   .product-detail__option {
     grid-template-columns:
@@ -1355,7 +1304,7 @@
   }
 
   .product-detail__size-heading p {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
   }
@@ -1378,16 +1327,13 @@
   .product-detail__size-guide {
     margin-left: 6px;
 
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1;
 
     white-space: nowrap;
   }
 
-
-  /* =========================
-     Add To Cart
-  ========================= */
+  /* Add To Cart */
 
   .product-detail__cart {
     width: 100%;
@@ -1395,14 +1341,11 @@
 
     margin: 0;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
-
-  /* =========================
-     Accordion
-  ========================= */
+  /* Accordion */
 
   .product-detail__accordions {
     width: 100%;
@@ -1415,25 +1358,22 @@
     min-height: 44px;
     height: auto;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .product-detail__accordion span:last-child {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .product-detail__accordion-content {
     padding: 13px 0 17px;
 
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.7;
   }
 
-
-  /* =========================
-     Description
-  ========================= */
+  /* Description */
 
   .product-detail__description {
     width: 100%;
@@ -1444,7 +1384,7 @@
   .product-detail__description p {
     margin-bottom: 22px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.7;
   }
@@ -1452,15 +1392,12 @@
   .product-detail__description li {
     margin-bottom: 8px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.65;
   }
 
-
-  /* =========================
-     Detail Contents
-  ========================= */
+  /* Detail Contents */
 
   .product-detail__contents {
     order: 3;
@@ -1482,10 +1419,7 @@
     margin: 0;
   }
 
-
-  /* =========================
-     Bottom Sections
-  ========================= */
+  /* Bottom Sections */
 
   .product-detail__bottom {
     width: 100%;
@@ -1499,23 +1433,18 @@
     margin-bottom: 14px;
   }
 
-  /*
-   * 메인 상품명 16px보다 확실히 낮게 설정
-   */
+  /* * 메인 상품명 16px보다 확실히 낮게 설정 */
   .product-detail__section-heading h2 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.35;
   }
 
   .product-detail__view-all {
-    font-size: 9px;
+    font-size: 12px;
   }
 
-
-  /* =========================
-     Recommendation
-  ========================= */
+  /* Recommendation */
 
   .product-detail__recommend-grid,
   .product-detail__community-grid {
@@ -1538,13 +1467,13 @@
   .product-detail__recommend-info h3 {
     margin-bottom: 4px;
 
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.4;
   }
 
   .product-detail__recommend-info p {
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
   }
@@ -1553,10 +1482,7 @@
     margin-top: 6px;
   }
 
-
-  /* =========================
-     Community Looks
-  ========================= */
+  /* Community Looks */
 
   .product-detail__community {
     margin-top: 56px;
@@ -1569,20 +1495,17 @@
   .product-detail__community-card strong {
     margin-bottom: 4px;
 
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .product-detail__community-card p {
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
   }
 
-
-  /* =========================
-     Reviews
-  ========================= */
+  /* Reviews */
 
   .product-detail__reviews {
     margin-top: 52px;
@@ -1593,12 +1516,12 @@
 
     padding: 17px 0;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   .product-detail__reviews-button span:last-child {
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .product-detail__reviews-content {
@@ -1606,7 +1529,7 @@
   }
 
   .product-detail__reviews-content p {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.6;
   }
 }

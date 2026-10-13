@@ -14,9 +14,7 @@
   pointer-events: auto;
 }
 
-/* =========================
-   Backdrop
-========================= */
+/* Backdrop */
 
 .drawer-backdrop {
   position: absolute;
@@ -39,18 +37,15 @@
   cursor: default;
 
   transition: opacity 0.3s ease;
-  
-  
+
 }
 
 .drawer-layer--open
 .drawer-backdrop {
-  opacity: 1;
+  opacity: 2;
 }
 
-/* =========================
-   Drawer
-========================= */
+/* Drawer */
 
 .drawer,
 .drawer *,
@@ -75,11 +70,6 @@
   color: #282828;
   background: #fafaf8;
 
-  font-family:
-    "Segoe UI",
-    "Pretendard",
-    sans-serif;
-
   transform: translateX(100%);
 
   transition:
@@ -91,9 +81,18 @@
   transform: translateX(0);
 }
 
-/* =========================
-   Header
-========================= */
+/* Animate drawers that mount directly in the open state. */
+@starting-style {
+  .drawer-layer--open .drawer {
+    transform: translateX(100%);
+  }
+
+  .drawer-layer--open .drawer-backdrop {
+    opacity: 0;
+  }
+}
+
+/* Header */
 
 .drawer__header {
   display: flex;
@@ -112,17 +111,13 @@
   letter-spacing: 0.3em;
 }
 
-/* =========================
-   Body
-========================= */
+/* Body */
 
 .drawer__body {
   margin-top: 56px;
 }
 
-/* =========================
-   Close
-========================= */
+/* Close */
 
 .drawer__close {
   position: relative;
@@ -168,10 +163,7 @@
   transform: rotate(-45deg);
 }
 
-
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 640px) {
   .drawer {
@@ -182,7 +174,7 @@
   }
 
   .drawer__header h2 {
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 0.28em;
   }
 
@@ -203,5 +195,3 @@
     width: 18px;
   }
 }
-
-

@@ -7,33 +7,21 @@ const options = [
   ["price-high", "높은 가격순"],
 ];
 
-export default function ProductSort({
-  value,
-  onChange,
-}) {
+export default function ProductSort({ value, onChange }) {
   const [open, setOpen] = useState(false);
   const sortRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        sortRef.current &&
-        !sortRef.current.contains(event.target)
-      ) {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
         setOpen(false);
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -60,15 +48,10 @@ export default function ProductSort({
       </button>
 
       {open && (
-        <div
-          className="shop-sort__menu"
-          role="listbox"
-          aria-label="상품 정렬"
-        >
+        <div className="shop-sort__menu" role="listbox" aria-label="상품 정렬">
           {options.map(
             ([optionValue, label]) => {
-              const selected =
-                value === optionValue;
+              const selected = value === optionValue;
 
               return (
                 <button
@@ -79,19 +62,14 @@ export default function ProductSort({
                       ? "shop-sort__option--selected"
                       : ""
                   }`}
-                  onClick={() =>
-                    handleSelect(optionValue)
-                  }
+                  onClick={() => handleSelect(optionValue)}
                   role="option"
                   aria-selected={selected}
                 >
                   <span>{label}</span>
 
                   {selected && (
-                    <span
-                      className="shop-sort__check"
-                      aria-hidden="true"
-                    >
+                    <span className="shop-sort__check" aria-hidden="true">
                       ✓
                     </span>
                   )}

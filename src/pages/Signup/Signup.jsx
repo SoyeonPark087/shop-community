@@ -48,11 +48,7 @@ const basicFields = [
   },
 ];
 
-
-const years = Array.from(
-  { length: 100 },
-  (_, index) => new Date().getFullYear() - index
-);
+const years = Array.from({ length: 100 }, (_, index) => new Date().getFullYear() - index);
 
 const months = Array.from({ length: 12 }, (_, index) => index + 1);
 
@@ -84,25 +80,13 @@ function FormSection({ title, children }) {
   );
 }
 
-function FormRow({
-  label,
-  required = false,
-  htmlFor,
-  children,
-  className = "",
-}) {
+function FormRow({ label, required = false, htmlFor, children, className = "" }) {
   return (
     <div className={`form-row ${className}`}>
-      <label
-        className="form-row__label"
-        htmlFor={htmlFor}
-      >
+      <label className="form-row__label" htmlFor={htmlFor}>
         {label}
         {required && (
-          <span
-            className="required-mark"
-            aria-hidden="true"
-          >
+          <span className="required-mark" aria-hidden="true">
             *
           </span>
         )}
@@ -115,14 +99,7 @@ function FormRow({
   );
 }
 
-function AgreementRow({
-  id,
-  checked,
-  onChange,
-  children,
-  view = false,
-  strong = false,
-}) {
+function AgreementRow({ id, checked, onChange, children, view = false, strong = false }) {
   return (
     <div
       className={`agreement-row ${
@@ -130,12 +107,7 @@ function AgreementRow({
       }`}
     >
       <label className="agreement-check">
-        <input
-          id={id}
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-        />
+        <input id={id} type="checkbox" checked={checked} onChange={onChange} />
 
         <span className="agreement-check__box" />
 
@@ -145,17 +117,13 @@ function AgreementRow({
       </label>
 
       {view && (
-        <button
-          type="button"
-          className="agreement-view"
-        >
+        <button type="button" className="agreement-view">
           보기
         </button>
       )}
     </div>
   );
 }
-
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -166,27 +134,17 @@ export default function Signup() {
     marketing: false,
   });
 
-  const allChecked = Object.values(agreements).every(
-    Boolean
-  );
+  const allChecked = Object.values(agreements).every(Boolean);
 
   const handleAllAgreement = (event) => {
     const checked = event.target.checked;
 
-    setAgreements({
-      terms: checked,
-      privacy: checked,
-      marketing: checked,
-    });
+    setAgreements({ terms: checked, privacy: checked, marketing: checked });
   };
 
   const handleAgreement = (name) => (event) => {
-    setAgreements((prev) => ({
-      ...prev,
-      [name]: event.target.checked,
-    }));
+    setAgreements(prev => ({ ...prev, [name]: event.target.checked }));
   };
-
 
   return (
     <div className="signup-page">
@@ -194,17 +152,10 @@ export default function Signup() {
         <div className="signup-inner">
           <SignupHeading />
 
-          <form
-            className="signup-form"
-          >
+          <form className="signup-form">
             <FormSection title="BASIC INFORMATION">
               {basicFields.map((field) => (
-                <FormRow
-                  key={field.id}
-                  label={field.label}
-                  required={field.required}
-                  htmlFor={field.id}
-                >
+                <FormRow key={field.id} label={field.label} required={field.required} htmlFor={field.id}>
                   <input
                     id={field.id}
                     name={field.id}
@@ -217,52 +168,22 @@ export default function Signup() {
             </FormSection>
 
             <FormSection title="ADDRESS">
-              <FormRow
-                label="우편 번호"
-                required
-                htmlFor="postcode"
-              >
+              <FormRow label="우편 번호" required htmlFor="postcode">
                 <div className="address-search">
-                  <input
-                    id="postcode"
-                    name="postcode"
-                    type="text"
-                    placeholder="주소 검색"
-                    readOnly
-                  />
+                  <input id="postcode" name="postcode" type="text" placeholder="주소 검색" readOnly />
 
-                  <button
-                    type="button"
-                    className="address-search__button"
-                  >
+                  <button type="button" className="address-search__button">
                     주소 검색
                   </button>
                 </div>
               </FormRow>
 
-              <FormRow
-                label="기본 주소"
-                required
-                htmlFor="address"
-              >
-                <input
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="기본 주소를 입력해주세요"
-                />
+              <FormRow label="기본 주소" required htmlFor="address">
+                <input id="address" name="address" type="text" placeholder="기본 주소를 입력해주세요" />
               </FormRow>
 
-              <FormRow
-                label="상세 주소"
-                htmlFor="addressDetail"
-              >
-                <input
-                  id="addressDetail"
-                  name="addressDetail"
-                  type="text"
-                  placeholder="상세 주소를 입력해주세요 (선택)"
-                />
+              <FormRow label="상세 주소" htmlFor="addressDetail">
+                <input id="addressDetail" name="addressDetail" type="text" placeholder="상세 주소를 입력해주세요 (선택)" />
               </FormRow>
             </FormSection>
 
@@ -270,30 +191,17 @@ export default function Signup() {
               <FormRow label="성별">
                 <div className="gender-options">
                   <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="none"
-                      defaultChecked
-                    />
+                    <input type="radio" name="gender" value="none" defaultChecked />
                     <span>선택 안 함</span>
                   </label>
 
                   <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="male"
-                    />
+                    <input type="radio" name="gender" value="male" />
                     <span>남성</span>
                   </label>
 
                   <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="female"
-                    />
+                    <input type="radio" name="gender" value="female" />
                     <span>여성</span>
                   </label>
                 </div>
@@ -301,58 +209,37 @@ export default function Signup() {
 
               <FormRow label="생년월일">
                 <div className="birth-selects">
-                  <select
-                    name="birthYear"
-                    defaultValue=""
-                    aria-label="출생 연도"
-                  >
+                  <select name="birthYear" defaultValue="" aria-label="출생 연도">
                     <option value="" disabled>
                       년
                     </option>
 
                     {years.map((year) => (
-                      <option
-                        key={year}
-                        value={year}
-                      >
+                      <option key={year} value={year}>
                         {year}
                       </option>
                     ))}
                   </select>
 
-                  <select
-                    name="birthMonth"
-                    defaultValue=""
-                    aria-label="출생 월"
-                  >
+                  <select name="birthMonth" defaultValue="" aria-label="출생 월">
                     <option value="" disabled>
                       월
                     </option>
 
                     {months.map((month) => (
-                      <option
-                        key={month}
-                        value={month}
-                      >
+                      <option key={month} value={month}>
                         {month}
                       </option>
                     ))}
                   </select>
 
-                  <select
-                    name="birthDay"
-                    defaultValue=""
-                    aria-label="출생 일"
-                  >
+                  <select name="birthDay" defaultValue="" aria-label="출생 일">
                     <option value="" disabled>
                       일
                     </option>
 
                     {days.map((day) => (
-                      <option
-                        key={day}
-                        value={day}
-                      >
+                      <option key={day} value={day}>
                         {day}
                       </option>
                     ))}
@@ -363,12 +250,7 @@ export default function Signup() {
 
             <FormSection title="AGREEMENT">
               <div className="agreement-list">
-                <AgreementRow
-                  id="allAgreement"
-                  checked={allChecked}
-                  onChange={handleAllAgreement}
-                  strong
-                >
+                <AgreementRow id="allAgreement" checked={allChecked} onChange={handleAllAgreement} strong>
                   전체 동의하기
                 </AgreementRow>
 
@@ -401,11 +283,7 @@ export default function Signup() {
               </div>
             </FormSection>
 
-            <button
-              type="button"
-              className="signup-submit"
-              onClick={() => navigate("/mypage")}
-            >
+            <button type="button" className="signup-submit" onClick={() => navigate("/mypage")}>
               Create Account
             </button>
 

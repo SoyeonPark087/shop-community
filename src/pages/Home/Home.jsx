@@ -1,46 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { products } from "../../data/Products.js";
 
-const newArrivals = [
-  {
-    id: 1,
-    name: "Ribbed Tank Top",
-    price: "₩ 49,000",
-    image: "/images/home/new1.png",
-  },
-  {
-    id: 2,
-    name: "Wide Nylon Pants",
-    price: "₩ 89,000",
-    image: "/images/home/new2.png",
-  },
-  {
-    id: 3,
-    name: "Back Tie Long Sleeve",
-    price: "₩ 56,000",
-    image: "/images/home/new3.png",
-  },
-  {
-    id: 4,
-    name: "Relaxed Knit Tee",
-    price: "₩ 62,000",
-    image: "/images/home/new4.png",
-  },
-];
+const newArrivals = products.slice(0, 4);
 
 const editorialCards = [
   {
     eyebrow: "EDITORIAL",
     title: "Soft\nStructures",
     description: "Relaxed shapes for a more\ngrounded you.",
-    image: "/images/home/edit1.png",
+    image: `${import.meta.env.BASE_URL}images/home/edit1.png`,
   },
   {
     eyebrow: "STYLE GUIDE",
     title: "Weekend\nLayers",
     description: "Pieces that move with you",
-    image: "/images/home/edit2.png",
+    image: `${import.meta.env.BASE_URL}images/home/edit2.png`,
   },
 ];
 
@@ -51,7 +27,7 @@ const communityLooks = [
     count: "3 items",
     tags: "#mood  #homewear",
     text: "Some mood, different day.",
-    image: "/images/home/look1.png",
+    image: `${import.meta.env.BASE_URL}images/home/look1.png`,
   },
   {
     id: 2,
@@ -59,7 +35,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #outside",
     text: "오늘도 좋은 하루 :)",
-    image: "/images/home/look2.png",
+    image: `${import.meta.env.BASE_URL}images/home/look2.png`,
   },
   {
     id: 3,
@@ -67,7 +43,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#daily  #sweater",
     text: "A slow morning, a better day!",
-    image: "/images/home/look3.png",
+    image: `${import.meta.env.BASE_URL}images/home/look3.png`,
   },
   {
     id: 4,
@@ -75,7 +51,7 @@ const communityLooks = [
     count: "2 items",
     tags: "#yoga  #outfit",
     text: "Everyday pieces, new perspective.",
-    image: "/images/home/look4.png",
+    image: `${import.meta.env.BASE_URL}images/home/look4.png`,
   },
 ];
 
@@ -83,29 +59,24 @@ const moodCards = [
   {
     title: "City Ease",
     description: "Modern pieces for your rhythm.",
-    image: "/images/home/edit3.png",
+    image: `${import.meta.env.BASE_URL}images/home/edit3.png`,
     tone: "light",
   },
   {
     title: "Soft Neutral",
     description: "Calm essentials for everyday",
-    image: "/images/home/edit4.png",
+    image: `${import.meta.env.BASE_URL}images/home/edit4.png`,
     tone: "dark",
   },
   {
     title: "Weekend Calm",
     description: "A little white for your tone",
-    image: "/images/home/edit5.png",
+    image: `${import.meta.env.BASE_URL}images/home/edit5.png`,
     tone: "light",
   },
 ];
 
-
-function ArrowLink({
-  children,
-  to,
-  className = "",
-}) {
+function ArrowLink({ children, to, className = "" }) {
   return (
     <Link
       className={`arrow-link ${className}`}
@@ -122,7 +93,7 @@ function Hero() {
     <section id="top" className="hero">
       <img
         className="hero__image"
-        src="/images/home/herobanner.png"
+        src={`${import.meta.env.BASE_URL}images/home/herobanner.png`}
         alt=""
       />
 
@@ -163,12 +134,12 @@ function NewArrivals() {
         <div className="product-grid">
           {newArrivals.map((product) => (
             <article className="product-card" key={product.id}>
-              <a className="product-card__image" href="#">
+              <a className="product-card__image" href={`#/shop/${product.id}`}>
                 <img src={product.image} alt={product.name} />
               </a>
               <div className="product-card__body">
                 <h3>{product.name}</h3>
-                <p>{product.price}</p>
+                <p>₩ {product.price.toLocaleString("ko-KR")}</p>
               </div>
             </article>
           ))}
@@ -214,13 +185,13 @@ function Community() {
         <div className="community-grid">
           {communityLooks.map((look) => (
             <article className="community-card" key={look.id}>
-              <a className="community-card__image" href="#">
+              <div className="community-card__image">
                 <img src={look.image} alt="" />
-              </a>
+              </div>
               <div className="community-card__meta">
                 <div className="community-card__row">
                   <strong>{look.user}</strong>
-                  <a href="#">{look.count} <span aria-hidden="true">›</span></a>
+                  <span className="community-card__count">{look.count} <span aria-hidden="true">›</span></span>
                 </div>
                 <p className="community-card__tags">{look.tags}</p>
                 <p className="community-card__text">{look.text}</p>
