@@ -1,3 +1,4 @@
+
 .drawer-layer {
   position: fixed;
   inset: 0;
@@ -27,7 +28,7 @@
   padding: 0;
   border: 0;
 
-  background: rgba(40, 40, 40, 0.08);
+  background: rgba(40, 40, 40, 0.32);
 
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -42,7 +43,7 @@
 
 .drawer-layer--open
 .drawer-backdrop {
-  opacity: 2;
+  opacity: 1;
 }
 
 /* Drawer */

@@ -96,14 +96,13 @@
   outline-offset: 5px;
 }
 
-/* Write */
+/* Write: 아이콘 + 텍스트 (기존 링크 및 정렬 유지) */
 
 .mooday-community__write {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   flex: 0 0 auto;
-
-  padding-bottom: 2px;
-
-  border-bottom: 1px solid #282828;
 
   color: #282828;
 
@@ -114,9 +113,26 @@
   white-space: nowrap;
 }
 
+/* SVG 마스크: 링크의 currentColor와 hover 색상을 함께 사용 */
+.mooday-community__write-icon {
+  display: block;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  background-color: currentColor;
+  -webkit-mask: var(--write-icon-url) center / contain no-repeat;
+  mask: var(--write-icon-url) center / contain no-repeat;
+}
+
+/* 밑줄을 아이콘 아래까지 확장하지 않고 Write 글자에만 표시 */
+.mooday-community__write-label {
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+}
+
 .mooday-community__write:hover {
   color: #344f41;
-  border-color: #344f41;
 }
 
 /* 03. TAG / FILTER TOOLS */

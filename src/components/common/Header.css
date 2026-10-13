@@ -1,3 +1,8 @@
+
+/* =========================================================
+   MOODAY HEADER
+========================================================= */
+
 /* Header */
 
 .site-header {
@@ -8,6 +13,11 @@
   width: 100%;
   height: 92px;
 }
+
+
+/* =========================================================
+   HEADER INNER
+========================================================= */
 
 .site-header__inner {
   position: relative;
@@ -25,7 +35,10 @@
   margin: 0 auto;
 }
 
-/* Navigation */
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
 
 .site-header__nav {
   display: flex;
@@ -64,7 +77,10 @@
   cursor: pointer;
 }
 
-/* Logo */
+
+/* =========================================================
+   HEADER LOGO
+========================================================= */
 
 .site-header__logo {
   display: block;
@@ -83,9 +99,20 @@
   object-fit: contain;
 }
 
+
+/* =========================================================
+   MOBILE ACTIONS
+   Desktop에서는 숨김
+========================================================= */
+
 .site-header__actions {
   display: none;
 }
+
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
 
 .site-header__icon-button {
   display: inline-flex;
@@ -110,7 +137,10 @@
   display: none;
 }
 
-/* Icon Image */
+
+/* =========================================================
+   ICON IMAGE
+========================================================= */
 
 .site-header__icon-image {
   display: block;
@@ -121,46 +151,92 @@
   object-fit: contain;
 }
 
-/* Cart */
 
+/* =========================================================
+   CART COUNT — COMMON
+   Desktop / Tablet / Mobile 공통 수량 배지
+========================================================= */
+
+/* 모바일 Cart 아이콘의 배치 기준 */
 .site-header__cart {
   position: relative;
 }
 
+/* 공통 배지 디자인 */
 .site-header__cart-count {
-  position: absolute;
-
-  top: 3px;
-  right: 1px;
-
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 15px;
-  height: 15px;
+  flex: 0 0 auto;
 
+  min-width: 17px;
+  height: 17px;
+
+  margin: 0;
   padding: 0 4px;
 
   border-radius: 999px;
 
-  color: #fafaf8;
-  background: #282828;
+  color: #ffffff;
+  background: #a33b3b;
 
-  font-size: 16px;
+  font-family: inherit;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1;
+
+  letter-spacing: 0;
+
+  white-space: nowrap;
+  text-align: center;
+
+  pointer-events: none;
 }
 
-/* Tablet & Mobile */
+
+/* =========================================================
+   DESKTOP CART
+   Cart 텍스트 오른쪽에 수량 배지 배치
+========================================================= */
+
+.site-header__nav .site-header__cart-desktop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  flex: 0 0 auto;
+
+  white-space: nowrap;
+}
+
+/* Desktop에서는 배지를 텍스트 옆에 배치 */
+.site-header__cart-desktop .site-header__cart-count {
+  position: static;
+
+  top: auto;
+  right: auto;
+}
+
+
+/* =========================================================
+   TABLET & MOBILE
+   <= 1024px
+========================================================= */
 
 @media (max-width: 1024px) {
 
+  /* Header Height */
   .site-header {
     height: 56px;
   }
 
-  /* Layout */
+
+  /* =======================================================
+     MOBILE LAYOUT
+  ======================================================= */
 
   .site-header__inner {
     display: flex;
@@ -178,14 +254,20 @@
     box-sizing: border-box;
   }
 
-  /* Desktop Navigation Hide */
+
+  /* =======================================================
+     DESKTOP NAVIGATION HIDE
+  ======================================================= */
 
   .site-header__nav--left,
   .site-header__nav--right {
     display: none;
   }
 
-  /* Logo */
+
+  /* =======================================================
+     MOBILE LOGO
+  ======================================================= */
 
   .site-header__logo {
     display: flex;
@@ -210,7 +292,10 @@
     object-fit: contain;
   }
 
-  /* Mobile Actions */
+
+  /* =======================================================
+     MOBILE ACTIONS
+  ======================================================= */
 
   .site-header__actions {
     display: flex;
@@ -225,7 +310,10 @@
     padding: 0;
   }
 
-  /* Icon Button */
+
+  /* =======================================================
+     MOBILE ICON BUTTONS
+  ======================================================= */
 
   .site-header__icon-button {
     display: inline-flex;
@@ -248,7 +336,10 @@
     cursor: pointer;
   }
 
-  /* Icon Image */
+
+  /* =======================================================
+     MOBILE ICON IMAGES
+  ======================================================= */
 
   .site-header__icon-image {
     display: block;
@@ -261,17 +352,42 @@
     flex-shrink: 0;
   }
 
-  /* Cart Count */
 
-  .site-header__cart-count {
-    top: 2px;
-    right: -2px;
+  /* =======================================================
+     MOBILE CART COUNT
+     Cart 아이콘 우측 상단에 배지 겹침
+  ======================================================= */
 
-    min-width: 14px;
-    height: 14px;
+  .site-header__cart .site-header__cart-count {
+    position: absolute;
+
+    top: 3px;
+    right: -4px;
+
+    min-width: 16px;
+    height: 16px;
 
     padding: 0 3px;
 
-    font-size: 16px;
+    font-size: 10px;
+
+    z-index: 1;
   }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   <= 375px
+   작은 화면에서도 배지가 다른 아이콘과 겹치지 않도록
+========================================================= */
+
+@media (max-width: 375px) {
+
+  .site-header__cart .site-header__cart-count {
+    top: 3px;
+    right: -3px;
+  }
+
 }

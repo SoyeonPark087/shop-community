@@ -1,6 +1,11 @@
-import { useState } from 'react'
+
+import { useEffect, useRef, useState } from 'react'
 import './CustomerService.css'
 
+
+// =========================================================
+// FAQ DATA
+// =========================================================
 
 const faqItems = [
   {
@@ -30,9 +35,31 @@ const faqItems = [
 ]
 
 
+// =========================================================
+// INQUIRY TYPE OPTIONS
+// 기존 option의 value와 표시 문구 유지
+// =========================================================
+
+const inquiryTypeOptions = [
+  { value: 'product', label: '상품 관련' },
+  { value: 'order', label: '주문 및 배송' },
+  { value: 'return', label: '교환 / 반품' },
+  { value: 'account', label: '회원정보' },
+  { value: 'editorial', label: '에디터 지원' },
+  { value: 'community', label: '커뮤니티' },
+  { value: 'etc', label: '기타' },
+]
+
+
+// =========================================================
+// CUSTOMER SERVICE COMPONENT
+// =========================================================
+
 export default function CustomerService() {
+  // FAQ 열림 상태
   const [openIndex, setOpenIndex] = useState(null)
 
+  // 문의 폼 데이터
   const [inquiryForm, setInquiryForm] = useState({
     type: '',
     title: '',
@@ -42,11 +69,40 @@ export default function CustomerService() {
 
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
 
+  // =======================================================
+  // CUSTOM DROPDOWN STATE
+  // =======================================================
+
+  const [isTypeOpen, setIsTypeOpen] = useState(false)
+  const [activeTypeIndex, setActiveTypeIndex] = useState(0)
+  const [typeError, setTypeError] = useState(false)
+
+  const typeDropdownRef = useRef(null)
+  const typeButtonRef = useRef(null)
+  const typeListRef = useRef(null)
+  const typeOptionRefs = useRef([])
+
+  const typeListId = 'inquiry-type-listbox'
+
+  // Vite 하위 경로 배포에도 대응
+  const caretIconSrc =
+    `${import.meta.env.BASE_URL}icons/caret-down.svg`
+
+  const selectedType = inquiryTypeOptions.find(
+    (option) => option.value === inquiryForm.type
+  )
+
+  // =======================================================
+  // FAQ TOGGLE
+  // =======================================================
 
   const handleToggle = (index) => {
     setOpenIndex((prev) => (prev === index ? null : index))
   }
 
+  // =======================================================
+  // COMMON FORM CHANGE
+  // =======================================================
 
   const handleInquiryChange = (event) => {
     const { name, value } = event.target
@@ -55,14 +111,206 @@ export default function CustomerService() {
       ...prev,
       [name]: value,
     }))
+
+    setInquirySubmitted(false)
   }
 
+  // =======================================================
+  // CUSTOM DROPDOWN FUNCTIONS
+  // =======================================================
+
+  // 드롭다운 열기
+  const openTypeDropdown = (focusIndex = 0) => {
+    setActiveTypeIndex(focusIndex)
+    setIsTypeOpen(true)
+  }
+
+  // 드롭다운 닫기
+  const closeTypeDropdown = (restoreFocus = false) => {
+    setIsTypeOpen(false)
+
+    if (restoreFocus) {
+      typeButtonRef.current?.focus()
+    }
+  }
+
+  // 문의 유형 선택
+  const handleTypeSelect = (option) => {
+    setInquiryForm((prev) => ({
+      ...prev,
+      type: option.value,
+    }))
+
+    setTypeError(false)
+    setInquirySubmitted(false)
+    closeTypeDropdown(true)
+  }
+
+  // 드롭다운 버튼 클릭
+  const handleTypeToggle = () => {
+    if (isTypeOpen) {
+      closeTypeDropdown()
+      return
+    }
+
+    const selectedIndex = inquiryTypeOptions.findIndex(
+      (option) => option.value === inquiryForm.type
+    )
+
+    openTypeDropdown(
+      selectedIndex >= 0 ? selectedIndex : 0
+    )
+  }
+
+  // 버튼 키보드 조작
+  const handleTypeButtonKeyDown = (event) => {
+    const selectedIndex = inquiryTypeOptions.findIndex(
+      (option) => option.value === inquiryForm.type
+    )
+
+    if (
+      event.key === 'ArrowDown' ||
+      event.key === 'Enter' ||
+      event.key === ' '
+    ) {
+      event.preventDefault()
+
+      if (!isTypeOpen) {
+        openTypeDropdown(
+          selectedIndex >= 0 ? selectedIndex : 0
+        )
+      } else if (
+        event.key === 'Enter' ||
+        event.key === ' '
+      ) {
+        handleTypeSelect(inquiryTypeOptions[activeTypeIndex])
+      }
+
+      return
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault()
+
+      if (!isTypeOpen) {
+        openTypeDropdown(
+          selectedIndex >= 0
+            ? selectedIndex
+            : inquiryTypeOptions.length - 1
+        )
+      }
+
+      return
+    }
+
+    if (event.key === 'Escape' && isTypeOpen) {
+      event.preventDefault()
+      closeTypeDropdown(true)
+    }
+  }
+
+  // 목록 키보드 조작
+  const handleTypeListKeyDown = (event) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      setActiveTypeIndex((prev) =>
+        Math.min(prev + 1, inquiryTypeOptions.length - 1)
+      )
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      setActiveTypeIndex((prev) =>
+        Math.max(prev - 1, 0)
+      )
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault()
+      setActiveTypeIndex(0)
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault()
+      setActiveTypeIndex(inquiryTypeOptions.length - 1)
+    }
+
+    if (
+      event.key === 'Enter' ||
+      event.key === ' '
+    ) {
+      event.preventDefault()
+      handleTypeSelect(inquiryTypeOptions[activeTypeIndex])
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      closeTypeDropdown(true)
+    }
+
+    if (event.key === 'Tab') {
+      closeTypeDropdown()
+    }
+  }
+
+  // 드롭다운 외부 클릭 / 포커스 이탈 감지
+  useEffect(() => {
+    if (!isTypeOpen) return undefined
+
+    const handleOutsidePointer = (event) => {
+      if (
+        typeDropdownRef.current &&
+        !typeDropdownRef.current.contains(event.target)
+      ) {
+        setIsTypeOpen(false)
+      }
+    }
+
+    const handleFocusOutside = (event) => {
+      if (
+        typeDropdownRef.current &&
+        !typeDropdownRef.current.contains(event.target)
+      ) {
+        setIsTypeOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsidePointer)
+    document.addEventListener('focusin', handleFocusOutside)
+
+    return () => {
+      document.removeEventListener(
+        'pointerdown',
+        handleOutsidePointer
+      )
+      document.removeEventListener(
+        'focusin',
+        handleFocusOutside
+      )
+    }
+  }, [isTypeOpen])
+
+  // 목록 열림 시 선택 항목으로 키보드 포커스 이동
+  useEffect(() => {
+    if (!isTypeOpen) return
+
+    typeOptionRefs.current[activeTypeIndex]?.focus()
+  }, [isTypeOpen, activeTypeIndex])
+
+  // =======================================================
+  // INQUIRY SUBMIT
+  // =======================================================
 
   const handleInquirySubmit = (event) => {
     event.preventDefault()
 
+    if (!inquiryForm.type) {
+      setTypeError(true)
+      typeButtonRef.current?.focus()
+      return
+    }
+
     if (
-      !inquiryForm.type ||
       !inquiryForm.title.trim() ||
       !inquiryForm.content.trim() ||
       !inquiryForm.email.trim()
@@ -70,6 +318,8 @@ export default function CustomerService() {
       return
     }
 
+    setTypeError(false)
+    setIsTypeOpen(false)
     setInquirySubmitted(true)
 
     setInquiryForm({
@@ -84,6 +334,9 @@ export default function CustomerService() {
     }, 2500)
   }
 
+  // =======================================================
+  // RENDER
+  // =======================================================
 
   return (
     <main className="mooday-customer-service">
@@ -120,23 +373,23 @@ export default function CustomerService() {
               Before you contact us
             </h2>
 
-          <div className="mooday-customer-service__care">
-            <p>
-              상품 정보는 각 Product Detail의
-              Size & Fit, Materials & Care,
-              Shipping & Returns에서 확인할 수 있습니다.
-            </p>
+            <div className="mooday-customer-service__care">
+              <p>
+                상품 정보는 각 Product Detail의
+                Size & Fit, Materials & Care,
+                Shipping & Returns에서 확인할 수 있습니다.
+              </p>
 
-            <p>
-              주문 취소 및 반품 접수는
-              My Page의 Order에서 신청할 수 있습니다.
-            </p>
+              <p>
+                주문 취소 및 반품 접수는
+                My Page의 Order에서 신청할 수 있습니다.
+              </p>
 
-            <p>
-              배송 현황은 Order Tracking 또는
-              My Page의 Order에서 확인할 수 있습니다.
-            </p>
-          </div>
+              <p>
+                배송 현황은 Order Tracking 또는
+                My Page의 Order에서 확인할 수 있습니다.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -239,53 +492,110 @@ export default function CustomerService() {
               className="mooday-customer-service__inquiry-form"
               onSubmit={handleInquirySubmit}
             >
+              {/* CUSTOM INQUIRY TYPE DROPDOWN */}
               <div className="mooday-customer-service__inquiry-field">
-                <label htmlFor="inquiry-type">
+                <label id="inquiry-type-label">
                   문의 유형
                 </label>
 
-                <select
-                  id="inquiry-type"
-                  name="type"
-                  value={inquiryForm.type}
-                  onChange={handleInquiryChange}
-                  required
+                <div
+                  ref={typeDropdownRef}
+                  className={`mooday-customer-service__type-dropdown ${
+                    isTypeOpen
+                      ? 'mooday-customer-service__type-dropdown--open'
+                      : ''
+                  }`}
                 >
-                  <option value="">
-                    문의 유형을 선택해 주세요
-                  </option>
+                  <button
+                    ref={typeButtonRef}
+                    id="inquiry-type"
+                    type="button"
+                    className="mooday-customer-service__type-trigger"
+                    aria-labelledby="inquiry-type-label inquiry-type"
+                    aria-haspopup="listbox"
+                    aria-expanded={isTypeOpen}
+                    aria-controls={
+                      isTypeOpen ? typeListId : undefined
+                    }
+                    aria-required="true"
+                    aria-invalid={typeError}
+                    aria-describedby={
+                      typeError ? 'inquiry-type-error' : undefined
+                    }
+                    onClick={handleTypeToggle}
+                    onKeyDown={handleTypeButtonKeyDown}
+                  >
+                    <span
+                      className={`mooday-customer-service__type-value ${
+                        !selectedType
+                          ? 'mooday-customer-service__type-value--placeholder'
+                          : ''
+                      }`}
+                    >
+                      {selectedType
+                        ? selectedType.label
+                        : '문의 유형을 선택해 주세요'}
+                    </span>
 
-                  <option value="product">
-                    상품 관련
-                  </option>
+                    <img
+                      src={caretIconSrc}
+                      alt=""
+                      aria-hidden="true"
+                      className="mooday-customer-service__type-caret"
+                    />
+                  </button>
 
-                  <option value="order">
-                    주문 및 배송
-                  </option>
+                  {isTypeOpen && (
+                    <div
+                      ref={typeListRef}
+                      id={typeListId}
+                      role="listbox"
+                      aria-labelledby="inquiry-type-label"
+                      className="mooday-customer-service__type-list"
+                      onKeyDown={handleTypeListKeyDown}
+                    >
+                      {inquiryTypeOptions.map((option, index) => (
+                        <div
+                          key={option.value}
+                          ref={(element) => {
+                            typeOptionRefs.current[index] = element
+                          }}
+                          id={`inquiry-type-option-${index}`}
+                          role="option"
+                          aria-selected={
+                            inquiryForm.type === option.value
+                          }
+                          tabIndex={index === activeTypeIndex ? 0 : -1}
+                          className={`mooday-customer-service__type-option ${
+                            index === activeTypeIndex
+                              ? 'mooday-customer-service__type-option--active'
+                              : ''
+                          }`}
+                          onMouseEnter={() => {
+                            setActiveTypeIndex(index)
+                          }}
+                          onClick={() => handleTypeSelect(option)}
+                        >
+                          {option.label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                  <option value="return">
-                    교환 / 반품
-                  </option>
-
-                  <option value="account">
-                    회원정보
-                  </option>
-
-                  <option value="editorial">
-                    에디터 지원
-                  </option>
-
-                  <option value="community">
-                    커뮤니티
-                  </option>
-
-                  <option value="etc">
-                    기타
-                  </option>
-                </select>
+                  {typeError && (
+                    <p
+                      id="inquiry-type-error"
+                      className="mooday-customer-service__type-error"
+                      role="alert"
+                    >
+                      문의 유형을 선택해 주세요.
+                    </p>
+                  )}
+                </div>
               </div>
 
 
+              {/* INQUIRY TITLE */}
               <div className="mooday-customer-service__inquiry-field">
                 <label htmlFor="inquiry-title">
                   제목
@@ -303,6 +613,7 @@ export default function CustomerService() {
               </div>
 
 
+              {/* INQUIRY EMAIL */}
               <div className="mooday-customer-service__inquiry-field">
                 <label htmlFor="inquiry-email">
                   이메일
@@ -320,6 +631,7 @@ export default function CustomerService() {
               </div>
 
 
+              {/* INQUIRY CONTENT */}
               <div className="mooday-customer-service__inquiry-field mooday-customer-service__inquiry-field--textarea">
                 <label htmlFor="inquiry-content">
                   문의 내용
@@ -337,6 +649,7 @@ export default function CustomerService() {
               </div>
 
 
+              {/* INQUIRY NOTE */}
               <div className="mooday-customer-service__inquiry-note">
                 <p>
                   주문 취소·반품은 My Page의 Order에서,
@@ -345,6 +658,7 @@ export default function CustomerService() {
               </div>
 
 
+              {/* SUBMIT */}
               <button
                 type="submit"
                 className="mooday-customer-service__inquiry-submit"

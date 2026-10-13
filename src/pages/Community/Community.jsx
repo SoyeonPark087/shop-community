@@ -146,10 +146,16 @@ export default function Community() {
 
             </div>
 
+          {/* Write: 일반 Community Main에서만 아이콘 표시 */}
           <a className="mooday-community__write" href="#/community/write">
-
-            Write
-
+            <span
+              className="mooday-community__write-icon"
+              aria-hidden="true"
+              style={{
+                '--write-icon-url': `url("${import.meta.env.BASE_URL}icons/square-pen.svg")`,
+              }}
+            />
+            <span className="mooday-community__write-label">Write</span>
           </a>
 
           </div>
