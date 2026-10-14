@@ -212,23 +212,23 @@
   display: block;
   flex: 0 0 auto;
 
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   margin-right: 6px;
 
   background:
     linear-gradient(
       currentColor,
       currentColor
-    ) 0 1px / 12px 1px no-repeat,
+    ) 1.5px calc(50% - 3px) / 10px 0.8px no-repeat,
     linear-gradient(
       currentColor,
       currentColor
-    ) 0 5px / 9px 1px no-repeat,
+    ) 1.5px 50% / 7px 0.8px no-repeat,
     linear-gradient(
       currentColor,
       currentColor
-    ) 0 9px / 6px 1px no-repeat;
+    ) 1.5px calc(50% + 3px) / 4px 0.8px no-repeat;
 
   content: "";
   pointer-events: none;
@@ -688,23 +688,15 @@
   }
 
   .shop-page .shop-sort::before {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     margin-right: 5px;
+    background-size: 9px 0.8px, 6px 0.8px, 3px 0.8px;
+  }
 
-    background:
-      linear-gradient(
-        currentColor,
-        currentColor
-      ) 0 1px / 11px 1px no-repeat,
-      linear-gradient(
-        currentColor,
-        currentColor
-      ) 0 5px / 8px 1px no-repeat,
-      linear-gradient(
-        currentColor,
-        currentColor
-      ) 0 9px / 5px 1px no-repeat;
+  .shop-page .shop-action-icon {
+    width: 12px;
+    height: 12px;
   }
 
   .shop-page .shop-sort__trigger,
@@ -722,11 +714,6 @@
 
   .shop-page .shop-filter-button {
     gap: 5px;
-  }
-
-  .shop-page .shop-action-icon {
-    width: 12px;
-    height: 12px;
   }
 
   .shop-page .shop-sort__menu {

@@ -209,14 +209,6 @@ export default function Shop() {
           />
 
 
-          {/* 검색 결과 없음 */}
-          {visibleProducts.length === 0 && (
-            <p className="shop-empty">
-              선택한 조건에 맞는 상품이 없습니다.
-            </p>
-          )}
-
-
           {/* 페이지네이션 */}
           {visibleProducts.length > 0 && (
             <nav

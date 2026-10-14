@@ -84,10 +84,6 @@ export default function CustomerService() {
 
   const typeListId = 'inquiry-type-listbox'
 
-  // Vite 하위 경로 배포에도 대응
-  const caretIconSrc =
-    `${import.meta.env.BASE_URL}icons/caret-down.svg`
-
   const selectedType = inquiryTypeOptions.find(
     (option) => option.value === inquiryForm.type
   )
@@ -537,12 +533,20 @@ export default function CustomerService() {
                         : '문의 유형을 선택해 주세요'}
                     </span>
 
-                    <img
-                      src={caretIconSrc}
-                      alt=""
+                    <svg
+                      viewBox="0 0 12 12"
                       aria-hidden="true"
                       className="mooday-customer-service__type-caret"
-                    />
+                    >
+                      <path
+                        d="M2.5 4.5 6 8l3.5-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </button>
 
                   {isTypeOpen && (

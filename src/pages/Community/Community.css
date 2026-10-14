@@ -116,9 +116,9 @@
 /* SVG 마스크: 링크의 currentColor와 hover 색상을 함께 사용 */
 .mooday-community__write-icon {
   display: block;
-  flex: 0 0 14px;
-  width: 14px;
-  height: 14px;
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
   background-color: currentColor;
   -webkit-mask: var(--write-icon-url) center / contain no-repeat;
   mask: var(--write-icon-url) center / contain no-repeat;
@@ -780,6 +780,12 @@
 }
 
 @media screen and (max-width: 767px) {
+
+  .mooday-community__write-icon {
+    flex-basis: 12px;
+    width: 12px;
+    height: 12px;
+  }
 
   /* Page */
 

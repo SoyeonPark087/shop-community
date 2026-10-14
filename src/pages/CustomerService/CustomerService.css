@@ -372,19 +372,25 @@
   color: #282828;
 }
 
-/* 첨부 SVG 아이콘 */
+/* FAQ의 + 기호와 비슷한 시각적 크기의 라인 아이콘 */
 .mooday-customer-service__type-caret {
   display: block;
   flex: 0 0 auto;
 
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
+  overflow: visible;
 
-  object-fit: contain;
   pointer-events: none;
+  transition: transform 0.2s ease;
 }
 
 /* 열려 있는 상태 */
+.mooday-customer-service__type-dropdown--open
+.mooday-customer-service__type-caret {
+  transform: rotate(180deg);
+}
+
 .mooday-customer-service__type-dropdown--open
 .mooday-customer-service__type-trigger {
   border-color: #77736c;
