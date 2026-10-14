@@ -8,7 +8,7 @@ import Filter from "../../components/drawers/Filter";
 import {
   products,
   SHOP_CATEGORIES,
-} from "../../data/products";
+} from "../../data/Products";
 
 import "./Shop.css";
 
